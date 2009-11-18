@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+	<name>eComp</name>
+	<author>Elias da Rosa</author>
+	<creationDate>Setembro / 2009</creationDate>
+	<copyright></copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>elias@eliasdarosa.com.br</authorEmail>
+	<authorUrl>http://www.eliasdarosa.com.br</authorUrl>
+	<version>1.0 - Beta</version>
+	<description></description>
+	<files>
+		<filename module="mod_ecomp">mod_ecomp.php</filename>
+		<filename module="mod_ecomp">index.html</filename>
+	</files>
+	<params>
+		<param name="idcomponente" type="sql" label="Componente" query="SELECT id AS value, nome AS idcomponente FROM #__ecomp_componentes ORDER BY idcomponente ASC" />
+	</params>
+</install>

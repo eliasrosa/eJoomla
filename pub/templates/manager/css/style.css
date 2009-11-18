@@ -1,0 +1,10 @@
+* {margin: 0; padding: 0; font-family: Arial,sans-serif; font-size: 11px; color: #555; }
+html, body {margin: 0; padding: 0; height: 100%;}
+p {margin-top: 0; text-align: left; line-height:14px;}
+ul {list-style-position: outside; margin: 0; padding: 0;}
+
+.clearfix { clear: both; height: 1%; overflow: hidden; }
+
+#menu { padding: 5px 7px; border-bottom: 1px solid #C9D7F1; }
+#menu a { display: baseline; color: #00C; font-size: 13px; margin:0 5px; float: left; }
+#menu a.sair { float: right; }

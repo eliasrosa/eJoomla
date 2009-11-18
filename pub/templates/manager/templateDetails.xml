@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="template">
+	<name>Manager</name>
+	<version>1.0</version>
+	<creationDate>Setembro 2009</creationDate>
+	<author>Elias da Rosa</author>
+	<authorEmail>elias@eliasdarosa.com.br</authorEmail>
+	<authorUrl>http://www.eliasdarosa.com.br</authorUrl>
+	<description></description>
+	<files>
+		<filename>index.php</filename>
+	</files>
+	<positions>
+		<position>topo</position>
+		<position>esquerda</position>
+		<position>meio</position>
+		<position>direita</position>
+		<position>rodape</position>
+	</positions>
+	<params>
+	</params>
+</install>

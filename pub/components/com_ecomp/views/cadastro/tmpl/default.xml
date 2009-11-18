@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Layout de cadastro">
+		<message>Este layout exibe um cadastro de um componente.</message>
+	</layout>
+	<state>
+		<name>Layout de cadastro</name>
+		<description>Este layout exibe um cadastro de um componente.</description>
+		<url>
+			<param name="idcomponente" type="sql" label="Componente" query="SELECT id, nome FROM #__ecomp_componentes WHERE published = '1' AND trashed != '1'" key_field="id" value_field="nome" />
+			<param name="id" type="text" label="ID do cadastro"  default="" description="Coloque o ID do registro do componente selecionando acima." size="7" />
+		</url>
+		<params>
+			<param name="titulo" type="text" label="Título" default="" size="30" />
+			<param name="classes" type="text" label="Classes" default="" size="30" />
+			<param name="template" type="text" label="Arquivo template" default="" size="30" />
+		</params>
+	</state>
+</metadata>

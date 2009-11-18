@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install type="component" version="1.5.0" method="upgrade">
+	<name>eComp</name>
+	<license>Open Source License</license>
+	<author>Elias da Rosa</author>
+	<authorEmail>elias@eliasdarosa.com.br</authorEmail>
+	<authorUrl>http://www.eliasdarosa.com.br/</authorUrl>
+	<creationDate>Setembro / 2009</creationDate>
+	<copyright>Elias da Rosa</copyright>
+	<version>v1.0 - Beta</version>
+	<description></description>
+
+	<installfile>install/install.php</installfile>
+	<uninstallfile>install/uninstall.php</uninstallfile>
+
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">install/install.sql</file>
+		</sql>
+	</install>
+
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">install/uninstall.sql</file>
+		</sql>
+	</uninstall>
+
+    <files folder="site">
+		<filename>ecomp.php</filename>
+		<filename>index.html</filename>
+    </files>
+
+	<administration>
+		<menu img="js/ThemeOffice/component.png">eComp</menu>
+	    <submenu>
+			<menu link="option=com_ecomp&amp;view=componentes">Componentes</menu>
+			<menu link="option=com_ecomp&amp;view=campos">Campos</menu>
+	    </submenu>
+
+	    <files folder="admin">
+		    <folder>controllers</folder>
+		    <folder>models</folder>
+		    <folder>tables</folder>
+		    <folder>views</folder>
+		    <folder>ebasic</folder>
+			<filename>admin.ecomp.php</filename>
+			<filename>index.html</filename>
+	    </files>
+
+		<files>
+			<filename>install/install.sql</filename>
+			<filename>install/uninstall.sql</filename>
+		</files>
+ 	</administration>
+</install>

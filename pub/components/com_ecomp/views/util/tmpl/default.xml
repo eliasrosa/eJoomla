@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Layout em branco">
+		<message>Este layout exibe uma página em branco, ideal para quando a página inicial é composta por módulos.</message>
+	</layout>
+	<state>
+		<name>eComp - Layout em branco</name>
+		<description>Este layout exibe uma página em branco, ideal para quando a página inicial é composta por módulos.</description>
+	</state>
+</metadata>

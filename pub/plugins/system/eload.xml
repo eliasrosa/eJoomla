@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<install version="1.5" type="plugin" group="system">
+	<name>System - eLoad</name>
+	<author>Elias da Rosa</author>
+	<creationDate>Junho / 2009</creationDate>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>elias@eliasdarosa.com.br</authorEmail>
+	<authorUrl>http://www.eliasdarosa.com.br</authorUrl>
+	<version>1.0810</version>
+	<description>Para mais informações sobre o plugin acesse http://www.eliasdarosa.com.br/blog/tag/eload</description>
+	<files>
+		<filename plugin="eload">eload.php</filename>
+	</files>
+
+	<media folder="media">
+		<folder>plg_eload</folder>
+	</media>
+
+	<params>
+		<param type="spacer" default="jQuery" />
+		<param name="addJquery" type="radio" default="1" label="Adicionar o jQuery">
+			<option value="0">Não</option>
+			<option value="1">Sim</option>
+		</param>
+		<param name="typeJquery" type="list" default="0" label="Tipo do jQuery">
+			<option value="0">Minified</option>
+			<option value="1">Uncompressed</option>
+		</param>
+		<param name="hostJquery" type="list" default="google" label="Host do jQuery">
+			<option value="localhost">Servidor local</option>
+			<option value="google">Google Libs</option>
+		</param>
+		<param name="versionJquery" type="list" default="1.3.2" label="Versão do jQuery">
+			<option value="1.3.2">1.3.2</option>
+			<option value="1.3.1">1.3.1</option>
+			<option value="1.3">1.3</option>
+			<option value="1.2.6">1.2.6</option>
+		</param>
+
+
+
+		<param type="spacer" default="&lt;br/&gt;&lt;br/&gt;Mootools" />
+		<param name="removeMootools" type="radio" default="1" label="Remover Mootools" description="Remove o script mootools.js do HEAD.">
+			<option value="0">Não</option>
+			<option value="1">Sim</option>
+		</param>
+		<param name="removeMootoolsUncompressed" type="radio" default="1" label="Remover Mootools Uncompressed" description="Remove o script mootools-uncompressed.js do HEAD.">
+			<option value="0">Não</option>
+			<option value="1">Sim</option>
+		</param>
+		<param name="removeCaption" type="radio" default="1" label="Remover Caption" description="Remove o script caption.js do HEAD.">
+			<option value="0">Não</option>
+			<option value="1">Sim</option>
+		</param>
+
+
+
+		<param type="spacer" default="&lt;br/&gt;&lt;br/&gt;Título" />
+		<param name="titulo" type="radio" default="1" label="Alterar o título" description="Ativar a alteração do título">
+			<option value="0">Não</option>
+			<option value="1">Sim</option>
+		</param>
+		<param name="tituloSite" type="text" default="{sitename} - {title}" size="45" label="Título" description="{sitename} = Nome do site&lt;br/&gt;{title} = Título da página" />
+
+
+
+		<param type="spacer" default="&lt;br/&gt;&lt;br/&gt;Redimensionar imagens" />
+		<param name="eImageResizeAll" type="list" default="2" label="Redimensionar">
+			<option value="1">Nehuma imagem</option>
+			<option value="2">Todas as tags IMG</option>
+			<option value="3">Somente as imagens com a class</option>
+		</param>
+		<param name="eImageResizeClass" type="text" default="eImageResize" size="45" label="Redimensionar imagens que contenham a class"/>
+		<param name="eImageNoResizeClass" type="text" default="eImageNoResize" size="45" label="Não redimensionar imagens que contenham a class"/>
+
+
+
+		<param type="spacer" default="&lt;br/&gt;&lt;br/&gt;Light Box" />
+		<param name="lightBox-active" type="radio" default="1" label="Adicionar o LightBox">
+			<option value="0">Não</option>
+			<option value="1">Sim</option>
+		</param>
+		<param name="lightBox-class" type="text" default="lightbox" size="45" label="Class da tag A"/>
+		<param name="lightBox-overlayBgColor" type="text" default="#000" size="45" label="Overlay BG Color"/>
+		<param name="lightBox-overlayOpacity" type="text" default="0.8" size="45" label="Overlay BG Opacity"/>
+		<param name="lightBox-fixedNavigation" type="list" default="0" label="Navigation">
+			<option value="0">Desativado</option>
+			<option value="1">Ativado</option>
+		</param>
+
+		<param name="lightBox-imageLoading" type="text" default="{$media}img/lightbox-ico-loading.gif" size="45" label="Imagem - Loading"/>
+		<param name="lightBox-imageBtnPrev" type="text" default="{$media}img/lightbox-btn-prev.gif" size="45" label="Imagem - Anterior"/>
+		<param name="lightBox-imageBtnNext" type="text" default="{$media}img/lightbox-btn-next.gif" size="45" label="Imagem - Próxima"/>
+		<param name="lightBox-imageBtnClose" type="text" default="{$media}img/lightbox-btn-close.gif" size="45" label="Imagem - Fechar"/>
+		<param name="lightBox-imageBlank" type="text" default="{$media}img/lightbox-blank.gif" size="45" label="Imagem - Blank"/>
+		<param name="lightBox-txtImage" type="text" default="Imagem" size="45" label="String - Imagem"/>
+		<param name="lightBox-txtOf" type="text" default="de" size="45" label="String - de"/>
+
+
+		<param type="spacer" default="&lt;br/&gt;&lt;br/&gt;Debug" />
+		<param name="firebug-adicionar" type="list" default="0" label="Firebug Lite 1.2">
+			<option value="0">Desativado</option>
+			<option value="1">Ativado</option>
+		</param>
+
+
+
+		<param type="spacer" default="&lt;br/&gt;&lt;br/&gt;Controle de visitas" />
+		<param name="analytics-adicionar" type="list" default="1" label="Google Analytics">
+			<option value="0">Desativado</option>
+			<option value="1">Ativado</option>
+		</param>
+		<param name="analytics-UA" type="text" default="" size="45" label="ID da propriedade da web"/>
+
+
+    </params>
+</install>

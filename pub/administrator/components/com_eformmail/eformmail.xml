@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.5.0" method="upgrade">
+	<name>eFormMail</name>
+	<author>Elias da Rosa</author>
+	<creationDate>Maio 2009</creationDate>
+	<copyright>(c) 2009 Elias da Rosa. Todos os direitos reservados.</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>elias@eliasdarosa.com.br</authorEmail>
+	<authorUrl>http://www.eliasdarosa.com.br/blog/category/eformmail/</authorUrl>
+	<version>1.0625</version>
+	<description>Componente Joomla para criação de formulários e envios de e-mails.</description>
+
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">install.sql</file>
+		</sql>
+	</install>
+
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">uninstall.sql</file>
+		</sql>
+	</uninstall>
+
+	<files folder="site">
+		<filename>index.html</filename>
+		<filename>eformmail.php</filename>
+	</files>
+
+	<media folder="media">
+		<folder>com_eformmail</folder>
+	</media>
+
+	<administration>
+		<menu img="js/ThemeOffice/component.png">eFormMail</menu>
+
+		<files folder="admin">
+			<filename>index.html</filename>
+			<filename>admin.eformmail.php</filename>
+			<folder>controllers</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+			<folder>ebasic</folder>
+			<folder>views</folder>
+		</files>
+
+		<files>
+			<filename>install.sql</filename>
+			<filename>uninstall.sql</filename>
+		</files>
+	</administration>
+
+</install>

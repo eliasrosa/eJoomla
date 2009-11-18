@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="system">
+	<name>System - eFormMail</name>
+	<author>Elias da Rosa</author>
+	<creationDate>Maio 2009</creationDate>
+	<copyright>(c) 2009 Elias da Rosa. Todos os direitos reservados.</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>elias@eliasdarosa.com.br</authorEmail>
+	<authorUrl>http://www.eliasdarosa.com.br/blog/category/eformmail/</authorUrl>
+	<version>1.0815</version>
+	<description>Plugin para o componente eFormMail.</description>
+	<params></params>
+	<files>
+		<filename plugin="eformmail">eformmail.php</filename>
+	</files>
+</install>
