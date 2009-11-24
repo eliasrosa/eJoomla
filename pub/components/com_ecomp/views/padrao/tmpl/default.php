@@ -10,118 +10,88 @@ $smarty->cache_dir    = ECOMP_PATH_SMARTY_CACHE;
 
 
 // carrega as variaveis padrao
-$id           = JRequest::getInt('id', 0);
+$idcadastro   = $this->params->get('idcadastro');
+$id           = JRequest::getInt('id', $idcadastro);
 $idcategoria  = JRequest::getInt('idcategoria', 0);
 $idcomponente = $this->params->get('idcomponente');
-$tipo         = $this->params->get('tipo');
-$classes      = $this->params->get('classes');
 $titulo       = $this->params->get('titulo');
 $pasta        = $this->params->get('pasta');
 $arquivo      = $this->params->get('arquivo');
+$tipo         = $this->params->get('tipo');
+$template     = $this->params->get('template');
 $doc          =& JFactory::getDocument();
 $html         = '';
+$cadastro     = '';
+$cadastros    = array();
 
 
 // arquivos
-$file_js  = ECOMP_PATH_TEMPLATE.DS.$pasta.DS. $arquivo.$tipo.'.js';
-$file_css = ECOMP_PATH_TEMPLATE.DS.$pasta.DS. $arquivo.$tipo.'.css';
-$file_php = ECOMP_PATH_TEMPLATE.DS.$pasta.DS. $arquivo.$tipo.'.php';
+$file_js_path  = ECOMP_PATH.DS.$pasta.DS.$arquivo.'.js';
+$file_js_url   = ECOMP_URL_TEMPLATE."/html/ecomp/$pasta/$arquivo.js";
+$file_css_path = ECOMP_PATH.DS.$pasta.DS.$arquivo.'.css';
+$file_css_url  = ECOMP_URL_TEMPLATE."/html/ecomp/$pasta/$arquivo.css";
+$file_php      = ECOMP_PATH.DS.$pasta.DS.$arquivo.'.php';
+$file_html     = ECOMP_PATH.DS.$pasta.DS.$arquivo.'.html';
+$file_tipo     = ECOMP_PATH_MEDIA.DS.'views'.DS.'padrao'.DS.$tipo.'.php';
+
+
+// paths
+$path_templates = ECOMP_PATH_MEDIA.DS.'views'.DS.'padrao'.DS.'templates';
 
 
 // nome da tebela do componente
-$tabela       = eHelper::componente_tabela_nome($idcomponente);
-
+$tabela = eHelper::componente_tabela_nome($idcomponente);
 
 // envia vars para o template
-$smarty->assign('classes',            $classes);
-$smarty->assign('titulo',             $titulo);
+$smarty->assign('id', $id);
+$smarty->assign('idcategoria', $idcategoria);
+$smarty->assign('idcomponente', $idcomponente);
 $smarty->assign('ECOMP_URL_TEMPLATE', ECOMP_URL_TEMPLATE);
 $smarty->assign('ECOMP_URL_UPLOADS',  ECOMP_URL_UPLOADS);
-$smarty->assign('ECOMP_URL_IMAGES',   ECOMP_URL_IMAGES);
+$smarty->assign('ECOMP_URL_IMAGENS',  ECOMP_URL_IMAGENS);
 $smarty->assign('ECOMP_URL_MEDIA',    ECOMP_URL_MEDIA);
 
 
-// tenta abrir o js
-if(file_exists($file_js))
-	$doc->addScript($file_js);
+// executa a funçao de acordo com o tipo selecionado
+if($tipo != -1) 
+	require_once($file_tipo);
 
 
-// tenta abrir o css
-if(file_exists($file_css))
-	$doc->addStyleSheet($file_css);
+// tenta abrir o js, css e php
+if(file_exists($file_js_path))  $doc->addScript($file_js_url);
+if(file_exists($file_css_path)) $doc->addStyleSheet($file_css_url);
+if(file_exists($file_php)) require($file_php); 
 
 
-// tenta abrir o php
-if(file_exists($file_php)) require($file_php);
-else
+// envia vars para o template
+$smarty->assign('cadastro',           $cadastro);
+$smarty->assign('cadastros',          $cadastros);
+$smarty->assign('titulo',             $titulo);
+$smarty->assign('classes',            $pasta);
+
+
+// tenta abrir o arquivo html
+if(file_exists($file_html)) $html = $smarty->fetch($file_html);
+else $html = "Arquivo {$file_html} não foi encontrado!";
+
+
+// carrega o html para o template
+$smarty->assign('html', $html);
+
+
+// tenta abrir o arquivo template
+$file_template = $path_templates.DS.$template.'.html';
+if(file_exists($file_template))
 {
-	// abre os cadastros
-	$cadastros = new JCRUD($tabela);
-	$cadastros = $cadastros->busca("WHERE trashed != '1' AND published = '1' ORDER BY ordering ASC");
-}
-
-
-// abre o topo
-if(file_exists(ECOMP_PATH_SMARTY_TEMPLATE.DS."{$template}_lista_topo.html"))
-	$html .= $smarty->fetch("{$template}_lista_topo.html");
-elseif(file_exists(ECOMP_PATH_SMARTY_TEMPLATE.DS."ecomppadrao_lista_topo.html"))
-	$html .= $smarty->fetch("ecomppadrao_lista_topo.html");
-else
-	$html .= '<div class="'.$classes.'"><h3 class="tit"><span>'.$titulo.'</span></h3>';
-
-
-if (is_array($cadastros) && count($cadastros) > 0)
-{
-	foreach($cadastros as $cadastro)
-	{
-		// adiciona um view ao item
-		//$cadastro->view_lista++;
-		//$cadastro->update();
-
-		$idcadastro = $cadastro->id;
-
-		// pega as imagens do cadastro
-		$imagens = new JCRUD(ECOMP_TABLE_CADASTROS_IMAGENS);
-		$imagens = $imagens->busca("WHERE idcomponente = '{$idcomponente}' AND idcadastro = '{$idcadastro}' AND trashed != '1' AND published = '1' ORDER BY ordering ASC");
-
-		// carrega a imagem com o caminho completo
-		foreach($imagens as $k=>$v)
-		{
-			$imagens[$k]->file = ECOMP_URL_IMAGES."/{$idcomponente}/{$idcadastro}/".$imagens[$k]->file;
-		}
-
-		$smarty->assign('dados', $cadastro);
-		$smarty->assign('imagens', $imagens);
-		$smarty->assign('path_uploads', ECOMP_URL_UPLOADS."/{$idcomponente}/{$idcadastro}");
-		$smarty->assign('path_images_uploads', ECOMP_URL_IMAGES."/uploads/{$idcomponente}/{$idcadastro}");
-
-		// abre o meio
-		$html .= $smarty->fetch("{$template}_lista.html");
-	}
+	echo $smarty->fetch($file_template);
 }
 else
 {
-	// abre o rodape
-	if(file_exists(ECOMP_PATH_SMARTY_TEMPLATE.DS."{$template}_lista_nada.html"))
-		$html .= $smarty->fetch("{$template}_lista_nada.html");
-	elseif(file_exists(ECOMP_PATH_SMARTY_TEMPLATE.DS."ecomppadrao_lista_nada.html"))
-		$html .= $smarty->fetch("ecomppadrao_lista_nada.html");
+	$file_template = ECOMP_PATH_TEMPLATES.DS.$template.'.html';
+	if(file_exists($file_template))
+		echo $smarty->fetch($file_template);
 	else
-		$html .= '<p>Nenhum item encontrado.</p>';
+		echo "Arquivo {$file_template} não foi encontrado!";
 }
-
-// abre o rodape
-if(file_exists(ECOMP_PATH_SMARTY_TEMPLATE.DS."{$template}_lista_rodape.html"))
-	$html .= $smarty->fetch("{$template}_lista_rodape.html");
-elseif(file_exists(ECOMP_PATH_SMARTY_TEMPLATE.DS."ecomppadrao_lista_rodape.html"))
-	$html .= $smarty->fetch("ecomppadrao_lista_rodape.html");
-else
-	$html .= '</div>';
-
-
-// exibe o html
-echo $html;
-
-
 
 ?>

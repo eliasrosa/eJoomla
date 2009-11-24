@@ -108,7 +108,7 @@ class ecompMODELcadastros extends ebasicModel
 			if($campo->idtipo == 11 && $uploads['error'][$idcampo][$coluna] != 4)
 			{
 
-				$path_dest = ECOMP_PATH_IMAGES_UPLOADS.DS.$idcomponente.DS.$cadastro->id;
+				$path_dest = ECOMP_PATH_UPLOADS.DS.$idcomponente.DS.$cadastro->id;
 
 				$file      = $uploads;
 				$file_ext  = strtolower(JFile::getExt($file['name'][$idcampo][$coluna]));
@@ -227,12 +227,8 @@ class ecompMODELcadastros extends ebasicModel
 			$cadastro = new JCRUD(ECOMP_TABLE_COMPONENTES."_{$componente->alias}", array( 'id' => $id ));
 
 			// apaga a pasta de imagen caso exista
-			if(JFolder::exists(ECOMP_PATH_IMAGES.DS.$idcomponente.DS.$id))
-				JFolder::delete(ECOMP_PATH_IMAGES.DS.$idcomponente.DS.$id);
-
-			// apaga a pasta de imagens uploads
-			if(JFolder::exists(ECOMP_PATH_IMAGES_UPLOADS.DS.$idcomponente.DS.$id))
-				JFolder::delete(ECOMP_PATH_IMAGES_UPLOADS.DS.$idcomponente.DS.$id);
+			if(JFolder::exists(ECOMP_PATH_IMAGENS.DS.$idcomponente.DS.$id))
+				JFolder::delete(ECOMP_PATH_IMAGENS.DS.$idcomponente.DS.$id);
 
 			// apaga a pasta de uploads
 			if(JFolder::exists(ECOMP_PATH_UPLOADS.DS.$idcomponente.DS.$id))

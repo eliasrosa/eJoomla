@@ -6,21 +6,23 @@ abstract class eLoadHelper
 {
 	function cria_imagem($imagem, $largura = null, $altura = null, $fit = 'inside', $scale = 'any', $wm = false)
 	{
+
+		$imagem = JPATH_BASE.DS.$imagem;		
+
 		// se a imagem não existir
-		if(!JFile::exists(JPATH_BASE.DS.$imagem))
+		if(!JFile::exists($imagem))
 			// retorna o mesmo camiho com a variavel noexists=1 adicionada
 			return $imagem.'?eload=noexists';
 
 		// abre a clase Imagem
-		//require_once(JPATH_BASE.DS.'media'.DS.'plg_eload'.DS.'class'.DS.'wideimage'.DS.'lib'.DS.'WideImage.inc.php');
 		require_once('wideimage'.DS.'lib'.DS.'WideImage.inc.php');
 
 		// se a largura e a altura forem null
 		if(is_null($largura) && is_null($altura))
 		{
 			// pega a largura e altura da imagem original
-			$largura = wiImage::load(JPATH_BASE.DS.$imagem)->getWidth();
-			$altura  = wiImage::load(JPATH_BASE.DS.$imagem)->getHeight();
+			$largura = wiImage::load($imagem)->getWidth();
+			$altura  = wiImage::load($imagem)->getHeight();
 		}
 
 		// remover a extenção
@@ -30,7 +32,7 @@ abstract class eLoadHelper
 		$imagemName = str_replace('/', '-', $imagemName);
 
 		// Pasta para a imagem com base nos 10 primeiros caracteres do seu sha1
-		$imagemDir = 'cache/eload/'.substr(sha1_file(JPATH_BASE.DS.$imagem), 0, 10);
+		$imagemDir = 'cache/eload/'.substr(sha1_file($imagem), 0, 10);
 
 		// se a pasta não existir
 		if(!is_dir(JPATH_BASE.DS.$imagemDir))
@@ -57,7 +59,7 @@ abstract class eLoadHelper
 		$novaImagem = substr(sha1($novaImagem), 0, 8);
 
 		// adiciona a ext no arquivo
-		$novaImagem = $novaImagem.'.'.JFile::getExt(JPATH_BASE.DS.$imagem);
+		$novaImagem = $novaImagem.'.'.JFile::getExt($imagem);
 
 		// cria a string com o endereço da nova imagem
 		$cache = "{$imagemDir}/{$novaImagem}";
@@ -82,7 +84,7 @@ abstract class eLoadHelper
 		// se a imagem não existir
 		if(!file_exists(JPATH_BASE.DS.$cache))
 		{
-			$novaimagem = wiImage::load(JPATH_BASE.DS.$imagem)->resize($largura, $altura, $fit, $scale);
+			$novaimagem = wiImage::load($imagem)->resize($largura, $altura, $fit, $scale);
 
 			if (is_array($wm) && count($wm))
 			{
@@ -167,7 +169,7 @@ abstract class eLoadHelper
 
 			if ($imagem)
 			{
-				$info[0] = JPATH_BASE.DS.ECOMP_URL_IMAGES."/{$imagem->idcomponente}/{$imagem->idcadastro}/{$imagem->file}";
+				$info[0] = JPATH_BASE.DS.ECOMP_URL_IMAGENS."/{$imagem->file}";
 				$info[6] = $marca;
 				$retorno[] = $info;
 			}

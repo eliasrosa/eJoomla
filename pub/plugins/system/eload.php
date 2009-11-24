@@ -204,9 +204,10 @@ class PLGSYSTEMeload extends JPlugin
 				// verifica se a tag img tem a class eImageNoResizeClass
 				$regExp = sprintf('/class=".*?\b%s\b.*?"/i', $this->_params->get('eImageNoResizeClass'));
 				preg_match_all($regExp, $img, $noResize);
-
+		
 				if(!isset($noResize[0][0]))
 				{
+									
 					// captura o height
 					preg_match_all('#height="(.+?)"#', $img, $height);
 
@@ -218,9 +219,10 @@ class PLGSYSTEMeload extends JPlugin
 
 					$largura = isset($width[1][0]) ? $width[1][0] : null;
 					$altura  = isset($height[1][0]) ? $height[1][0] : null;
-
+	
 					if (isset($src[1][0]) && (!is_null($largura) || !is_null($altura)))
 					{
+												
 						// cria a nova img no pasta cache
 						$newpath = eLoadHelper::cria_imagem($src[1][0], $largura, $altura);
 
@@ -278,9 +280,20 @@ class PLGSYSTEMeload extends JPlugin
 				// captura o scale
 				preg_match_all("#scale='(.+?)'#", $img, $scale);
 				$scale = @$scale[1][0] == 'any' ? 'any' : @$scale[1][0];
+				
+				// captura o attr watermarks p/ marca d'águas
+				preg_match_all("#watermarks='(.+?)'#", $img, $watermarks);
+
+				// sem marca d'água por padrão
+				$wm = false;
+
+				// se existir alguma marca d'água
+				if(isset($watermarks[1][0]))
+					$wm = eLoadHelper::watermark_info($watermarks[1][0]);			
+				
 
 				// cria a nova img no pasta cache
-				$newpath = eLoadHelper::cria_imagem(@$src[1][0], @$width[1][0], @$height[1][0], $fit, $scale);
+				$newpath = eLoadHelper::cria_imagem(@$src[1][0], @$width[1][0], @$height[1][0], $fit, $scale, $wm);
 
 				// atualiza o artigo
 				$html = str_replace($img, $newpath, $html);

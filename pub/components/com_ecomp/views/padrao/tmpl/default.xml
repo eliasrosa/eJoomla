@@ -7,18 +7,13 @@
 		<name>Layout padrão do eComp</name>
 		<description></description>
 		<params>
-			<param name="idcomponente" type="sql" label="Componente" query="SELECT id, nome FROM #__ecomp_componentes" key_field="id" value_field="nome" />
-
-			<param name="tipo" type="list" default="0" label="Tipo do arquivo" description="">
-				<option value="0">-- Nenhum --</option>
-				<option value="lista">Lista</option>
-				<option value="item">Item</option>
-			</param>
-
-			<param name="pasta" type="text" label="Pasta" default="" size="30" />
-			<param name="arquivo" type="text" label="Arquivo" default="" size="30" />
-
 			<param name="titulo" type="text" label="Título" default="" size="30" />
+			<param name="idcomponente" type="sql" label="Componente" query="SELECT id, nome FROM #__ecomp_componentes" key_field="id" value_field="nome" />
+			<param name="idcadastro" type="text" label="ID do cadastro" default="0" size="30" />
+			<param name="pasta" type="text" label="Pasta" default="" size="30" />
+			<param name="arquivo" type="text" label="Arquivo PHP e HTML" default="" size="30" />
+			<param name="template" type="text" label="Arquivo template" default="padrao" size="30" />
+			<param name="tipo" type="filelist" default="-1" label="Tipo de execução" description="" directory="media/com_ecomp/views/padrao" filter="" exclude="" stripext="1" />
 		</params>
 	</state>
 </metadata>

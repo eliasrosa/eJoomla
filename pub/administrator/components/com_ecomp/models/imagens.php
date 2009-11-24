@@ -28,7 +28,7 @@ class ecompMODELimagens extends ebasicModel
 		$idcomponente = JRequest::getVar('idcomponente', 0);
 		$idcadastro   = JRequest::getVar('idcadastro', 0);
 
-		$path_dest = ECOMP_PATH_IMAGES.DS.$idcomponente.DS.$idcadastro;
+		$path_dest = ECOMP_PATH_IMAGENS;
 
 		$file      = JRequest::getVar('Filedata', null, 'files', 'array');
 		$file_name = JFile::makeSafe($file['name']);
@@ -66,15 +66,15 @@ class ecompMODELimagens extends ebasicModel
 					wiImage::load($file_dest)->resize(1024, 1024, 'inside', 'down')->saveToFile($file_new, null, 90);
 
 					// Cria imagem 800x600
-					$file_800 = $path_dest.DS.$imagem->id.'800x600.jpg';
+					$file_800 = $path_dest.DS.$imagem->id.'_800x600.jpg';
 					ecompHelper::redimensionaImg($file_new, $file_800, 800, 600, 'inside', 'down', 90);
 
 					// Cria imagem 640x480
-					$file_640 = $path_dest.DS.$imagem->id.'640x480.jpg';
+					$file_640 = $path_dest.DS.$imagem->id.'_640x480.jpg';
 					ecompHelper::redimensionaImg($file_new, $file_640, 640, 480, 'inside', 'down', 90);
 
 					// Cria imagem 320x240
-					$file_320 = $path_dest.DS.$imagem->id.'320x240.jpg';
+					$file_320 = $path_dest.DS.$imagem->id.'_320x240.jpg';
 					ecompHelper::redimensionaImg($file_new, $file_320, 320, 240, 'inside', 'down', 90);
 				}
 				else
@@ -87,7 +87,7 @@ class ecompMODELimagens extends ebasicModel
 				if($imagem->file != $file_db)
 				{
 					// apaga o arquivo velhos
-					@unlink($path_dest.DS.$imagem->file);
+					@unlink($path_dest.DS.$imagem->file);					
 					@unlink($file_p);
 					@unlink($file_m);
 				}
@@ -127,9 +127,12 @@ class ecompMODELimagens extends ebasicModel
 			$imagem = new JCRUD(ECOMP_TABLE_CADASTROS_IMAGENS, array( 'id' => $id));
 
 			// apaga as imagens
-			unlink(ECOMP_PATH_IMAGES.DS.$imagem->idcomponente.DS.$imagem->idcadastro.DS.$imagem->file);
-			unlink(ECOMP_PATH_IMAGES.DS.$imagem->idcomponente.DS.$imagem->idcadastro.DS.str_replace('.', '_p.', $imagem->file));
-			unlink(ECOMP_PATH_IMAGES.DS.$imagem->idcomponente.DS.$imagem->idcadastro.DS.str_replace('.', '_m.', $imagem->file));
+			@unlink(ECOMP_PATH_IMAGENS.DS.$imagem->file);
+			@unlink(ECOMP_PATH_IMAGENS.DS.str_replace('.', '_800x600.', $imagem->file));
+			@unlink(ECOMP_PATH_IMAGENS.DS.str_replace('.', '_640x480.', $imagem->file));
+			@unlink(ECOMP_PATH_IMAGENS.DS.str_replace('.', '_320x240.', $imagem->file));
+			@unlink(ECOMP_PATH_IMAGENS.DS.str_replace('.', '_p.', $imagem->file));
+			@unlink(ECOMP_PATH_IMAGENS.DS.str_replace('.', '_m.', $imagem->file));
 
 			// deleta o componente
 			$imagem->delete();

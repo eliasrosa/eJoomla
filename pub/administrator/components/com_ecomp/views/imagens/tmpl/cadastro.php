@@ -11,14 +11,14 @@ $editor =& JFactory::getEditor();
 		<fieldset class="adminform">
 
 			<? if($this->row->id){ ?>
-			<img style="float: right; margin-right: 8px; border: 1px solid #DDD; " src="../images/com_ecomp/<?= $idcomponente.'/'.$idcadastro.'/'.$this->row->id.'_m.jpg' ?>" />
+			<img style="float: right; margin-right: 8px; border: 1px solid #DDD; " src="../<?= ECOMP_URL_IMAGENS.'/'.$this->row->id.'_m.jpg' ?>" />
 			<? } ?>
 
 			<legend>Detalhes</legend>
 			<table class="admintable">
 				<tr>
 					<td width="100" align="right" class="key">Caminho da imagem:</td>
-					<td><?php echo @$this->row->id ? "images/com_ecomp/{$idcomponente}/{$idcadastro}/{$this->row->file}" : '' ?></td>
+					<td><?php echo @$this->row->id ? ECOMP_URL_IMAGENS.'/'.$this->row->file : '' ?></td>
 				</tr>
 				<tr>
 					<td align="right" class="key">Enviar imagem:</td>

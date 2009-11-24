@@ -182,13 +182,8 @@ class ecompMODELcomponentes extends ebasicModel
 
 			
 			// apaga a pasta de imagen caso exista
-			if(JFolder::exists(ECOMP_PATH_IMAGES.DS.$componente->id))
-				JFolder::delete(ECOMP_PATH_IMAGES.DS.$componente->id);
-
-
-			// apaga a pasta de imagens uploads
-			if(JFolder::exists(ECOMP_PATH_IMAGES_UPLOADS.DS.$componente->id))
-				JFolder::delete(ECOMP_PATH_IMAGES_UPLOADS.DS.$componente->id);
+			if(JFolder::exists(ECOMP_PATH_IMAGENS.DS.$componente->id))
+				JFolder::delete(ECOMP_PATH_IMAGENS.DS.$componente->id);
 
 
 			// apaga a pasta de uploads

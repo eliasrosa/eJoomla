@@ -40,7 +40,7 @@ echo "<h1><small>{$cadastro->$campo}</small></h1>"
 				<td align="center"><?= $id ?></td>
 				<td align="center"><?= JHTML::_( 'grid.id', $i, $id ) ?></td>
 				<td><?= $this->util('listagem.link', array('nome' => ($row->legenda ? stripslashes($row->legenda) : '-- sem legenda --'), 'id' => $id, 'task' => 'unTrash', 'idcomponente' => $idcomponente, 'idcadastro' => $idcadastro )) ?></td>
-				<td><img src="../images/com_ecomp/<?= $idcomponente.'/'.$idcadastro.'/'.str_replace('.', '_p.', $row->file) ?>" /></td>
+				<td><img src="../<?= ECOMP_URL_IMAGENS .'/'. $row->id.'_p.jpg' ?>" /></td>
 			</tr>
 			<? $k = 1 - $k;
 		}

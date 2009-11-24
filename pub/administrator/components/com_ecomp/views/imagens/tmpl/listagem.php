@@ -83,7 +83,7 @@ var uploader = new multiUpload('uploader', 'uploader_files', {
 				<td><?= $this->util('listagem.link', array('nome' => ($row->legenda ? stripslashes($row->legenda) : '-- sem legenda --'), 'id' => $id, 'task' => 'edit', 'idcomponente' => $idcomponente, 'idcadastro' => $idcadastro )) ?></td>
 				<td align="center"><?= $row->ordering ?></td>
 				<td align="center"><?= JHTML::_( 'grid.published', $row, $i ); ?></td>
-				<td><img src="../images/com_ecomp/<?= $idcomponente.'/'.$idcadastro.'/'.$row->id.'_p.jpg' ?>" /></td>
+				<td><img src="../<?= ECOMP_URL_IMAGENS .'/'. $row->id.'_p.jpg' ?>" /></td>
 			</tr>
 			<? $k = 1 - $k;
 		}
