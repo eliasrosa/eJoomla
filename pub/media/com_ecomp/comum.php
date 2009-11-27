@@ -13,53 +13,51 @@ else
 	$defaultemplate = JFactory::getApplication()->getTemplate();
 }
 
-
-$_var['ECOMP_PATH_TEMPLATE']    = JPATH_ROOT.DS.'templates'.DS.$defaultemplate;
-$_var['ECOMP_PATH_CACHE']       = JPATH_ROOT.DS.'cache'.DS.'ecomp';
-$_var['ECOMP_PATH_CACHE_ELOAD'] = JPATH_ROOT.DS.'cache'.DS.'eload';
-$_var['ECOMP_PATH_ADMIN']       = JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_ecomp';
-$_var['ECOMP_PATH_MEDIA']       = JPATH_ROOT.DS.'media'.DS.'com_ecomp';
-$_var['ECOMP_PATH_CLASS']       = $_var['ECOMP_PATH_MEDIA'].DS.'class';
-
-
-$_var['ECOMP_PATH']               = $_var['ECOMP_PATH_TEMPLATE'].DS.'html'.DS.'ecomp';
-$_var['ECOMP_PATH_IMAGENS']       = $_var['ECOMP_PATH'].DS.'_imagens';
-$_var['ECOMP_PATH_UPLOADS']       = $_var['ECOMP_PATH'].DS.'_uploads';
-$_var['ECOMP_PATH_TEMPLATES']     = $_var['ECOMP_PATH'].DS.'_templates';
-$_var['ECOMP_PATH_TEMPLATES_MOD'] = $_var['ECOMP_PATH'].DS.'_modulos';
+// PATH'S
+$ECOMP_VARS['ECOMP_PATH_TEMPLATE']      = JPATH_ROOT.DS.'templates'.DS.$defaultemplate;
+$ECOMP_VARS['ECOMP_PATH_CACHE']         = JPATH_ROOT.DS.'cache'.DS.'ecomp';
+$ECOMP_VARS['ECOMP_PATH_CACHE_ELOAD']   = JPATH_ROOT.DS.'cache'.DS.'eload';
+$ECOMP_VARS['ECOMP_PATH_ADMIN']         = JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_ecomp';
+$ECOMP_VARS['ECOMP_PATH_MEDIA']         = JPATH_ROOT.DS.'media'.DS.'com_ecomp';
+$ECOMP_VARS['ECOMP_PATH_CLASS']         = $ECOMP_VARS['ECOMP_PATH_MEDIA'].DS.'class';
+$ECOMP_VARS['ECOMP_PATH']               = $ECOMP_VARS['ECOMP_PATH_TEMPLATE'].DS.'html'.DS.'ecomp';
+$ECOMP_VARS['ECOMP_PATH_IMAGENS']       = $ECOMP_VARS['ECOMP_PATH'].DS.'_imagens';
+$ECOMP_VARS['ECOMP_PATH_UPLOADS']       = $ECOMP_VARS['ECOMP_PATH'].DS.'_uploads';
+$ECOMP_VARS['ECOMP_PATH_TEMPLATES']     = $ECOMP_VARS['ECOMP_PATH'].DS.'_templates';
+$ECOMP_VARS['ECOMP_PATH_TEMPLATES_MOD'] = $ECOMP_VARS['ECOMP_PATH'].DS.'_modulos';
 
 
 //SMARTY
-$_var['ECOMP_PATH_SMARTY_CACHE']    = JPATH_ROOT.DS.'cache'.DS.'ecomp'.DS.'_cache';
-$_var['ECOMP_PATH_SMARTY_COPILE']   = JPATH_ROOT.DS.'cache'.DS.'ecomp'.DS.'_copile';
-$_var['ECOMP_PATH_SMARTY_TEMPLATE'] = $_var['ECOMP_PATH_TEMPLATES'];
+$ECOMP_VARS['ECOMP_PATH_SMARTY_CACHE']    = JPATH_ROOT.DS.'cache'.DS.'ecomp'.DS.'_cache';
+$ECOMP_VARS['ECOMP_PATH_SMARTY_COPILE']   = JPATH_ROOT.DS.'cache'.DS.'ecomp'.DS.'_copile';
+$ECOMP_VARS['ECOMP_PATH_SMARTY_TEMPLATE'] = $ECOMP_VARS['ECOMP_PATH_TEMPLATES'];
 
 
 // URLS
-$_var['ECOMP_URL_TEMPLATE'] = 'templates/'.$defaultemplate;
-$_var['ECOMP_URL_UPLOADS']  = $_var['ECOMP_URL_TEMPLATE'].'/html/ecomp/_uploads';
-$_var['ECOMP_URL_IMAGENS']  = $_var['ECOMP_URL_TEMPLATE'].'/html/ecomp/_imagens';
-$_var['ECOMP_URL_MEDIA']    = JURI::root(1).'/media/com_ecomp/';
+$ECOMP_VARS['ECOMP_URL_TEMPLATE'] = 'templates/'.$defaultemplate;
+$ECOMP_VARS['ECOMP_URL_UPLOADS']  = $ECOMP_VARS['ECOMP_URL_TEMPLATE'].'/html/ecomp/_uploads';
+$ECOMP_VARS['ECOMP_URL_IMAGENS']  = $ECOMP_VARS['ECOMP_URL_TEMPLATE'].'/html/ecomp/_imagens';
+$ECOMP_VARS['ECOMP_URL_MEDIA']    = JURI::root(1).'/media/com_ecomp/';
 
 
 // TABELAS
-$_var['ECOMP_TABLE_JCOMPONENTS']          = '#__components';
-$_var['ECOMP_TABLE_COMPONENTES']          = '#__ecomp_componentes';
-$_var['ECOMP_TABLE_CAMPOS']               = '#__ecomp_campos';
-$_var['ECOMP_TABLE_TIPOS']                = '#__ecomp_campos_tipos';
-$_var['ECOMP_TABLE_CATEGORIAS']           = '#__ecomp_categorias';
-$_var['ECOMP_TABLE_TAGS']                 = '#__ecomp_tags';
-$_var['ECOMP_TABLE_CADASTROS_CATEGORIAS'] = '#__ecomp_cadastros_categorias';
-$_var['ECOMP_TABLE_CADASTROS_TAGS']       = '#__ecomp_cadastros_tags';
-$_var['ECOMP_TABLE_CADASTROS_IMAGENS']    = '#__ecomp_cadastros_imagens';
+$ECOMP_VARS['ECOMP_TABLE_JCOMPONENTS']          = '#__components';
+$ECOMP_VARS['ECOMP_TABLE_COMPONENTES']          = '#__ecomp_componentes';
+$ECOMP_VARS['ECOMP_TABLE_CAMPOS']               = '#__ecomp_campos';
+$ECOMP_VARS['ECOMP_TABLE_TIPOS']                = '#__ecomp_campos_tipos';
+$ECOMP_VARS['ECOMP_TABLE_CATEGORIAS']           = '#__ecomp_categorias';
+$ECOMP_VARS['ECOMP_TABLE_TAGS']                 = '#__ecomp_tags';
+$ECOMP_VARS['ECOMP_TABLE_CADASTROS_CATEGORIAS'] = '#__ecomp_cadastros_categorias';
+$ECOMP_VARS['ECOMP_TABLE_CADASTROS_TAGS']       = '#__ecomp_cadastros_tags';
+$ECOMP_VARS['ECOMP_TABLE_CADASTROS_IMAGENS']    = '#__ecomp_cadastros_imagens';
 
 
-// Todas as contantes reunidas em uma
-define('ECOMP_VARS', $_var);
+// DEIXA A VAR ECOMP_VARS NA SESSÂO
+$_SESSION['ECOMP_VARS'] = $ECOMP_VARS; 
 
 
-// CRIA UMA CONSTANTE PARA CADA ITEM DENTRO DE $_VAR 
-foreach(ECOMP_VARS as $k => $v) define($k, $v);
+// CRIA UMA CONSTANTE PARA CADA ITEM DENTRO DE $ECOMP_VARS 
+foreach($ECOMP_VARS as $k => $v) define($k, $v);
 
 
 // CRIAS ESTRUTURA DE PASTAS IMPORTANTES
