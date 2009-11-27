@@ -414,7 +414,7 @@ class PLGSYSTEMeload extends JPlugin
 				$this->_params->get('lightBox-txtOf')
 			);
 
-			$doc->addScriptDeclaration(str_replace('{$media}', $this->_mediaUrl, $jsDeclaration));
+			$doc->addScriptDeclaration($jsDeclaration);
 
 		}
 

@@ -81,18 +81,7 @@
 			<option value="1">Sim</option>
 		</param>
 		<param name="lightBox-class" type="text" default="lightbox" size="45" label="Class da tag A"/>
-		<param name="lightBox-overlayBgColor" type="text" default="#000" size="45" label="Overlay BG Color"/>
 		<param name="lightBox-overlayOpacity" type="text" default="0.8" size="45" label="Overlay BG Opacity"/>
-		<param name="lightBox-fixedNavigation" type="list" default="0" label="Navigation">
-			<option value="0">Desativado</option>
-			<option value="1">Ativado</option>
-		</param>
-
-		<param name="lightBox-imageLoading" type="text" default="{$media}img/lightbox-ico-loading.gif" size="45" label="Imagem - Loading"/>
-		<param name="lightBox-imageBtnPrev" type="text" default="{$media}img/lightbox-btn-prev.gif" size="45" label="Imagem - Anterior"/>
-		<param name="lightBox-imageBtnNext" type="text" default="{$media}img/lightbox-btn-next.gif" size="45" label="Imagem - Próxima"/>
-		<param name="lightBox-imageBtnClose" type="text" default="{$media}img/lightbox-btn-close.gif" size="45" label="Imagem - Fechar"/>
-		<param name="lightBox-imageBlank" type="text" default="{$media}img/lightbox-blank.gif" size="45" label="Imagem - Blank"/>
 		<param name="lightBox-txtImage" type="text" default="Imagem" size="45" label="String - Imagem"/>
 		<param name="lightBox-txtOf" type="text" default="de" size="45" label="String - de"/>
 
