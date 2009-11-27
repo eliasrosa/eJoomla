@@ -24,6 +24,10 @@ class PLGSYSTEMeload extends JPlugin
 		// ser for admin
 		global $mainframe;
 		if ($mainframe->isAdmin()) return;
+		
+		// verivica se existe a pasta cache
+		if(!is_dir('cache')) @mkdir('cache');
+		if(!is_dir($this->_cache)) @mkdir($this->_cache);		
 
 		// carrega o parametros
 		$this->_plugin = JPluginHelper::getPlugin( 'system', $this->_nome );
