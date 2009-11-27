@@ -1,0 +1,44 @@
+Projeto: eJoomla! - Autor: Elias da Rosa <elias@eliasdarosa.com.br>
+
+Imagine o Joomla com ferramentas já instaladas. Ferramentas que irão realmente ajudar 
+no desenvolvimento do seu site. Foi pensando nisso que criei o eJoomla!.
+
+O eJoomla! é composto pelo Joomla verão 1.5.14 PT-BR, os seguintes componentes e plugins
+já estão intalados e configurados:
+
+
+	Componente eComp - Versão: 1.0 Beta - Autor: Elias da Rosa
+	============================================================
+	A função deste componente é criar componentes rápidos e simples, em poucos cliques você pode
+	criar componentes de cadastros de clientes, serviços, galerias de imagens e etc.
+	
+	
+	Componente eFormMail - Versão: 1.0625 - Autor: Elias da Rosa
+	============================================================
+	Componente para criação de formulários para envio por e-mail.
+	
+	
+	Componente JCE - Versão: 1.0625 - Autor: Ryan Demmer
+	============================================================
+	Poderoso editor HTML/Textos para o Joomla!
+	
+	
+	Plugin System eLoad - Versão: 1.0810 - Autor: Elias da Rosa
+	============================================================
+	Poderoso plugin responsável por diversas utilidades para o site:
+		
+		* Adiciona o script jQuery 1.3.2 do Google Libs ou versões anteriores
+		* Remove o script mootools.js
+		* Remove o script mootools-uncompressed.js
+		* Remove o script caption.js
+		* Controle da tag <title></title>
+		* Redimensionamento de imagens automático
+		* Recursos para gerar Marca d'agua facilmente (Criado por Fredi Machado <fredisoft@gmail.com>)
+		* Recursos para gerar link com lightBox facilmente
+		* FireBug incluso para depuração
+		* Adiciona o Google Analytics facilmente
+			
+	
+Em breve, dicas e tutoriais.
+Sugestões e Críticas, por favor, mande um e-mail para elias@eliasdarosa.com.br
+
