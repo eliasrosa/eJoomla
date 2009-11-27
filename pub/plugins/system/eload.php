@@ -115,23 +115,21 @@ class PLGSYSTEMeload extends JPlugin
 
 	private function jQuery()
 	{
-
-		$newscript = array();
 		if($this->_params->get('addJquery'))
 		{
-			$tipo = $this->_params->get('typeJquery') ? '' : '.min';
-			$file = $this->_params->get('versionJquery').'/jquery' . $tipo . '.js';
+			// cria um array
+			$newscript = array();
 
-			// Google
-			if($this->_params->get('hostJquery') == 'google')
-				$newscript['http://ajax.googleapis.com/ajax/libs/jquery/'. $file] = 'text/javascript';
-
-			// localhost
-			if($this->_params->get('hostJquery') == 'localhost')
-				$newscript[JURI::base() . 'media/plg_eload/js/' . $file] = 'text/javascript';
+			// pega a versão do jquery selecionado
+			$file = $this->_params->get('versionJquery').'/jquery.min.js';
+			
+			// adiciona na array
+			$newscript['http://ajax.googleapis.com/ajax/libs/jquery/'. $file] = 'text/javascript';
+			
+			// atualiza os scripts do frontend
+			$this->_head['scripts'] = array_merge($newscript, $this->_head['scripts']);
 		}
 
-		$this->_head['scripts'] = array_merge($newscript, $this->_head['scripts']);
 	}
 
 	private function titulo()

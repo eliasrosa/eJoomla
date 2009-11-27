@@ -22,14 +22,6 @@
 			<option value="0">Não</option>
 			<option value="1">Sim</option>
 		</param>
-		<param name="typeJquery" type="list" default="0" label="Tipo do jQuery">
-			<option value="0">Minified</option>
-			<option value="1">Uncompressed</option>
-		</param>
-		<param name="hostJquery" type="list" default="google" label="Host do jQuery">
-			<option value="localhost">Servidor local</option>
-			<option value="google">Google Libs</option>
-		</param>
 		<param name="versionJquery" type="list" default="1.3.2" label="Versão do jQuery">
 			<option value="1.3.2">1.3.2</option>
 			<option value="1.3.1">1.3.1</option>
