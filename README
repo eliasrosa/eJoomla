@@ -37,6 +37,7 @@ já estão intalados e configurados:
 		* Recursos para gerar link com lightBox facilmente
 		* FireBug incluso para depuração
 		* Adiciona o Google Analytics facilmente
+		* Remove as tags '<meta name="generator" ... />'
 			
 	
 Em breve, dicas e tutoriais.

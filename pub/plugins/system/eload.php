@@ -80,11 +80,15 @@ class PLGSYSTEMeload extends JPlugin
 		// cria os litebox
 		$this->lightbox_search();
 
+		// remove o tag meta generator
+		$this->generator();
+
 		// grava o html
 		JResponse::setBody($this->_html);
 
 		// adiciona o Google Analytics
 		$this->analytics_adicionar_scripts();
+
 	}
 
 
@@ -482,6 +486,21 @@ class PLGSYSTEMeload extends JPlugin
 		return;
 	}
 
+
+	////////////////////////////////////////////////////////////////////
+	// GENERATOR
+	////////////////////////////////////////////////////////////////////
+
+	/* Caso o parametro esteja ativado, remove a tag meta generator
+	 * @return void
+	 */
+	function generator()
+	{
+		if($this->_params->get('generator') == '1')
+		{
+			$this->_html = preg_replace('#<meta name="generator" .* />#', '', $this->_html);
+		}
+	}
 
 }
 ?>

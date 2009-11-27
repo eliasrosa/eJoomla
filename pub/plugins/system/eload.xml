@@ -47,6 +47,14 @@
 
 
 
+		<param type="spacer" default="&lt;br/&gt;&lt;br/&gt;Tag META" />
+		<param name="generator" type="radio" default="1" label="Remover tag generator" description="Remove a tag META generator">
+			<option value="0">Não</option>
+			<option value="1">Sim</option>
+		</param>
+
+
+
 		<param type="spacer" default="&lt;br/&gt;&lt;br/&gt;Título" />
 		<param name="titulo" type="radio" default="1" label="Alterar o título" description="Ativar a alteração do título">
 			<option value="0">Não</option>
