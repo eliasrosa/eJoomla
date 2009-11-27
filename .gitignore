@@ -1,6 +1,10 @@
 material
 old
-pub/administrator/cache
-pub/cache
-pub/logs
-pub/tmp
+pub/administrator/cache/*
+pub/cache/*
+pub/logs/*
+pub/tmp/*
+!pub/administrator/cache/index.html
+!pub/cache/index.html
+!pub/logs/index.html
+!pub/tmp/index.html
