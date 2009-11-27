@@ -79,7 +79,6 @@
 			<option value="0">Não</option>
 			<option value="1">Sim</option>
 		</param>
-		<param name="lightBox-class" type="text" default="lightbox" size="45" label="Class da tag A"/>
 		<param name="lightBox-overlayOpacity" type="text" default="0.8" size="45" label="Overlay BG Opacity"/>
 		<param name="lightBox-txtImage" type="text" default="Imagem" size="45" label="String - Imagem"/>
 		<param name="lightBox-txtOf" type="text" default="de" size="45" label="String - de"/>
