@@ -1,5 +1,17 @@
 <?php
 class JConfig {
+
+	/* Altere somente os valores abaixo */
+	
+	var $sitename          = 'NOME DO SITE';
+	var $mailfrom          = 'SEU E-MAIL';
+	var $host              = 'SERVIDOR MYSQL';
+	var $user              = 'USUÁRIO MYSQL';
+	var $db                = 'BANCO DE DADOS MYSQL';
+	var $password          = 'SENHA DO BANCO DE DADOS';
+	
+	/* Altere somente os valores acima */
+	
 	var $offline           = '0';
 	var $editor            = 'jce';
 	var $list_limit        = '20';
@@ -29,17 +41,10 @@ class JConfig {
 	var $ftp_port          = '21';
 	var $ftp_user          = '';
 	var $ftp_pass          = '';
-	var $ftp_root          = '';
-	
-	var $dbtype            = 'mysql';
-	var $host              = 'localhost';
-	var $user              = 'root';
-	var $db                = 'joomla';
-	var $password          = '';
+	var $ftp_root          = '';	
 	var $dbprefix          = 'jos_';
-	
+	var $dbtype            = 'mysql';	
 	var $mailer            = 'mail';
-	var $mailfrom          = 'elias@eliasdarosa.com.br';
 	var $fromname          = 'Joomla';
 	var $sendmail          = '/usr/sbin/sendmail';
 	var $smtpauth          = '0';
@@ -52,7 +57,6 @@ class JConfig {
 	var $MetaTitle         = '1';
 	var $lifetime          = '200';
 	var $session_handler   = 'database';
-	var $sitename          = 'Joomla';
 	var $MetaDesc          = '';
 	var $MetaKeys          = '';
 	var $offline_message   = 'Este site está em manutenção. Por favor, retorne mais tarde.';
