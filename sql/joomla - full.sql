@@ -1,17 +1,16 @@
-
 -- phpMyAdmin SQL Dump
 -- version 3.1.3.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: Nov 18, 2009 as 01:52 PM
+-- Tempo de Geração: Nov 27, 2009 as 06:12 PM
 -- Versão do Servidor: 5.1.33
 -- Versão do PHP: 5.2.9
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 --
--- Banco de Dados: `joomla`
+-- Banco de Dados: `ejoomla`
 --
 
 -- --------------------------------------------------------
@@ -1176,7 +1175,7 @@ INSERT INTO `jos_plugins` (`id`, `name`, `element`, `folder`, `access`, `orderin
 (33, 'System - Backlink', 'backlink', 'system', 0, 7, 0, 1, 0, 0, '0000-00-00 00:00:00', ''),
 (34, 'Editor - JCE 154', 'jce', 'editors', 0, 0, 1, 0, 0, 0, '0000-00-00 00:00:00', ''),
 (37, 'System - eFormMail', 'eformmail', 'system', 0, 0, 1, 0, 0, 0, '0000-00-00 00:00:00', ''),
-(36, 'System - eLoad', 'eload', 'system', 0, 0, 1, 0, 0, 0, '0000-00-00 00:00:00', 'addJquery=1\ntypeJquery=0\nhostJquery=google\nversionJquery=1.3.2\nremoveMootools=1\nremoveMootoolsUncompressed=1\nremoveCaption=1\ntitulo=1\ntituloSite={sitename} - {title}\neImageResizeAll=2\neImageResizeClass=eImageResize\neImageNoResizeClass=eImageNoResize\nlightBox-active=1\nlightBox-class=lightbox\nlightBox-overlayBgColor=#000\nlightBox-overlayOpacity=0.8\nlightBox-fixedNavigation=0\nlightBox-imageLoading={$media}img/lightbox-ico-loading.gif\nlightBox-imageBtnPrev={$media}img/lightbox-btn-prev.gif\nlightBox-imageBtnNext={$media}img/lightbox-btn-next.gif\nlightBox-imageBtnClose={$media}img/lightbox-btn-close.gif\nlightBox-imageBlank={$media}img/lightbox-blank.gif\nlightBox-txtImage=Imagem\nlightBox-txtOf=de\nfirebug-adicionar=0\nanalytics-adicionar=1\nanalytics-UA=\n\n');
+(36, 'System - eLoad', 'eload', 'system', 0, 0, 1, 0, 0, 0, '0000-00-00 00:00:00', 'addJquery=1\nversionJquery=1.3.2\nremoveMootools=1\nremoveMootoolsUncompressed=1\nremoveCaption=1\ngenerator=1\ntitulo=1\ntituloSite={sitename} - {title}\neImageResizeAll=2\neImageResizeClass=eImageResize\neImageNoResizeClass=eImageNoResize\nlightBox-active=1\nlightBox-overlayOpacity=0.8\nlightBox-txtImage=Imagem\nlightBox-txtOf=de\nfirebug-adicionar=0\nanalytics-adicionar=1\nanalytics-UA=\n\n');
 
 -- --------------------------------------------------------
 
@@ -1317,7 +1316,8 @@ CREATE TABLE IF NOT EXISTS `jos_session` (
 --
 
 INSERT INTO `jos_session` (`username`, `time`, `session_id`, `guest`, `userid`, `usertype`, `gid`, `client_id`, `data`) VALUES
-('admin', '1258557866', '69f12e8a30f6f9011229347aa883a8ca', 0, 62, 'Super Administrator', 25, 1, '__default|a:8:{s:15:"session.counter";i:20;s:19:"session.timer.start";i:1258554788;s:18:"session.timer.last";i:1258557234;s:17:"session.timer.now";i:1258557866;s:22:"session.client.browser";s:109:"Mozilla/5.0 (Windows; U; Windows NT 6.1; pt-BR; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5 (.NET CLR 3.5.30729)";s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:2:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}s:11:"application";a:1:{s:4:"data";O:8:"stdClass":1:{s:4:"lang";s:0:"";}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";s:2:"62";s:4:"name";s:13:"Administrator";s:8:"username";s:5:"admin";s:5:"email";s:16:"seu@email.com.br";s:8:"password";s:65:"c4b7b93e384c769d37feec66e78f1b0b:e83WJUGtz4HlTfavAmuT5CHvSsZ53qpZ";s:14:"password_clear";s:0:"";s:8:"usertype";s:19:"Super Administrator";s:5:"block";s:1:"0";s:9:"sendEmail";s:1:"1";s:3:"gid";s:2:"25";s:12:"registerDate";s:19:"2009-09-11 10:00:04";s:13:"lastvisitDate";s:19:"2009-09-28 12:12:18";s:10:"activation";s:0:"";s:6:"params";s:70:"admin_language=pt-BR\nlanguage=pt-BR\neditor=jce\nhelpsite=\ntimezone=-3\n\n";s:3:"aid";i:2;s:5:"guest";i:0;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:65:"D:\\SITES\\elias\\joomla\\pub\\libraries\\joomla\\html\\parameter\\element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":5:{s:14:"admin_language";s:5:"pt-BR";s:8:"language";s:5:"pt-BR";s:6:"editor";s:3:"jce";s:8:"helpsite";s:0:"";s:8:"timezone";s:2:"-3";}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}s:13:"session.token";s:32:"7e236fabf25b31d76ab66f6f779d5488";}');
+('', '1259352692', '8fbce1b9676a9c30db064f6114e79967', 1, 0, '', 0, 0, '__default|a:7:{s:15:"session.counter";i:69;s:19:"session.timer.start";i:1259327952;s:18:"session.timer.last";i:1259352400;s:17:"session.timer.now";i:1259352692;s:22:"session.client.browser";s:109:"Mozilla/5.0 (Windows; U; Windows NT 6.1; pt-BR; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5 (.NET CLR 3.5.30729)";s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:1:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";i:0;s:4:"name";N;s:8:"username";N;s:5:"email";N;s:8:"password";N;s:14:"password_clear";s:0:"";s:8:"usertype";N;s:5:"block";N;s:9:"sendEmail";i:0;s:3:"gid";i:0;s:12:"registerDate";N;s:13:"lastvisitDate";N;s:10:"activation";N;s:6:"params";N;s:3:"aid";i:0;s:5:"guest";i:1;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:69:"D:\\SITES\\www\\tonhoimoveis\\pub\\libraries\\joomla\\html\\parameter\\element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}}'),
+('admin', '1259352720', 'a903d4d6767e85cdd2992bd7aa0ff32f', 0, 62, 'Super Administrator', 25, 1, '__default|a:8:{s:15:"session.counter";i:47;s:19:"session.timer.start";i:1259327964;s:18:"session.timer.last";i:1259352720;s:17:"session.timer.now";i:1259352720;s:22:"session.client.browser";s:109:"Mozilla/5.0 (Windows; U; Windows NT 6.1; pt-BR; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5 (.NET CLR 3.5.30729)";s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:4:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}s:11:"application";a:1:{s:4:"data";O:8:"stdClass":1:{s:4:"lang";s:0:"";}}s:6:"global";a:1:{s:4:"data";O:8:"stdClass":1:{s:4:"list";O:8:"stdClass":1:{s:5:"limit";i:0;}}}s:13:"com_installer";a:1:{s:4:"data";O:8:"stdClass":1:{s:10:"limitstart";O:8:"stdClass":2:{s:9:"component";i:0;s:6:"plugin";i:0;}}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";s:2:"62";s:4:"name";s:13:"Administrator";s:8:"username";s:5:"admin";s:5:"email";s:16:"seu@email.com.br";s:8:"password";s:65:"c4b7b93e384c769d37feec66e78f1b0b:e83WJUGtz4HlTfavAmuT5CHvSsZ53qpZ";s:14:"password_clear";s:0:"";s:8:"usertype";s:19:"Super Administrator";s:5:"block";s:1:"0";s:9:"sendEmail";s:1:"1";s:3:"gid";s:2:"25";s:12:"registerDate";s:19:"2009-09-11 10:00:04";s:13:"lastvisitDate";s:19:"2009-11-18 14:33:15";s:10:"activation";s:0:"";s:6:"params";s:70:"admin_language=pt-BR\nlanguage=pt-BR\neditor=jce\nhelpsite=\ntimezone=-3\n\n";s:3:"aid";i:2;s:5:"guest";i:0;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:69:"D:\\SITES\\www\\tonhoimoveis\\pub\\libraries\\joomla\\html\\parameter\\element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":5:{s:14:"admin_language";s:5:"pt-BR";s:8:"language";s:5:"pt-BR";s:6:"editor";s:3:"jce";s:8:"helpsite";s:0:"";s:8:"timezone";s:2:"-3";}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}s:13:"session.token";s:32:"5cc5f2cb9e0412545e8c2aef4db6eebd";}');
 
 -- --------------------------------------------------------
 
@@ -1390,7 +1390,7 @@ CREATE TABLE IF NOT EXISTS `jos_users` (
 --
 
 INSERT INTO `jos_users` (`id`, `name`, `username`, `email`, `password`, `usertype`, `block`, `sendEmail`, `gid`, `registerDate`, `lastvisitDate`, `activation`, `params`) VALUES
-(62, 'Administrator', 'admin', 'seu@email.com.br', 'c4b7b93e384c769d37feec66e78f1b0b:e83WJUGtz4HlTfavAmuT5CHvSsZ53qpZ', 'Super Administrator', 0, 1, 25, '2009-09-11 10:00:04', '2009-11-18 14:33:15', '', 'admin_language=pt-BR\nlanguage=pt-BR\neditor=jce\nhelpsite=\ntimezone=-3\n\n');
+(62, 'Administrator', 'admin', 'seu@email.com.br', 'c4b7b93e384c769d37feec66e78f1b0b:e83WJUGtz4HlTfavAmuT5CHvSsZ53qpZ', 'Super Administrator', 0, 1, 25, '2009-09-11 10:00:04', '2009-11-27 13:19:44', '', 'admin_language=pt-BR\nlanguage=pt-BR\neditor=jce\nhelpsite=\ntimezone=-3\n\n');
 
 -- --------------------------------------------------------
 
