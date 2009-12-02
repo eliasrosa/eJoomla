@@ -59,13 +59,6 @@ $file_smarty = ECOMP_PATH_TEMPLATES_MOD.DS.$path.DS.$file.'.html';
 $tabela = eHelper::componente_tabela_nome($idcomponente);
 
 
-// pastas
-$smarty->assign('ECOMP_URL_TEMPLATE', ECOMP_URL_TEMPLATE);
-$smarty->assign('ECOMP_URL_UPLOADS',  ECOMP_URL_UPLOADS);
-$smarty->assign('ECOMP_URL_IMAGENS',  ECOMP_URL_IMAGENS);
-$smarty->assign('ECOMP_URL_MEDIA',    ECOMP_URL_MEDIA);
-
-
 // id componente
 $smarty->assign('idcomponente', $idcomponente);
 
