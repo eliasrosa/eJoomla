@@ -1,5 +1,3 @@
-material
-old
 pub/administrator/cache/*
 pub/cache/*
 pub/logs/*
