@@ -3,6 +3,7 @@ class createForm
 {
 	var
 		$html,
+		$params,
 		$listaCampos,
 		$nCampos = 0,
 		$campos = array(
@@ -19,9 +20,10 @@ class createForm
 			'image'    => '<input type="image" %attr% />',
 		);
 
-	function __construct($html)
+	function __construct($html, $params = null)
 	{
 		$this->html = $html;
+		$this->params = $params;
 	}
 
 	function gets($tipo, $input)
@@ -68,10 +70,13 @@ class createForm
 		$this->buscaCampos();
 
 		//enctype="multipart/form-data"
-		$this->html = '<form id="eformmail_'.$id.'" action="?option=com_eformmail&token='.md5('eformmail::'.$id).'" method="post" name="eFormMail" class="eFormMail">'.
-					  '<input type="hidden" name="eformmail_id" class="hidden" value="'.$id.'" />'.
-					  '<input type="hidden" name="eformmail_upload" class="false" value="0" />'.
-					  $this->html.'</form>';
+		$this->html = '<form id="eformmail_'.$id.'" action="?option=com_eformmail" method="post" name="eFormMail" class="eFormMail">'."\n".
+					  '<input type="hidden" name="eformmail_id" class="hidden" value="'.$id.'" />'."\n".
+					  '<input type="hidden" name="eformmail_params" class="hidden" value="'.$this->params.'" />'."\n".
+					  '<input type="hidden" name="eformmail_upload" class="false" value="0" />'."\n".
+					  JHTML::_( 'form.token' )."\n".
+					  $this->html."\n".
+					  '</form>'."\n";
 
 		return $this->html;
 	}

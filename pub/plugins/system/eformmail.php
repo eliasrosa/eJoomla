@@ -28,7 +28,7 @@ class PLGSYSTEMeformmail extends JPlugin
 
 	private function busca_forms()
 	{
-		$exp = '#\[eFormMail \"(.+?)\"\]#';
+		$exp = '#\[eFormMail "(.+?)"( params="(.+?)")?\]#';
 		preg_match_all($exp, $this->_html, $this->_resultado);
 
 		$this->_resultado_total = count($this->_resultado[0]);
@@ -48,15 +48,16 @@ class PLGSYSTEMeformmail extends JPlugin
 
 		for($i=0;$i<=$this->_resultado_total-1;$i++)
 		{
-			$code  = $this->_resultado[0][$i];
-			$id    = $this->_resultado[1][$i];
+			$code   = $this->_resultado[0][$i];
+			$id     = $this->_resultado[1][$i];
+			$params = $this->_resultado[3][$i];
 
 			$db    =& JFactory::getDBO();
 			$query = "SELECT * FROM #__eformmail_formularios WHERE id = '{$id}' AND published = '1' AND trashed != '1'";
 			$dados = $db->setQuery($query);
 			$dados = $db->loadObject();
 
-			$form = new createForm(@$dados->form);
+			$form = new createForm(@$dados->form, $params);
 			$form = $form->ini(@$dados->id);
 
 			$this->_html = str_replace($code, $form, $this->_html);

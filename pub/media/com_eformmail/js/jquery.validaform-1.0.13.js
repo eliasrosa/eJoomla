@@ -214,6 +214,10 @@ jQuery.fn.extend({
 									$.globalEval(resposta);
 
 								op.success.call(form, resposta);
+								
+								// limpa o formulário
+								var form_id = $(form).attr('id');								
+								document.getElementById(form_id).reset();
 
 							}, 500);
 						});
