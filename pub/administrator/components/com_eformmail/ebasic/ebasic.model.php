@@ -68,6 +68,10 @@ class ebasicModel extends JModel
 		$row =& $this->getTable();
 		
 		if(!$dados) $dados = JRequest::get('post');
+		
+		// remove o \"
+		foreach($dados as $k=>$v)
+			$dados[$k] = stripslashes($v);
 
 		// Ligar campos do formulário com a tabela
 		if (!$row->bind($dados)) {
