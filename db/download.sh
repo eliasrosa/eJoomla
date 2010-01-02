@@ -2,7 +2,7 @@
 #
 
 # carrega o arquivo de configuração
-souce config.sh
+source config.sh
 
 
 # Mensagem de inicio
