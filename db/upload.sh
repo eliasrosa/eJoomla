@@ -16,13 +16,13 @@ $MYSQL_DIR/mysqldump.exe --default-character-set=utf8 --host=$HOST_LOCAL --user=
 
 
 # Apaga todas as tabelas do banco
-echo "  - Excluindo todos as tabelas do servidor $USER_SERVER"
+echo "  - Excluindo todos as tabelas do servidor $HOST_SERVER"
 DROP=$($MYSQL_DIR/mysql.exe --host=$HOST_SERVER --user=$USER_SERVER --password=$PASS_SERVER $BANC_SERVER -e "SELECT concat('DROP TABLE',' ',table_name,';') as TABELAS FROM information_schema.TABLES WHERE TABLE_SCHEMA='$BANC_SERVER';" | sed s/TABELAS// )
 $MYSQL_DIR/mysql.exe --host=$HOST_SERVER --user=$USER_SERVER --password=$PASS_SERVER $BANC_SERVER -e "$DROP"
 
 
 # Importando o novo banco de dados 
-echo "  - Importando o novo banco de dados no servidor $USER_SERVER"
+echo "  - Importando o novo banco de dados no servidor $HOST_SERVER"
 $MYSQL_DIR/mysql.exe --host=$HOST_SERVER --user=$USER_SERVER --password=$PASS_SERVER $BANC_SERVER < $FILE_NAME
 
 
