@@ -16,7 +16,7 @@ PASS_LOCAL=""
 
 
 # Pastas
-MYSQL_DIR="/d/SITES/xampp/mysql/bin"
+MYSQL_DIR=""
 
 
 # nome do arquivo

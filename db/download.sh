@@ -2,7 +2,7 @@
 #
 
 # carrega o arquivo de configuração
-souce db/config.sh
+souce config.sh
 
 
 # Mensagem de inicio
