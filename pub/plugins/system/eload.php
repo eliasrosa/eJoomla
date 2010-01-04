@@ -154,6 +154,13 @@ class PLGSYSTEMeload extends JPlugin
 
 			// pega o param
 			$newTitle = $this->_params->get('tituloSite');
+			
+			// verifica se o titulo foi modificado por outro script
+			if(isset($_SESSION['eload']['title']))
+			{
+				$newTitle = $_SESSION['eload']['title'];
+				unset($_SESSION['eload']['title']);
+			}
 
 			// altera a variavel
 			$newTitle = str_replace('{sitename}', $siteName, $newTitle);
