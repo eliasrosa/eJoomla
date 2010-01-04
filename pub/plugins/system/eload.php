@@ -502,7 +502,7 @@ class PLGSYSTEMeload extends JPlugin
 	{
 		if($this->_params->get('generator') == '1')
 		{
-			$this->_html = preg_replace('#<meta name="generator" .* />#', '', $this->_html);
+			$this->_html = preg_replace('#<meta name="generator" .* />.*<title>#s', '<title>', $this->_html);
 		}
 	}
 
