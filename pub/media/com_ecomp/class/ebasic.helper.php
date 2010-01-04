@@ -139,5 +139,46 @@ abstract class eHelper
 
 		return ECOMP_TABLE_COMPONENTES . '_' . $componente->alias;
 	}
+
+	
+	/**
+	 * Altera temporariamente o parametro do eLoad responsavel pelo titulo
+	 *
+	 * @param string $titulo
+	 * @return void
+	 */
+	function setTitle($titulo)
+	{
+		$_SESSION['eload']['title'] = $titulo;		
+	}
+
+
+	/**
+	 * Altera a META TAG description
+	 *
+	 * @param string $description
+	 * @param string $limit
+	 * @return void
+	 */
+	function setDescription($description, $limit = 160)
+	{
+		$doc =& JFactory::getDocument();
+		$description = substr(strip_tags($description), 0, $limit);
+		$doc->setMetaData( 'description', $description );	
+	}
+
+
+	/**
+	 * Altera a META TAG keywords
+	 *
+	 * @param string $keywords
+	 * @return void
+	 */
+	function setKeywords($keywords)
+	{
+		$doc =& JFactory::getDocument();
+		$doc->setMetaData('keywords', $keywords);
+	}
+	
 }
 ?>
