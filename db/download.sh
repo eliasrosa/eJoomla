@@ -16,7 +16,7 @@ $MYSQL_DIR/mysqldump.exe --default-character-set=utf8 --host=$HOST_SERVER --user
 
 
 # Apaga todas as tabelas do banco
-echo "  - Excluindo todos as tabelas do servidor $HOST_LOCAL"
+echo "  - Excluindo todas as tabelas do servidor $HOST_LOCAL"
 DROP=$($MYSQL_DIR/mysql.exe --host=$HOST_LOCAL --user=$USER_LOCAL --password=$PASS_LOCAL $BANC_LOCAL -e "SELECT concat('DROP TABLE',' ',table_name,';') as TABELAS FROM information_schema.TABLES WHERE TABLE_SCHEMA='$BANC_LOCAL';" | sed s/TABELAS// )
 $MYSQL_DIR/mysql.exe --host=$HOST_LOCAL --user=$USER_LOCAL --password=$PASS_LOCAL $BANC_LOCAL -e "$DROP"
 
