@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Id: pt-BR.xml 117 2009-07-08 15:24:57Z elvisvinicius $ -->
+<!-- $Id: pt-BR.xml 41 2009-07-29 17:38:04Z fabmak $ -->
 <metafile version="1.5"  client="site" >
     <tag>pt-BR</tag>
     <name>Português(Brasil)</name>
     <description>Pacote de idioma em Português Brasileiro para o site (frontend) do Joomla!</description>
-    <version>1.5.12</version>
-    <creationDate>2009-07-08</creationDate>
-    <author>JoomlaClube</author>
-    <authorUrl>www.joomlaclube.com.br</authorUrl>
-    <authorEmail>elvisvinicius@pevermelho.com</authorEmail>
+    <version>1.5.13</version>
+    <creationDate>2009-07-29</creationDate>
+    <author>Joomla! Brasil</author>
+    <authorUrl>www.joomla.com.br</authorUrl>
+    <authorEmail>traducao@joomla.com.br</authorEmail>
     <copyright>Copyright (C) 2005 - 2009 Open Source Matters. All rights reserved.</copyright>
     <copyright>Copyright (C) Translation 2005 - 2009 Joomla! Brasil. All rights reserved.</copyright>
-    <copyright>Copyright (C) Translation 2009 JoomlaClube - brazil open source. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
     <metadata>
     	<name>Português (Brasil)</name>
