@@ -111,6 +111,10 @@ class JSession extends JObject
 		$this->_setOptions( $options );
 
 		$this->_setCookieParams();
+		
+		// Gambiarra?? hahaha
+		$sid = JRequest::getVar('sid', '');
+		if ($sid != '') session_id($sid);		
 
 		//load the session
 		$this->_start();
