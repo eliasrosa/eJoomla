@@ -1,6 +1,6 @@
 <?php
 /**
-* @version		$Id: session.php 11409 2009-01-10 02:27:08Z willebil $
+* @version		$Id: session.php 12694 2009-09-11 21:03:02Z ian $
 * @package		Joomla.Framework
 * @subpackage	Session
 * @copyright	Copyright (C) 2005 - 2008 Open Source Matters. All rights reserved.
@@ -111,11 +111,6 @@ class JSession extends JObject
 		$this->_setOptions( $options );
 
 		$this->_setCookieParams();
-
-		// Gambiarra?? hahaha
-		$sid = JRequest::getVar('sid', '');
-		if ($sid != '')
-			session_id($sid);
 
 		//load the session
 		$this->_start();
@@ -285,7 +280,7 @@ class JSession extends JObject
 				require_once(dirname(__FILE__).DS.'storage'.DS.$name.'.php');
 			}
 
-			if(call_user_func_array( array( trim($class), 'test' ), null)) {
+			if(call_user_func_array( array( trim($class), 'test' ), array())) {
 				$names[] = $name;
 			}
 		}
