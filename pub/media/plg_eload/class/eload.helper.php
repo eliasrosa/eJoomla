@@ -30,6 +30,7 @@ abstract class eLoadHelper
 
 		// remove as barras do nome
 		$imagemName = str_replace('/', '-', $imagemName);
+		
 
 		// Pasta para a imagem com base nos 10 primeiros caracteres do seu sha1
 		$imagemDir = 'cache/eload/'.substr(sha1_file($imagem), 0, 10);
@@ -132,7 +133,12 @@ abstract class eLoadHelper
 			$novaimagem->saveToFile(JPATH_BASE.DS.$cache, null, 90);
 		}
 
+		// se estiver usando re_write e o sef
+		if(strlen(JURI::base(1)) > 1)
+			$cache = JURI::base(1) . '/' . $cache;
+
 		return $cache;
+
 	}
 
 	function watermark_info($wm)
