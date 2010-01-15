@@ -50,6 +50,8 @@ $ECOMP_VARS['ECOMP_TABLE_TAGS']                 = '#__ecomp_tags';
 $ECOMP_VARS['ECOMP_TABLE_CADASTROS_CATEGORIAS'] = '#__ecomp_cadastros_categorias';
 $ECOMP_VARS['ECOMP_TABLE_CADASTROS_TAGS']       = '#__ecomp_cadastros_tags';
 $ECOMP_VARS['ECOMP_TABLE_CADASTROS_IMAGENS']    = '#__ecomp_cadastros_imagens';
+$ECOMP_VARS['ECOMP_TABLE_ROUTERS_RULES']        = '#__ecomp_routers_rules';
+$ECOMP_VARS['ECOMP_TABLE_ROUTERS_CACHE']        = '#__ecomp_routers_cache';
 
 
 // DEIXA A VAR ECOMP_VARS NA SESSÂO
