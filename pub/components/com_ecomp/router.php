@@ -24,7 +24,7 @@ function EcompBuildRoute(&$query)
 	
 	foreach($r as $rules)
 	{
-		if($rules->type == 'Dinamic')
+		if($rules->type == '1')
 		{	
 			// nome da tebela do componente
 			$tabela = eHelper::componente_tabela_nome($idcomponente);
@@ -46,10 +46,17 @@ function EcompBuildRoute(&$query)
 			
 		}
 
-		if($rules->type == 'Static')
+		if($rules->type == '2')
 		{	
 			$segments[]  = JFilterOutput::stringURLSafe($rules->alias1); 
 			$values[$rules->get_var] = isset($vars[$rules->get_var]) ? $vars[$rules->get_var] : $rules->get_value;
+		}
+
+		if($rules->type == '3')
+		{	
+			$s = isset($vars[$rules->get_var]) ? $vars[$rules->get_var] : $rules->get_value;
+			$segments[]  = JFilterOutput::stringURLSafe($s); 
+			$values[$rules->get_var] = $s;
 		}
 		
 		// exclui a var caso exista
