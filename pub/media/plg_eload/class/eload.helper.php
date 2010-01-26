@@ -17,13 +17,24 @@ abstract class eLoadHelper
 		// abre a clase Imagem
 		require_once('wideimage'.DS.'lib'.DS.'WideImage.inc.php');
 
+		$largura_real = wiImage::load($imagem)->getWidth();
+		$altura_real  = wiImage::load($imagem)->getHeight();
+
 		// se a largura e a altura forem null
 		if(is_null($largura) && is_null($altura))
 		{
 			// pega a largura e altura da imagem original
-			$largura = wiImage::load($imagem)->getWidth();
-			$altura  = wiImage::load($imagem)->getHeight();
+			$largura = $largura_real;
+			$altura  = $altura_real;
 		}
+		
+		// se a largura for maior que a largura original
+		if($largura > $largura_real)			
+			$largura = $largura_real;		
+		
+		// se a altura for maior que a altura original
+		if($altura > $altura_real )		
+			$altura = $altura_real;
 
 		// remover a extenção
 		$imagemName = JFile::stripExt($imagem);
