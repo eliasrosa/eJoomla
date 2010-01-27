@@ -27,14 +27,15 @@ function EcompBuildRoute(&$query)
 		if($rules->type == '1')
 		{	
 			// nome da tebela do componente
-			$tabela = eHelper::componente_tabela_nome($idcomponente);
+			$idcomp = $rules->idcomponente > 0 ? $rules->idcomponente : $idcomponente;
+			$tabela = eHelper::componente_tabela_nome($idcomp);
 
 			$c = new JCRUD($tabela);
-			$c = $c->busca_por_id($idcadastro);
+			$x = isset($vars[$rules->get_var]) ? $vars[$rules->get_var] : '0';
+			$c = $c->busca_por_id($x);
 				
 			if($c)
 			{
-				
 				$campo = $rules->alias1;
 				if($campo == '' || JFilterOutput::stringURLSafe($c->$campo) == '')
 					$campo = $rules->alias2;
