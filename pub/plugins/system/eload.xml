@@ -25,7 +25,8 @@
 			<option value="localhost">localhost</option>
 			<option value="googleLibs">Google Libs</option>
 		</param>
-		<param name="jqueryVersion" type="list" default="1.4" label="Versão do jQuery">
+		<param name="jqueryVersion" type="list" default="1.4.1" label="Versão do jQuery">
+			<option value="1.4.1">1.4.1</option>
 			<option value="1.4">1.4</option>
 			<option value="1.3.2">1.3.2</option>
 			<option value="1.3.1">1.3.1</option>
