@@ -144,16 +144,16 @@ class ecompMODELcadastros extends ebasicModel
 									wiImage::load($file_dest)->resize($params['width'], $params['height'], $params['fit'], $params['scale'])->saveToFile($file_dest , null, 90);
 
 								// Cria imagem 800x600
-								$file_800 = $path_dest.DS.$coluna.'800x600.'.$file_ext;
-								ecompHelper::redimensionaImg($file_dest, $file_800, 800, 600, $params['fit'], $params['scale'], 90);
+								//$file_800 = $path_dest.DS.$coluna.'800x600.'.$file_ext;
+								//ecompHelper::redimensionaImg($file_dest, $file_800, 800, 600, $params['fit'], $params['scale'], 90);
 
 								// Cria imagem 640x480
-								$file_640 = $path_dest.DS.$coluna.'640x480.'.$file_ext;
-								ecompHelper::redimensionaImg($file_dest, $file_640, 640, 480, $params['fit'], $params['scale'], 90);
+								//$file_640 = $path_dest.DS.$coluna.'640x480.'.$file_ext;
+								//ecompHelper::redimensionaImg($file_dest, $file_640, 640, 480, $params['fit'], $params['scale'], 90);
 
 								// Cria imagem 320x240
-								$file_320 = $path_dest.DS.$coluna.'320x240.'.$file_ext;
-								ecompHelper::redimensionaImg($file_dest, $file_320, 320, 240, $params['fit'], $params['scale'], 90);
+								//$file_320 = $path_dest.DS.$coluna.'320x240.'.$file_ext;
+								//ecompHelper::redimensionaImg($file_dest, $file_320, 320, 240, $params['fit'], $params['scale'], 90);
 							}
 						}
 

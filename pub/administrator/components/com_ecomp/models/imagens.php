@@ -66,16 +66,16 @@ class ecompMODELimagens extends ebasicModel
 					wiImage::load($file_dest)->resize(1024, 1024, 'inside', 'down')->saveToFile($file_new, null, 90);
 
 					// Cria imagem 800x600
-					$file_800 = $path_dest.DS.$imagem->id.'_800x600.jpg';
-					ecompHelper::redimensionaImg($file_new, $file_800, 800, 600, 'inside', 'down', 90);
+					//$file_800 = $path_dest.DS.$imagem->id.'_800x600.jpg';
+					//ecompHelper::redimensionaImg($file_new, $file_800, 800, 600, 'inside', 'down', 90);
 
 					// Cria imagem 640x480
-					$file_640 = $path_dest.DS.$imagem->id.'_640x480.jpg';
-					ecompHelper::redimensionaImg($file_new, $file_640, 640, 480, 'inside', 'down', 90);
+					//$file_640 = $path_dest.DS.$imagem->id.'_640x480.jpg';
+					//ecompHelper::redimensionaImg($file_new, $file_640, 640, 480, 'inside', 'down', 90);
 
 					// Cria imagem 320x240
-					$file_320 = $path_dest.DS.$imagem->id.'_320x240.jpg';
-					ecompHelper::redimensionaImg($file_new, $file_320, 320, 240, 'inside', 'down', 90);
+					//$file_320 = $path_dest.DS.$imagem->id.'_320x240.jpg';
+					//ecompHelper::redimensionaImg($file_new, $file_320, 320, 240, 'inside', 'down', 90);
 				}
 				else
 					JFile::copy($file_dest, $file_new);
@@ -128,9 +128,9 @@ class ecompMODELimagens extends ebasicModel
 
 			// apaga as imagens
 			@unlink(ECOMP_PATH_IMAGENS.DS.$imagem->file);
-			@unlink(ECOMP_PATH_IMAGENS.DS.str_replace('.', '_800x600.', $imagem->file));
-			@unlink(ECOMP_PATH_IMAGENS.DS.str_replace('.', '_640x480.', $imagem->file));
-			@unlink(ECOMP_PATH_IMAGENS.DS.str_replace('.', '_320x240.', $imagem->file));
+			//@unlink(ECOMP_PATH_IMAGENS.DS.str_replace('.', '_800x600.', $imagem->file));
+			//@unlink(ECOMP_PATH_IMAGENS.DS.str_replace('.', '_640x480.', $imagem->file));
+			//@unlink(ECOMP_PATH_IMAGENS.DS.str_replace('.', '_320x240.', $imagem->file));
 			@unlink(ECOMP_PATH_IMAGENS.DS.str_replace('.', '_p.', $imagem->file));
 			@unlink(ECOMP_PATH_IMAGENS.DS.str_replace('.', '_m.', $imagem->file));
 
