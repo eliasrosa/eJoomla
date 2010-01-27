@@ -335,7 +335,7 @@ class PLGSYSTEMeload extends JPlugin
 	private function lightbox_search()
 	{
 		$html = $this->_html;
-		$className = $this->_params->get('lightBox-class');
+		$className = 'lightbox';
 
 		// captura todas as tag a com a class eimagebox
 		$exp = sprintf('/<a .*?rel=".*?\b%s\b.*?">/i', $className);

@@ -5,7 +5,7 @@
 	<creationDate>Junho / 2009</creationDate>
 	<authorEmail>elias@eliasdarosa.com.br</authorEmail>
 	<authorUrl>http://www.eliasdarosa.com.br</authorUrl>
-	<version>2.0126</version>
+	<version>2.0127</version>
 	<description>Para mais informações sobre o plugin acesse http://www.eliasdarosa.com.br/blog/tag/eload</description>
 	<files>
 		<filename plugin="eload">eload.php</filename>
