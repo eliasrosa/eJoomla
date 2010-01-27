@@ -16,7 +16,7 @@ function EcompBuildRoute(&$query)
 	$idcadastro   =  isset($vars['id']) ? $vars['id'] : $params->get('idcadastro');
 	$segments     =  array();
 	$values       =  array();
-
+	$conf         =& JFactory::getConfig();
 
 	// abre a tabela de regras de rotas
 	$r = new JCRUD(ECOMP_TABLE_ROUTERS_RULES);
@@ -77,9 +77,12 @@ function EcompBuildRoute(&$query)
 	
 	if(count($segments))
 	{
-		$url = join('/', $segments);
+		// verifica se o sef_suffix esta ativado
+		$sef_suffix  = $conf->getValue('config.sef_suffix') ? '.html' : '';
+
+		$url = join('/', $segments).$sef_suffix;
 		$params = http_build_query($values, '', '&');
-		
+				
 		$dados = array(
 			'id' => 0,
 			'itemid' => $item->id,
@@ -90,6 +93,7 @@ function EcompBuildRoute(&$query)
 		// adicionao a rota na tabela cache
 		$c = new JCRUD(ECOMP_TABLE_ROUTERS_CACHE, $dados);
 		$cc = $c->busca("WHERE itemid = '{$item->id}' AND url = '{$url}'");
+				
 									
 		if(count($cc))
 		{	
@@ -106,17 +110,29 @@ function EcompBuildRoute(&$query)
 
 function EcompParseRoute( $segments )
 {
-	$vars         =  array();
-	$menu         =& JSite::getMenu();
-	$item         =& $menu->getActive();
-	
+	$vars =  array();
+	$menu =& JSite::getMenu();
+	$item =& $menu->getActive();
+	$conf =& JFactory::getConfig();
+		
 	// remove o : da array
 	foreach($segments as $k=>$v)
 		$segments[$k] = str_replace(':', '-', $v);
 		
 	// cria a url
 	$url = join('/', $segments);
-
+	
+	// verifica se o sef_suffix esta ativado
+	$sef_suffix = $conf->getValue('config.sef_suffix') ? true : false;
+	if($sef_suffix)
+	{
+		$u =& JURI::getInstance();
+		$ext = JFile::getExt($u->getPath());
+		
+		if($ext == 'html')
+			$url = $url.'.html';
+	}	
+	
 	// abre a tabela de cache
 	$r = new JCRUD(ECOMP_TABLE_ROUTERS_CACHE);
 	$r = $r->busca("WHERE url = '{$url}' LIMIT 0,1");
