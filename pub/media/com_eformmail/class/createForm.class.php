@@ -70,7 +70,7 @@ class createForm
 		$this->buscaCampos();
 
 		//enctype="multipart/form-data"
-		$this->html = '<form id="eformmail_'.$id.'" action="?option=com_eformmail" method="post" name="eFormMail" class="eFormMail">'."\n".
+		$this->html = '<form id="eformmail_'.$id.'" action="'.JRoute::_('index.php?option=com_eformmail').'" method="post" name="eFormMail" class="eFormMail">'."\n".
 					  '<input type="hidden" name="eformmail_id" class="hidden" value="'.$id.'" />'."\n".
 					  '<input type="hidden" name="eformmail_params" class="hidden" value="'.$this->params.'" />'."\n".
 					  '<input type="hidden" name="eformmail_upload" class="false" value="0" />'."\n".
