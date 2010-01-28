@@ -94,27 +94,39 @@ abstract class eHelper
 	}
 
 
-	function monta_paginacao($tabela, $where, $porpagina = 1)
+	function monta_paginacao($tabela, $where, $porpagina = 1, $urlbase = null, $getVar = 'pag' )
 	{
 		if (empty($tabela) || empty($where))
 			return;
 
-		// paginação
-		$p = JRequest::getInt('p', 1);
+		// retorno
+		$retorno = array();
+
+		// pega a pagina atual
+		$p = JRequest::getInt($getVar, 1);
+		
+		// calcula a linha do registro de inicio
 		$inicio = $porpagina * ($p - 1);
 
+		// adiciona a biblioteca juri
 		jimport('joomla.environment.uri');
 
-		$u =& JURI::getInstance();
+		// verifica se a urlbase foi adicionada
+		if(!is_null($urlbase))
+			$u =& JURI::getInstance($urlbase);
+		
+		// caso contrário usa a urel atual
+		else
+			$u =& JURI::getInstance();
 
 		// pega todos os registros
 		$regs = $tabela->busca_por_sql("SELECT COUNT(*) AS total FROM @tabela@ WHERE {$where}");
 
+		// pega o total de registros encontrados
 		$pag_total = $regs[0]->total;
+		
+		// calcula o total de páginas
 		$pag_num   = ceil($pag_total / $porpagina);
-
-		// retorno
-		$retorno = array();
 		
 		// total
 		$retorno['total_registros'] = $pag_total;
@@ -124,18 +136,23 @@ abstract class eHelper
 		$retorno['mysql_limit_inicio'] = $inicio;		
 		$retorno['mysql_limit_porpaginas'] = $porpagina;
 		
-		
 		// total de páginas
 		$retorno['paginas_total'] = $pag_num;
-		
 				
 		// páginas
 		$retorno['paginas_html'] = '';
+		
+		// loop nas páginas
 		for ($i = 1; $i <= $pag_num; $i++)
 		{
-			$u->setVar('p', $i);
+			// adiciona a var na url
+			$u->setVar($getVar, $i);
+			
+			// adicion a class 'atual' na página ativa
 			$class = $i == $p ? ' class="atual"' : '';
-			$retorno['paginas_html'] .= sprintf('<a href="%s"%s>%d</a>', $u->toString(), $class, $i);
+			
+			// retorna o html das p
+			$retorno['paginas_html'] .= sprintf('<a href="%s"%s>%d</a>', JRoute::_($u->toString()), $class, $i);
 		}
 
 		return $retorno;
