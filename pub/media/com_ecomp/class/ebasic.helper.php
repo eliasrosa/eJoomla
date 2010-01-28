@@ -113,16 +113,32 @@ abstract class eHelper
 		$pag_total = $regs[0]->total;
 		$pag_num   = ceil($pag_total / $porpagina);
 
-		$pag = '';
-
+		// retorno
+		$retorno = array();
+		
+		// total
+		$retorno['total_registros'] = $pag_total;
+		
+		// mysql limit
+		$retorno['mysql_limit'] = "{$inicio}, {$porpagina}";		
+		$retorno['mysql_limit_inicio'] = $inicio;		
+		$retorno['mysql_limit_porpaginas'] = $porpagina;
+		
+		
+		// total de páginas
+		$retorno['paginas_total'] = $pag_num;
+		
+				
+		// páginas
+		$retorno['paginas_html'] = '';
 		for ($i = 1; $i <= $pag_num; $i++)
 		{
 			$u->setVar('p', $i);
 			$class = $i == $p ? ' class="atual"' : '';
-			$pag .= sprintf('<a href="%s"%s>%d</a>', $u->toString(), $class, $i);
+			$retorno['paginas_html'] .= sprintf('<a href="%s"%s>%d</a>', $u->toString(), $class, $i);
 		}
 
-		return $pag;
+		return $retorno;
 	}
 
 
