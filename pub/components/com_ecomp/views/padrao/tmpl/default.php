@@ -57,7 +57,10 @@ $smarty->assign('idcomponente', $idcomponente);
 
 // executa a funçao de acordo com o tipo selecionado
 if($tipo != -1) 
-	require_once($file_tipo);
+	if(file_exists($file_tipo))
+		require_once($file_tipo);
+	else
+		JError::raiseError(404, 'Arquivo não encontrado!');
 
 
 // tenta abrir o js, css e php
