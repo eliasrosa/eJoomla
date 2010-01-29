@@ -144,9 +144,7 @@ abstract class eLoadHelper
 			$novaimagem->saveToFile(JPATH_BASE.DS.$cache, null, 90);
 		}
 
-		// se estiver usando re_write e o sef
-		if(strlen(JURI::base(1)) > 1)
-			$cache = JURI::base(1) . '/' . $cache;
+		$cache = JURI::base() . $cache;
 
 		return $cache;
 
