@@ -169,8 +169,11 @@ abstract class eHelper
 	{
 		$componente = new JCRUD(ECOMP_TABLE_COMPONENTES);
 		$componente = $componente->busca_por_id($id);
-
-		return ECOMP_TABLE_COMPONENTES . '_' . $componente->alias;
+		
+		if(empty($componente->alias))
+			return ECOMP_TABLE_COMPONENTES . '_' . $componente->alias;
+		else
+			JError::raiseError(404, 'Componente não encontrado!');
 	}
 
 	
