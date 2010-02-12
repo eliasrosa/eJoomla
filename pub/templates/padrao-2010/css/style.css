@@ -1,0 +1,12 @@
+/* RESET*/
+* { margin: 0; padding: 0; font-family: Verdana, Arial, sans-serif; font-size: 12px; color: #000; text-decoration: none; outline: none; moz-outline-style: none }
+html, body { margin: 0; padding: 0; height: 100%; }
+p { margin-top: 0; text-align: left; line-height:14px; }
+ul { list-style-position: outside; margin: 0; padding: 0; }
+a img { border: none; }
+a span { cursor: pointer; }
+p { margin-top: 3px; line-height: 17px; }
+.clearfix { clear: both; height: 1%; overflow: hidden; }
+
+
+

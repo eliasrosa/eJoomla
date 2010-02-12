@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="template">
+	<name>Template padrão / 2010</name>
+	<version>1.0</version>
+	<creationDate>Fevereiro / 2010</creationDate>
+	<author>Elias da Rosa</author>
+	<authorEmail>elias@eliasdarosa.com.br</authorEmail>
+	<authorUrl>http://www.eliasdarosa.com.br</authorUrl>
+	<description></description>
+	<files>
+		<filename>index.php</filename>
+	</files>
+	<positions>
+		<position>top</position>
+		<position>right</position>
+		<position>bottom</position>
+		<position>left</position>
+		<position>user1</position>
+		<position>user2</position>
+		<position>user3</position>
+		<position>user4</position>
+	</positions>
+	<params>
+	</params>
+</install>
