@@ -59,6 +59,28 @@ function EcompBuildRoute(&$query)
 			$segments[]  = JFilterOutput::stringURLSafe($s); 
 			$values[$rules->get_var] = $s;
 		}
+
+
+		// categoria
+		if($rules->type == '4')
+		{	
+			$c = new JCRUD(ECOMP_TABLE_CATEGORIAS);
+			$y = (int) $rules->get_value;
+			$x = isset($vars[$rules->get_var]) ? $vars[$rules->get_var] : $y;
+			$c = $c->busca_por_id($x);
+			
+				
+			if($c)
+			{
+				$campo = 'alias';
+				if(JFilterOutput::stringURLSafe($c->$campo) == '')
+					$campo = 'nome';
+					
+				$segments[] = JFilterOutput::stringURLSafe($c->$campo);
+				$values[$rules->get_var] = isset($vars[$rules->get_var]) ? $vars[$rules->get_var] : $rules->get_value;
+			}
+
+		}
 		
 		// exclui a var caso exista
 		if(isset($query[$rules->get_var]))
