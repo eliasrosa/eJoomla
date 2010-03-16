@@ -481,8 +481,16 @@ class PLGSYSTEMeload extends JPlugin
 
 			if($mainframe->isAdmin() || strpos($_SERVER["PHP_SELF"], "index.php") === false)
 				return;
-
-			$javascript = "\n".'<script type="text/javascript">var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src=\'" + gaJsHost + "google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3E"));.'."\n".'.</script><script type="text/javascript">try { var pageTracker = _gat._getTracker("'.$ID.'"); pageTracker._trackPageview(); } catch(err) {}</script>'."\n";
+	
+			$javascript = <<<ZXC
+	
+	<!-- Google Analytics-->
+	<script type="text/javascript"> var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); </script>
+	<script type="text/javascript"> try { var pageTracker = _gat._getTracker("$ID"); pageTracker._trackPageview(); } catch(err) {} </script>
+	<!-- Google Analytics-->
+	
+	
+ZXC;
 			if($ID == '') $javascript = '<div style="position: fixed; top: 0; text-align: center; font-weight: 700; width: 100%; padding: 5px; background-color: #FF0000; color: #FFF; font-size: 12px; ">Plugin eLoad: ID da propriedade da web do Google Analytics não está definida!</div>'."\n";
 
 			$this->_html = str_replace('</body>', $javascript."</body>", $this->_html);
