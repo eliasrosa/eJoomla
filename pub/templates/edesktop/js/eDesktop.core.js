@@ -78,9 +78,6 @@ $(function(){
 	eDesktop.load.js('eDesktop.toolbar.js');
 	eDesktop.load.js('eDesktop.process.js');
 	eDesktop.load.js('eDesktop.interface.js');
-	eDesktop.load.js('eDesktop.init.js');
 
-
-	
 	
 });
