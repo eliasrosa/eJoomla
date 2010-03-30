@@ -1,6 +1,0 @@
-<?
-$configuracoes = array
-(
-    'titulo' => 'Pessoas'
-);
-?>
