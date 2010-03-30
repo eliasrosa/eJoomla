@@ -1,0 +1,62 @@
+/* tags
+ *******************************/
+html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+a img { border: none; }
+* { font-size: 13px; font-family: Tahoma;  }
+
+
+
+
+/* class padrões
+ *******************************/
+.clearfix { clear: both; height: 1%; overflow: hidden; }
+.left { float: left; }
+
+
+
+/* finder
+ *******************************/
+.finder { width: 160px; }
+.finder span { float: left; }
+.finder input { font-size: 12px; color: #999; font-style: italic; border: none;  }
+
+
+
+/* toolbar
+ *******************************/
+#toolbar { height: 33px; padding: 5px 190px 5px 45px; position: relative; background: url(../img/toolbar-top.png) 50% 50%; }
+#toolbar .programas { overflow: hidden; white-space: nowrap; }
+#toolbar label { margin-right: 5px; height: 30px; }
+#toolbar label img { position: relative; top: 2px; left: -5px; }
+#toolbar .finder{ position: absolute; right: 10px; top: 10px; z-index: 999; padding: 3px 0; }
+#minimizeAll { position: absolute; left: 5px; top: 6px; z-index: 999; }
+#logout { position: absolute; left: 45px; top: 6px; z-index: 999; }
+
+
+
+/* desktop
+ *******************************/
+#desktop { margin: 25px; position: relative; }
+#desktop a.icone { padding: 0 15px 5px 15px; height: 140px; width: 80px; display: block; text-decoration: none; }
+#desktop a.icone span { padding: 2px; display: block; color: #FFF; text-align: center; }
+#desktop a.icone:hover span { text-decoration: underline; }
+
+
+
+/* dialogs
+ *******************************/
+.ui-dialog .finder { position: absolute; top: 12px; right: 35px; width: 160px; }
+.ui-dialog .ui-dialog-titlebar .ui-dialog-title img { position: relative; top: 2px; left: -5px; }
+.ui-dialog .dialog { padding-left: 0px; padding-top: 0px; padding-bottom: 0px; overflow: hidden; background: url(../img/bg_dialog_conteudo.png) top right repeat-y; }
+.ui-dialog .dialog .menu { background: #CEE3FD url(../img/bg_dialog_lateral1.png) top left no-repeat; min-height: 5000px; padding: 15px 15px 0 30px; width: 155px; float: left; }
+.ui-dialog .dialog .menu a { display: block; margin-bottom: 10px; text-decoration: none; }
+.ui-dialog .dialog .menu span { display: none; }
+.ui-dialog .dialog .menu p { margin-bottom: 20px; }
+.ui-dialog .dialog .menu a:hover { text-decoration: underline; color: #0000FF; }
+.ui-dialog .dialog .menu a.ativo:hover { color: #000; }
+.ui-dialog .dialog .menu a.ativo { font-weight: bold; }
+.ui-dialog .dialog .menu a.ativo span.ui-icon {  position: absolute; left: 10px; display: block; }
+.ui-dialog .dialog .conteudo { padding: 15px; float: left; overflow: auto; }
+.ui-dialog .dialog .conteudo h1 { font-size: 16px; }
+
+

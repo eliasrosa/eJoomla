@@ -1,0 +1,6 @@
+<?
+$configuracoes = array
+(
+    'titulo' => 'Pessoas'
+);
+?>

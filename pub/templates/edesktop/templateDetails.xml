@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="template">
+	<name>eDesktop</name>
+	<version>1.0 Beta</version>
+	<creationDate>Março / 2010</creationDate>
+	<author>Elias da Rosa</author>
+	<authorEmail>elias@eliasdarosa.com.br</authorEmail>
+	<authorUrl>http://www.eliasdarosa.com.br</authorUrl>
+	<description></description>
+	<files>
+		<filename>index.php</filename>
+	</files>
+	<positions>
+		<position>user1</position>
+	</positions>
+	<params>
+	</params>
+</install>
