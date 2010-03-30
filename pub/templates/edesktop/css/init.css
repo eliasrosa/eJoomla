@@ -56,7 +56,7 @@ a img { border: none; }
 .ui-dialog .dialog .menu a.ativo:hover { color: #000; }
 .ui-dialog .dialog .menu a.ativo { font-weight: bold; }
 .ui-dialog .dialog .menu a.ativo span.ui-icon {  position: absolute; left: 10px; display: block; }
-.ui-dialog .dialog .conteudo { padding: 15px; float: left; overflow: auto; }
+.ui-dialog .dialog .conteudo { padding: 15px; overflow: auto; }
 .ui-dialog .dialog .conteudo h1 { font-size: 16px; }
 
 
