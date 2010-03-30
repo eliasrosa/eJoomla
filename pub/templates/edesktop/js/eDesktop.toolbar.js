@@ -6,7 +6,7 @@ $(function(){
 	eDesktop.toolbar = {
 		add : function(p){
 					
-			var html = '<input type="checkbox" id="t'+p.id+'" class="check" /><label for="t'+p.id+'"><img src="programas/'+p.programa+'/_img/icone.png" width="16" valign="bottom" />'+p.titulo+'</label>';			
+			var html = '<input type="checkbox" id="t'+p.id+'" class="check" /><label for="t'+p.id+'"><img src="' +eDesktop.url+ '/programas/'+p.programa+'/_img/icone.png" width="16" valign="bottom" />'+p.titulo+'</label>';			
 			$('#toolbar .programas').append(html);
 
 			$('#t'+p.id).button();
