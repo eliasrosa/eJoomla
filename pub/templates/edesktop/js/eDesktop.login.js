@@ -1,6 +1,6 @@
 $(function(){
 		
-	$('#login').dialog({
+	var $login = $('#login').dialog({
 		autoOpen : true,
 		modal: true,
 		closeOnEscape: false,
@@ -8,5 +8,7 @@ $(function(){
 	});
 	
 	$('#login input:submit').button();
+	
+	$('a.ui-dialog-titlebar-close', $login.parent()).remove();
 		
 });
