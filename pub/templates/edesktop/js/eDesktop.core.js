@@ -59,7 +59,7 @@ $(function(){
 			$.ajax({
 				type: 'POST',
 				url: 'index.php',
-				data: 'template=' +eDesktop.template+ '&_c=' +classs+ '&_m=' +method+ '&' +params,
+				data: 'template=' +eDesktop.template+ '&class=' +classs+ '&method=' +method+ '&' +params,
 				dataType: dataType,
 				success: function(a){
 					callback(a);

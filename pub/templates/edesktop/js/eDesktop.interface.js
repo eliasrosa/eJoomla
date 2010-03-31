@@ -41,7 +41,7 @@ $(function(){
 				
 				// adiciona os icones
 				$.each(icones, function(i, p){
-					var html = '<a class="icone linkPrograma" href="javascript:void(0);" programa="' +p.programa+ '" evento="dblclick" ><img src="' +eDesktop.url+ '/programas/' +p.programa+ '/_img/icone.png" /><span>' +p.titulo+ '</span></a>';
+					var html = '<a class="icone" href="' +p.programa+ '"><img src="' +eDesktop.url+ '/programas/' +p.programa+ '/_img/icone.png" /><span>' +p.titulo+ '</span></a>';
 					$('#desktop').append(html);		
 				});
 
@@ -106,12 +106,16 @@ $(function(){
 
 				/* Abrir programa - evento de duplo click
 				***********************************************************/
-				$('#desktop a.icone.').live('dblclick', function(){
-					// captura a pasta do programa
-					var programa = $(this).attr('programa');
-										
+				$('#desktop a.icone').live('dblclick', function(){
+					
+					// captura o programa
+					var href = $(this).attr('href');										
+															
 					// inicia eventos e procedimento para as caixas de dialogo
-					eDesktop.dialog.load(programa, 'new');
+					eDesktop.dialog.load(href, 'new');
+
+				}).click(function(){
+					return false;
 				});
 				
 				

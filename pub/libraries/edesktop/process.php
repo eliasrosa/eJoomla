@@ -41,7 +41,7 @@ class process
 			$dados = array(
 				'id' => $processID,
 				'programa' => $programa,
-				'aberto'  => date("d/m/Y H:i:s")
+				'criado'  => date("d/m/Y H:i:s")
 			);
 			
 			$this->processos[$processID] = $dados;

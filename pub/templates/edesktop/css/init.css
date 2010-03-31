@@ -45,9 +45,11 @@ a img { border: none; }
 
 /* dialogs
  *******************************/
-.ui-dialog .finder { position: absolute; top: 12px; right: 35px; width: 160px; }
+.ui-dialog .finder { position: absolute; top: 12px; right: 35px; width: 200px; }
+.ui-dialog .finder input { width: 180px; }
 .ui-dialog .ui-dialog-titlebar .ui-dialog-title img { position: relative; top: 2px; left: -5px; }
 .ui-dialog .dialog { padding-left: 0px; padding-top: 0px; padding-bottom: 0px; overflow: hidden; background: url(../img/bg_dialog_conteudo.png) top right repeat-y; }
+/*
 .ui-dialog .dialog .menu { background: #CEE3FD url(../img/bg_dialog_lateral1.png) top left no-repeat; min-height: 5000px; padding: 15px 15px 0 30px; width: 155px; float: left; }
 .ui-dialog .dialog .menu a { display: block; margin-bottom: 10px; text-decoration: none; }
 .ui-dialog .dialog .menu span { display: none; }
@@ -56,6 +58,8 @@ a img { border: none; }
 .ui-dialog .dialog .menu a.ativo:hover { color: #000; }
 .ui-dialog .dialog .menu a.ativo { font-weight: bold; }
 .ui-dialog .dialog .menu a.ativo span.ui-icon {  position: absolute; left: 10px; display: block; }
+*/
+
 .ui-dialog .dialog .conteudo { padding: 15px; overflow: auto; }
 .ui-dialog .dialog .conteudo h1 { font-size: 16px; }
 .ui-dialog .dialog .conteudo a:hover { text-decoration: underline; color: #0000FF; }

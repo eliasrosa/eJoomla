@@ -2,8 +2,10 @@
 class programa
 {
 	
-	public $e_url_base;
-	public $e_url_programa;
+	public $url_base;
+	public $url_programa;
+	public $processID;
+	public $config;
 		
 	
 	public function __construct()
@@ -46,31 +48,29 @@ class programa
 	}		
 	
 	
-	public function dialog()
+	public function conteudo()
 	{
 		// pasta do programa
-		$programa = JRequest::getvar('programa');	
+		$programa = JRequest::getvar('programa');
+		
+		// pagina do programa	
+		$pagina = JRequest::getvar('pagina');	
 		
 		// abre as configurações do programa
-		$config = $this->get_config($programa);
-	
-		// carrega a pagina solicitada
-		$pagina = JRequest::getvar('pagina', 'undefined');
-		
-		// verifica se a página foi solicitada
-		if($pagina == 'undefined')
-			$pagina = $config['default'];
-							
-		// carrega as variaveis	
-		$this->e_url_base = EDESKTOP_URL ;
-		$this->e_url_programa = EDESKTOP_URL .'/programas/'. $programa ;
+		$this->config = $this->get_config($programa);
+		$this->url_base = EDESKTOP_URL ;
+		$this->url_programa = EDESKTOP_URL .'/programas/'. $programa ;
+		$this->processID = JRequest::getvar('processID', 0);
 		
 		// abre a página
-		$file = EDESKTOP_PATH_PROGRAMAS .DS. $programa .DS. $pagina .DS. 'index.php' ;
-		require_once($file);
+		$file = EDESKTOP_PATH_PROGRAMAS .DS. $programa .DS. $pagina .'.php';
 		
-	}	
-	
+		if(file_exists($file))
+			require_once($file);
+		else
+			echo "Arquivo não encontrado!";
+		
+	}
 }
 
 

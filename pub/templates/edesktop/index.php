@@ -28,28 +28,25 @@ define('EDESKTOP_TEMPLATE', "{$this->template}");
 
 /* Recebe a funcão
  *************************************************/
-$method = JRequest::getvar('_m', false);
-$class = JRequest::getvar('_c', false);
+$method = JRequest::getvar('method', false);
+$class = JRequest::getvar('class', false);
+
 
 
 // Caso exista uma class e função
 if($class && $method)
 {
-	$class_file = EDESKTOP_PATH .DS. 'funcoes' .DS. $class . '.php';
-	if(file_exists($class_file))
+
+	jimport("edesktop.{$class}");
+	
+	if(method_exists($class, $method))
 	{
-		require_once($class_file);
-		if(method_exists($class, $method))
-		{
-			$class = new $class();
-			$class->$method();
-		}
-		else
-			echo "Method '{$method}' não econtrado!";
+		$class = new $class();
+		$class->$method();
 	}
 	else
-		echo "Class '{$class}' não econtrada!";
-		
+		echo "Method '{$method}' não econtrado na class '{$class}'!";
+
 }
 else
 	require_once(EDESKTOP_PATH .DS. "index2.php");

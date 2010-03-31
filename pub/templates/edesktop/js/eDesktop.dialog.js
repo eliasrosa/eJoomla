@@ -11,7 +11,7 @@ $(function(){
 		},		
 		
 		init : function(process){
-			
+						
 			// carrega o process para global
 			this.process = process;
 						
@@ -20,7 +20,7 @@ $(function(){
 			this.position.y = this.position.y + this.position.d;
 
 			// cria a caixa de dialog
-			$('<div id="d'+process.id+'" class="dialog" title="'+process.titulo+'"><div class="menu"></div><div class="conteudo"></div></div>').dialog({
+			$('<div id="d'+process.id+'" class="dialog" title="'+process.titulo+'"><div id="#' +process.programa+ '" class="conteudo programa"></div></div>').dialog({
 				
 				close: function(event, ui){
 					$('#toolbar label[for="t'+process.id+'"]').remove();
@@ -53,8 +53,38 @@ $(function(){
 		},
 
 
-		load : function(programa, target, pagina, processID){
-			if(target == 'new'){
+		load : function(href, processID){
+			
+			var dados = href.replace(location.pathname, '').split('/', 2);
+			
+			// pasta do programa
+			var programa = dados[0];
+			
+			// pagina do programa		
+			var pagina = dados[1];
+			
+			// query string do programa
+			var query = '';
+			
+			// verifica se exist a pagina
+			if(pagina != undefined){
+			
+				// captura a pagina e a query string 
+				dados = dados[1].split('?', 2);
+				
+				// pagina do programa		
+				var pagina = dados[0];
+				
+				if(dados.length > 1){
+					// query string do programa
+					var query = dados[1];
+				}
+			
+			}
+					
+			// verifica se o processo existe
+			if(processID == "new"){
+							
 				// adiciona um novo processo
 				eDesktop.process.add(programa, function(process)
 				{							
@@ -63,106 +93,61 @@ $(function(){
 					
 					// adiciona uma na caixa de dialog
 					eDesktop.dialog.init(process);
-										
+					
 					// carrega o conteudo da página
-					eDesktop.dialog.carregar_conteudo(process.id, pagina, 'main');					
+					eDesktop.dialog.conteudo(process.id, pagina, query);
 				});										
-			}
-							
-			if(target == 'conteudo' || target == 'main'){				
+
+			}else{
+				
 				// carrega o conteudo da página
-				eDesktop.dialog.carregar_conteudo(processID, pagina, target);			
+				eDesktop.dialog.conteudo(processID, pagina, query);
+
 			}
+			
+			
 		},
 
 
-
-		carregar_conteudo : function(processID, pagina, target){
+		conteudo : function(processID, pagina, query){
 						
 			var process = eDesktop.process.get(processID);
+			
 			if(pagina == undefined)
-				pagina = process.default;
+				pagina = 'index';
 						
-			var params =  'programa=' +process.programa+ '&pagina=' +pagina;
-			eDesktop.exec('programa', 'dialog', params, function(html){	
+			var params =  'programa=' +process.programa+ '&pagina=' +pagina+ '&processID=' +processID;
+			
+			if(query != '')
+				params = params+ '&' +query;
+			
+			eDesktop.exec('programa', 'conteudo', params, function(html){	
 				
 				var $main = $('#d' +processID);
-				var $menu = $('.menu', $main);
 				var $conteudo = $('.conteudo', $main.parent());
 				
 				// zera o conteudo
-				$conteudo.html('');	
+				$conteudo.html('').append(html);
 				
-				console.log(processID);
-												
-				// adicionda o titulo da pagina
-				$conteudo.append('<h1>' + process.paginas[pagina].label+ '</h1>');
-			
-				// adicionda a descrição da pagina caso exista
-				$conteudo.append('<p>' +process.paginas[pagina].descricao+ '</p>');
-			
-				// conteudo html
-				$conteudo.append(html);					
-			
-				// carrega o menu		
-				eDesktop.dialog.menu(process, pagina);
-				
-			}, 'html');
-
-			
-		},
-
-		menu : function(process, pagina){
-			
-			// carrega o menu
-			var $menu = this.$menu = $('.menu', this.$main);
-			
-			if(process.paginas[pagina].menu){
-				// limpa o menu
-				$menu.html('');
-											
-				// adiciona o titulo no menu
-				var titulo = '<p>' +this.process.titulo+ '</p>';
-				$menu.append(titulo);
-				
-				// adiciona os itens de menu
-				$.each(process.paginas, function(a, b){
-									
-					var item = '<a href="javascript:void(0);" pagina="' +a+ '" target="' +b.target+ '" class="' +a+ '" programa="' + eDesktop.dialog.process.programa+ '" processID="' + eDesktop.dialog.process.id+ '">' +b.label+ '</a>';
-					$menu.append(item);
-
-					$('.'+a, $menu).click(function(){
-						
-						var programa = $(this).attr('programa');
-						var processID = $(this).attr('processID');
-						var target = $(this).attr('target');
-						var pagina = $(this).attr('pagina');					
-
-						// ativa o link
-						if(target != 'new'){
-							// remove o link ativo
-							$('a', $menu).removeClass('ativo');
-						
-							// adiciona a class
-							$(this).addClass('ativo');
-						}
-											
-						eDesktop.dialog.load(programa, target, pagina, processID);
-						
-						return false;
-						
-					}).prepend('<span class="ui-icon ui-icon-bullet"></span>');
+				// evento clink dos links
+				$('a.link', $conteudo).click(function(){
 					
-					if(a == pagina)
-						$('.'+a, $menu).addClass('ativo');
+					// captura o programa
+					var href = $(this).attr('href');
+					var target = $(this).attr('target');
 					
+					//													
+					processID = (target == "new") ? "new" : processID;
+															
+					// inicia eventos e procedimento para as caixas de dialogo
+					eDesktop.dialog.load(href, processID);
+					
+					return false;		
 				});
-			}else{
-				$menu.hide();
-			}
 							
-		}		
-		
+			}, 'html');
+			
+		}	
 		
 	};	
 });
