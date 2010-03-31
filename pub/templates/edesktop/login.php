@@ -23,7 +23,7 @@
 					</tr>
 				</table>
 				<input type="submit" value="Entrar" />
-				<? if($erro) { ?><p class="aviso">Usuário o senha invalido, tente novamente!</p><? } ?>
+				<? if($erro) { ?><p class="aviso">Usuário ou senha inválida, tente novamente!</p><? } ?>
 				<?php echo JHTML::_( 'form.token' ); ?>
 			</form>
 		</div>
