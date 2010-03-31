@@ -3,7 +3,6 @@
 @session_start();
 
 
-
 /* Defines path do eDesktop
  *************************************************/
 define('EDESKTOP_PATH', dirname(__FILE__));
@@ -25,29 +24,82 @@ define('EDESKTOP_URL_IMG', EDESKTOP_URL. "/img");
 define('EDESKTOP_TEMPLATE', "{$this->template}");
 
 
-
-/* Recebe a funcão
- *************************************************/
-$method = JRequest::getvar('method', false);
-$class = JRequest::getvar('class', false);
-
-
-
-// Caso exista uma class e função
-if($class && $method)
+$user =& JFactory::getUser();
+if($user->guest)
 {
-
-	jimport("edesktop.{$class}");
+	$erro  = JRequest::getvar('erro', false);
+	$return	= 'index.php?template=edesktop';
+	$credentials = array();
+	$credentials['username'] = JRequest::getVar('username', '', 'method', 'username');
+	$credentials['password'] = JRequest::getString('passwd', '', 'post', JREQUEST_ALLOWRAW);	
 	
-	if(method_exists($class, $method))
+	
+	if(!empty($credentials['username']) || !empty($credentials['password']) )
 	{
-		$class = new $class();
-		$class->$method();
+		// Check for request forgeries
+		JRequest::checkToken('request') or jexit( 'Invalid Token' );
+	
+		//preform the login action
+		$error = $mainframe->login($credentials);
+		
+		if(!JError::isError($error))
+		{
+			$mainframe->redirect( $return );
+		}
+		else
+		{
+			$mainframe->redirect( $return. '&erro=1' );
+		}		
 	}
-	else
-		echo "Method '{$method}' não econtrado na class '{$class}'!";
-
+		
+	require_once(EDESKTOP_PATH .DS. "login.php");
+	exit();
 }
 else
-	require_once(EDESKTOP_PATH .DS. "index2.php");
+{
+	
+	/* logout
+	 *************************************************/
+	$logout = JRequest::getvar('logout', false);
+	if($logout)
+	{
+		
+		//preform the logout action
+		$error = $mainframe->logout();
+
+		if(!JError::isError($error))
+		{
+			$return	= 'index.php?template=edesktop';
+			$mainframe->redirect( $return );
+		}
+	
+	}
+	else
+	{
+		/* Recebe a funcão
+		 *************************************************/
+		$method = JRequest::getvar('method', false);
+		$class = JRequest::getvar('class', false);
+
+
+
+		// Caso exista uma class e função
+		if($class && $method)
+		{
+
+			jimport("edesktop.{$class}");
+			
+			if(method_exists($class, $method))
+			{
+				$class = new $class();
+				$class->$method();
+			}
+			else
+				echo "Method '{$method}' não econtrado na class '{$class}'!";
+
+		}
+		else 
+			require_once(EDESKTOP_PATH .DS. "home.php");
+	}
+}
 ?>

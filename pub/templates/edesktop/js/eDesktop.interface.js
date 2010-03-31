@@ -21,7 +21,7 @@ $(function(){
 			eDesktop.toolbar.minimizeAll();
 			
 			// adiciona o botão 
-			//eDesktop.toolbar.logout();
+			eDesktop.toolbar.logout();
 			
 			// adiciona a busca rápida
 			eDesktop.toolbar.finder();

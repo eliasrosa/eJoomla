@@ -24,13 +24,13 @@ a img { border: none; }
 
 /* toolbar
  *******************************/
-#toolbar { height: 33px; padding: 5px 190px 5px 45px; position: relative; background: url(../img/toolbar-top.png) 50% 50%; }
+#toolbar { height: 33px; padding: 5px 190px 5px 83px; position: relative; background: url(../img/toolbar-top.png) 50% 50%; }
 #toolbar .programas { overflow: hidden; white-space: nowrap; }
 #toolbar label { margin-right: 5px; height: 30px; }
 #toolbar label img { position: relative; top: 2px; left: -5px; }
 #toolbar .finder{ position: absolute; right: 10px; top: 10px; z-index: 999; padding: 3px 0; }
 #minimizeAll { position: absolute; left: 5px; top: 6px; z-index: 999; }
-#logout { position: absolute; left: 45px; top: 6px; z-index: 999; }
+#logout { position: absolute; left: 44px; top: 6px; z-index: 999; }
 
 
 
@@ -64,4 +64,9 @@ a img { border: none; }
 .ui-dialog .dialog .conteudo h1 { font-size: 16px; }
 .ui-dialog .dialog .conteudo a:hover { text-decoration: underline; color: #0000FF; }
 
+
+/* login
+ *******************************/
+#login table { margin-bottom: 15px; }
+#login p.aviso { color: #FF0000; }
 

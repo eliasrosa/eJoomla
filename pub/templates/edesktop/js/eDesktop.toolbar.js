@@ -47,6 +47,10 @@ $(function(){
 				icons : {
 					primary : 'ui-icon-locked'
 				}
+			}).click(function(){
+				var alerta = confirm("Deseja realmente se desconectar do sistema?");					
+				if(alerta)
+					location.href = 'index.php?template=' +eDesktop.template+ '&logout=1';
 			});	
 		},		
 		
