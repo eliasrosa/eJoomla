@@ -68,7 +68,7 @@ class programa
 		if(file_exists($file))
 			require_once($file);
 		else
-			echo "Arquivo não encontrado!";
+			echo "Arquivo não encontrado!<br><br>$file";
 		
 	}
 }
