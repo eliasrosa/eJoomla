@@ -20,7 +20,7 @@ $(function(){
 			this.position.y = this.position.y + this.position.d;
 
 			// cria a caixa de dialog
-			$('<div id="d'+process.id+'" class="dialog" title="'+process.titulo+'"><div id="#' +process.programa+ '" class="conteudo programa"></div></div>').dialog({
+			$('<div id="d'+process.id+'" class="dialog" title="'+process.titulo+'"><div class="finder-result"><h1>Resultado da pesquisa em ' +process.titulo+ '</h1><div class="result"></div><a href="javascript:void(0);" class="fechar">Fechar pesquisa</a></div><div id="' +process.programa+ '" class="conteudo"></div></div>').dialog({
 				
 				close: function(event, ui){
 					$('#toolbar label[for="t'+process.id+'"]').remove();
@@ -48,6 +48,38 @@ $(function(){
 			// adiciona finder
 			if(process.finder){
 				$($dialog).append('<div class="finder ui-widget-content ui-corner-all"><span class="icone ui-icon ui-icon-search"></span><input type="text" class="" value="Pesquisar ' +process.titulo+ '" /></div>');
+				
+				// event press enter
+				$('.finder input', $dialog).keypress(function(e){
+					var code = (e.keyCode ? e.keyCode : e.which);
+					var val  = $(this).val();
+					
+					if (code == 13 & val != ''){
+						var query = 'finder=' +val ;
+						eDesktop.dialog.conteudo(process.id, 'finder', query, '.finder-result .result');
+						
+						$('#' +process.programa+ '.conteudo', $dialog).hide();
+						$('.finder-result', $dialog).show();
+					}
+				});
+				
+				$('.finder-result a.fechar', $dialog).click(function(){
+					$('.finder-result', $dialog).hide();
+					$('#' +process.programa+ '.conteudo', $dialog).show();
+				}).button();
+				
+				//
+				$('.finder input', $dialog).focus(function(){
+					if($(this).val() == 'Pesquisar ' +process.titulo)
+						$(this).val('');
+				});
+				
+				//
+				$('.finder input', $dialog).blur(function(){
+					if($(this).val() == '')
+						$(this).val('Pesquisar ' +process.titulo);
+				});
+				
 			}
 											
 		},
@@ -92,12 +124,13 @@ $(function(){
 		},
 
 
-		conteudo : function(processID, pagina, query){
+		conteudo : function(processID, pagina, query, target){
 						
 			var process = eDesktop.process.get(processID);
 			
-			if(pagina == undefined)
-				pagina = 'index';
+			var target = (target == undefined) ? '.conteudo' : target;
+			
+			var pagina = (pagina == undefined) ? 'index' : pagina;
 						
 			var params =  'programa=' +process.programa+ '&pagina=' +pagina+ '&processID=' +processID;
 			
@@ -107,7 +140,7 @@ $(function(){
 			eDesktop.exec('programa', 'conteudo', params, function(html){	
 				
 				var $main = $('#d' +processID);
-				var $conteudo = $('.conteudo', $main.parent());
+				var $conteudo = $(target, $main.parent());
 				
 				// zera o conteudo
 				$conteudo.html('').append(html);
