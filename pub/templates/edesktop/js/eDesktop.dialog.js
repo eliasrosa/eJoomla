@@ -53,40 +53,23 @@ $(function(){
 		},
 
 
-		load : function(href, processID){
-			
-			var dados = href.replace(location.pathname, '').split('/', 2);
-			
-			// pasta do programa
-			var programa = dados[0];
-			
-			// pagina do programa		
-			var pagina = dados[1];
-			
-			// query string do programa
-			var query = '';
-			
-			// verifica se exist a pagina
-			if(pagina != undefined){
-			
-				// captura a pagina e a query string 
-				dados = dados[1].split('?', 2);
-				
-				// pagina do programa		
-				var pagina = dados[0];
-				
-				if(dados.length > 1){
-					// query string do programa
-					var query = dados[1];
-				}
-			
-			}
+		load : function(params){
+						
+			op = $.extend({
+				programa: undefined,
+				pagina: undefined,
+				query: '',
+				processID: undefined,
+				options : {}
+			}, params);
 					
+			//console.log(op);		
+								
 			// verifica se o processo existe
-			if(processID == "new"){
+			if(op.processID == "new"){
 							
 				// adiciona um novo processo
-				eDesktop.process.add(programa, function(process)
+				eDesktop.process.add(op.programa, function(process)
 				{							
 					// adiciona icone no toolbar
 					eDesktop.toolbar.add(process);
@@ -95,13 +78,13 @@ $(function(){
 					eDesktop.dialog.init(process);
 					
 					// carrega o conteudo da página
-					eDesktop.dialog.conteudo(process.id, pagina, query);
+					eDesktop.dialog.conteudo(process.id, op.pagina, op.query);
 				});										
 
 			}else{
 				
 				// carrega o conteudo da página
-				eDesktop.dialog.conteudo(processID, pagina, query);
+				eDesktop.dialog.conteudo(op.processID, op.pagina, op.query);
 
 			}
 			
@@ -132,15 +115,14 @@ $(function(){
 				// evento clink dos links
 				$('a.link', $conteudo).click(function(){
 					
-					// captura o programa
-					var href = $(this).attr('href');
-					var target = $(this).attr('target');
-					
-					//													
-					processID = (target == "new") ? "new" : processID;
+					// captura os parametros
+					var params = eval('(' +$(this).attr('rel')+ ')');
+
+					// corrige o processID
+					params.processID = (params.processID == "new") ? "new" : processID;
 															
 					// inicia eventos e procedimento para as caixas de dialogo
-					eDesktop.dialog.load(href, processID);
+					eDesktop.dialog.load(params);
 					
 					return false;		
 				});
@@ -149,5 +131,7 @@ $(function(){
 			
 		}	
 		
-	};	
+	};
+	
+	window.load = eDesktop.dialog.load;	
 });
