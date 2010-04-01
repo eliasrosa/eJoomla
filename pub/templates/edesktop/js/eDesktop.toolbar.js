@@ -39,6 +39,16 @@ $(function(){
 		},
 		
 		logout : function(){
+			
+			var sair = function(){
+				var alerta = confirm("Deseja realmente se desconectar do sistema?");					
+				if(alerta){
+					location.href = 'index.php?template=edesktop&logout=1';
+					return true;
+				}else
+					return false;
+			};
+			
 			var html = '<button id="logout" class="buttons">logout<button>';			
 			$('body').prepend(html);
 			
@@ -48,10 +58,11 @@ $(function(){
 					primary : 'ui-icon-locked'
 				}
 			}).click(function(){
-				var alerta = confirm("Deseja realmente se desconectar do sistema?");					
-				if(alerta)
-					location.href = 'index.php?template=' +eDesktop.template+ '&logout=1';
+				sair();
 			});	
+			
+			window.onbeforeunload = function(){ return 'Todos os dados abertos serão perdidos!'; };
+			
 		},		
 		
 		finder : function(){
@@ -59,7 +70,8 @@ $(function(){
 			$('#toolbar').append(html);
 		}		
 	};
-
-	
 		
 });
+
+
+
