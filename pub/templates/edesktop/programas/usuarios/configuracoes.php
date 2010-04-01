@@ -2,7 +2,7 @@
 $configuracoes = array
 (
     'titulo'  => 'Usuários',
-    'finder'  => false,   
+    'finder'  => true,   
 );
 
 //Lista de usuários cadastrados no sistema
