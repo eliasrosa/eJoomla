@@ -20,7 +20,7 @@ $(function(){
 			this.position.y = this.position.y + this.position.d;
 
 			// cria a caixa de dialog
-			$('<div id="d'+process.id+'" class="dialog" title="'+process.titulo+'"><div class="finder-result"><h1>Resultado da pesquisa em ' +process.titulo+ '</h1><div class="result"></div><a href="javascript:void(0);" class="fechar">Fechar pesquisa</a></div><div id="' +process.programa+ '" class="conteudo"></div></div>').dialog({
+			$('<div id="d'+process.id+'" class="dialog" title="'+process.titulo+'"><div class="main"><div class="finder-result"><h1>Resultado da pesquisa em ' +process.titulo+ '</h1><div class="result"></div><a href="javascript:void(0);" class="fechar">Fechar pesquisa</a></div><div id="' +process.programa+ '" class="conteudo"></div></div></div>').dialog({
 				
 				close: function(event, ui){
 					$('#toolbar label[for="t'+process.id+'"]').remove();
@@ -56,10 +56,19 @@ $(function(){
 					
 					if (code == 13 & val != ''){
 						var query = 'finder=' +val ;
-						eDesktop.dialog.conteudo(process.id, 'finder', query, '.finder-result .result');
 						
-						$('#' +process.programa+ '.conteudo', $dialog).hide();
-						$('.finder-result', $dialog).show();
+
+						eDesktop.dialog.conteudo(process.id, 'finder', query, { callback: function(html){
+													
+							$('#' +process.programa+ '.conteudo', $dialog).hide();
+							$('.finder-result', $dialog).show();
+							
+							// zera o conteudo e adiciona o novo
+							$('.finder-result .result', $dialog).html('').append(html);		
+							
+						}});
+						
+						
 					}
 				});
 				
@@ -119,34 +128,44 @@ $(function(){
 				eDesktop.dialog.conteudo(op.processID, op.pagina, op.query);
 
 			}
-			
-			
+						
 		},
 
 
-		conteudo : function(processID, pagina, query, target){
-						
+		conteudo : function(processID, pagina, query, options){
+
 			var process = eDesktop.process.get(processID);
-			
-			var target = (target == undefined) ? '.conteudo' : target;
-			
-			var pagina = (pagina == undefined) ? 'index' : pagina;
-						
+			var pagina = (pagina == undefined) ? 'index' : pagina;				
 			var params =  'programa=' +process.programa+ '&pagina=' +pagina+ '&processID=' +processID;
 			
-			if(query != '')
-				params = params+ '&' +query;
+			var $dialog = $('#d' +processID);
+			
+			var $conteudo = $('.conteudo', $dialog.parent());
+			
+			var $main = $('.main', $dialog.parent());
+		
+			params = (query == '') ? params : params+ '&' +query;
+		
+			var op = $.extend({
+				
+				callback : function(html){
+					// zera o conteudo e adiciona o novo
+					$conteudo.html('').append(html);		
+				}
+				
+			
+			}, options);	
+			
+			
+			eDesktop.dialog.loading.start($main);
 			
 			eDesktop.exec('programa', 'conteudo', params, function(html){	
-				
-				var $main = $('#d' +processID);
-				var $conteudo = $(target, $main.parent());
-				
-				// zera o conteudo
-				$conteudo.html('').append(html);
-				
+								
+				// executa a função
+				op.callback(html);
+
 				// evento clink dos links
-				$('a.link', $conteudo).click(function(){
+				$('a.link', $dialog).click(function(){
 					
 					// captura os parametros
 					var params = eval('(' +$(this).attr('rel')+ ')');
@@ -158,10 +177,31 @@ $(function(){
 					eDesktop.dialog.load(params);
 					
 					return false;		
-				});
+				});	
+
+				// fecha o loader
+				eDesktop.dialog.loading.stop($main);
 							
 			}, 'html');
 			
+		},
+
+		loading : {
+		
+			start : function($obj){
+				
+				$obj.fadeOut();					
+				
+				var css = { right: 10, top: 10, position: 'absolute' };
+				$('<div class="loading"><img src="' +eDesktop.url+ '/img/loading.gif"</div>').insertBefore($obj).css(css);
+			},
+			
+			stop : function($obj){
+				
+				$('.loading', $obj.parent()).fadeOut().remove();				
+				
+				$obj.fadeIn();
+			}
 		}	
 		
 	};

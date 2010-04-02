@@ -60,14 +60,15 @@ a img { border: none; }
 .ui-dialog .dialog .menu a.ativo span.ui-icon {  position: absolute; left: 10px; display: block; }
 */
 
-.ui-dialog .dialog .conteudo { padding: 15px; overflow: auto; display: block; }
-.ui-dialog .dialog .conteudo h1 { font-size: 16px; }
-.ui-dialog .dialog .conteudo a:hover { text-decoration: underline; color: #0000FF; }
+.ui-dialog .dialog .main { display: none; }
+.ui-dialog .dialog .main .conteudo { padding: 15px; overflow: auto; }
+.ui-dialog .dialog .main .conteudo h1 { font-size: 16px; }
+.ui-dialog .dialog .main .conteudo a:hover { text-decoration: underline; color: #0000FF; }
 
-.ui-dialog .dialog .finder-result { padding: 15px; overflow: auto; display: none; width: 100%; }
-.ui-dialog .dialog .finder-result h1 { font-size: 16px; }
-.ui-dialog .dialog .finder-result a.fechar { margin:15px 0; }
-.ui-dialog .dialog .finder-result a:hover { text-decoration: underline; color: #0000FF; }
+.ui-dialog .dialog .main .finder-result { padding: 15px; overflow: auto; display: none; width: 100%; }
+.ui-dialog .dialog .main .finder-result h1 { font-size: 16px; }
+.ui-dialog .dialog .main .finder-result a.fechar { margin:15px 0; }
+.ui-dialog .dialog .main .finder-result a:hover { text-decoration: underline; color: #0000FF; }
 
 
 /* login
