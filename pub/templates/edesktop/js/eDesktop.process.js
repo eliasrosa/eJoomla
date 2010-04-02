@@ -1,3 +1,5 @@
+setTimeout("myBar.loaded('eDesktop.progress.js')", 200);  
+
 $(function(){
 	
 	/* eDesktop

@@ -1,3 +1,5 @@
+setTimeout("myBar.loaded('eDesktop.dialog.js')", 1300);  
+
 $(function(){
 	
 	/* eDesktop - Dialog

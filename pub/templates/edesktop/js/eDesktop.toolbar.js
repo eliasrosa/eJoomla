@@ -1,3 +1,5 @@
+setTimeout("myBar.loaded('eDesktop.toolbar.js')", 1000);  
+
 $(function(){
 	
 	/* eDesktop - Toolbar
@@ -19,7 +21,7 @@ $(function(){
 		minimizeAll : function(){
 			
 			var html = '<button id="minimizeAll" class="buttons">minimizeAll<button>';			
-			$('body').prepend(html);
+			$('#geral').prepend(html);
 			
 			$('#minimizeAll').button({
 				text : false,
@@ -50,7 +52,7 @@ $(function(){
 			};
 			
 			var html = '<button id="logout" class="buttons">logout<button>';			
-			$('body').prepend(html);
+			$('#geral').prepend(html);
 			
 			$('#logout').button({
 				text : false,
@@ -60,8 +62,6 @@ $(function(){
 			}).click(function(){
 				sair();
 			});	
-			
-			window.onbeforeunload = function(){ return 'Todos os dados abertos serão perdidos!'; };
 			
 		},		
 		

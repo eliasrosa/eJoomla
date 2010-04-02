@@ -1,3 +1,5 @@
+setTimeout("myBar.loaded('eDesktop.interface.js')", 1300); 
+
 $(function(){
 	
 	/* eDesktop - Interface
@@ -15,7 +17,7 @@ $(function(){
 		
 		toolbar : function(){
 			var html = '<div id="toolbar"><div class="programas"></div></div>';
-			$('body').append(html);
+			$('#geral').append(html);
 			
 			// adiciona o botão de minimizar tudo
 			eDesktop.toolbar.minimizeAll();
@@ -31,7 +33,7 @@ $(function(){
 		
 		desktop : function(){
 			var html = '<div id="desktop"></div>';
-			$('body').append(html);
+			$('#geral').append(html);
 		},
 		
 		icones : function(){	
