@@ -72,7 +72,7 @@ class programa
 		if(file_exists($file))
 			require_once($file);
 		else
-			echo "Arquivo não encontrado!<br><br>$file";
+			echo "Arquivo não encontrado!<br><br>$file<br><br><br><br><a href=\"javascript:void(0);\" class=\"link\" rel=\"{}\">Voltar</a>";
 		
 	}
 }
