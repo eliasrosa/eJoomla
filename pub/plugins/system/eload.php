@@ -474,8 +474,10 @@ class PLGSYSTEMeload extends JPlugin
 	function analytics_adicionar_scripts()
 	{
 		global $mainframe;
+		
+		$template = JRequest::getvar('template');
 
-		if($this->params->get('analytics-adicionar') == '1')
+		if($this->params->get('analytics-adicionar') == '1' and $template != 'edesktop')
 		{
 			$ID = $this->params->get('analytics-UA');
 
