@@ -35,7 +35,8 @@ $(function(){
 				minWidth: 700,
 				minHeight: 500,
 				width: 700,				
-				height: 500
+				height: 500,
+				resizable: false
 			});
 			
 			var $main = this.$main = $('#d'+process.id);
