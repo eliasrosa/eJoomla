@@ -53,9 +53,9 @@ a img { border: none; }
 .ui-dialog .finder { position: absolute; top: 12px; right: 35px; width: 200px; }
 .ui-dialog .finder input { width: 180px; }
 .ui-dialog .ui-dialog-titlebar .ui-dialog-title img { position: relative; top: 2px; left: -5px; }
-.ui-dialog .dialog { padding-left: 0px; padding-top: 0px; padding-bottom: 0px; overflow: hidden; background: url(../img/bg_dialog_conteudo.png) top right repeat-y; }
+.ui-dialog .dialog { padding: 0px; overflow: auto; background: url(../img/bg_dialog_conteudo.png) top right repeat-y; }
 .ui-dialog .dialog .main { display: none; }
-.ui-dialog .dialog .main .conteudo { padding: 15px; overflow: auto; }
+.ui-dialog .dialog .main .conteudo { padding: 15px; }
 .ui-dialog .dialog .main .conteudo h1 { font-size: 16px; }
 .ui-dialog .dialog .main .conteudo a:hover { text-decoration: underline; color: #0000FF; }
 .ui-dialog .dialog .main .conteudo a.voltar { position: absolute; bottom: 40px; left: 30px; }
@@ -65,7 +65,7 @@ a img { border: none; }
 .ui-dialog .dialog .main .finder-result a.fechar { margin:15px 0; }
 .ui-dialog .dialog .main .finder-result a:hover { text-decoration: underline; color: #0000FF; }
 
-.ui-dialog .dialog .menu_lateral { background: #CEE3FD url(../img/bg_dialog_lateral1.png) top left no-repeat; min-height: 5000px; padding: 15px 15px 0 30px; width: 155px; float: left; position: relative; top: -15px; left: -15px; }
+.ui-dialog .dialog .menu_lateral { background: #CEE3FD url(../img/bg_dialog_lateral1.png) top left no-repeat; padding: 15px 15px 0 30px; width: 155px; float: left; position: relative; top: -15px; left: -15px; }
 .ui-dialog .dialog .menu_lateral a { display: block; margin-bottom: 10px; text-decoration: none; }
 .ui-dialog .dialog .menu_lateral span { display: none; }
 .ui-dialog .dialog .menu_lateral h2 { margin-bottom: 20px; }

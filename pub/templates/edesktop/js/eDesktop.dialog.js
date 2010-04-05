@@ -183,6 +183,19 @@ $(function(){
 
 				// fecha o loader
 				eDesktop.dialog.loading.stop($main);
+				
+				// adiciona a quebra o conteudo
+				$conteudo.append('<br class="clearfix" />');
+				
+				// regula a altura do menu
+				dialog_height     = $dialog.height()
+				conteudo_height = $conteudo.height();
+				
+				if(conteudo_height < dialog_height)
+					$('.menu_lateral', $dialog).height(dialog_height);
+				else
+					$('.menu_lateral', $dialog).height(conteudo_height);
+
 							
 			}, 'html');
 			
