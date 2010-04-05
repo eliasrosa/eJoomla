@@ -58,7 +58,7 @@ a img { border: none; }
 .ui-dialog .dialog .main .conteudo { padding: 15px; overflow: auto; }
 .ui-dialog .dialog .main .conteudo h1 { font-size: 16px; }
 .ui-dialog .dialog .main .conteudo a:hover { text-decoration: underline; color: #0000FF; }
-.ui-dialog .dialog .main .conteudo a.voltar {  }
+.ui-dialog .dialog .main .conteudo a.voltar { position: absolute; bottom: 40px; left: 30px; }
 
 .ui-dialog .dialog .main .finder-result { padding: 15px; overflow: auto; display: none; width: 100%; }
 .ui-dialog .dialog .main .finder-result h1 { font-size: 16px; }

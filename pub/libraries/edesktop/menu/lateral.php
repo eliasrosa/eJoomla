@@ -14,8 +14,28 @@ class menu_lateral
 		$this->voltar = $voltar;
 	}
 
-	public function add($alias, $titulo, $rel)
+	public function add($titulo, $params)
 	{	
+		if(is_array($params))
+		{	
+			$alias = $params['pagina'];
+		}
+
+		if(is_string($params))
+		{	
+			$alias  = $params;
+			$params = array( 'pagina' => $params );
+		}
+		
+		if(isset($params['query']))
+		{
+			parse_str($params['query'], $query);
+			$alias = $alias .'.'. $query['ativarMenu'];
+		}
+		
+		// convert params para json
+		$rel = str_replace('"', '\'', json_encode($params));
+		
 		// adiciona o menu
 		$this->menus[$alias] = array( 'titulo' => $titulo, 'rel' => $rel );
 	}
@@ -23,23 +43,23 @@ class menu_lateral
 	public function show()
 	{
 		$pagina = JRequest::getvar('pagina');
-		$active = JRequest::getvar('active_menu');
-		
+		$ativarMenu = JRequest::getvar('ativarMenu');
+
 		$html = '<div class="menu_lateral"><h2>' .$this->titulo. '</h2>';
 		
 		foreach($this->menus as $alias => $menu)
 		{
-			$ativo = ( $pagina == $alias || $active == $alias) ? 'ativo' : '';
-			$html .= '<a href="javascript:void(0);" class="link ' .$ativo. '" rel="' .$menu['rel']. '">' .$menu['titulo']. '</a>';
+			$class = ($alias == $pagina || $alias == "$pagina.$ativarMenu") ? 'ativo' : '';			
+			$html .= '<a href="javascript:void(0);" class="link ' .$class. '" rel="' .$menu['rel']. '"><span class="ui-icon ui-icon-bullet"></span>' .$menu['titulo']. '</a>';
 		}
-
-		if($this->voltar)
-			echo $this->criar_link_voltar();
 		
 		$html .= '</div>';
 		
 		echo $html;
 		
+		if($this->voltar)
+			echo $this->criar_link_voltar();
+				
 	}
 	
 	private function criar_link_voltar()

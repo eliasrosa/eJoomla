@@ -57,8 +57,7 @@ class programa
 		$pagina = JRequest::getvar('pagina');	
 		
 		// corrige a barras
-		$pagina = str_ireplace('/', DS, $pagina);
-		$pagina = str_ireplace('\\', DS, $pagina);
+		$pagina = str_ireplace('.', DS, $pagina);
 		
 		// abre as configurações do programa
 		$this->config = $this->get_config($programa);
