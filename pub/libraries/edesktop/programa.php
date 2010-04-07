@@ -65,14 +65,23 @@ class programa
 		$this->url_programa = EDESKTOP_URL .'/programas/'. $programa ;
 		$this->processID = JRequest::getvar('processID', 0);
 		
+		// pasta do programa
+		$pasta = EDESKTOP_PATH_PROGRAMAS .DS. $programa;
+				
+		// carrega os menus laterais
+		jimport('edesktop.menu.lateral');
+		
+		// verifica se existe o arquivo menus.php
+		if(file_exists($pasta .DS. 'menus.php'))
+			require_once($pasta .DS. 'menus.php');
+		
 		// abre a página
-		$file = EDESKTOP_PATH_PROGRAMAS .DS. $programa .DS. $pagina .'.php';
-		
-		if(file_exists($file))
-			require_once($file);
+		$pagina = $pasta .DS. $pagina .'.php';
+		if(file_exists($pagina))
+			require_once($pagina);
 		else
-			echo "Arquivo não encontrado!<br><br>$file<br><br><br><br><a href=\"javascript:void(0);\" class=\"link\" rel=\"{}\">Voltar</a>";
-		
+			echo "Arquivo não encontrado!<br><br>$pagina<br><br><br><br><a href=\"javascript:void(0);\" class=\"link\" rel=\"{}\">Voltar</a>";
+			
 	}
 }
 
