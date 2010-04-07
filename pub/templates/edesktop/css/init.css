@@ -6,8 +6,13 @@ a img { border: none; }
 
 
 #geral { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-#loadBar { position: absolute; z-index: 9998; top: 0; left: 0; background: #fff; }
-#loadBar p { z-index: 99999; position: absolute; top: 0; left: 15px; }
+
+
+/* LoadBar
+ *******************************/
+#loadBar { position: absolute; z-index: 9998; top: 0; left: 0; background: #fff;}
+#loadBar p { z-index: 99999; position: absolute; top: 0; left: 15px; width: 300px; }
+#loadBar p span { float: right; }
 #loadBar .bar { width: 300px; height: 15px; z-index: 99999; position: absolute; top: 32px; left: 15px; }
 
 

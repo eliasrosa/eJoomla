@@ -65,7 +65,7 @@ $(function(){
 	}; 
 	
 	LoadBar.prototype.show = function(){
-		$('body').append('<div id="loadBar"><p>Carregando...</p><div class="bar"></div></div>');
+		$('body').append('<div id="loadBar"><p>Carregando...<span>0%</span></p><div class="bar"></div></div>');
 		$('#loadBar').css({ width: $(window).width(), height: $(window).height()});
 		$('#loadBar .bar').progressbar();
 	}
@@ -85,6 +85,7 @@ $(function(){
 	
 	LoadBar.prototype.setValue = function(i){
 		$('#loadBar .bar').progressbar({ value: i});
+		$('#loadBar p span').html(parseInt(i)+ '%');
 	};
 	
 	LoadBar.prototype.loaded = function(file) {
