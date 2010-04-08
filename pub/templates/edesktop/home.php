@@ -8,7 +8,7 @@
 		<link type="text/css" href="<?= EDESKTOP_URL_CSS ?>/init.css" rel="stylesheet" />	
 		<script type="text/javascript" src="<?= EDESKTOP_URL_JS ?>/jquery-1.4.2.min.js"></script>
 		<script type="text/javascript" src="<?= EDESKTOP_URL_JS ?>/jquery-ui-1.8rc2.custom.min.js"></script>
-		<script type="text/javascript">	window.eDesktop = { template : '<?= EDESKTOP_TEMPLATE; ?>',	url : '<?= EDESKTOP_URL; ?>'}</script>	
+		<script type="text/javascript">	window.eDesktop = { template: '<?= EDESKTOP_TEMPLATE; ?>', url: '<?= EDESKTOP_URL; ?>', token: '<?= EDESKTOP_TOKEN; ?>'}</script>
 		<script type="text/javascript" src="<?= EDESKTOP_URL_JS ?>/eDesktop.core.js"></script>
 	</head>
 	<body>

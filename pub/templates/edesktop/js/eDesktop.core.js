@@ -34,11 +34,11 @@ $(function(){
 			
 			if(dataType == undefined)
 				dataType = 'json';
-			
+						
 			$.ajax({
 				type: 'POST',
 				url: 'index.php',
-				data: 'template=' +eDesktop.template+ '&class=' +classs+ '&method=' +method+ '&' +params,
+				data: eDesktop.token+ '=1&' + 'template=' +eDesktop.template+ '&class=' +classs+ '&method=' +method+ '&' +params,
 				dataType: dataType,
 				success: function(a){
 					callback(a);
@@ -114,8 +114,5 @@ $(function(){
 	myBar.addScript('jquery.datepicker.js');
 	myBar.addScript('jquery.validaform-1.0.13.js');
 	myBar.run();
-
-
-
 	
 });

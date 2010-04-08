@@ -10,6 +10,8 @@ class programa
 	
 	public function __construct()
 	{
+		// get token
+		JRequest::checkToken('request') or jexit( 'eDeskop: Invalid Token' );
 
 	}
 

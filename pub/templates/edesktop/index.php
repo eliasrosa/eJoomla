@@ -21,7 +21,8 @@ define('EDESKTOP_URL_IMG', EDESKTOP_URL. "/img");
 
 /* Defines padrões do eDesktop
  *************************************************/
-define('EDESKTOP_TEMPLATE', "{$this->template}");
+define('EDESKTOP_TOKEN', JUtility::getToken());
+define('EDESKTOP_TEMPLATE', $this->template);
 
 
 $user =& JFactory::getUser();
@@ -37,7 +38,7 @@ if($user->guest)
 	if(!empty($credentials['username']) || !empty($credentials['password']) )
 	{
 		// Check for request forgeries
-		JRequest::checkToken('request') or jexit( 'Invalid Token' );
+		JRequest::checkToken('request') or jexit( 'eDesktop: Invalid Token' );
 	
 		//preform the login action
 		$error = $mainframe->login($credentials);
