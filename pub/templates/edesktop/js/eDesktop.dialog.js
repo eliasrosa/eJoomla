@@ -139,7 +139,7 @@ $(function(){
 
 			var process = eDesktop.process.get(processID);
 			var pagina = (pagina == undefined) ? 'index' : pagina;				
-			var params =  'programa=' +process.programa+ '&pagina=' +pagina+ '&processID=' +processID;
+			var params =  'programa=' +process.programa+ '&pagina=' +pagina+ '&funcao=0&processID=' +processID;
 			
 			var $dialog = $('#d' +processID);
 			

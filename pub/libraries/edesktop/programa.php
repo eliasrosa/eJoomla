@@ -2,18 +2,53 @@
 class programa
 {
 	
-	public $url_base;
-	public $url_programa;
-	public $processID;
-	public $config;
-		
+	private $__vars = array();
+	
+	private function __get($nome)
+	{
+		return $this->__vars[$nome];
+	}
+
+	private function __set($nome, $valor)
+	{
+		$this->__vars[$nome] = $valor;
+	}	
 	
 	public function __construct()
 	{
 		// get token
 		JRequest::checkToken('request') or jexit( 'eDeskop: Invalid Token' );
 
-	}
+		// pega o token
+		$this->token = EDESKTOP_TOKEN;
+
+		// template do sistema
+		$this->template = JRequest::getvar('template', 'edesktop');
+		
+		// pasta do programa
+		$this->programa = JRequest::getvar('programa');
+		
+		// pagina do programa	
+		$this->pagina = JRequest::getvar('pagina', 'index');	
+
+		// carregar pagina
+		$this->funcao = JRequest::getvar('funcao', 1);	
+				
+		// url base
+		$this->url_base = EDESKTOP_URL;
+		
+		// url do programa
+		$this->url_programa = EDESKTOP_URL .'/programas/'. $this->programa;
+		
+		// id do procedo
+		$this->processID = JRequest::getvar('processID', false);
+		
+		// pasta do programa
+		$this->pasta = EDESKTOP_PATH_PROGRAMAS .DS. $this->programa;
+		
+		// pasta das paginas
+		$this->pasta_paginas = $this->pasta .DS. 'paginas';
+	}	
 
 	public function get_config($programa, $json = false)
 	{
@@ -52,39 +87,69 @@ class programa
 	
 	public function conteudo()
 	{
-		// pasta do programa
-		$programa = JRequest::getvar('programa');
-		
-		// pagina do programa	
-		$pagina = JRequest::getvar('pagina');	
-		
-		// corrige a barras
-		$pagina = str_ireplace('.', DS, $pagina);
-		
-		// abre as configurações do programa
-		$this->config = $this->get_config($programa);
-		$this->url_base = EDESKTOP_URL ;
-		$this->url_programa = EDESKTOP_URL .'/programas/'. $programa ;
-		$this->processID = JRequest::getvar('processID', 0);
-		
-		// pasta do programa
-		$pasta = EDESKTOP_PATH_PROGRAMAS .DS. $programa;
+		if(!$this->funcao)
+		{					
+			// carrega os menus laterais
+			jimport('edesktop.menu.lateral');
+			
+			// abre as configurações do programa
+			$this->config = $this->get_config($this->programa);
+			
+			// verifica se existe o arquivo menus.php
+			if(file_exists($this->pasta .DS. 'menus.php'))
+				require_once($this->pasta .DS. 'menus.php');
 				
-		// carrega os menus laterais
-		jimport('edesktop.menu.lateral');
-		
-		// verifica se existe o arquivo menus.php
-		if(file_exists($pasta .DS. 'menus.php'))
-			require_once($pasta .DS. 'menus.php');
-		
+
+			// inicia as variaveis de sessão do dialog/pagina
+			echo "<script type=\"text/javascript\">
+					$(function(){
+						var processID = '{$this->processID}';
+						var \$dialog = $('#d' +processID);
+						var \$main = \$dialog.parent();
+						
+						var url_js = '{$this->url_programa}/js';
+						var url_base = '{$this->url_base}';
+						var url_programa = '{$this->url_programa}';
+							
+						var pagina = '{$this->pagina}';
+						var programa = '{$this->programa}';
+			";
+				
+				
+			// verifica se existe o arquivo js
+			$js_file = $this->pasta_paginas .DS. $this->pagina.'.js';
+			if(file_exists($js_file))
+			{
+				$handle = fopen($js_file, "r");
+				$js_file = fread ($handle, filesize ($js_file));
+				fclose ($handle);
+				echo "// js_file\n\n". $js_file. "\n\n";
+			}
+							
+			echo "});\n</script>\n\n";
+				
+		}
+										
 		// abre a página
-		$pagina = $pasta .DS. $pagina .'.php';
+		if($this->pagina == 'index')		
+			$pagina = $this->pasta .DS. $this->pagina .'.php';
+		else
+			$pagina = $this->pasta_paginas .DS. $this->pagina .'.php';
+		
 		if(file_exists($pagina))
 			require_once($pagina);
 		else
 			echo "Arquivo não encontrado!<br><br>$pagina<br><br><br><br><a href=\"javascript:void(0);\" class=\"link\" rel=\"{}\">Voltar</a>";
-			
+
 	}
+	
+	public function formURL($pagina, $programa = '')
+	{
+		$programa = ($programa == '') ? $this->programa : $programa;
+		$url = "?{$this->token}=1&template={$this->template}&class=programa&programa={$programa}&method=conteudo&pagina={$pagina}";
+		return $url;
+	}
+	
 }
 
 
