@@ -6,6 +6,7 @@
 /* Defines path do eDesktop
  *************************************************/
 define('EDESKTOP_PATH', dirname(__FILE__));
+define('EDESKTOP_PATH_INC', EDESKTOP_PATH .DS. 'inc');
 define('EDESKTOP_PATH_PROGRAMAS', EDESKTOP_PATH .DS. 'programas');
 
 

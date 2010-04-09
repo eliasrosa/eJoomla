@@ -48,6 +48,9 @@ class programa
 		
 		// pasta das paginas
 		$this->pasta_paginas = $this->pasta .DS. 'paginas';
+		
+		// carrega a class JCRUD
+		require_once(EDESKTOP_PATH_INC .DS. 'jcrud.class.php');
 	}	
 
 	public function get_config($programa, $json = false)
