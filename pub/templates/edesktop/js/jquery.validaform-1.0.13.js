@@ -10,20 +10,22 @@ jQuery.fn.extend({
 	* @copyright 2008 (c) Caiac Soluções Para Internet Ltda.
 	* @link http://www.caiac.com.br
 	*
-	* @version 1.0.13
-	* @update: 23/06/2009
+	* @version 1.0.14
+	* @update: 09.04.2010
 	*
 	* *********************************************************************************************************/
 
 	validaForm: function(parametros){
 		var options = {
 			error: function(campos, callback) {
-				var msg = "Preencha corretamente o(s) seguinte(s) campo(s):\n";
+				var msg = "Preencha corretamente o(s) seguinte(s) campo(s):<br/>";
 				$(campos).each(function(){
 					var titulo = (this.title != '') ? this.title : this.name;
-					msg += "\n- "+ titulo;
+					msg += "<br><span class=\"ui-icon ui-icon-bullet\"></span>"+ titulo;
 				});
-				alert(msg);
+				
+				eDesktop.dialog.aviso(msg, 'error', $(this));
+				
 				op.callback.call(this);
 			},
 			mask: true,

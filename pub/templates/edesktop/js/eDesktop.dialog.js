@@ -214,7 +214,39 @@ $(function(){
 				
 				$obj.fadeIn();
 			}
-		}	
+		},
+		
+		aviso : function(msg, tipo, $target){
+			
+			// icone do aviso
+			var icon = (tipo == 'error') ? 'alert' : 'info';
+
+			// html dos avisos
+			var aviso = $('<div class="alertas ui-state-' +tipo+ ' ui-corner-all">'+
+							'<p><span class="ui-icon ui-icon-' +icon+ '"></span>' +msg+ '</p>'+
+							'<p class="fechar"><a href="javascript:void(0);">Fechar aviso!</a></p>'+
+						'</div>').show('slide');
+			
+	
+			// leva o scroll para o top
+			$target.scrollTop(-1);
+		
+			// adiciona o aviso no inicio
+			var $aviso = $(aviso).prependTo($target);
+			
+			// exibe o aviso
+			$aviso.show('slide', function(){								
+				// adiciona o evento do fechar
+				$('p.fechar a', $aviso).click(function(){
+					// esconde e remove o aviso
+					$aviso.hide('slide', function(){
+							$aviso.remove();
+					});	
+				});
+			});
+			
+		}
+					
 		
 	};
 	

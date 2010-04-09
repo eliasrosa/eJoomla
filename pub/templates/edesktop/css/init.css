@@ -62,7 +62,7 @@ a img { border: none; }
 .ui-dialog .dialog .main { display: none; }
 
 .ui-dialog .dialog .main .conteudo .corpo { overflow: auto; padding: 15px; height: 437px; width: 470px; float: right; }
-.ui-dialog .dialog .main .conteudo .corpo h1 { font-size: 16px; }
+.ui-dialog .dialog .main .conteudo .corpo h1 { font-size: 16px; margin-top: 0px; }
 .ui-dialog .dialog .main .conteudo .corpo a:hover { text-decoration: underline; color: #0000FF; }
 .ui-dialog .dialog .main .conteudo .corpo a.voltar { position: absolute; bottom: 40px; left: 30px; }
 
@@ -80,6 +80,10 @@ a img { border: none; }
 .ui-dialog .dialog .menu_lateral a.ativo:hover { color: #000; }
 .ui-dialog .dialog .menu_lateral a.ativo { font-weight: bold; }
 .ui-dialog .dialog .menu_lateral a.ativo span.ui-icon {  position: absolute; left: 10px; display: block; }
+
+.ui-dialog .dialog .main .conteudo .corpo div.alertas { padding: 0 0.7em; margin-bottom: 15px; display: none; }
+.ui-dialog .dialog .main .conteudo .corpo div.alertas p span.ui-icon { float: left; margin-right: 0.3em; }
+.ui-dialog .dialog .main .conteudo .corpo div.alertas p.fechar { text-align: right; margin-right: 0.3em; }
 
 
 /* login
