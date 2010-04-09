@@ -69,9 +69,7 @@ $(function(){
 							// zera o conteudo e adiciona o novo
 							$('.finder-result .result', $dialog).html('').append(html);		
 							
-						}});
-						
-						
+						}});	
 					}
 				});
 				
@@ -153,7 +151,7 @@ $(function(){
 				
 				callback : function(html){
 					// zera o conteudo e adiciona o novo
-					$conteudo.html('').append(html);		
+					$conteudo.html('').append('<div class="corpo">' +html +'</div>');		
 				}
 				
 			
@@ -182,21 +180,19 @@ $(function(){
 					return false;		
 				});	
 
+				// carrega o menu
+				var $menu = $('.menu_lateral', $dialog);
+				
+				// caso o menu exista
+				if($menu.length)
+					// move o menu
+					$menu.prependTo($conteudo);
+				else
+					// corrige a largura
+					$('.corpo', $dialog).width(670);
+
 				// fecha o loader
 				eDesktop.dialog.loading.stop($main);
-				
-				// adiciona a quebra o conteudo
-				$conteudo.append('<br class="clearfix" />');
-				
-				// regula a altura do menu
-				dialog_height     = $dialog.height()
-				conteudo_height = $conteudo.height();
-				
-				if(conteudo_height < dialog_height)
-					$('.menu_lateral', $dialog).height(dialog_height);
-				else
-					$('.menu_lateral', $dialog).height(conteudo_height);
-
 							
 			}, 'html');
 			
