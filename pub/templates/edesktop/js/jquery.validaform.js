@@ -16,23 +16,55 @@ jQuery.fn.extend({
 	* *********************************************************************************************************/
 
 	validaForm: function(parametros){
+		
+		var processID = '#' + $(this).attr('rel');
+		var $main = $('.main', processID);		
+		
 		var options = {
+			
 			error: function(campos, callback) {
+								
 				var msg = "Preencha corretamente o(s) seguinte(s) campo(s):<br/>";
 				$(campos).each(function(){
 					var titulo = (this.title != '') ? this.title : this.name;
 					msg += "<br><span class=\"ui-icon ui-icon-bullet\"></span>"+ titulo;
 				});
 				
-				eDesktop.dialog.aviso(msg, 'error', $(this));
+				eDesktop.dialog.aviso(msg, 'error', $('.corpo', $main));
 				
-				op.callback.call(this);
+				op.callback.call(this, $main);
 			},
+			
 			mask: true,
-			success: function(){},
-			callback: function(){},
-			callstart: function(){},
+			
+			success: function(retorno, $main){
+				
+				// captura os retorno
+				var params = $.extend({
+				tipo: 'highlight'
+				}, eval('(' +retorno+ ')'));
+
+				// executa o aviso
+				eDesktop.dialog.aviso(params.msg, params.tipo, $('.corpo', $main));
+				
+				// desliga o loading
+				eDesktop.dialog.loading.stop($main);
+			},
+			
+			callback: function($main){
+				
+				// desliga o loading
+				eDesktop.dialog.loading.stop($main);
+			},
+			
+			callstart: function($main){
+				
+				// inicia o loading
+				eDesktop.dialog.loading.start($main);
+			},
+			
 			upload: true,
+			
 			type: ''
 		};
 
@@ -107,7 +139,7 @@ jQuery.fn.extend({
 
 				camposErrados = new Array();
 
-				op.callstart.call(form);
+				op.callstart.call(form, $main);
 
 				// Busca todos os campos input text
 				$(":input[rel]", form).each(function() {
@@ -218,7 +250,7 @@ jQuery.fn.extend({
 								if (op.type == 'script')
 									$.globalEval(resposta);
 
-								op.success.call(form, resposta);
+								op.success.call(form, resposta, $main);
 								
 								// limpa o formulário
 								$(form)[0].reset();
@@ -230,7 +262,7 @@ jQuery.fn.extend({
 
 					}else{
 
-						op.success.call(form);
+						op.success.call(form, resposta, $main);
 
 					}
 
