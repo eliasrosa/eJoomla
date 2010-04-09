@@ -253,7 +253,7 @@ jQuery.fn.extend({
 								op.success.call(form, resposta, $main);
 								
 								// limpa o formulário
-								$(form)[0].reset();
+								//$(form)[0].reset();
 
 							}, 500);
 						});
