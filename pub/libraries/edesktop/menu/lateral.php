@@ -64,7 +64,7 @@ class menu_lateral
 	
 	private function criar_link_voltar()
 	{
-		return '<a href="javascript:void(0);" class="link voltar" rel="{}">Voltar</a>';
+		return '<a href="javascript:void(0);" class="link voltar" rel="{}">Voltar ao inicio</a>';
 	}
 }
 
