@@ -112,7 +112,7 @@ $(function(){
 	myBar.addScript('eDesktop.interface.js');
 	myBar.addScript('jquery.meio.mask.min.js');
 	myBar.addScript('jquery.datepicker.js');
-	myBar.addScript('jquery.validaform-1.0.13.js');
+	myBar.addScript('jquery.validaform.js');
 	myBar.run();
 	
 });
