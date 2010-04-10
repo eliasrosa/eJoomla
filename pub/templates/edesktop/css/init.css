@@ -91,3 +91,16 @@ a img { border: none; }
 #login table { margin-bottom: 15px; }
 #login p.aviso { color: #FF0000; }
 
+
+
+/* tabelas
+ *******************************/
+table { border-spacing: 0px; width: 100%;  border: 1px solid #DDD; }
+table tr.bg2n td { background: #EEE; }
+table tr.ui-widget-header td { padding: 3px 7px; height: 25px; }
+table tr.ui-widget-content td { padding: 7px; vertical-align: top; border-bottom: 1px solid #CCC; }
+table tr.ui-widget-content:last-child td { border-bottom: none; }
+table tr.ui-widget-content td div.actions { margin-top: 10px; visibility: hidden; }
+table tr.ui-widget-content td div.actions span { padding-right: 7px; margin-right: 5px; border-right: 1px solid #CCC;  }
+table tr.ui-widget-content td div.actions span:last-child { padding-right: 0px; margin-right: 0px; border: none;  }
+
