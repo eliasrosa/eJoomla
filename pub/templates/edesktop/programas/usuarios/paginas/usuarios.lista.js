@@ -32,7 +32,11 @@
 				// executa form
 				$tr.css('background', '#FF7145').fadeOut(1000, function(){
 					// remove a linha
-					$tr.remove();					
+					$tr.remove();
+					
+					$('table tr.ui-widget-content').removeClass('bg2n');
+					
+					$('table tr.ui-widget-content:odd').addClass('bg2n');				
 				});	
 				
 			}
@@ -55,7 +59,11 @@
 				// executa o fadeOut
 				$tr.css('background', '#FF7145').fadeOut(1000, function(){
 					// Remove a linha
-					$tr.remove();					
+					$tr.remove();
+					
+					$('table tr.ui-widget-content').removeClass('bg2n');
+					
+					$('table tr.ui-widget-content:odd').addClass('bg2n');										
 				});
 			}
 		}else
