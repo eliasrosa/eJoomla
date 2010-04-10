@@ -9,5 +9,8 @@ foreach($ids as $id)
 	$u->delete();
 }
 
+if(count($ids) == 1)
+	echo "{'msg' : 'Usuário removido com sucesso!' }";
+else
+	echo "{'msg' : 'Usuários removidos com sucesso!' }";
 ?>
-{'msg' : 'Usuário(s) removido(s) com sucesso!' }
