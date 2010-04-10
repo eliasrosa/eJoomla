@@ -116,6 +116,11 @@ class programa
 							
 						var pagina = '{$this->pagina}';
 						var programa = '{$this->programa}';
+						
+						var formURL = function(pagina, programa){
+							programa = (programa == undefined) ? '{$this->programa}' : programa;
+							return '?{$this->token}=1&template={$this->template}&class=programa&programa=' +programa+ '&method=conteudo&pagina=' + pagina;
+						};
 			";
 				
 				
