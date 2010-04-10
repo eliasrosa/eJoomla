@@ -147,7 +147,12 @@ class programa
 		if(file_exists($pagina))
 			require_once($pagina);
 		else
-			echo "Arquivo não encontrado!<br><br>$pagina<br><br><br><br><a href=\"javascript:void(0);\" class=\"link\" rel=\"{}\">Voltar</a>";
+		{
+			if($this->funcao)
+				echo "{ 'msg' : 'Arquivo não encontrado! \"{$this->pagina}\"', 'tipo' : 'error' }";
+			else
+				echo "Arquivo não encontrado!<br><br>$pagina<br><br><br><br><a href=\"javascript:void(0);\" class=\"link\" rel=\"{}\">Voltar</a>";
+		}
 
 	}
 	
