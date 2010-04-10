@@ -1,4 +1,4 @@
-setTimeout("myBar.loaded('jquery.validaform-1.0.13.js')", 2500);  
+setTimeout("myBar.loaded('jquery.validaform.js')", 2500);  
 
 
 jQuery.fn.extend({
@@ -17,7 +17,7 @@ jQuery.fn.extend({
 
 	validaForm: function(parametros){
 		
-		var processID = '#' + $(this).attr('rel');
+		var processID = '#d' + $(this).attr('rel');
 		var $main = $('.main', processID);		
 		
 		var options = {
