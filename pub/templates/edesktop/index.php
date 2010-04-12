@@ -29,6 +29,14 @@ define('EDESKTOP_TOKEN', JUtility::getToken());
 define('EDESKTOP_TEMPLATE', $this->template);
 
 
+
+// CRIAS ESTRUTURA DE PASTAS IMPORTANTES
+if(!is_dir(EDESKTOP_PATH_CACHE)) @mkdir(EDESKTOP_PATH_CACHE);
+if(!is_dir(EDESKTOP_PATH_SMARTY_CACHE)) @mkdir(EDESKTOP_PATH_SMARTY_CACHE);
+if(!is_dir(EDESKTOP_PATH_SMARTY_COPILE)) @mkdir(EDESKTOP_PATH_SMARTY_COPILE);
+
+
+
 $user =& JFactory::getUser();
 if($user->guest)
 {
