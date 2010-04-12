@@ -168,8 +168,13 @@ $(function(){
 				// evento clink dos links
 				$('a.link', $dialog).click(function(){
 					
+					var rel = $(this).attr('rel');
+					
+					if(rel.substr(0, 1) != '{' && rel.substr(-1) != '}')
+						rel = '{' +rel+ '}';
+						
 					// captura os parametros
-					var params = eval('(' +$(this).attr('rel')+ ')');
+					var params = eval('(' +rel+ ')');
 
 					// corrige o processID
 					params.processID = (params.processID == "new") ? "new" : processID;
