@@ -152,24 +152,30 @@ class programa
 			$script .= "});\n</script>\n\n";
 				
 		}
-										
+
+		// envia o formURL para o smarty
+		$this->smarty->assign('formURL', $this->formURL(''));
+
+		// envia o form url para o smarty
+		$this->smarty->assign('processID', $this->processID);
+				
 		// abre a página
 		if($this->pagina == 'index')		
 			$pagina = $this->pasta .DS. $this->pagina;
 		else
 			$pagina = $this->pasta_paginas .DS. $this->pagina;
-		
+
 		if(file_exists($pagina. '.html'))
 		{
 			if(file_exists($pagina .'.php'))
 				require_once($pagina .'.php');
-			
+
 			echo $script;
-			
-			//
+
+			// 
 			echo $this->smarty->fetch($pagina. '.html');
 		}	
-			
+
 		else
 		{
 			if($this->funcao)
