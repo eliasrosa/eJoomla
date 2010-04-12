@@ -1,8 +1,9 @@
 <?
 $configuracoes = array
 (
-    'titulo'  => 'Usuários',
-    'finder'  => true,   
+    'titulo' => 'Usuários',
+    'finder' => true,
+    'default' => 'usuarios.lista'
 );
 
 //Lista de usuários cadastrados no sistema
