@@ -8,6 +8,9 @@
 define('EDESKTOP_PATH', dirname(__FILE__));
 define('EDESKTOP_PATH_INC', EDESKTOP_PATH .DS. 'inc');
 define('EDESKTOP_PATH_PROGRAMAS', EDESKTOP_PATH .DS. 'programas');
+define('EDESKTOP_PATH_CACHE', JPATH_ROOT .DS. 'cache' .DS. 'edesktop');
+define('EDESKTOP_PATH_SMARTY_CACHE', EDESKTOP_PATH_CACHE .DS. 'cache');
+define('EDESKTOP_PATH_SMARTY_COPILE', EDESKTOP_PATH_CACHE .DS. 'copile');
 
 
 
