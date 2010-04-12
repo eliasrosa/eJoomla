@@ -1,5 +1,5 @@
 <?
-$menu_usuarios->show();
+$menu_principal->show();
 
 $usuarios = new JCRUD("jos_users");
 $usuarios = $usuarios->busca_tudo("name");
