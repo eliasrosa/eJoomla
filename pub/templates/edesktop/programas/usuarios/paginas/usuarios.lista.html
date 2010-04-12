@@ -1,0 +1,29 @@
+<h1>Lista de usuários</h1>
+<p>Edite e remova usuários do sitema.</p>
+
+<form rel="{$processID}" method="post" action="{$formURL}usuarios.remover">
+	<table class="ui-corner-top">
+		<tr class="ui-widget-header">
+			<td></td>
+			<td>Nome</td>
+			<td>Usuário</td>
+			<td>E-mail</td>
+		</tr>
+
+	{foreach from=$usuarios item="usuario"}
+		<tr class="ui-widget-content">
+			<td>{if $user->id != $usuario->id}<input type="checkbox" name="ids[]" value="{$usuario->id}" />{/if}</td>
+			<td><strong>{$usuario->name}</strong>
+				<div class="actions">
+					<span class="editar"><a class="link" rel="'pagina': 'usuarios.editar', 'query': 'id={$usuario->id}'" href="javascript:void(0);">Editar</a></span>
+					{if $user->id != $usuario->id}<span class="excluir"><a href="javascript:void(0);">Excluír</a></span>{/if}
+				</div>
+			</td>
+			<td>{$usuario->username}</td>
+			<td>{$usuario->email}</td>
+		</tr>
+	{/foreach}		
+	</table>
+	<p class="excluir"><a href="javascript:void(0);">Excluír selecionados</a></p>
+</form>
+
