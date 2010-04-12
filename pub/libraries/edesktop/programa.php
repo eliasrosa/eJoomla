@@ -32,7 +32,7 @@ class programa
 		$this->programa = JRequest::getvar('programa');
 		
 		// pagina do programa	
-		$this->pagina = JRequest::getvar('pagina', 'index');	
+		$this->pagina = JRequest::getvar('pagina', 'index');
 
 		// carregar pagina
 		$this->funcao = JRequest::getvar('funcao', 1);	
@@ -72,6 +72,16 @@ class programa
 		if(file_exists($file))
 		{
 			require_once($file);
+
+			// configurações padrões
+			$padrao =  array(	
+				'titulo' => 'Programa sem título',
+				'finder' => false,
+				'default' => 'index'							
+			);
+			
+			// mescla com as configurações padrões
+			$configuracoes = array_merge($padrao, $configuracoes);
 			
 			if($json)
 				echo json_encode($configuracoes);
@@ -107,12 +117,19 @@ class programa
 		
 		if(!$this->funcao)
 		{					
-			// carrega os menus laterais
-			jimport('edesktop.menu.lateral');
 			
 			// abre as configurações do programa
 			$this->config = $this->get_config($this->programa);
+
+			if($this->pagina == 'index')
+			{
+				$this->pagina = $this->config['default'];
+				JRequest::setvar('pagina', $this->config['default']);			
+			}
 			
+			// carrega os menus laterais
+			jimport('edesktop.menu.lateral');
+				
 			// verifica se existe o arquivo menus.php
 			if(file_exists($this->pasta .DS. 'menus.php'))
 				require_once($this->pasta .DS. 'menus.php');
@@ -156,15 +173,11 @@ class programa
 		// envia o formURL para o smarty
 		$this->smarty->assign('formURL', $this->formURL(''));
 
-		// envia o form url para o smarty
+		// envia o processID para o smarty
 		$this->smarty->assign('processID', $this->processID);
 				
 		// abre a página
-		if($this->pagina == 'index')		
-			$pagina = $this->pasta .DS. $this->pagina;
-		else
-			$pagina = $this->pasta_paginas .DS. $this->pagina;
-
+		$pagina = $this->pasta_paginas .DS. $this->pagina;
 		if(file_exists($pagina. '.html'))
 		{
 			if(file_exists($pagina .'.php'))
@@ -172,7 +185,6 @@ class programa
 
 			echo $script;
 
-			// 
 			echo $this->smarty->fetch($pagina. '.html');
 		}	
 
