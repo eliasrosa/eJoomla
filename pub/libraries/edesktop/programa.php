@@ -54,6 +54,15 @@ class programa
 		
 		// carrega a class JCRUD
 		require_once(EDESKTOP_PATH_INC .DS. 'jcrud.class.php');
+		
+		// carrega a class smarty
+		require_once(EDESKTOP_PATH_INC .DS. 'smarty' .DS. 'Smarty.class.php');		
+		
+		// inicio o smarty
+		$this->smarty = new Smarty();
+		$this->smarty->compile_dir  = EDESKTOP_PATH_SMARTY_COPILE;
+		$this->smarty->cache_dir    = EDESKTOP_PATH_SMARTY_CACHE;
+
 	}	
 
 	public function get_config($programa, $json = false)
@@ -87,12 +96,15 @@ class programa
 		}		
 		
 		echo json_encode($dados);
-		
+
 	}		
 	
 	
 	public function conteudo()
 	{
+		
+		$script = '';
+		
 		if(!$this->funcao)
 		{					
 			// carrega os menus laterais
@@ -107,7 +119,7 @@ class programa
 				
 
 			// inicia as variaveis de sessão do dialog/pagina
-			echo "<script type=\"text/javascript\">
+			$script = "<script type=\"text/javascript\">
 					$(function(){
 						var processID = '{$this->processID}';
 						var \$dialog = $('#d' +processID);
@@ -134,27 +146,36 @@ class programa
 				$handle = fopen($js_file, "r");
 				$js_file = fread ($handle, filesize ($js_file));
 				fclose ($handle);
-				echo "// js_file\n\n". $js_file. "\n\n";
+				$script .= "// js_file\n\n". $js_file. "\n\n";
 			}
 							
-			echo "});\n</script>\n\n";
+			$script .= "});\n</script>\n\n";
 				
 		}
 										
 		// abre a página
 		if($this->pagina == 'index')		
-			$pagina = $this->pasta .DS. $this->pagina .'.php';
+			$pagina = $this->pasta .DS. $this->pagina;
 		else
-			$pagina = $this->pasta_paginas .DS. $this->pagina .'.php';
+			$pagina = $this->pasta_paginas .DS. $this->pagina;
 		
-		if(file_exists($pagina))
-			require_once($pagina);
+		if(file_exists($pagina. '.html'))
+		{
+			if(file_exists($pagina .'.php'))
+				require_once($pagina .'.php');
+			
+			echo $script;
+			
+			//
+			echo $this->smarty->fetch($pagina. '.html');
+		}	
+			
 		else
 		{
 			if($this->funcao)
-				echo "{ 'msg' : 'Arquivo não encontrado! \"{$this->pagina}\"', 'tipo' : 'error' }";
+				echo "{ 'msg' : 'Arquivo não encontrado! \"{$this->pagina}.html\"', 'tipo' : 'error' }";
 			else
-				echo "Arquivo não encontrado!<br><br>$pagina<br><br><br><br><a href=\"javascript:void(0);\" class=\"link\" rel=\"{}\">Voltar</a>";
+				echo "Arquivo não encontrado!<br><br>$pagina.html<br><br><br><br><a href=\"javascript:void(0);\" class=\"link\" rel=\"{}\">Voltar</a>";
 		}
 
 	}
