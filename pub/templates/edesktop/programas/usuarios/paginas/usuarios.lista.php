@@ -2,7 +2,7 @@
 $menu_principal->show();
 
 $usuarios = new JCRUD("jos_users");
-$usuarios = $usuarios->busca_tudo("name");
+$usuarios = $usuarios->busca_tudo("name ASC");
 
 $this->smarty->assign('usuarios', $usuarios);
 
