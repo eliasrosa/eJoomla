@@ -1,0 +1,120 @@
+<h1>Dados do usuários</h1>
+
+<form rel="{$processID}" method="post" action="{$formURL}usuarios.salvar">
+	<fieldset>
+		<legend>Detalhes do usuários</legend>
+		
+		<div>
+			<span>Nome</span>
+			<input type="text" name="name" value="{$usuario->name}" rel="text" title="Nome" />
+			<br class="clearfix"/>
+		</div>
+		
+		<div>
+			<span>E-mail</span>
+			<input type="text" name="email" value="{$usuario->email}" rel="email" title="E-mail" />
+			<br class="clearfix"/>
+		</div>
+		
+		<div>
+			<span>Grupo</span>
+			{if $usuario->username == 'admin'}Administradores{else}
+			<select name="id_grupo">
+				{foreach from=$grupos item="grupo"}<option value="{$grupo->id}" {if $usuario->id_grupo == $grupo->id} selected="selected" {/if}>{$grupo->nome}</option>{/foreach}
+			</select>
+			{/if}
+			<br class="clearfix"/>
+		</div>
+		
+		<div>
+			<span>Grupo Joomla!</span>
+			{if $usuario->username == 'admin'}Super Administrador{else}
+			<select name="gid" id="gid" size="10">
+				<option value="29" {if $usuario->gid == 29}selected="selected"{/if}>&nbsp;Público do Site</option>
+				<option value="18" {if $usuario->gid == 18}selected="selected"{/if}>&nbsp;-&nbsp;Registrado</option>
+				<option value="19" {if $usuario->gid == 19}selected="selected"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Autor</option>
+				<option value="20" {if $usuario->gid == 20}selected="selected"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Redator</option>
+				<option value="21" {if $usuario->gid == 21}selected="selected"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Editor</option>
+				<option value="30" {if $usuario->gid == 30}selected="selected"{/if}>&nbsp;Público da Administração</option>
+				<option value="23" {if $usuario->gid == 23}selected="selected"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Gerente</option>
+				<option value="24" {if $usuario->gid == 24}selected="selected"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Administrador</option>
+				<option value="25" {if $usuario->gid == 25}selected="selected"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Super Administrador</option>
+			</select>
+			{/if}
+			<br class="clearfix"/>
+		</div>
+
+		
+		<div class="newLine">
+			<span>Bloquear usuário</span>
+			{if $usuario->username == 'admin'}Não{else}
+			<input type="radio" name="block" value="1" {if $usuario->block}checked="checked"{/if} />Sim
+			<input type="radio" name="block" value="0" {if !$usuario->block}checked="checked"{/if} />Não
+			{/if}
+			<br class="clearfix"/>
+		</div>
+
+		<div>
+			<span>Este usuário recebe e-mail do site</span>
+			<input type="radio" name="sendEmail" value="1" {if $usuario->sendEmail}checked="checked"{/if} />Sim
+			<input type="radio" name="sendEmail" value="0" {if !$usuario->sendEmail}checked="checked"{/if} />Não
+			<br class="clearfix"/>
+		</div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Dados de acesso</legend>
+
+		<div>
+			<span>Usuário</span>
+			{if $usuario->username == 'admin'}admin{else}<input type="text" name="username" value="{$usuario->username}" rel="text" title="Usuário (login)" />{/if}
+			<br class="clearfix"/>
+		</div>
+		
+		<div>
+			<span>Nova senha</span>
+			<input type="password" name="password" value="" rel="password" />
+			<br class="clearfix"/>
+		</div>
+		
+		<div>
+			<span>Verificar senha</span>
+			<input type="password" name="password2" value="" rel="password" />
+			<br class="clearfix"/>
+		</div>	
+	</fieldset>	
+
+	{if $usuario->id}
+	<fieldset>
+		<legend>Informações do usuário</legend>
+		
+		<div>
+			<span>Data de registro</span>
+			{$usuario->registerDate|date_format:"%d/%m/%Y - %T"}
+			<br class="clearfix"/>
+		</div>
+
+		<div>
+			<span>Último acesso</span>
+			{$usuario->lastvisitDate|date_format:"%d/%m/%Y - %T"}
+			<br class="clearfix"/>
+		</div>		
+	</fieldset>	
+	<input type="hidden" name="id" value="{$usuario->id}" />
+	{/if}
+	
+	<p class="acoes">
+		<input class="submit" type="submit" value="Salvar usuário" />
+	</p>
+</form>
+
+{literal}
+<style>
+.ui-dialog .dialog .main .conteudo .corpo form fieldset { margin-top: 20px; border: 1px solid #DDD;  }
+.ui-dialog .dialog .main .conteudo .corpo form fieldset legend { color: #0B55C4; font-size: 12px; font-family: Arial, Tahoma; font-weight: 700; }
+.ui-dialog .dialog .main .conteudo .corpo form fieldset div { display: block; margin: 7px 0; }
+.ui-dialog .dialog .main .conteudo .corpo form fieldset div.newLine { margin-top: 30px; }
+.ui-dialog .dialog .main .conteudo .corpo form fieldset div span { display: block; width: 130px; padding: 3px; margin-right: 15px; float: left; clear: both; background: #DEDEDE; }
+.ui-dialog .dialog .main .conteudo .corpo form p.acoes { magin }
+</style>
+{/literal}
