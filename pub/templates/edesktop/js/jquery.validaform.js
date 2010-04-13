@@ -39,14 +39,6 @@ jQuery.fn.extend({
 			
 			success: function(retorno, $main){
 				
-				// captura os retorno
-				var params = $.extend({
-				tipo: 'highlight'
-				}, eval('(' +retorno+ ')'));
-
-				// executa o aviso
-				eDesktop.dialog.aviso(params.msg, params.tipo, $('.corpo', $main));
-				
 				// desliga o loading
 				eDesktop.dialog.loading.stop($main);
 			},
@@ -250,7 +242,15 @@ jQuery.fn.extend({
 								if (op.type == 'script')
 									$.globalEval(resposta);
 
-								op.success.call(form, resposta, $main);
+								//alert(resposta);
+	
+								// captura os retorno
+								var params = $.extend({ tipo: 'highlight'}, eval('(' +resposta+ ')'));
+
+								// executa o aviso
+								eDesktop.dialog.aviso(params.msg, params.tipo, $('.corpo', $main));
+				
+								op.success.call(form, params, $main);
 								
 								// limpa o formulário
 								//$(form)[0].reset();
@@ -262,7 +262,13 @@ jQuery.fn.extend({
 
 					}else{
 
-						op.success.call(form, resposta, $main);
+						// captura os retorno
+						var params = $.extend({ tipo: 'highlight'}, eval('(' +resposta+ ')'));
+
+						// executa o aviso
+						eDesktop.dialog.aviso(params.msg, params.tipo, $('.corpo', $main));
+
+						op.success.call(form, params, $main);
 
 					}
 
