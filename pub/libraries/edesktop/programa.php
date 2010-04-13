@@ -117,7 +117,6 @@ class programa
 		
 		if(!$this->funcao)
 		{					
-			
 			// abre as configurações do programa
 			$this->config = $this->get_config($this->programa);
 
@@ -191,7 +190,12 @@ class programa
 		else
 		{
 			if($this->funcao)
-				echo "{ 'msg' : 'Arquivo não encontrado! \"{$this->pagina}.html\"', 'tipo' : 'error' }";
+			{
+				if(file_exists($pagina .'.php'))
+					require_once($pagina .'.php');
+				else
+					echo "{ 'msg' : 'Arquivo não encontrado! \"{$this->pagina}.html\"', 'tipo' : 'error' }";
+			}
 			else
 				echo "Arquivo não encontrado!<br><br>$pagina.html<br><br><br><br><a href=\"javascript:void(0);\" class=\"link\" rel=\"{}\">Voltar</a>";
 		}
