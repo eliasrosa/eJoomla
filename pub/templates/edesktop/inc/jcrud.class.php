@@ -140,14 +140,14 @@ class JCRUD
 		return false;
 	}
 
-	public function update()
+	public function update($campo = 'id')
 	{
 		$db =& JFactory::getDBO();
 
 		$campos = array_merge($this->__dados);
 		$campos = $this->instanciar($campos, 'stdClass');
 
-		if ($db->updateObject($this->__tabela, $campos, 'id'))
+		if ($db->updateObject($this->__tabela, $campos, $campo))
 			return true;
 
 		if ($db->getErrorNum())
