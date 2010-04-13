@@ -12,11 +12,11 @@
 
 	{foreach from=$usuarios item="usuario"}
 		<tr class="ui-widget-content">
-			<td>{if $user->id != $usuario->id}<input type="checkbox" name="ids[]" value="{$usuario->id}" />{/if}</td>
+			<td>{if $user->id != $usuario->id}{if $usuario->username != 'admin'}<input type="checkbox" name="ids[]" value="{$usuario->id}" />{/if}{/if}</td>
 			<td><strong>{$usuario->name}</strong>
 				<div class="actions">
-					<span class="editar"><a class="link" rel="'pagina': 'usuarios.editar', 'query': 'id={$usuario->id}'" href="javascript:void(0);">Editar</a></span>
-					{if $user->id != $usuario->id}<span class="excluir"><a href="javascript:void(0);">Excluír</a></span>{/if}
+					<span class="editar"><a class="link" rel="'pagina': 'usuarios.form', 'query': 'id={$usuario->id}'" href="javascript:void(0);">Editar</a></span>
+					{if $user->id != $usuario->id}{if $usuario->username != 'admin'}<span class="excluir"><a href="javascript:void(0);">Excluír</a></span>{/if}{/if}
 				</div>
 			</td>
 			<td>{$usuario->username}</td>

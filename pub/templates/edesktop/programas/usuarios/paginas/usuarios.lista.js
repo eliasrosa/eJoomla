@@ -1,9 +1,32 @@
 	
-	$('table tr.ui-widget-content:odd').addClass('bg2n');
+	$('table tr.ui-widget-content:odd', $dialog).addClass('bg2n');
 	
 	var $form = $('form', $dialog);
 	
-	$form.validaForm();
+	$form.validaForm({
+		success: function(params, $main){
+
+			// desliga o loading
+			eDesktop.dialog.loading.stop($main);
+			
+			if(params.retorno){
+				// seleciona as linhas
+				var $tr = $(':checked', $main).parents('tr');	
+
+				// executa form
+				$tr.css('background', '#FF7145').fadeOut(1000, function(){
+					// remove a linha
+					$tr.remove();
+					
+					$('table tr.ui-widget-content', $main).removeClass('bg2n');
+					$('table tr.ui-widget-content:odd', $main).addClass('bg2n');		
+				});
+								
+			}
+			
+		}
+	
+	});
 	
 	$('table tr.ui-widget-content', $dialog).mouseenter(function(){
 		$('.actions', this).css('visibility', 'visible');
@@ -28,17 +51,6 @@
 				
 				// envia o form
 				$form.submit();
-				
-				// executa form
-				$tr.css('background', '#FF7145').fadeOut(1000, function(){
-					// remove a linha
-					$tr.remove();
-					
-					$('table tr.ui-widget-content').removeClass('bg2n');
-					
-					$('table tr.ui-widget-content:odd').addClass('bg2n');				
-				});	
-				
 			}
 		}else
 			return false;
@@ -52,19 +64,6 @@
 			else{
 				// envia o form								
 				$form.submit();
-	
-				// seleciona as linhas
-				var $tr = $(':checked').parents('tr');						
-				
-				// executa o fadeOut
-				$tr.css('background', '#FF7145').fadeOut(1000, function(){
-					// Remove a linha
-					$tr.remove();
-					
-					$('table tr.ui-widget-content').removeClass('bg2n');
-					
-					$('table tr.ui-widget-content:odd').addClass('bg2n');										
-				});
 			}
 		}else
 			return false;
