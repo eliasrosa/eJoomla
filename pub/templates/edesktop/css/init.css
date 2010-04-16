@@ -74,6 +74,13 @@ a img { border: none; }
 .ui-dialog .dialog .main .conteudo .corpo table tr.ui-widget-content td div.actions span { padding-right: 7px; margin-right: 5px; border-right: 1px solid #CCC;  }
 .ui-dialog .dialog .main .conteudo .corpo table tr.ui-widget-content td div.actions span:last-child { padding-right: 0px; margin-right: 0px; border: none;  }
 
+.ui-dialog .dialog .main .conteudo .corpo form fieldset { margin-top: 20px; border: 1px solid #DDD;  }
+.ui-dialog .dialog .main .conteudo .corpo form fieldset legend { color: #0B55C4; font-size: 12px; font-family: Arial, Tahoma; font-weight: 700; }
+.ui-dialog .dialog .main .conteudo .corpo form fieldset div.line { display: block; margin: 7px 0; }
+.ui-dialog .dialog .main .conteudo .corpo form fieldset div.line .w100 { width: 250px; }
+.ui-dialog .dialog .main .conteudo .corpo form fieldset div.line span { display: block; width: 130px; padding: 3px; margin-right: 15px; float: left; clear: both; background: #DEDEDE; }
+.ui-dialog .dialog .main .conteudo .corpo form fieldset div.newLine { margin-top: 30px; }
+
 .ui-dialog .dialog .main .finder-result { padding: 15px; overflow: auto; display: none; width: 100%; }
 .ui-dialog .dialog .main .finder-result h1 { font-size: 16px; }
 .ui-dialog .dialog .main .finder-result a.fechar { margin:15px 0; }
