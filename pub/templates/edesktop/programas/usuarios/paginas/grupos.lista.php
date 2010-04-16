@@ -1,3 +1,9 @@
-<? $menu_grupos->show(); ?>
-<h1>Lista de grupos de usuários</h1>
-<p>Edite e remova grupos de usuários.</p>
+<? 
+$menu_grupos->show();
+
+$grupos = new JCRUD("jos_edesktop_usuarios_grupos");
+$grupos = $grupos->busca_tudo("nome ASC");
+
+$this->smarty->assign('grupos', $grupos);
+
+?>

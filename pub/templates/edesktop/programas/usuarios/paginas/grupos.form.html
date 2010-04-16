@@ -1,0 +1,64 @@
+<h1>Dados do grupo</h1>
+
+<form rel="{$processID}" method="post" action="{$formURL}grupos.salvar">
+	<fieldset>
+		<legend>Informações</legend>
+		
+		<div class="line">
+			<span>Nome do grupo</span>
+			<input type="text" class="w100" name="nome" value="{$grupo->nome}" rel="text" title="Nome" />
+			<br class="clearfix"/>
+		</div>
+		
+		<div class="line">
+			<span>Descrição / Observações</span>
+			<textarea name="descricao" class="w100" rows="6">{$grupo->descricao}</textarea>
+			<br class="clearfix"/>
+		</div>
+
+		<div class="line">
+			<span>Status</span>
+			<input type="radio" name="status" value="1" {if $grupo->status}checked="checked"{/if} />Ativado
+			<input type="radio" name="status" value="0" {if !$grupo->status}checked="checked"{/if} />Desativado
+			<br class="clearfix"/>
+		</div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Permissões de acesso</legend>
+
+		{foreach from=$programas item="programa"}
+		<div class="acessos">
+			<p><strong>{$programa.titulo}</strong> <span>Selecionar: <a href="javascript:void(0);" class="todos">Todos</a> | <a href="javascript:void(0);" class="nenhum">Nenhum</a></span></p>
+
+			<div class="avancado">
+				{foreach from=$programa.permissoes item="texto" key="permissao"}
+				<label><input type="checkbox" name="permissoes[]" value="{$permissao}" {ckp k=$permissao array=$grupo->permissoes}/>{$texto}</label>
+				{/foreach}
+			</div>
+			
+			<br class="clearfix"/>
+		</div>
+		{/foreach}
+
+	</fieldset>		
+	
+	{if $grupo->id}
+	<input type="hidden" name="id" value="{$grupo->id}" />
+	{/if}
+	
+	<p class="acoes">
+		<input class="submit" type="submit" value="Salvar" />
+	</p>
+</form>
+
+{literal}
+<style>
+	.ui-dialog .dialog .main .conteudo .corpo form fieldset div.acessos p {  border-bottom: 1px solid #DDD; }
+	.ui-dialog .dialog .main .conteudo .corpo form fieldset div.acessos p span {  float: right; font-size: 10px; }
+	.ui-dialog .dialog .main .conteudo .corpo form fieldset div.acessos p span a { color: #0B55C4; font-size: 10px; }
+	.ui-dialog .dialog .main .conteudo .corpo form fieldset div.acessos div.avancado { padding-left: 10px; }
+	.ui-dialog .dialog .main .conteudo .corpo form fieldset div.acessos div.avancado label { display: block; }
+	.ui-dialog .dialog .main .conteudo .corpo form fieldset div.acessos div.avancado label input { margin-right: 5px; position: relative; bottom: -2px; }
+</style>
+{/literal}
