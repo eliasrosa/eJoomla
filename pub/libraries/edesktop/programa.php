@@ -71,13 +71,14 @@ class programa
 		
 		if(file_exists($file))
 		{
-			require_once($file);
+			require($file);
 
 			// configurações padrões
 			$padrao =  array(	
 				'titulo' => 'Programa sem título',
 				'finder' => false,
-				'default' => 'index'							
+				'default' => 'index',
+				'permissoes' => array()							
 			);
 			
 			// mescla com as configurações padrões
