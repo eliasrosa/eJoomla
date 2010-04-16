@@ -4,19 +4,19 @@
 	<fieldset>
 		<legend>Detalhes do usuários</legend>
 		
-		<div>
+		<div class="line">
 			<span>Nome</span>
-			<input type="text" name="name" value="{$usuario->name}" rel="text" title="Nome" />
+			<input type="text" name="name" class="w100" value="{$usuario->name}" rel="text" title="Nome" />
 			<br class="clearfix"/>
 		</div>
 		
-		<div>
+		<div class="line">
 			<span>E-mail</span>
-			<input type="text" name="email" value="{$usuario->email}" rel="email" title="E-mail" />
+			<input type="text" name="email" class="w100" value="{$usuario->email}" rel="email" title="E-mail" />
 			<br class="clearfix"/>
 		</div>
 		
-		<div>
+		<div class="line">
 			<span>Grupo</span>
 			{if $usuario->username == 'admin'}Administradores{else}
 			<select name="id_grupo">
@@ -26,7 +26,7 @@
 			<br class="clearfix"/>
 		</div>
 		
-		<div>
+		<div class="line">
 			<span>Grupo Joomla!</span>
 			{if $usuario->username == 'admin'}Super Administrador{else}
 			<select name="gid" id="gid" size="10">
@@ -45,7 +45,7 @@
 		</div>
 
 		
-		<div class="newLine">
+		<div class="line">
 			<span>Bloquear usuário</span>
 			{if $usuario->username == 'admin'}Não{else}
 			<input type="radio" name="block" value="1" {if $usuario->block}checked="checked"{/if} />Sim
@@ -54,7 +54,7 @@
 			<br class="clearfix"/>
 		</div>
 
-		<div>
+		<div class="line">
 			<span>Este usuário recebe e-mail do site</span>
 			<input type="radio" name="sendEmail" value="1" {if $usuario->sendEmail}checked="checked"{/if} />Sim
 			<input type="radio" name="sendEmail" value="0" {if !$usuario->sendEmail}checked="checked"{/if} />Não
@@ -65,19 +65,19 @@
 	<fieldset>
 		<legend>Dados de acesso</legend>
 
-		<div>
+		<div class="line">
 			<span>Usuário</span>
 			{if $usuario->username == 'admin'}admin{else}<input type="text" name="username" value="{$usuario->username}" rel="text" title="Usuário (login)" />{/if}
 			<br class="clearfix"/>
 		</div>
 		
-		<div>
+		<div class="line">
 			<span>Nova senha</span>
 			<input type="password" name="password" value="" rel="password" />
 			<br class="clearfix"/>
 		</div>
 		
-		<div>
+		<div class="line">
 			<span>Verificar senha</span>
 			<input type="password" name="password2" value="" rel="password" />
 			<br class="clearfix"/>
@@ -88,13 +88,13 @@
 	<fieldset>
 		<legend>Informações do usuário</legend>
 		
-		<div>
+		<div class="line">
 			<span>Data de registro</span>
 			{$usuario->registerDate|date_format:"%d/%m/%Y - %T"}
 			<br class="clearfix"/>
 		</div>
 
-		<div>
+		<div class="line">
 			<span>Último acesso</span>
 			{$usuario->lastvisitDate|date_format:"%d/%m/%Y - %T"}
 			<br class="clearfix"/>
