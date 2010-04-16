@@ -6,5 +6,5 @@
 	
 	$menu_grupos = new menu_lateral('Administrar grupos de usuários', true);
 	$menu_grupos->add('Listar todos grupos', 'grupos.lista');	
-	$menu_grupos->add('Adicionar novo grupo', 'grupos.form');
+	$menu_grupos->add('Cadastro de grupo', 'grupos.form');
 ?>
