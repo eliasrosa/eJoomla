@@ -11,7 +11,7 @@ jimport('edesktop.jcrud');
 
 
 // carrega o jcrud
-require_once(ECOMP_PATH_CLASS.DS.'smarty'.DS.'Smarty.class.php');
+jimport('edesktop.smarty.class');
 
 
 // carrega o jcrud

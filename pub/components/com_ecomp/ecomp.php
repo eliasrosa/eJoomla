@@ -16,7 +16,7 @@ jimport('edesktop.jcrud');
 require_once(ECOMP_PATH_CLASS.DS.'ebasic.helper.php');
 
 // carrega o smarty
-require_once(ECOMP_PATH_CLASS.DS.'smarty'.DS.'Smarty.class.php');
+jimport('edesktop.smarty.class');
 
 // Solicitar o controlador base
 require_once(JPATH_COMPONENT.DS.'controlador.php');

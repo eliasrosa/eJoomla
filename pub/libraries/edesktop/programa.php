@@ -52,7 +52,7 @@ class programa {
         jimport('edesktop.jcrud');
 
         // carrega a class smarty
-        require_once(EDESKTOP_PATH_INC .DS. 'smarty' .DS. 'Smarty.class.php');
+	jimport('edesktop.smarty.class');
 
         // inicio o smarty
         $this->smarty = new Smarty();
