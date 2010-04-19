@@ -27,7 +27,7 @@ $permissoes = array();
 foreach($programas as $programa)
 {
 	// pega as configuracoes
-	$config = $this->get_config($programa);
+	$config = $this->get_config($programa, false, false);
 	
 	// inicia a var dados
 	$dados = array();
