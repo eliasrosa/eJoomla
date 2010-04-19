@@ -1575,7 +1575,7 @@ analytics-UA=' WHERE `jos_plugins`.`id` = 36 LIMIT 1;
 
 ALTER TABLE `versao_db` CHANGE `requerido_0005` `requerido_0006` BIT(1) NULL DEFAULT NULL;
 
-DELETE FROM `jos_menu` WHERE `id` = 2 LIMIT 1
+DELETE FROM `jos_menu` WHERE `id` = 2 LIMIT 1;
 
 
 
