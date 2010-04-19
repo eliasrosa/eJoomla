@@ -2,10 +2,9 @@
 
 class eDesktop {
     function __construct($joomla) {
-
         // Carrega a saída - UTF-8
         @header('Content-Type: text/html; charset=utf-8');
-        
+
         // Inicia a sessão
         @session_start();
 
@@ -32,6 +31,12 @@ class eDesktop {
         if(!is_dir(EDESKTOP_PATH_SMARTY_CACHE)) @mkdir(EDESKTOP_PATH_SMARTY_CACHE);
         if(!is_dir(EDESKTOP_PATH_SMARTY_COPILE)) @mkdir(EDESKTOP_PATH_SMARTY_COPILE);
 
+        // Carrega a class JCRUD
+        require_once(EDESKTOP_PATH_INC .DS. 'jcrud.class.php');
+
+        // Carrega a funcão jAccess
+        require_once(EDESKTOP_PATH_INC .DS. 'jaccess.function.php');
+
         // Carrega dados do usuário
         $this->user =& JFactory::getUser();
 
@@ -45,17 +50,15 @@ class eDesktop {
 
         // Se o usuário passar pelos teste acima, abre o conteudo
         $this->abri_conteudo();
-
     }
 
-    function login() {
+    private function login() {
         global $mainframe;
         $erro  = JRequest::getvar('erro', false);
         $return	= 'index.php?template=edesktop';
         $credentials = array();
         $credentials['username'] = JRequest::getVar('username', '', 'method', 'username');
         $credentials['password'] = JRequest::getString('passwd', '', 'post', JREQUEST_ALLOWRAW);
-
 
         if(!empty($credentials['username']) || !empty($credentials['password']) ) {
 
@@ -66,20 +69,25 @@ class eDesktop {
             $error = $mainframe->login($credentials);
 
             if(!JError::isError($error)) {
+
+                // Carrega as permissões do usuários
+                $this->permissoes();
+
+                // redireciona ao usuario
                 $mainframe->redirect( $return );
             }
             else {
+                // redireciona ao usuario
                 $mainframe->redirect( $return. '&erro=1' );
             }
         }
 
         require_once(EDESKTOP_PATH .DS. "login.php");
-        exit();
 
+        exit();
     }
 
-
-    function logout() {
+    private function logout() {
         global $mainframe;
 
         // Carrega a ação de logout
@@ -91,9 +99,7 @@ class eDesktop {
         }
     }
 
-
-    function abri_conteudo() {
-
+    private function abri_conteudo() {
         // Recebe a method e class
         $method = JRequest::getvar('method', false);
         $class = JRequest::getvar('class', false);
@@ -115,9 +121,24 @@ class eDesktop {
         else {
             require_once(EDESKTOP_PATH .DS. "home.php");
         }
-
     }
 
+    private function permissoes() {
+        // Carrega os dados do usuário
+        $u = new JCRUD("jos_users", array('id' => $this->user->id));
+
+        // Carrega os dados do grupo
+        $g = new JCRUD("jos_edesktop_usuarios_grupos", array('id' => $u->id_grupo));
+
+        // Grava na sessão os dados do usuário
+        $_SESSION['eDesktop.usuario'] = $u->get_dados();
+
+        // Grava na sessão os dados do grupo do usuário
+        $_SESSION['eDesktop.usuario.grupo'] = $g->get_dados();
+
+        // Separa as permissões em um array e grava na sessão
+        $_SESSION['eDesktop.usuario.grupo.permissoes'] = ($g->permissoes != '') ? explode("\n", $g->permissoes) : array();
+    }
 }
 
 ?>
