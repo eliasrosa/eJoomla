@@ -50,7 +50,7 @@ $(function(){
 			
 			// adiciona finder
 			if(process.finder){
-				$($dialog).append('<div class="finder ui-widget-content ui-corner-all"><span class="icone ui-icon ui-icon-search"></span><input type="text" class="" value="Pesquisar ' +process.titulo+ '" /></div>');
+				$($dialog).append('<div class="finder ui-widget-content ui-corner-all"><span class="icone ui-icon ui-icon-search"></span><input type="text" class="" value="Pesquisar em ' +process.titulo+ '" /></div>');
 				
 				// event press enter
 				$('.finder input', $dialog).keypress(function(e){
