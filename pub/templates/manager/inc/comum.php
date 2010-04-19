@@ -11,7 +11,9 @@ $base = "{$this->baseurl}/templates/{$this->template}";
 
 // carrega os aquivos
 require_once(JPATH_ROOT.DS.'media'.DS.'com_ecomp'.DS.'comum.php');
-require_once(ECOMP_PATH_CLASS.DS.'ebasic.jcrud.php');
+
+// carrega o jcrud
+jimport('edesktop.jcrud');
 
 // Login
 require_once('manager.login.php');

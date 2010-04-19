@@ -49,7 +49,7 @@ class programa {
         $this->pasta_paginas = $this->pasta .DS. 'paginas';
 
         // carrega a class JCRUD
-        require_once(EDESKTOP_PATH_INC .DS. 'jcrud.class.php');
+        jimport('edesktop.jcrud');
 
         // carrega a class smarty
         require_once(EDESKTOP_PATH_INC .DS. 'smarty' .DS. 'Smarty.class.php');

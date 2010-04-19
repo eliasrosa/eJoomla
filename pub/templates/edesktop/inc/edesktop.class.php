@@ -32,7 +32,7 @@ class eDesktop {
         if(!is_dir(EDESKTOP_PATH_SMARTY_COPILE)) @mkdir(EDESKTOP_PATH_SMARTY_COPILE);
 
         // Carrega a class JCRUD
-        require_once(EDESKTOP_PATH_INC .DS. 'jcrud.class.php');
+        jimport('edesktop.jcrud');
 
         // Carrega a funcão jAccess
         require_once(EDESKTOP_PATH_INC .DS. 'jaccess.function.php');

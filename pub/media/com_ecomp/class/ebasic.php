@@ -39,7 +39,7 @@ class eBasic
 		require_once(ECOMP_PATH_CLASS.DS.'ebasic.model.php');
 
 		// carrega o jcrud
-		require_once(ECOMP_PATH_CLASS.DS.'ebasic.jcrud.php');
+		jimport('edesktop.jcrud');
 	}
 
 	public function componentStart()

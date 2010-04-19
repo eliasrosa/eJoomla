@@ -3,8 +3,9 @@ jimport( 'joomla.filter.output' );
 
 require_once(JPATH_ROOT.DS.'media'.DS.'com_ecomp'.DS.'comum.php');
 require_once(ECOMP_PATH_CLASS.DS.'ebasic.util.php');
-require_once(ECOMP_PATH_CLASS.DS.'ebasic.jcrud.php');
 
+// carrega o jcrud
+jimport('edesktop.jcrud');
 
 function EcompBuildRoute(&$query)
 {

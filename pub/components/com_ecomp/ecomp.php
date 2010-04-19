@@ -10,7 +10,7 @@ require_once(JPATH_ROOT.DS.'media'.DS.'com_ecomp'.DS.'comum.php');
 require_once(ECOMP_PATH_CLASS.DS.'ebasic.util.php');
 
 // carrega o jcrud
-require_once(ECOMP_PATH_CLASS.DS.'ebasic.jcrud.php');
+jimport('edesktop.jcrud');
 
 // carrega o helper
 require_once(ECOMP_PATH_CLASS.DS.'ebasic.helper.php');
