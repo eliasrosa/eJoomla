@@ -23,11 +23,11 @@ já estão intalados e configurados:
 	Poderoso editor HTML/Textos para o Joomla!
 	
 	
-	Plugin System eLoad - Versão: 2.0127 - Autor: Elias da Rosa
+	Plugin System eLoad - Versão: 2.0419 - Autor: Elias da Rosa
 	============================================================
 	Poderoso plugin responsável por diversas utilidades para o site:
 		
-		* Adiciona o script jQuery 1.4.1 ou versões anteriores
+		* Adiciona o script jQuery 1.4.2 ou versões anteriores
 		* Remove o script mootools.js
 		* Remove o script mootools-uncompressed.js
 		* Remove o script caption.js
@@ -38,6 +38,7 @@ já estão intalados e configurados:
 		* FireBug incluso para depuração
 		* Adiciona o Google Analytics facilmente
 		* Remove as tags '<meta name="generator" ... />'
+		* Todos os usuários que estiverem usando um navegador obsoleto verão um barrinha convidando-os a atualizar o navegador
 			
 	
 Em breve, dicas e tutoriais.

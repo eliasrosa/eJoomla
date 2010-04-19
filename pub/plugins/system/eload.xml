@@ -5,7 +5,7 @@
 	<creationDate>Junho / 2009</creationDate>
 	<authorEmail>elias@eliasdarosa.com.br</authorEmail>
 	<authorUrl>http://www.eliasdarosa.com.br</authorUrl>
-	<version>2.0127</version>
+	<version>2.0419</version>
 	<description>Para mais informações sobre o plugin acesse http://www.eliasdarosa.com.br/blog/tag/eload</description>
 	<files>
 		<filename plugin="eload">eload.php</filename>
@@ -25,7 +25,8 @@
 			<option value="localhost">localhost</option>
 			<option value="googleLibs">Google Libs</option>
 		</param>
-		<param name="jqueryVersion" type="list" default="1.4.1" label="Versão do jQuery">
+		<param name="jqueryVersion" type="list" default="1.4.2" label="Versão do jQuery">
+			<option value="1.4.2">1.4.2</option>
 			<option value="1.4.1">1.4.1</option>
 			<option value="1.4">1.4</option>
 			<option value="1.3.2">1.3.2</option>
@@ -57,6 +58,14 @@
 
 		<param type="spacer" default="&lt;br/&gt;&lt;br/&gt;Tag META" />
 		<param name="generator" type="radio" default="1" label="Remover tag generator" description="Remove a tag META generator">
+			<option value="0">Não</option>
+			<option value="1">Sim</option>
+		</param>
+
+
+
+		<param type="spacer" default="&lt;br/&gt;&lt;br/&gt;Atualize seu navegador" />
+		<param name="AtualizeSeuNavegador" type="radio" default="1" label="Adicionar script" description="Todos os usuários que estiverem usando um navegador obsoleto verão um barrinha convidando-os a atualizar o navegador.">
 			<option value="0">Não</option>
 			<option value="1">Sim</option>
 		</param>

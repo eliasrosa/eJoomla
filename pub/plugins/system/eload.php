@@ -45,6 +45,9 @@ class PLGSYSTEMeload extends JPlugin
 		// absolute path media dir
 		$this->_mediaUrl = JURI::base(1).'/'.sprintf('media/plg_%s/', $this->_nome);
 
+		// adiciona o script Atualize seu Navegador
+		$this->AtualizeSeuNavegador();
+
 		// Mootools
 		$this->Mootools();
 
@@ -518,5 +521,27 @@ ZXC;
 		}
 	}
 
+	
+	////////////////////////////////////////////////////////////////////
+	// AtualizeSeuNavegador
+	////////////////////////////////////////////////////////////////////
+
+	/* Caso o parametro esteja ativado, adiciona o script http://updateyourbrowser.net/asn.js
+	 * @return void
+	 */
+	function AtualizeSeuNavegador()
+	{
+		if($this->_params->get('AtualizeSeuNavegador') == '1')
+		{
+		    // Inicia a array
+		    $newscript = array();
+
+		    // Adiciona o script
+		    $newscript[$this->_mediaUrl . 'js/updateyourbrowser.js'] = 'text/javascript';
+
+		    // Atualiza os scripts do frontend
+		    $this->_head['scripts'] = array_merge($newscript, $this->_head['scripts']);
+		}
+	}
 }
 ?>
