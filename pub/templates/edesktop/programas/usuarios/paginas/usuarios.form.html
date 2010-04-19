@@ -6,13 +6,13 @@
 		
 		<div class="line">
 			<span>Nome</span>
-			<input type="text" name="name" class="w100" value="{$usuario->name}" rel="text" title="Nome" />
+			<input type="text" name="name" class="w100" value="{$usuario->name}" rel="text_" title="Nome" />
 			<br class="clearfix"/>
 		</div>
 		
 		<div class="line">
 			<span>E-mail</span>
-			<input type="text" name="email" class="w100" value="{$usuario->email}" rel="email" title="E-mail" />
+			<input type="text" name="email" class="w100" value="{$usuario->email}" rel="email_" title="E-mail" />
 			<br class="clearfix"/>
 		</div>
 		
@@ -67,7 +67,7 @@
 
 		<div class="line">
 			<span>Usuário</span>
-			{if $usuario->username == 'admin'}admin{else}<input type="text" name="username" value="{$usuario->username}" rel="text" title="Usuário (login)" />{/if}
+			{if $usuario->username == 'admin'}admin{else}<input type="text" name="username" value="{$usuario->username}" rel="text_" title="Usuário (login)" />{/if}
 			<br class="clearfix"/>
 		</div>
 		
