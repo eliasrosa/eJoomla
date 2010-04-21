@@ -100,20 +100,54 @@ class programa {
     }
 
     public function get_list() {
-        jimport('joomla.filesystem.folder');
 
-        $dados = array();
-        $programas = JFolder::folders(EDESKTOP_PATH_PROGRAMAS);
+	// Carrega os dados dos grupos
+	$grupo = $_SESSION['eDesktop.usuario.grupo'];
 
-        foreach($programas as $p) {
-            $a = array('programa' => $p);
-            $d = $this->get_config($p);
+        // inicia uma array
+	$programas = array();
+	$json = array();
 
-            $dados[] = array_merge($a, $d);
-        }
+	if($grupo['id'] != 1)
+	{
+	    // carrega as permissões
+	    $permissoes = $_SESSION['eDesktop.usuario.grupo.permissoes'];
 
-        echo json_encode($dados);
+	    // loop entre as permissões
+	    foreach($permissoes as $permissao)
+	    {
+		// separa as string
+		list($programa, $pagina) = explode('.', $permissao, 2);
 
+		// adiciona a programa
+		$programas[$programa] = $programa;
+	    }
+
+	    // loop entre os programas
+	    foreach($programas as $programa) {
+		$a = array('programa' => $programa);
+		$b = $this->get_config($programa);
+
+		$json[] = array_merge($a, $b);
+	    }
+	}
+	else
+	{
+	    jimport('joomla.filesystem.folder');
+	    $programas = JFolder::folders(EDESKTOP_PATH_PROGRAMAS);
+	    
+	    // loop entre os programas
+	    foreach($programas as $programa) {
+		$a = array('programa' => $programa);
+		$b = $this->get_config($programa);
+
+		$json[] = array_merge($a, $b);
+	    }
+    	}
+
+	// exibe o json
+	echo json_encode($json);
+	
     }
 
 
