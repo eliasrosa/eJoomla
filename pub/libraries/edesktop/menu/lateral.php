@@ -32,6 +32,16 @@ class menu_lateral
 			parse_str($params['query'], $query);
 			$alias = $alias .'.'. $query['ativarMenu'];
 		}
+
+		$programa = JRequest::getvar('programa');
+
+		$permissao = jAccess($alias, array(
+		    'programa' => $programa,
+		    'retorno' => 'bool'
+		));
+
+		if(!$permissao)
+		    return false;
 		
 		// convert params para json
 		$rel = str_replace('"', '\'', json_encode($params));
