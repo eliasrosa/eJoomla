@@ -97,7 +97,7 @@ class eDesktop {
 
         require_once(EDESKTOP_PATH .DS. "login.php");
 
-        exit();
+        jexit();
     }
 
     private function logout($redirect = true) {
