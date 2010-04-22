@@ -64,14 +64,30 @@ class eDesktop {
 
             // Checa o token
             JRequest::checkToken('request') or jexit( 'eDesktop: Invalid Token' );
-
-            // Carrega a ação de logout
+	    
+	    // Carrega a ação de logout
             $error = $mainframe->login($credentials);
+    
+            if(!JError::isError($error) && $this->user->block != 1) {
 
-            if(!JError::isError($error)) {
+		// Carrega os dados do usuário
+		$u = new JCRUD("jos_users", array('id' => $this->user->id));
 
-                // redireciona ao usuario
-                $mainframe->redirect( $return );
+		// Carrega os dados do grupo
+		$g = new JCRUD("jos_edesktop_usuarios_grupos", array('id' => $u->id_grupo));
+
+		// verifica se o grupo do usuário esta ativo
+		if($g->status == 1){
+		    // redireciona ao usuario
+		    $mainframe->redirect( $return );
+		}
+		else{
+		    // desconecta sem redirecionar
+		    $this->logout(false);
+
+                    // redireciona ao usuario
+	            $mainframe->redirect( $return. '&erro=2' );
+		}
             }
             else {
                 // redireciona ao usuario
@@ -84,13 +100,13 @@ class eDesktop {
         exit();
     }
 
-    private function logout() {
+    private function logout($redirect = true) {
         global $mainframe;
 
         // Carrega a ação de logout
         $error = $mainframe->logout();
 
-        if(!JError::isError($error)) {
+        if(!JError::isError($error) && $redirect) {
             $return = '?template=edesktop';
             $mainframe->redirect( $return );
         }

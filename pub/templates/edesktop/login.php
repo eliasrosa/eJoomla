@@ -23,7 +23,8 @@
 					</tr>
 				</table>
 				<input type="submit" value="Entrar" />
-				<? if($erro) { ?><p class="aviso">Usuário ou senha inválida, tente novamente!</p><? } ?>
+				<? if($erro == 1) { ?><p class="aviso">Usuário ou senha inválida! Por favor tente novamente.</p><? } ?>
+				<? if($erro == 2) { ?><p class="aviso">Grupo de usuário bloqueado! Entre em contato com o admistrador.</p><? } ?>
 				<?php echo JHTML::_( 'form.token' ); ?>
 			</form>
 		</div>
