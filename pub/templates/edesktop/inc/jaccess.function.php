@@ -43,14 +43,12 @@ function jAccess($var, $params = array())
 		// Se o tipo de retorno for boolean
 		if($params['retorno'] == 'bool')
 		    return false;
-		else
-		    return true;
 
 		// Se o tipo de retorno for texto
 		if($params['retorno'] == 'txt')
 		{
 		    $funcao = JRequest::getvar('funcao');
-		    $msg = "Acesso negado! Você não tem permissão para acessar essa página ($permissao)!";
+		    $msg = "Acesso negado! Você não tem permissão para acessar essa página!";
 		    if($funcao)
 			jexit("{ 'msg' : '{$msg}', 'tipo' : 'error' }");
 		    else
