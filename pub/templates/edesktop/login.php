@@ -28,5 +28,7 @@
 				<?php echo JHTML::_( 'form.token' ); ?>
 			</form>
 		</div>
+	    <!-- Seleciona no usernamer -->
+	    <script type="text/javascript"> $(function(){ $('form input[name="username"]').focus(); }); </script>
 	</body>
 </html>
