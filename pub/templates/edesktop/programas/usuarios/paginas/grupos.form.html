@@ -23,7 +23,8 @@
 			<br class="clearfix"/>
 		</div>
 	</fieldset>
-	
+
+	{if $alterarPermissoesAcesso}
 	<fieldset>
 		<legend>Permissões de acesso</legend>
 
@@ -40,8 +41,8 @@
 			<br class="clearfix"/>
 		</div>
 		{/foreach}
-
-	</fieldset>		
+	</fieldset>
+	{/if}
 	
 	{if $grupo->id}
 	<input type="hidden" name="id" value="{$grupo->id}" />

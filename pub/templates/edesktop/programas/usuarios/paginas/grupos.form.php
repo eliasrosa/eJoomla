@@ -65,6 +65,8 @@ function check_permisao ($params) {
 }
 
 
-
+// Permissões
+$params = array('retorno' => 'bool');
+$this->smarty->assign('alterarPermissoesAcesso', jAccess('grupos.alterarPermissoesAcesso', $params));
 
 ?>

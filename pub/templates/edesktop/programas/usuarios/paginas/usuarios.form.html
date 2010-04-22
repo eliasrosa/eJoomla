@@ -25,7 +25,8 @@
 			{/if}
 			<br class="clearfix"/>
 		</div>
-		
+
+		{if $alterarGrupoJoomla}
 		<div class="line">
 			<span>Grupo Joomla!</span>
 			{if $usuario->username == 'admin'}Super Administrador{else}
@@ -43,7 +44,7 @@
 			{/if}
 			<br class="clearfix"/>
 		</div>
-
+		{/if}
 		
 		<div class="line">
 			<span>Bloquear usuário</span>
@@ -61,13 +62,14 @@
 			<br class="clearfix"/>
 		</div>
 	</fieldset>
-	
+
+	{if $alterarUsuarioSenha}
 	<fieldset>
 		<legend>Dados de acesso</legend>
 
 		<div class="line">
 			<span>Usuário</span>
-			{if $usuario->username == 'admin'}admin{else}<input type="text" name="username" value="{$usuario->username}" rel="text_" title="Usuário (login)" />{/if}
+			{if $usuario->username == 'admin'}admin{else}<input type="text" name="username" value="{$usuario->username}" rel="text" title="Usuário (login)" />{/if}
 			<br class="clearfix"/>
 		</div>
 		
@@ -83,7 +85,8 @@
 			<br class="clearfix"/>
 		</div>	
 	</fieldset>	
-
+	{/if}
+	
 	{if $usuario->id}
 	<fieldset>
 		<legend>Informações do usuário</legend>

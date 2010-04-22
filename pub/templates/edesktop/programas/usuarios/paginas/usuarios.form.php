@@ -16,4 +16,10 @@ $this->smarty->assign('grupos', $grupos);
 $user =& JFactory::getUser();
 $this->smarty->assign('user', $user);
 
+
+// Permissões
+$params = array('retorno' => 'bool');
+$this->smarty->assign('alterarUsuarioSenha', jAccess('usuarios.alterarUsuarioSenha', $params));
+$this->smarty->assign('alterarGrupoJoomla', jAccess('usuarios.alterarGrupoJoomla', $params));
+
 ?>

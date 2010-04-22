@@ -1,21 +1,39 @@
 <?
-$configuracoes = array
-(
-    'titulo' => 'Usuários',
-    'finder' => true,
-    'default' => 'usuarios.lista',
+$configuracoes = array (
+        // Titulo do programa
+        'titulo' => 'Usuários',
 
-	'permissoes' => array(
-		'usuarios.lista' => 'Visualizar lista de usuários',
-		'usuarios.form' => 'Visualizar dados dos usuários',
-		'usuarios.editar' => 'Editar dados dos usuários',
-		'usuarios.adicionar' => 'Adicionar novos usuários',
-		'usuarios.remover' => 'Remover usuários',
-		'grupos.lista' => 'Visualizar lista de grupos de usuários',
-		'grupos.form' => 'Visualizar dados dos grupos de usuários',
-		'grupos.editar' => 'Editar dados dos grupos de usuários',
-		'grupos.adicionar' => 'Adicionar novos grupos de usuários',
-		'grupos.remover' => 'Remover grupos de usuários'
-	)
+        // Liberar buscas rápidas
+        'finder' => true,
+
+        // Página padrão
+        'default' => 'usuarios.lista',
+
+        // Permissões de acesso
+        'permissoes' => array(
+
+		// Usuários
+                'usuarios.lista' => 'Visualizar lista de usuários',
+                'usuarios.form' => 'Visualizar dados dos usuários',
+                'usuarios.editar' => 'Editar dados dos usuários',
+                'usuarios.adicionar' => 'Adicionar novos usuários',
+                'usuarios.remover' => 'Remover usuários',
+		'usuarios.alterarUsuarioSenha' => 'Alterar usuário e senha',
+		'usuarios.alterarGrupoJoomla' => 'Alterar grupo Joomla!',
+
+		// Grupos de usuários
+                'grupos.lista' => 'Visualizar lista de grupos',
+                'grupos.form' => 'Visualizar dados dos grupos',
+                'grupos.editar' => 'Editar dados dos grupos',
+                'grupos.adicionar' => 'Adicionar novos grupos',
+                'grupos.remover' => 'Remover grupos',
+		'grupos.alterarPermissoesAcesso' => 'Alterar permissões de acesso'
+        ),
+
+        // Permissões de acesso liberadas
+        'permissoes.liberadas' => array(
+                'usuarios.salvar',
+                'grupos.salvar'
+        )
 );
 ?>
