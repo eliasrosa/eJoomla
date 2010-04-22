@@ -16,12 +16,15 @@
 			<br class="clearfix"/>
 		</div>
 
+		{if $alterarStatus}
 		<div class="line">
 			<span>Status</span>
 			<input type="radio" name="status" value="1" {if $grupo->status}checked="checked"{/if} />Ativado
 			<input type="radio" name="status" value="0" {if !$grupo->status}checked="checked"{/if} />Desativado
 			<br class="clearfix"/>
 		</div>
+		{/if}
+
 	</fieldset>
 
 	{if $alterarPermissoesAcesso}

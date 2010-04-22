@@ -23,6 +23,11 @@ if(!empty($msg))
     jexit(json_encode(array('tipo' => 'error', 'msg' => 'Preencha corretamente o(s) seguinte(s) campo(s):<br><br>'.$msg)));
 
 
+// cria a variavel status, caso não exista
+if(!isset($dados['status']) && !isset($dados['id']))
+    $dados['status'] = 1;
+
+
 // remove a var limit
 unset($dados['limit']);
 

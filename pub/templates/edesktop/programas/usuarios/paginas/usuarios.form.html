@@ -45,7 +45,8 @@
 			<br class="clearfix"/>
 		</div>
 		{/if}
-		
+
+		{if $bloquearUsuarios}
 		<div class="line">
 			<span>Bloquear usuário</span>
 			{if $usuario->username == 'admin'}Não{else}
@@ -54,6 +55,7 @@
 			{/if}
 			<br class="clearfix"/>
 		</div>
+		{/if}
 
 		<div class="line">
 			<span>Este usuário recebe e-mail do site</span>
