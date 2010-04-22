@@ -70,9 +70,6 @@ class eDesktop {
 
             if(!JError::isError($error)) {
 
-                // Carrega as permissões do usuários
-                $this->permissoes();
-
                 // redireciona ao usuario
                 $mainframe->redirect( $return );
             }
@@ -104,6 +101,9 @@ class eDesktop {
         $method = JRequest::getvar('method', false);
         $class = JRequest::getvar('class', false);
 
+	// Carrega as permissões do usuários
+	$this->permissoes();
+	
         // Caso exista uma class e função
         if($class && $method) {
 
