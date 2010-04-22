@@ -80,14 +80,14 @@ $(function(){
 				
 				//
 				$('.finder input', $dialog).focus(function(){
-					if($(this).val() == 'Pesquisar ' +process.titulo)
+					if($(this).val() == 'Pesquisar em ' +process.titulo)
 						$(this).val('');
 				});
 				
 				//
 				$('.finder input', $dialog).blur(function(){
 					if($(this).val() == '')
-						$(this).val('Pesquisar ' +process.titulo);
+						$(this).val('Pesquisar em ' +process.titulo);
 				});
 				
 			}
