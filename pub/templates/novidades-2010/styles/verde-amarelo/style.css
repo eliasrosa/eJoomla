@@ -1,0 +1,17 @@
+* { margin: 0px; padding: 0px; list-style: none; font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 11px; text-decoration: none; color: #0C420D; outline: none; }
+input, textarea { background: #FEFDED; border: 1px solid #E1B220; height: 20px; width: 300px; margin: 5px 0 10px 0; }
+
+#corpo { margin: 0 auto; width: 778px !important; margin-top: 40px; }
+
+#col1 { height: 450px; float: left; padding-right: 30px; }
+#col1 { border-right: 1px solid #FAF491; text-align: center; }
+#col1 img { margin: 140px 0 50px 0; }
+#col1 h2 { font-size: 12px; }
+
+#col2 { height: 450px; float: left; padding-left: 30px; position: relative; }
+#col2 img { margin-top: 30px; text-align: left; }
+#col2 p { margin: 20px 0; width: 300px; text-align: justify; }
+#col2 form p { display: block; width: 300px;  margin: 10px 0; }
+#col2 form p textarea { padding: 3px; height: 80px; }
+#col2 form p input { padding: 3px; height: 15px; }
+#col2 form input.submit { padding: 3px; height: auto; width: 60px; position: relative; left: 248px; bottom: 0; }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="template">
+	<name>Novidades / 2010</name>
+	<version>1.0</version>
+	<creationDate>Abril / 2010</creationDate>
+	<author>Elias da Rosa</author>
+	<authorEmail>elias@eliasdarosa.com.br</authorEmail>
+	<authorUrl>http://www.eliasdarosa.com.br</authorUrl>
+	<description></description>
+	<files>
+		<filename>index.php</filename>
+	</files>
+	<positions>
+		<position>top</position>
+		<position>right</position>
+		<position>bottom</position>
+		<position>left</position>
+		<position>user1</position>
+		<position>user2</position>
+		<position>user3</position>
+		<position>user4</position>
+	</positions>
+	<params>
+		<param name="tpl_idForm" type="text" default="1" label="eFormMail ID" />
+		<param name="tpl_style" type="list" default="verde-amarelo" label="Style">
+			<option value="verde-amarelo">Verde / Amarelo</option>
+		</param>
+	</params>
+</install>
