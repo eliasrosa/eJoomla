@@ -25,6 +25,7 @@
 		<param name="tpl_style" type="list" default="verde-amarelo" label="Style">
 			<option value="verde-amarelo">Verde / Amarelo</option>
 			<option value="azul">Azul</option>
+			<option value="vermelho">Vermelho</option>
 		</param>
 	</params>
 </install>
