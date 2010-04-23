@@ -6,6 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
 	<jdoc:include type="head" />
+	<link type="text/css" href="<?= $url ?>/styles/style.css" rel="Stylesheet" />
 	<link type="text/css" href="<?= $url ?>/styles/<?= $this->params->get('tpl_style'); ?>/style.css" rel="Stylesheet" />
     </head>
     <body>
