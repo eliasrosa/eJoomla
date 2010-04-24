@@ -26,6 +26,7 @@
 			<option value="verde-amarelo">Verde / Amarelo</option>
 			<option value="azul">Azul</option>
 			<option value="vermelho">Vermelho</option>
+			<option value="cinza">Cinza</option>
 		</param>
 	</params>
 </install>
