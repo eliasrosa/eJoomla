@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Lista de produtos">
+		<message></message>
+	</layout>
+	<state>
+		<name>Lista de produtos</name>
+		<description></description>
+	</state>
+</metadata>

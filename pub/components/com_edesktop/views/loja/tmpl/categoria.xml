@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Lista de produtos por categoria">
+		<message>Exibe uma listagem de produtos por categoria.</message>
+	</layout>
+	<state>
+		<name>Lista de produtos por categoria</name>
+		<description>Exibe uma listagem de produtos por categoria.</description>
+	
+		<params>
+			<param name="Itemid" type="text" default="" label="Itemid da Loja" description="ID de menu da loja virtual." />
+		</params>	
+			
+	</state>
+</metadata>

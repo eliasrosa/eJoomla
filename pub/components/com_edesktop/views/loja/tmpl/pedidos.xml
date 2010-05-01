@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Cusulta de pedidos">
+		<message>Formulário para cusulta de pedidos</message>
+	</layout>
+	<state>
+		<name>Cusulta de pedidos</name>
+		<description>Formulário para cusulta de pedidos</description>
+	</state>
+</metadata>

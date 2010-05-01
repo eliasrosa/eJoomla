@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.0.0">
+	<name>eDesktop</name>
+	<author>Elias da Rosa</author>
+	<creationDate>Abril - 2010</creationDate>
+	<authorEmail>elias@eliasdarosa.com.br</authorEmail>
+	<authorUrl>www.eliasdarosa.com.br</authorUrl>
+	<version>1.0</version>
+	<description></description>
+</install>

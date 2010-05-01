@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Detalhes do produto">
+		<message>Exibe detalhes do produto.</message>
+	</layout>
+	<state>
+		<name>Detalhes do produto</name>
+		<description>Exibe detalhes do produto.</description>
+	
+		<params>
+			<param name="id" type="text" default="" label="ID do produto" description="ID do produto." />
+			<param name="Itemid" type="text" default="" label="Itemid da Loja" description="ID de menu da loja virtual." />
+		</params>	
+			
+	</state>
+</metadata>
