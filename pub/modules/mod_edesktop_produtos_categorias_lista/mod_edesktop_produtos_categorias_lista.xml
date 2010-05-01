@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+    <name>eDesktop >> Produtos >> Categorias >> Lista</name>
+    <author>Elias da Rosa</author>
+    <version>1.0</version>
+    <description>Cria uma lista html com as categorias de produtos</description>
+    <files>
+        <filename>index.html</filename>
+    </files>
+    <params>
+		<param name="mod_titulo" type="text" default="Categorias" label="Título" description="" />
+		<param name="mod_id" type="text" default="" label="Atributo ID" description="" />
+		<param name="mod_itemid" type="text" default="" label="Itemid" description="" />
+    </params>
+</install>
