@@ -69,6 +69,28 @@ class edesktop_produtos_produtos
 	
 	
 	
+	/* busca todos os produtos pelo texto
+	 ***************************************************/
+	function busca_por_texto($texto)
+	{
+		$produtos = array();
+		$pp = $this->db->busca("WHERE (
+			nome LIKE '%$texto%' OR 
+			alias LIKE '%$texto%' OR 
+			metatagdescription LIKE '%$texto%' OR 
+			metatagkey LIKE '%$texto%') AND status = '1'");
+		
+		foreach($pp as $p)
+		{
+			$produtos[] = $this->busca_por_id($p->id, true);
+		}
+		
+		return $produtos;
+	}
+	
+	
+	
+	
 	/* busca todos os produtos pelo id do fabricante
 	 ***************************************************/
 	function busca_por_fabricante($id)

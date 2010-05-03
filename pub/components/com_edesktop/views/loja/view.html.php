@@ -46,6 +46,9 @@ class edesktopVIEWloja extends JView
 			$this->assignRef('dados', $dados);
 		}
 
+
+
+
 		// carrega dados do layout destaques
 		elseif($layout == 'fabricante')
 		{
@@ -64,6 +67,9 @@ class edesktopVIEWloja extends JView
 			// envia para o layout
 			$this->assignRef('dados', $dados);
 		}
+
+
+
 
 		// carrega dados do layout categoria
 		elseif($layout == 'categoria')
@@ -89,6 +95,30 @@ class edesktopVIEWloja extends JView
 			$this->assignRef('dados', $dados);
 		}
 
+
+
+
+		// carrega dados do layout busca
+		elseif($layout == 'busca')
+		{
+			// importa a class produtos
+			jimport('edesktop.programas.produtos.produtos');
+
+			// inicia no obj
+			$dados = new edesktop_produtos_produtos();
+			
+			// carrega o busca
+			$busca = JRequest::getvar('q', '');
+			
+			// busca dados
+			$dados = $dados->busca_por_texto($busca);
+
+			// envia para o layout
+			$this->assignRef('dados', $dados);
+		}
+		
+		
+		
 		// carrega o template
         parent::display($tpl);
     }
