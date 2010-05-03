@@ -25,7 +25,7 @@ defined('_JEXEC') or die('Restricted access');
 	
 	<!-- Inicio paginação -->
 	<? if(isset($this->paginacao) && $this->paginacao->paginas >= 2): ?>
-	<div class="result">
+	<div id="loja-paginacao" class="result">
 		<?= "<p>Encontrado {$this->paginacao->registros} produtos(s) em {$this->paginacao->paginas} páginas</p>
 			 <div class=\"paginas\">{$this->paginacao->links}</div>"; ?>
 	</div>

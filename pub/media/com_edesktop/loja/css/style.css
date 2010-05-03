@@ -9,3 +9,11 @@
 #loja-listadepodutos .valor { font-weight: 700; color: #666; }
 
 
+/* PAGINAÇÃO
+ ***************************************/
+#loja-paginacao { margin: 25px 0 15px 0; }
+#loja-paginacao p { margin: 15px 0; }
+#loja-paginacao .paginas { text-align: center; }
+#loja-paginacao .paginas a { padding: 7px; margin: 0 5px; background: #F3F3F3; border: 1px solid #DDD; }
+#loja-paginacao .paginas a.atual { font-weight: 700; border: 1px solid #AAA; }
+
