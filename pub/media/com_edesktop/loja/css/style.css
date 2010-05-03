@@ -17,3 +17,10 @@
 #loja-paginacao .paginas a { padding: 7px; margin: 0 5px; background: #F3F3F3; border: 1px solid #DDD; }
 #loja-paginacao .paginas a.atual { font-weight: 700; border: 1px solid #AAA; }
 
+.modEdesktopProduto p { text-align: center; }
+.modEdesktopProduto p a:hover { text-decoration: underline; }
+.modEdesktopProduto .img { margin-bottom: 5px; }
+.modEdesktopProduto .img a { text-decoration: none; }
+.modEdesktopProduto .nome a { font-weight: 700; color: #666; }
+.modEdesktopProduto .fabricante a { color: #666; }
+.modEdesktopProduto .valor { font-weight: 700; color: #666; }
