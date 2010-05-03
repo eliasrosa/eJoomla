@@ -178,7 +178,7 @@ class edesktop_produtos_produtos
 	/* busca todos os produtos pelo id da categoria pai
 	 * e categorias filhas
 	 ***************************************************/
-	function busca_por_categorias($ids)
+	function busca_por_categorias($ids, $limit = 0)
 	{
 		$produtos = array();
 		
@@ -186,6 +186,8 @@ class edesktop_produtos_produtos
 		$c = new JCRUD('jos_edesktop_produtos_categorias_rel');
 		$where = "WHERE idcategoria IN ({$ids})";
 		
+		$where = $limit ? "$where ORDER BY RAND() LIMIT $limit" : $where;
+				
 		if($this->paginacao)
 		{
 			$this->paginacao = $c->paginacao($where, $this->paginacao);
