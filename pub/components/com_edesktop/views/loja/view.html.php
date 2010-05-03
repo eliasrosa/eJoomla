@@ -34,7 +34,7 @@ class edesktopVIEWloja extends JView
 		$layout = JRequest::getvar('layout');
 		
 		// produtos por pagina
-		$this->porpagina = 2;
+		$this->porpagina = 12;
 		
 		$funcao = "layout_$layout";
 		
@@ -51,7 +51,7 @@ class edesktopVIEWloja extends JView
 	/*
 	 ************************************************/		
 	private function layout_destaques()
-	{
+	{	
 		// importa a class produtos
 		jimport('edesktop.programas.produtos.produtos');
 
