@@ -9,6 +9,9 @@ class edesktopVIEWloja extends JView
 {
     function display($tpl = null)
     { 
+		// adiciona o style css da loja
+		JHTML::stylesheet('style.css', 'media/com_edesktop/loja/css/');
+				
 		$menu =& JSite::getMenu();
 		
 		// carrega parâmetros
