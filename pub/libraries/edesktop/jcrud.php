@@ -66,11 +66,12 @@ class JCRUD
 
 	function paginacao($where, $porpagina = 1, $urlbase = null, $getVar = 'pag' )
 	{
-		if (empty($where))
-			return;
 
 		// retorno
-		$retorno = array();
+		$retorno = new stdClass();
+
+		if (empty($where))
+			return $retorno;
 
 		// pega a pagina atual
 		$p = JRequest::getInt($getVar, 1);
@@ -90,30 +91,30 @@ class JCRUD
 			$u =& JURI::getInstance();
 
 		// pega todos os registros
-		$regs = $this->busca_por_sql("SELECT COUNT(*) AS total FROM @tabela@ WHERE {$where}");
+		$regs = $this->busca_por_sql("SELECT COUNT(*) AS total FROM @tabela@ {$where}");
 
 		// pega o total de registros encontrados
-		$pag_total = $regs[0]->total;
+		$registros = $regs[0]->total;
 		
 		// calcula o total de páginas
-		$pag_num   = ceil($pag_total / $porpagina);
+		$paginas = ceil($registros / $porpagina);
 		
 		// total
-		$retorno['total_registros'] = $pag_total;
+		$retorno->registros = $registros;
 		
 		// mysql limit
-		$retorno['mysql_limit'] = "{$inicio}, {$porpagina}";		
-		$retorno['mysql_limit_inicio'] = $inicio;		
-		$retorno['mysql_limit_porpaginas'] = $porpagina;
+		$retorno->limit = "{$inicio}, {$porpagina}";		
+		$retorno->inicio = $inicio;		
+		$retorno->porpagina = $porpagina;
 		
 		// total de páginas
-		$retorno['paginas_total'] = $pag_num;
+		$retorno->paginas = $paginas;
 				
 		// páginas
-		$retorno['paginas_html'] = '';
+		$retorno->links = '';
 		
 		// loop nas páginas
-		for ($i = 1; $i <= $pag_num; $i++)
+		for ($i = 1; $i <= $paginas; $i++)
 		{
 			// adiciona a var na url
 			$u->setVar($getVar, $i);
@@ -122,7 +123,7 @@ class JCRUD
 			$class = $i == $p ? ' class="atual"' : '';
 			
 			// retorna o html das p
-			$retorno['paginas_html'] .= sprintf('<a href="%s"%s>%d</a>', JRoute::_($u->toString()), $class, $i);
+			$retorno->links .= sprintf('<a href="%s"%s>%d</a>', JRoute::_($u->toString()), $class, $i);
 		}
 
 		return $retorno;
