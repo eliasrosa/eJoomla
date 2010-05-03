@@ -51,8 +51,9 @@ function edesktopBuildRoute( &$query )
 			// convert nome
 			$nome = JFilterOutput::stringURLSafe($nome);
 						
-			// adiciona o segmento
-			$segments[] = "{$nome},{$o->id}";
+			// adiciona os segmentos
+			$segments[] = $o->id;
+			$segments[] = $nome;
 			
 			// remove o id
 			unset($query['id']);
@@ -77,8 +78,9 @@ function edesktopBuildRoute( &$query )
 			// convert nome
 			$nome = JFilterOutput::stringURLSafe($nome);
 						
-			// adiciona o segmento
-			$segments[] = "{$nome},{$o->id}";
+			// adiciona os segmentos
+			$segments[] = $o->id;
+			$segments[] = $nome;
 			
 			// remove o id
 			unset($query['id']);
@@ -103,8 +105,9 @@ function edesktopBuildRoute( &$query )
 			// convert nome
 			$nome = JFilterOutput::stringURLSafe($nome);
 						
-			// adiciona o segmento
-			$segments[] = "{$nome},{$o->id}";
+			// adiciona os segmentos
+			$segments[] = $o->id;
+			$segments[] = $nome;
 			
 			// remove o id
 			unset($query['id']);
@@ -135,7 +138,11 @@ function edesktopParseRoute( $segments )
 		// produtos
 		if($vars['layout'] == 'produto' || $vars['layout'] == 'categoria' || $vars['layout'] == 'fabricante')
 		{
-			list($alias, $id) = explode(',', $segments[1]);
+			$layout = $segments[0];
+			$id = $segments[1];
+			$alias = $segments[2];
+			
+			// carrega o id
 			$vars['id'] = $id;
 		}		
 	}
