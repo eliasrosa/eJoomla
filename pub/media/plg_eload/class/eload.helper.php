@@ -7,7 +7,12 @@ abstract class eLoadHelper
 	function cria_imagem($imagem, $largura = null, $altura = null, $fit = 'inside', $scale = 'any', $wm = false)
 	{
 
-		$imagem = JPATH_BASE.DS.$imagem;		
+		// limpa o caminho, absoluto ou relativo
+		$imagem = str_replace(JURI::base(), '', $imagem);
+		$imagem = str_replace(JURI::base(1), '', $imagem);
+		$imagem = str_replace('/', DS, JPATH_BASE.DS.$imagem);
+		$imagem = str_replace(DS.DS, DS, $imagem);
+				
 
 		// se a imagem não existir
 		if(!JFile::exists($imagem))
