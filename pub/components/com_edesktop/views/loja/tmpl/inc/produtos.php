@@ -13,13 +13,15 @@ defined('_JEXEC') or die('Restricted access');
 			$produto = JRoute::_("index.php?option=com_edesktop&view=loja&layout=produto&Itemid={$this->itemid}&id={$p->produto->id}");
 			$fabricante = JRoute::_("index.php?option=com_edesktop&view=loja&layout=fabricante&Itemid={$this->itemid}&id={$p->fabricante->id}");
 		?>
-		<p class="img"><a href="<?= $produto; ?>"><img src="" /></a></p>
+		<p class="img"><a href="<?= $produto; ?>"><img src="<?= $p->imagem->url ?>" alt="<?= $p->produto->nome; ?> - Produto <?= $p->fabricante->nome; ?> " width="130" height="150" /></a></p>
 		<p class="nome"><a href="<?= $produto; ?>"><?= $p->produto->nome; ?></a></p>
 		<p class="fabricante"><a href="<?= $fabricante; ?>"><?= $p->fabricante->nome; ?></a></p>
 		<p class="valor">R$ <?= number_format($p->produto->valor, 2, ',', ''); ?></p>
 	</div>
 	<? endforeach; ?>
 	<!-- Fim produtos -->
+	
+	<br class="clearfix"/>
 	
 	<!-- Inicio paginação -->
 	<? if(isset($this->paginacao) && $this->paginacao->paginas >= 2): ?>
