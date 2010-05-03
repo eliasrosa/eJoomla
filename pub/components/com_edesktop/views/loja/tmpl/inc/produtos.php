@@ -5,7 +5,8 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <div id="loja-listadepodutos">
 	<? if($this->params->get('show_page_title')){ echo '<h2>' .$this->params->get('page_title'). '</h2>'; } ?>
-
+	
+	<!-- Inicio produtos -->
 	<? foreach($this->dados as $p):?>
 	<div class="produto">
 		<?
@@ -18,4 +19,21 @@ defined('_JEXEC') or die('Restricted access');
 		<p class="valor">R$ <?= number_format($p->produto->valor, 2, ',', ''); ?></p>
 	</div>
 	<? endforeach; ?>
+	<!-- Fim produtos -->
+	
+	<!-- Inicio paginação -->
+	<? if(isset($this->paginacao) && $this->paginacao->paginas >= 2): ?>
+	<div class="result">
+		<?= "<p>Encontrado {$this->paginacao->registros} produtos(s) em {$this->paginacao->paginas} páginas</p>
+			 <div class=\"paginas\">{$this->paginacao->links}</div>"; ?>
+	</div>
+	<? endif; ?>
+	<!-- Fim paginação -->
+	
+	<? if(!$this->paginacao->registros): ?>
+	<div class="aviso">
+		<p>Nenhum produto foi encontrado!</p>
+	</div>
+	<? endif; ?>
+		
 </div>

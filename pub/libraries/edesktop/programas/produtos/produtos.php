@@ -7,13 +7,19 @@ class edesktop_produtos_produtos
 {
 	/* Object JCRUD
 	 ***************************************************/
-	private $db;
+	public $db;
 
 
 	/* nome da tabela de produtos
 	 ***************************************************/
 	private $tabela = 'jos_edesktop_produtos_produtos';
+	
 
+	/* Paginação desativada
+	 ***************************************************/
+	public $paginacao = false;
+	
+	
 
 	/* Inicia a class
 	 ***************************************************/
@@ -56,7 +62,15 @@ class edesktop_produtos_produtos
 	function busca_por_destaque()
 	{
 		$produtos = array();
-		$pp = $this->db->busca("WHERE destaque = '1' AND status = '1'");
+		$where = "WHERE destaque = '1' AND status = '1'";
+		
+		if($this->paginacao)
+		{
+			$this->paginacao = $this->db->paginacao($where, $this->paginacao);
+			$where = "$where LIMIT {$this->paginacao->limit}";
+		}
+		
+		$pp = $this->db->busca($where);
 		
 		foreach($pp as $p)
 		{
@@ -74,11 +88,21 @@ class edesktop_produtos_produtos
 	function busca_por_texto($texto)
 	{
 		$produtos = array();
-		$pp = $this->db->busca("WHERE (
+		
+		
+		$where = "WHERE (
 			nome LIKE '%$texto%' OR 
 			alias LIKE '%$texto%' OR 
 			metatagdescription LIKE '%$texto%' OR 
-			metatagkey LIKE '%$texto%') AND status = '1'");
+			metatagkey LIKE '%$texto%') AND status = '1'";
+		
+		if($this->paginacao)
+		{
+			$this->paginacao = $this->db->paginacao($where, $this->paginacao);
+			$where = "$where LIMIT {$this->paginacao->limit}";
+		}
+				
+		$pp = $this->db->busca($where);
 		
 		foreach($pp as $p)
 		{
@@ -96,7 +120,15 @@ class edesktop_produtos_produtos
 	function busca_por_fabricante($id)
 	{
 		$produtos = array();
-		$pp = $this->db->busca("WHERE idfabricante = '{$id}' AND status = '1'");
+		$where = "WHERE idfabricante = '{$id}' AND status = '1'";
+		
+		if($this->paginacao)
+		{
+			$this->paginacao = $this->db->paginacao($where, $this->paginacao);
+			$where = "$where LIMIT {$this->paginacao->limit}";
+		}
+
+		$pp = $this->db->busca($where);
 		
 		foreach($pp as $p)
 		{
@@ -117,8 +149,16 @@ class edesktop_produtos_produtos
 		
 		// Abre a tabela
 		$c = new JCRUD('jos_edesktop_produtos_categorias_rel');
-		$pp = $c->busca("WHERE idcategoria = '{$id}'");
+
+		$where = "WHERE idcategoria = '{$id}'";
 		
+		if($this->paginacao)
+		{
+			$this->paginacao = $c->paginacao($where, $this->paginacao);
+			$where = "$where LIMIT {$this->paginacao->limit}";
+		}
+
+		$pp = $c->busca($where);		
 		foreach($pp as $p)
 		{
 			$produtos[] = $this->busca_por_id($p->idproduto, true);
@@ -139,7 +179,15 @@ class edesktop_produtos_produtos
 		
 		// Abre a tabela
 		$c = new JCRUD('jos_edesktop_produtos_categorias_rel');
-		$pp = $c->busca("WHERE idcategoria IN ({$ids})");
+		$where = "WHERE idcategoria IN ({$ids})";
+		
+		if($this->paginacao)
+		{
+			$this->paginacao = $c->paginacao($where, $this->paginacao);
+			$where = "$where LIMIT {$this->paginacao->limit}";
+		}
+
+		$pp = $c->busca($where);
 		
 		foreach($pp as $p)
 		{
