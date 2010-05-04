@@ -24,10 +24,18 @@ defined('_JEXEC') or die('Restricted access');
 	<br class="clearfix"/>
 	
 	<!-- Inicio paginação -->
-	<? if(isset($this->paginacao) && $this->paginacao->paginas >= 2): ?>
+	<? if($this->paginacao->paginas >= 2): ?>
 	<div id="loja-paginacao" class="result">
-		<?= "<p>Encontrado {$this->paginacao->registros} produtos(s) em {$this->paginacao->paginas} páginas</p>
+		<?= "<p>Encontrado {$this->paginacao->registros} produtos em {$this->paginacao->paginas} páginas</p>
 			 <div class=\"paginas\">{$this->paginacao->links}</div>"; ?>
+	</div>
+	<? elseif($this->paginacao->registros > 1): ?>
+	<div id="loja-paginacao" class="result">
+		<?= "<p>Encontrado {$this->paginacao->registros} produtos</p>"; ?>
+	</div>
+	<? elseif($this->paginacao->registros == 1): ?>
+	<div id="loja-paginacao" class="result">
+		<?= "<p>Encontrado {$this->paginacao->registros} produto</p>"; ?>
 	</div>
 	<? endif; ?>
 	<!-- Fim paginação -->
