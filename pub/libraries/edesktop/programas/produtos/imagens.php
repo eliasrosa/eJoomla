@@ -10,10 +10,12 @@ class edesktop_produtos_imagens
 	public $db;
 
 
+
 	/* nome da tabela de imagems
 	 ***************************************************/
 	private $tabela = 'jos_edesktop_produtos_imagens';
 	
+
 
 	/* Inicia a class
 	 ***************************************************/
@@ -22,6 +24,8 @@ class edesktop_produtos_imagens
 		// Abre a tabela
 		$this->db = new JCRUD($this->tabela);
 	}
+	
+	
 	
 	
 	/* busca uma imagem pelo id
@@ -49,6 +53,9 @@ class edesktop_produtos_imagens
 		return $dados;
 	}
 	
+	
+	
+	
 	/* busca a imagem em destaque pelo id do produto
 	 ***************************************************/
 	function busca_destaque_por_produto($id)
@@ -65,6 +72,9 @@ class edesktop_produtos_imagens
 		return $dados[0];
 	}
 
+
+
+
 	/* retorna com o caminho da imagem
 	 ***************************************************/
 	private function caminho_imagem($id)
@@ -72,15 +82,11 @@ class edesktop_produtos_imagens
 		$img = "/media/com_edesktop/loja/imagens/produtos/{$id}.jpg";
 		$url = JURI::base(1). $img;
 		
-		//echo JPATH_BASE. $img . '<br>';
-		
 		if(!file_exists(JPATH_BASE. $img))
 			$url = JURI::base(1). "/media/com_edesktop/loja/imagens/404.jpg";
 		
 		// retorno os dados 
 		return $url;
-	}		
-	
-	
+	}
 }
 ?>
