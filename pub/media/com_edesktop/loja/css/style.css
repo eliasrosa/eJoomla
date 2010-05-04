@@ -1,3 +1,6 @@
+
+/* LISTA DE PRODUTOD
+ ***************************************/
 #loja-listadepodutos h1 { display: none; }
 #loja-listadepodutos .produto { width: 170px; height: 260px; display: block; margin-bottom: 15px; padding: 0 9px; float: left; }
 #loja-listadepodutos p { text-align: center; }
@@ -9,6 +12,8 @@
 #loja-listadepodutos .valor { font-weight: 700; color: #666; }
 
 
+
+
 /* PAGINAÇÃO
  ***************************************/
 #loja-paginacao { margin: 25px 0 15px 0; }
@@ -17,6 +22,11 @@
 #loja-paginacao .paginas a { padding: 7px; margin: 0 5px; background: #F3F3F3; border: 1px solid #DDD; }
 #loja-paginacao .paginas a.atual { font-weight: 700; border: 1px solid #AAA; }
 
+
+
+
+/* MOD - LANÇAMENTOS
+ ***************************************/
 .modEdesktopProduto p { text-align: center; }
 .modEdesktopProduto p a:hover { text-decoration: underline; }
 .modEdesktopProduto .img { margin-bottom: 5px; }
@@ -24,3 +34,10 @@
 .modEdesktopProduto .nome a { font-weight: 700; color: #666; }
 .modEdesktopProduto .fabricante a { color: #666; }
 .modEdesktopProduto .valor { font-weight: 700; color: #666; }
+
+
+
+/* MOD - FABRICANTES
+ ***************************************/
+.modEdesktopProdutosFabricantes .fabricantes { text-align: center; }
+.modEdesktopProdutosFabricantes .fabricantes a img { margin: 5px; }
