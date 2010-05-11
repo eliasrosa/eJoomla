@@ -42,12 +42,16 @@ class edesktop_produtos_imagens
 	
 	
 	
-	/* busca todas as imagens pelo id do produto
+	/* busca todas as imagens ignorando em destaque
+	 * pelo id do produto
 	 ***************************************************/
 	function busca_por_produto($id)
 	{
 		// imagem
-		$dados = $this->db->busca("WHERE idproduto = '{$id}' AND status = '1'");
+		$dados = $this->db->busca("WHERE idproduto = '{$id}' AND destaque != '1' AND status = '1'");
+		
+		foreach($dados as $d)
+			$d->url = $this->caminho_imagem($d->id);
 				
 		// retorno os dados 
 		return $dados;
@@ -61,7 +65,7 @@ class edesktop_produtos_imagens
 	function busca_destaque_por_produto($id)
 	{
 		// imagem
-		$dados = $this->db->busca("WHERE idproduto = '{$id}' AND destaque = '1' AND status = '1'");
+		$dados = $this->db->busca("WHERE idproduto = '{$id}' AND destaque = '1' AND status = '1' LIMIT 0,1");
 		
 		if(count($dados))
 			$dados[0]->url = $this->caminho_imagem($dados[0]->id);

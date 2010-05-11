@@ -46,11 +46,21 @@ class edesktop_produtos_produtos
 			$d = new edesktop_produtos_fabricantes();
 			$dados->fabricante = $d->busca_por_id($dados->produto->idfabricante);
 
-			// carrega o imagens do produto
+			// carrega o imagem de destaque do produto
 			jimport('edesktop.programas.produtos.imagens');
 			$d = new edesktop_produtos_imagens();
 			$dados->imagem = $d->busca_destaque_por_produto($dados->produto->id);
-			
+
+			// carrega todas as imagens do produto
+			jimport('edesktop.programas.produtos.imagens');
+			$d = new edesktop_produtos_imagens();
+			$dados->imagens = $d->busca_por_produto($dados->produto->id);
+
+			// carrega todos os textos do produto
+			jimport('edesktop.programas.produtos.textos');
+			$d = new edesktop_produtos_textos();
+			$dados->textos = $d->busca_por_produto($dados->produto->id);
+
 			// retorno os dados 
 			return $dados;
 		}
