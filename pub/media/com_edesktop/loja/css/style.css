@@ -1,5 +1,5 @@
 
-/* LISTA DE PRODUTOD
+/* LISTA DE PRODUTO
  ***************************************/
 #loja-listadepodutos h1 { display: none; }
 #loja-listadepodutos .produto { width: 170px; height: 260px; display: block; margin-bottom: 15px; padding: 0 9px; float: left; }
@@ -41,3 +41,74 @@
  ***************************************/
 .modEdesktopProdutosFabricantes .fabricantes { text-align: center; }
 .modEdesktopProdutosFabricantes .fabricantes a img { margin: 5px; }
+
+
+/* DETALHES DO PRODUTO
+ ***************************************/
+#loja-produto .produto h1 { font-size: 18px; margin-bottom: 20px; } 
+#loja-produto .produto h1 span { font-size: 14px; color: #8E8E8E; font-weight: normal; } 
+#loja-produto .produto .dados { float: left; width: 370px; } 
+#loja-produto .produto .imagens { width: 171px; float: left; margin-right: 20px; }
+#loja-produto .produto .imagens a { width: 50px; height: 50px; border: 1px solid #DDD; display: block; float: left; margin: 0 5px 5px 0; }
+#loja-produto .produto .imagens a img { display: none; }
+#loja-produto .produto .imagens a.destaque { width: 164px; height: 200px; }
+#loja-produto .produto .valor { font-weight: 700; font-size: 14px; margin: 15px 0; }
+#loja-produto .produto .comprar { width: 140px; height: 78px; background: url(../imagens/bg_site_seguro.jpg) no-repeat center center; position: relative; }
+#loja-produto .produto .comprar input { width: 115px; height: 25px; bottom: 7px; left: 12px; position: absolute; background: url(../imagens/bg_comprar.jpg) no-repeat 0 0; border: none; text-indent: -9999px; cursor: pointer; }
+#loja-produto .produto .comprar input:hover { background: url(../imagens/bg_comprar.jpg) no-repeat 0 -25px; }
+#loja-produto .produto .textos { margin-top: 20px; }
+#loja-produto .produto .textos h3 { margin-top: 30px; height: 31px; line-height: 31px; padding-left: 31px; background: #F6F6F6 url(../imagens/bg_seta.gif) no-repeat 7px 7px; border: 1px solid #DDD;}
+#loja-produto .produto .textos .texto { padding: 10px 7px; font-size: 13px; }
+ 
+
+
+/* CARRINHO DE COMPRAS
+ ***************************************/
+#loja-carrinho h1 { margin-bottom: 20px; font-size: 18px; } 
+#loja-carrinho form .produtos { width: 100%; border: 2px solid #AEAEAE; border-spacing: 0; margin-bottom: 8px; } 
+#loja-carrinho form .produtos tr td { padding: 5px 10px; text-align: center; color: #FFF; } 
+#loja-carrinho form .produtos .head { background: #AEAEAE; } 
+#loja-carrinho form .produtos .head .descr { width: 50%; } 
+#loja-carrinho form .produtos .erro { height: 102px; } 
+#loja-carrinho form .produtos .item td { color: #444; padding: 10px; } 
+#loja-carrinho form .produtos .item td.bg { background: #EEE; } 
+#loja-carrinho form .produtos .item .img { text-align: left;  } 
+#loja-carrinho form .produtos .item .img a { display: block; width: 80px; height: 100px; border: 1px solid #CCC; } 
+#loja-carrinho form .produtos .item .img a img { display: none; } 
+#loja-carrinho form .produtos .item .descr { text-align: left; padding-left: 0; } 
+#loja-carrinho form .produtos .item .descr a:hover { text-decoration: underline; } 
+#loja-carrinho form .produtos .item .descr span { color: #999; } 
+#loja-carrinho form .produtos .item .total { width: 15%;  font-weight: 700; white-space: nowrap; } 
+#loja-carrinho form .produtos .item .valor { white-space: nowrap; } 
+#loja-carrinho form .produtos .item .quant input { display: block; margin:0 auto; text-align:center; width:3em; padding: 3px 2px; color: #898989; border: 1px solid #CCC; } 
+#loja-carrinho form .produtos .item .quant a { display: block; margin-top: 7px; } 
+
+
+#loja-carrinho form .colRight { width: 300px; float: right; }
+#loja-carrinho form .colRight .totais { width: 100%; border-spacing: 0; background: #EAEAEA; border: 1px solid #BBB; }
+#loja-carrinho form .colRight .totais tr td { font-size: 14px; padding: 15px 10px; font-family: "Trebuchet MS", Arial, Verdana; }
+#loja-carrinho form .colRight .totais tr td.txt { color: #363636; font-size: 11px; }
+#loja-carrinho form .colRight .totais tr td.vlr { font-weight: 700; color: #828282; text-align: right; }
+#loja-carrinho form .colRight .totais tr.total td { background: #757575; color: #FFF; }
+#loja-carrinho form .colRight .totais tr.bt td { border-top: 1px solid #CCC; }
+#loja-carrinho form .colRight .finalizarCompra { float: right; margin-top: 15px; }
+
+
+#loja-carrinho form .colLeft { float: left; width: 252px; }
+#loja-carrinho form .colLeft .frete { padding: 10px; border: 1px solid #CCC; margin-bottom: 9px; color: #828282; font-weight: 700;}
+#loja-carrinho form .colLeft .frete h2 { font-size: 16px; margin-bottom: 10px; font-family: "Trebuchet MS", Arial, Verdana; color: #828282; }
+#loja-carrinho form .colLeft .frete input { border:1px solid #CCC; color: #898989; padding: 3px 2px; text-align: center; }
+#loja-carrinho form .colLeft .frete input.cep1 { width: 65px; }
+#loja-carrinho form .colLeft .frete input.cep2 { width: 30px; margin-left: 2px; }
+#loja-carrinho form .colLeft .frete a { position: relative; top: 6px; left: 2px; }
+#loja-carrinho form .colLeft .frete .tipos { margin-top: 10px; }
+#loja-carrinho form .colLeft .frete .tipos label { margin-right: 10px;  }
+#loja-carrinho form .colLeft .frete .tipos label input { border: none; position: relative; top: 2px; }
+#loja-carrinho form .colLeft .frete .tipos label span { color: #666; padding-left: 3px; }
+#loja-carrinho form .colLeft .cupomDesconto { padding: 10px; border: 1px solid #CCC; margin-bottom: 15px; color: #828282; font-weight: 700;}
+#loja-carrinho form .colLeft .cupomDesconto h2 { font-size: 16px; margin-bottom: 10px; font-family: "Trebuchet MS", Arial, Verdana; color: #828282; }
+#loja-carrinho form .colLeft .cupomDesconto input { border:1px solid #CCC; color: #898989; padding: 3px 2px; text-align: center; }
+#loja-carrinho form .colLeft .cupomDesconto a { position: relative; top: 6px; left: 2px; }
+#loja-carrinho form .colLeft .continuarComprando { float: left; height: 22px; line-height: 22px; display: block; padding-left: 26px; background: url(../imagens/icoBack.gif) no-repeat top left; font-size: 10px; font-family: "Trebuchet MS",Verdana,arial,freesans,garuda,helvetica,sans-serif; font-weight:bold; text-transform:uppercase;  color: #828282;}
+#loja-carrinho form .colLeft .continuarComprando:hover { text-decoration: underline; }
+

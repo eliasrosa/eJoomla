@@ -9,159 +9,130 @@ class edesktopVIEWloja extends JView
 {
     function display($tpl = null)
     { 
+		// carreca a class de configurações
+		jimport('edesktop.programas.loja.config');
+				
+		// importa a class produtos
+		jimport('edesktop.programas.produtos.produtos');
+		
+		// carrega a class de configurações
+		$this->config = new edesktop_loja_config();
+		
 		// adiciona o style css da loja
 		JHTML::stylesheet('style.css', 'media/com_edesktop/loja/css/');
-				
+		
+		// carega o menu		
 		$menu =& JSite::getMenu();
 		
-		// carrega parâmetros
-		$item =& $menu->getActive();	
-		$this->assignRef('menu', $item);
+		// carrega parâmetros do menu
+		$menuItem =& $menu->getActive();	
+		$this->assignRef('menu', $menuItem);
 		
 		// carrega parâmetros
-		$params = $menu->getParams($item->id);		
+		$params = $menu->getParams($menuItem->id);		
 		$this->assignRef('params', $params);
 		
 		// carrega parâmetros do menu da loja
 		$itemid = JRequest::getvar('Itemid');
 		$menu =& JSite::getMenu();
-		$item =& $menu->getItem($itemid);
-		$params = $menu->getParams($item->id);
+		$menuItem =& $menu->getItem($itemid);
+		$params = $menu->getParams($menuItem->id);
 		$itemid = ($params->get('Itemid')) ? $params->get('Itemid') : $itemid;
 		$this->assignRef('itemid', $itemid);		
 		
 		// carrega o layout
 		$layout = JRequest::getvar('layout');
+						
+		// paths dos arquivos de layout
+		$file_layout = dirname(__FILE__) .DS. 'tmpl' .DS. "$layout.php";
+		$file_view = dirname(__FILE__) .DS. 'views' .DS. "view.$layout.php";	
 		
-		// produtos por pagina
-		$this->porpagina = 12;
-		
-		$funcao = "layout_$layout";
-		
-		if(file_exists(dirname(__FILE__) .DS. 'tmpl' .DS. $layout .'.php'))
-			$this->$funcao();
-		
+		// verifica se o aquivo de layout existe
+		if(file_exists($file_layout))
+		{
+			// inicia no obj produtos
+			$produtos = new edesktop_produtos_produtos();
+			
+			// abre o view do layout
+			require_once($file_view);
+		}
+				
 		// carrega o template
         parent::display($tpl);
 	
 	}
 	
-	
-	
-	/*
-	 ************************************************/		
-	private function layout_destaques()
-	{	
+			
+	private function carrinho_busca_produto()
+	{
 		// importa a class produtos
-		jimport('edesktop.programas.produtos.produtos');
+		jimport('edesktop.programas.produtos.produtos');	
 
 		// inicia no obj
 		$db = new edesktop_produtos_produtos();
 		
-		// paginação
-		$db->paginacao = $this->porpagina;
-		
-		// busca dados
-		$dados = $db->busca_por_destaque();
-
-		// envia para o layout os dados
-		$this->assignRef('dados', $dados);
-		
-		// envia para o layout a paginação
-		$this->assignRef('paginacao', $db->paginacao);	
-	}
-
-
-
-
-	// carrega dados do layout destaques
-	private function layout_fabricante()
-	{
-		// importa a class produtos
-		jimport('edesktop.programas.produtos.produtos');
+		// importa a class imagens
+		jimport('edesktop.programas.produtos.imagens');	
 
 		// inicia no obj
-		$db = new edesktop_produtos_produtos();
+		$img = new edesktop_produtos_imagens();
+		
 
-		// paginação
-		$db->paginacao = $this->porpagina;
-		
-		// carrega o id
-		$id = JRequest::getvar('id', 0);
-		
-		// busca dados
-		$dados = $db->busca_por_fabricante($id);
+		// ID do produtos
+		$id = JRequest::getvar('id', 0);		
 
-		// envia para o layout
-		$this->assignRef('dados', $dados);
 		
-		// envia para o layout a paginação
-		$this->assignRef('paginacao', $db->paginacao);	
+		// busca os dados do produto
+		$produto = $db->busca_por_id($id);
+		
+		
+		// verifica o produto
+		if(!$produto)
+			die( 'Produto inválido' );
+		
+			
+		// cria uma class de retorno
+		$r = new stdClass();
+		
+		
+		// adiciona o produto
+		$r->db = $produto;
+		
+		
+		// adiciona a imagem destaque
+		$imagem = $img->busca_destaque_por_produto($produto->id);
+		$r->db->imagem = $imagem->url;
+
+		// cria uma class do carrinho
+		$r->carrinho = new stdClass();
+
+
+		// carrega as opções
+		$r->carrinho->op = JRequest::getvar('op', array());	
+		
+		
+		$op = array();
+		foreach($r->carrinho->op as $k=>$v)
+		{
+			$op[] = "$k: $v";
+		}
+		$op = implode(', ', $op);
+		$op = ($op == '') ? '' : "[{$op}]";
+		
+		// Nome do produto com opções
+		$r->carrinho->nome = "{$produto->nome} <span>{$op}</span>";
+		$r->carrinho->descricao = "{$produto->nome} {$op}";
+			
+
+		// ID do carrinho
+		$r->carrinho->id = substr(sha1(md5($produto->id .':'. $r->carrinho->nome)), 0, 10);
+		
+		
+		// retorna tudo
+		return $r;
+				
 	}
-
-
-
-
-	// carrega dados do layout categoria
-	private function layout_categoria()
-	{
-		// importa a class produtos
-		jimport('edesktop.programas.produtos.produtos');
-		
-		// importa a class de categorias de produtos
-		jimport('edesktop.programas.produtos.categorias');
-
-		// inicia o obj
-		$db = new edesktop_produtos_produtos();
-		$cat = new edesktop_produtos_categorias();
-		
-		// paginação
-		$db->paginacao = $this->porpagina;
-		
-		// carrega o id ca categoria
-		$id = JRequest::getvar('id', 0);
-		
-		// carrega ids das categorias filhas
-		$ids = $cat->busca_ids($id);
-		
-		// busca dados
-		$dados = $db->busca_por_categorias($ids);
-
-		// envia para o layout
-		$this->assignRef('dados', $dados);
-		
-		// envia para o layout a paginação
-		$this->assignRef('paginacao', $db->paginacao);
-	}
-
-
-
-
-	private function layout_busca()
-	{
-		// importa a class produtos
-		jimport('edesktop.programas.produtos.produtos');
-
-		// inicia no obj
-		$db = new edesktop_produtos_produtos();
-		
-		// paginação
-		$db->paginacao = $this->porpagina;
-		
-		// carrega o busca
-		$busca = JRequest::getvar('q', '');
-		
-		// busca dados
-		$dados = $db->busca_por_texto($busca);
-
-		// envia para o layout
-		$this->assignRef('dados', $dados);
-		
-		// envia para o layout a paginação
-		$this->assignRef('paginacao', $db->paginacao);
-	}
-		
-		
+			
 		
 }
 

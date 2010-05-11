@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Carrinho de compras">
+		<message>Exibe o carrinho de compras.</message>
+	</layout>
+	<state>
+		<name>Carrinho de compras</name>
+		<description>Exibe o carrinho de compras.</description>
+	
+		<params>
+
+		</params>	
+			
+	</state>
+</metadata>
