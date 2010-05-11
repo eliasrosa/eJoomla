@@ -112,7 +112,7 @@ var BrowserDetect = {
 BrowserDetect.init();
 
 $(document).ready(function(){
-   if ((BrowserDetect.browser == "Internet Explorer") && (BrowserDetect.version == "6")){
+   if ((BrowserDetect.browser == "Internet Explorer") && (BrowserDetect.version == "6" || BrowserDetect.version == "7")){
 	$('body').prepend("<div id=\"asn-warning\" style=\"border-bottom: solid 1px #DFDDCB; top:0px; margin: 10px 0px; padding: 5px 0px; width: 100%; color: #4F4D3B; background: #FFFCDF; font: normal 8pt/14px 'Trebuchet MS', Arial, Helvetica; text-align: center;\">A versão do seu navegador não é compatível com alguns recursos deste site<br />Voc&ecirc; est&aacute; usando <strong>"+BrowserDetect.browser+" "+BrowserDetect.version+"</strong>, um navegador antigo e com falhas de seguran&ccedil;a. Por favor <a href=\"http://www.updateyourbrowser.net/\" style=\"color: #4F4D3B; text-decoration: underline; font: normal 8pt/14px 'Trebuchet MS', Arial, Helvetica;\" target=\"_blank\">atualize seu navegador</a>. <a href=\"javascript://\" id=\"asn-close\" style=\"color: #4F4D3B; text-decoration: underline; font: normal 8pt/14px 'Trebuchet MS', Arial, Helvetica;\">[x]</a></div>");
 	$('#asn-warning').fadeIn(1000);
 	$('#asn-close').click(function(){
