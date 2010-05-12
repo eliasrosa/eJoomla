@@ -1,9 +1,4 @@
-<?
-defined('_JEXEC') or die('Restricted access'); 
-
-
-
-?>
+<? defined('_JEXEC') or die('Restricted access'); ?>
 <div id="loja-carrinho">
 	
 	<h1>Meu carrinho de compras</h1>
@@ -17,14 +12,14 @@ defined('_JEXEC') or die('Restricted access');
 				<td>Quantidade</td>
 				<td>Valor Total</td>
 			</tr>
-			<? if(!count($this->produtos)): ?>
+			<? if(!count($this->itens)): ?>
 				<tr class="item">
 					<td class="erro" colspan="5">Nenhum item foi adicionado no carrinho.</td>
 				</tr>
 			<? endif; ?>
 			
 			<?
-			foreach($this->produtos as $p): 
+			foreach($this->itens as $p): 
 				$link = JRoute::_("index.php?option=com_edesktop&view=loja&layout=produto&Itemid={$this->itemid}&id={$p['id']}");
 			?>
 			<tr class="item">
@@ -44,21 +39,22 @@ defined('_JEXEC') or die('Restricted access');
 
 	
 		<div class="colLeft">
+		
+			<? if($this->dados['frete']['tipo'] != 'fixo'): ?>
 			<div class="frete">
 				<h2>Informe o seu CEP</h2>
-				<input type="input" value="<?= @$this->carrinho['cep1']; ?>" name="cep1" class="cep1" maxlength="5" size="5" /> - 
-				<input type="input" value="<?= @$this->carrinho['cep2']; ?>" name="cep2" class="cep2" maxlength="3" size="2" />
+				<input type="input" value="<?= @$this->dados['frete']['cep1']; ?>" name="cep1" class="cep1" maxlength="5" size="5" /> - 
+				<input type="input" value="<?= @$this->dados['frete']['cep2']; ?>" name="cep2" class="cep2" maxlength="3" size="2" />
 				<a href="javascript:void(0);" title="Consultar" class="cep"><img src="media/com_edesktop/loja/imagens/icoOK.gif" alt="Consultar" /></a>
 				
-				<? if($this->carrinho['freteValor']): ?>			
+				<? if($this->dados['frete']['valor']): ?>			
 				<div class="tipos">
-					<label><input type="radio" value="PAC" name="tipoFrete" <?= $this->carrinho['freteModo'] == 'PAC' ? 'checked="checked"' : '';  ?> /><span>PAC: R$ <?= number_format($this->carrinho['fretes']['PAC'], 2, ',', ''); ?></span></label>
-					<? if($this->carrinho['freteTipo'] != 'fixo'): ?>
-					<label><input type="radio" value="Sedex" name="tipoFrete" <?= $this->carrinho['freteModo'] == 'Sedex' ? 'checked="checked"' : '';  ?> /><span>Sedex: R$ <?= number_format($this->carrinho['fretes']['Sedex'], 2, ',', ''); ?></span></label>			
-					<? endif; ?>
+					<label><input type="radio" value="PAC" name="frete.modo" <?= $this->dados['frete']['modo'] == 'PAC' ? 'checked="checked"' : '';  ?> /><span>PAC: R$ <?= number_format($this->dados['frete']['PAC'], 2, ',', ''); ?></span></label>
+					<label><input type="radio" value="Sedex" name="frete.modo" <?= $this->dados['frete']['modo'] == 'Sedex' ? 'checked="checked"' : '';  ?> /><span>Sedex: R$ <?= number_format($this->dados['frete']['Sedex'], 2, ',', ''); ?></span></label>			
 				</div>
 				<? endif; ?>
 			</div>
+			<? endif; ?>
 		
 			<div class="cupomDesconto">
 				<h2>Cupom de desconto</h2>
@@ -74,23 +70,26 @@ defined('_JEXEC') or die('Restricted access');
 			<table class="totais">
 				<tr>
 					<td class="txt">SUBTOTAL:</td>
-					<td class="vlr">R$ <?= number_format($this->carrinho['subtotal'], 2, ',', ''); ?></td>
+					<td class="vlr">R$ <?= number_format($this->dados['subtotal'], 2, ',', ''); ?></td>
 				</tr>
 				<tr class="vfrete bt">
 					<td class="txt">FRETE:</td>
-					<td class="vlr">+ R$ <?= number_format($this->carrinho['freteValor'], 2, ',', ''); ?></td>
+					<td class="vlr">+ R$ <?= number_format($this->dados['frete']['valor'], 2, ',', ''); ?></td>
 				</tr>
 				<tr class="vDesconto bt">
 					<td class="txt">DESCONTO:</td>
-					<td class="vlr"><?= $this->carrinho['cupom']['html']; ?></td>
+					<td class="vlr"><?= $this->dados['cupom']['html']; ?></td>
 				</tr>
 				<tr class="total">
 					<td class="txt">TOTAL:</td>
-					<td class="vlr">R$ <?= number_format($this->carrinho['total'], 2, ',', ''); ?></td>
+					<td class="vlr">R$ <?= number_format($this->dados['total'], 2, ',', ''); ?></td>
 				</tr>
 			</table>
 			
+			<? if(count($this->itens)): ?>
 			<a href="javascript:void(0);" class="finalizarCompra"><img src="media/com_edesktop/loja/imagens/buttonGoCheckout.gif"></a>
+			<? endif; ?>
+			
 		</div>
 
 		<br class="clearfix" />
