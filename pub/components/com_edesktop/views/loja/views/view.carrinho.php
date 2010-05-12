@@ -102,7 +102,9 @@
 		
 		$dados['cadastro'] = array();
 		
-		$dados['msg'] = 'O número do CEP não está correto.';
+		// remove a msg de erro
+		$dados['msg'] = '';
+		
 		
 		// se o cep for valido
 		if(preg_match('/(^\d{5}-\d{3}$)/', $cep))
@@ -123,8 +125,11 @@
 				$dados['cadastro'] = $retorno;
 				
 				$dados['msg'] = '';
-			}
-		}		
+			}else
+				$dados['msg'] = 'O número do CEP não está correto.';
+				
+		}else
+			$dados['msg'] = 'O número do CEP não está correto.';
 	}
 	
 	
@@ -135,6 +140,9 @@
 	 * ***************************************/
 	if($funcao == 'add')
 	{
+		// remove a msg de erro
+		$dados['msg'] = '';		
+		
 		// busca o produto
 		$p = $this->carrinho_busca_produto();
 		
@@ -168,6 +176,12 @@
 		// busca o cupom
 		$cupom = $cupom->busca(JRequest::getvar('cupom', ''));
 		
+		// reseta o cupom
+		$dados['cupom'] = array('valor' => 0, 'code' => '', 'html' => '', 'tipo' => '');		
+		
+		// remove a msg de erro
+		$dados['msg'] = '';
+		
 		if($cupom)
 		{		
 			$dados['cupom']['id'] = $cupom->id;
@@ -178,7 +192,9 @@
 			if($cupom->tipo == '$')
 				$dados['cupom']['html'] = "- R$ " .number_format($cupom->valor, 2, ',', '');
 
-		}					
+		}else
+			$dados['msg'] = 'Código do cupom de desconto não encontrado.';
+							
 	}
 
 
@@ -189,6 +205,9 @@
 	 * ***************************************/
 	if($funcao == 'update')
 	{			
+		// remove a msg de erro
+		$dados['msg'] = '';
+		
 		foreach(JRequest::getvar('qt', array()) as $k=>$qt)
 		{
 			$qt = preg_match('/^\d+$/', $qt) ? $qt : 1;
@@ -321,6 +340,6 @@
 
 
 
-	print_r($dados);
+	//print_r($dados);
 
 ?>
