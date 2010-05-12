@@ -38,8 +38,12 @@
 		$dados = $_SESSION[$sessao_dados];
 	}
 	else
-		$itens = $dados = array();
-
+	{
+		$itens = array();
+		$dados = array(
+			'msg' => ''
+		);
+	}
 	
 	
 	// cupons
@@ -89,18 +93,37 @@
 		$cep = "{$cep1}-{$cep2}";
 		
 		// reseta o dados do frete
+		$dados['frete']['valor'] = 0;
 		$dados['frete']['PAC'] = 0;
 		$dados['frete']['Sedex'] = 0;
 		$dados['frete']['cep'] = '';
 		$dados['frete']['cep1'] = '';
 		$dados['frete']['cep2'] = '';
 		
+		$dados['cadastro'] = array();
+		
+		$dados['msg'] = 'O número do CEP não está correto.';
+		
 		// se o cep for valido
 		if(preg_match('/(^\d{5}-\d{3}$)/', $cep))
 		{
-			$dados['frete']['cep'] = $cep;
-			$dados['frete']['cep1'] = $cep1;
-			$dados['frete']['cep2'] = $cep2;
+			$resultado = @file_get_contents('http://republicavirtual.com.br/web_cep.php?cep='.urlencode($cep1.$cep2).'&formato=query_string');  
+			
+			if(!$resultado)
+				$resultado = "&resultado=0&resultado_txt=erro+ao+buscar+cep";  
+		
+			parse_str($resultado, $retorno);   
+
+			if($retorno['resultado'])
+			{
+				$dados['frete']['cep'] = $cep;
+				$dados['frete']['cep1'] = $cep1;
+				$dados['frete']['cep2'] = $cep2;
+
+				$dados['cadastro'] = $retorno;
+				
+				$dados['msg'] = '';
+			}
 		}		
 	}
 	
@@ -222,7 +245,7 @@
 	/* ***************************************
 	 * FRETE - valor fixo no carrinho
 	 * ***************************************/
-	if($dados['frete']['tipo'] == 'fixo' && $dados['frete']['valor'] == 0)
+	if($dados['frete']['tipo'] == 'fixo' && $dados['frete']['cep'])
 	{
 		$dados['frete']['valor'] = $this->config->get('freteValor');
 	}
@@ -298,6 +321,6 @@
 
 
 
-	//print_r($itens);
+	print_r($dados);
 
 ?>

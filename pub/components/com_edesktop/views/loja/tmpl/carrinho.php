@@ -3,6 +3,11 @@
 	
 	<h1>Meu carrinho de compras</h1>
 	
+	<? if($this->dados['msg']): ?>
+	<div class="msg">
+		<h2><?= $this->dados['msg']; ?></h2>
+	</div>
+	<? endif; ?>
 	
 	<form id="carrinho" action="<?= JRoute::_("index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$this->itemid}");?>" method="post">
 		<table class="produtos">
@@ -39,22 +44,24 @@
 
 	
 		<div class="colLeft">
-		
-			<? if($this->dados['frete']['tipo'] != 'fixo'): ?>
 			<div class="frete">
 				<h2>Informe o seu CEP</h2>
 				<input type="input" value="<?= @$this->dados['frete']['cep1']; ?>" name="cep1" class="cep1" maxlength="5" size="5" /> - 
 				<input type="input" value="<?= @$this->dados['frete']['cep2']; ?>" name="cep2" class="cep2" maxlength="3" size="2" />
 				<a href="javascript:void(0);" title="Consultar" class="cep"><img src="media/com_edesktop/loja/imagens/icoOK.gif" alt="Consultar" /></a>
 				
-				<? if($this->dados['frete']['valor']): ?>			
 				<div class="tipos">
-					<label><input type="radio" value="PAC" name="frete.modo" <?= $this->dados['frete']['modo'] == 'PAC' ? 'checked="checked"' : '';  ?> /><span>PAC: R$ <?= number_format($this->dados['frete']['PAC'], 2, ',', ''); ?></span></label>
+					<? if($this->dados['frete']['cep'] && $this->dados['frete']['tipo'] != 'fixo'): ?>			
+					<label><input type="radio" value="PAC" name="frete.modo" <?= $this->dados['frete']['modo'] == 'PAC' ? 'checked="checked"' : '';  ?> /><span>PAC: R$ <?= number_format($this->dados['frete']['PAC'], 2, ',', ''); ?></span></label>				
 					<label><input type="radio" value="Sedex" name="frete.modo" <?= $this->dados['frete']['modo'] == 'Sedex' ? 'checked="checked"' : '';  ?> /><span>Sedex: R$ <?= number_format($this->dados['frete']['Sedex'], 2, ',', ''); ?></span></label>			
+					<? endif; ?>
+					
+					<? if($this->dados['frete']['cep']): ?>			
+					<label><span>R$ <?= $this->dados['frete']['valor']; ?> de frete para todo o brasil</span></label>				
+					<? endif; ?>
+				
 				</div>
-				<? endif; ?>
 			</div>
-			<? endif; ?>
 		
 			<div class="cupomDesconto">
 				<h2>Cupom de desconto</h2>

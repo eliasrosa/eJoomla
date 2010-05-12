@@ -65,6 +65,8 @@
 /* CARRINHO DE COMPRAS
  ***************************************/
 #loja-carrinho h1 { margin-bottom: 20px; font-size: 18px; } 
+#loja-carrinho .msg { background: #FFFFCC  url(../imagens/ico_erro.gif) no-repeat 10px center; border: 1px solid #DDD; margin-bottom: 20px; padding: 15px 55px; } 
+#loja-carrinho .msg h1 { font-size: 14px; } 
 #loja-carrinho form .produtos { width: 100%; border: 2px solid #AEAEAE; border-spacing: 0; margin-bottom: 8px; } 
 #loja-carrinho form .produtos tr td { padding: 5px 10px; text-align: center; color: #FFF; } 
 #loja-carrinho form .produtos .head { background: #AEAEAE; } 
