@@ -57,7 +57,7 @@
 					<? endif; ?>
 					
 					<? if($this->dados['frete']['cep']): ?>			
-					<label><span>R$ <?= $this->dados['frete']['valor']; ?> de frete para todo o brasil</span></label>				
+					<label><span>R$ <?= number_format($this->dados['frete']['valor'], 2, ',', ''); ?> de frete para todo o brasil</span></label>				
 					<? endif; ?>
 				
 				</div>
