@@ -26,17 +26,35 @@ $(function(){
 		
 	// frete
 	$('a.cep', $shop).click(function(){
-		$('.funcao', $shop).val('cep');
-		$shop.submit();
+		
+		var cep1 = $('.cep1:input', $shop).val();
+		var cep2 = $('.cep2:input', $shop).val();
+		var cep  = (cep1 + '-'+ cep2);
+		
+		if(/^\d{5}-\d{3}$/.test(cep)){
+			$('.funcao', $shop).val('cep');
+			$shop.submit();	
+			return false;		
+		}
+			
+		alert("CEP inválido!");
 	});	
 	
+	// frete
+	$('input.cep1', $shop).keyup(function(){
+		var t = $(this)[0].textLength;
+		
+		if(t == 5)
+			$('input.cep2', $shop).select();
+		
+	});	
+
 	
 	// tipo frete
 	$('.frete .tipos input', $shop).change(function(){
 		$('.funcao', $shop).val('update');	
 		$shop.submit();
 	});	
-	
 	
 
 });
