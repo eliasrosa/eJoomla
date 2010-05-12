@@ -79,7 +79,6 @@
 #loja-carrinho form .produtos .item .img a img { display: none; } 
 #loja-carrinho form .produtos .item .descr { text-align: left; padding-left: 0; } 
 #loja-carrinho form .produtos .item .descr a:hover { text-decoration: underline; } 
-#loja-carrinho form .produtos .item .descr span { color: #999; } 
 #loja-carrinho form .produtos .item .total { width: 15%;  font-weight: 700; white-space: nowrap; } 
 #loja-carrinho form .produtos .item .valor { white-space: nowrap; } 
 #loja-carrinho form .produtos .item .quant input { display: block; margin:0 auto; text-align:center; width:3em; padding: 3px 2px; color: #898989; border: 1px solid #CCC; } 

@@ -110,17 +110,21 @@ class edesktopVIEWloja extends JView
 		// carrega as opções
 		$r->carrinho->op = JRequest::getvar('op', array());	
 		
-		
-		$op = array();
-		foreach($r->carrinho->op as $k=>$v)
+		// carrega a ref caso exista
+		if(isset($r->carrinho->op['Ref']))
 		{
-			$op[] = "$k: $v";
-		}
-		$op = implode(', ', $op);
-		$op = ($op == '') ? '' : "[{$op}]";
+			$ref =  ' - Ref. ' .$r->carrinho->op['Ref'];
+			unset($r->carrinho->op['Ref']);
+		}else
+			$ref = '';
+			
+			
+		$op = implode(' ', $r->carrinho->op).$ref;
+		$op = ($op == '') ? '' : $op;
+		
 		
 		// Nome do produto com opções
-		$r->carrinho->nome = "{$produto->nome} <span>{$op}</span>";
+		$r->carrinho->nome = "{$produto->nome} {$op}";
 		$r->carrinho->descricao = "{$produto->nome} {$op}";
 			
 
