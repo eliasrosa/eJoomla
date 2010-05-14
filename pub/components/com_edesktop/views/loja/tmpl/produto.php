@@ -32,8 +32,6 @@ $p = $this->dados;
 				<input type="hidden" name="op[Ref]" value="<?= strtoupper($p->produto->referencia) ?>" />
 				<? endif; ?>
 				
-				<input type="hidden" name="op[Cor]" value="Amarelo" />
-				
 				<input type="hidden" name="id" value="<?= $p->produto->id; ?>" />
 				<input type="hidden" name="funcao" value="add" />
 				<?= JHTML::_( 'form.token' ); ?>
