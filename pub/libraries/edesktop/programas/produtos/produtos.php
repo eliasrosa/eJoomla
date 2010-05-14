@@ -108,6 +108,9 @@ class edesktop_produtos_produtos
 		$where = "WHERE (
 			nome LIKE '%$texto%' OR 
 			alias LIKE '%$texto%' OR 
+			descricao LIKE '%$texto%' OR 
+			referencia LIKE '%$texto%' OR 
+			id LIKE '%$texto%' OR 
 			metatagdescription LIKE '%$texto%' OR 
 			metatagkey LIKE '%$texto%') AND status = '1'";
 		
