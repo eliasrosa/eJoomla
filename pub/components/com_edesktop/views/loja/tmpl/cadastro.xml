@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Cadastro do cliente">
+		<message>Exibe o 2° passo do carrinho para finilizar a compra, o cadastro.</message>
+	</layout>
+	<state>
+		<name>Cadastro do cliente</name>
+		<description>Exibe o 2° passo do carrinho para finilizar a compra, o cadastro.</description>
+	
+		<params>
+
+		</params>	
+			
+	</state>
+</metadata>

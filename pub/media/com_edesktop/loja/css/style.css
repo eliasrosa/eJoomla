@@ -113,3 +113,22 @@
 #loja-carrinho form .colLeft .continuarComprando { float: left; height: 22px; line-height: 22px; display: block; padding-left: 26px; background: url(../imagens/icoBack.gif) no-repeat top left; font-size: 10px; font-family: "Trebuchet MS",Verdana,arial,freesans,garuda,helvetica,sans-serif; font-weight:bold; text-transform:uppercase;  color: #828282;}
 #loja-carrinho form .colLeft .continuarComprando:hover { text-decoration: underline; }
 
+
+
+/* CADASTRO
+ ***************************************/
+#loja-cadastro h1 { margin-bottom: 20px; font-size: 18px; } 
+#loja-cadastro .msg { background: #FFFFCC  url(../imagens/ico_erro.gif) no-repeat 10px center; border: 1px solid #DDD; margin-bottom: 20px; padding: 15px 55px; } 
+#loja-cadastro .msg h1 { font-size: 14px; } 
+#loja-cadastro form .mt { margin-top: 40px; } 
+#loja-cadastro form label { margin: 10px 0; font-weight: 700; text-transform: uppercase; display: block; clear: both;  height: 21px; line-height: 21px; }
+#loja-cadastro form label span { width: 100px; display: block; float: left;  height: 21px; line-height: 21px; text-align: right; padding-right: 5px; font-weight: normal; text-transform: none; }
+#loja-cadastro form label span.opcional { width: auto; float: none; display: inline; color: #999; text-transform: none; }
+#loja-cadastro form label a { text-transform: none; color: #0000FF; font-weight: normal; margin-left: 5px; }
+#loja-cadastro form label a:hover { text-decoration: underline; }
+#loja-cadastro form label input { border: 1px solid #CCC; color: #898989; padding: 3px 2px; width: 230px; margin-right: 5px; }
+#loja-cadastro form label textarea { border: 1px solid #CCC; color: #898989; padding: 3px 2px; width: 230px; height: 50px; margin-right: 5px; }
+#loja-cadastro form label.tel input { width: 90px; }
+#loja-cadastro form label.num input { width: 50px; }
+#loja-cadastro form label.com input { width: 150px; }
+#loja-cadastro form .btn { margin-top: 20px; text-align: center; clear: both; }
