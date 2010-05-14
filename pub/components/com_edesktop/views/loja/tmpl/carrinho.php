@@ -10,6 +10,7 @@
 	<? endif; ?>
 	
 	<form id="carrinho" action="<?= JRoute::_("index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$this->itemid}");?>" method="post">
+
 		<table class="produtos">
 			<tr class="head">
 				<td colspan="2" class="descr">Descrição do Produto</td>
@@ -42,8 +43,9 @@
 			<? endforeach; ?>
 		</table>
 
-	
+		<? if(count($this->itens)): ?>
 		<div class="colLeft">
+			
 			<div class="frete">
 				<h2>Informe o seu CEP</h2>
 				<input type="input" value="<?= @$this->dados['frete']['cep1']; ?>" name="cep1" class="cep1" maxlength="5" size="5" /> - 
@@ -57,7 +59,7 @@
 					<? endif; ?>
 					
 					<? if($this->dados['frete']['cep']): ?>			
-					<label><span>R$ <?= number_format($this->dados['frete']['valor'], 2, ',', ''); ?> de frete para todo o brasil</span></label>				
+					<label><span>R$ <?= number_format($this->dados['frete']['valor'], 2, ',', ''); ?> de frete para todo o Brasil</span></label>				
 					<? endif; ?>
 				
 				</div>
@@ -79,14 +81,18 @@
 					<td class="txt">SUBTOTAL:</td>
 					<td class="vlr">R$ <?= number_format($this->dados['subtotal'], 2, ',', ''); ?></td>
 				</tr>
-				<tr class="vfrete bt">
-					<td class="txt">FRETE:</td>
-					<td class="vlr">+ R$ <?= number_format($this->dados['frete']['valor'], 2, ',', ''); ?></td>
-				</tr>
+				<? if($this->dados['cupom']['html']): ?>
 				<tr class="vDesconto bt">
 					<td class="txt">DESCONTO:</td>
 					<td class="vlr"><?= $this->dados['cupom']['html']; ?></td>
 				</tr>
+				<? endif; ?>
+				<? if($this->dados['frete']['valor']): ?>
+				<tr class="vfrete bt">
+					<td class="txt">FRETE:</td>
+					<td class="vlr">+ R$ <?= number_format($this->dados['frete']['valor'], 2, ',', ''); ?></td>
+				</tr>
+				<? endif; ?>
 				<tr class="total">
 					<td class="txt">TOTAL:</td>
 					<td class="vlr">R$ <?= number_format($this->dados['total'], 2, ',', ''); ?></td>
@@ -98,12 +104,14 @@
 			<? endif; ?>
 			
 		</div>
+		<? endif; ?>
 
 		<br class="clearfix" />
 		
 		<?php echo JHTML::_( 'form.token' ); ?>
 		<input type="hidden" value="update" name="funcao" class="funcao" />
 	</form>	
+	
 	
 
 	

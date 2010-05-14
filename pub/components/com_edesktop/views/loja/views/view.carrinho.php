@@ -152,6 +152,7 @@
 			'id' => $p->db->id,
 			'img' => $p->db->imagem,
 			'nome' => $p->carrinho->nome,
+			'valorOriginal' => $p->db->valor,
 			'valor' => $p->db->valor,
 			'peso' => $p->db->peso,
 			'frete' => $p->db->frete,
@@ -177,7 +178,7 @@
 		$cupom = $cupom->busca(JRequest::getvar('cupom', ''));
 		
 		// reseta o cupom
-		$dados['cupom'] = array('valor' => 0, 'code' => '', 'html' => '', 'tipo' => '');		
+		$dados['cupom'] = array('valor' => 0, 'code' => '', 'html' => '', 'tipo' => '', 'porcentagem' => 0);		
 		
 		// remove a msg de erro
 		$dados['msg'] = '';
@@ -224,6 +225,29 @@
 
 
 
+
+	/* ***************************************
+	 * Abre o cadastro
+	 * ***************************************/
+	if($funcao == 'cadastro')
+	{			
+		// remove a msg de erro
+		$dados['msg'] = '';
+		
+		// verifica se o CEP foi preenchido
+		if(!count($dados['cadastro']) && $dados['frete']['cep'] == '')
+			$dados['msg'] = 'Informe o seu CEP.';
+		else
+		{
+			// cria o link do carrinho com route
+			$link = JRoute::_("index.php?option=com_edesktop&view=loja&layout=cadastro&Itemid={$this->itemid}");			
+		}
+		
+	}
+	
+
+
+
 	/* ***************************************
 	 * Se for uma funcao
 	 * ***************************************/
@@ -249,14 +273,57 @@
 	$dados['frete']['peso'] = 0;
 	
 	
-	
 	// Recalcula o valores dos itens
 	foreach($itens as $id => $item)
 	{
+		$itens[$id]['valor'] = $item['valorOriginal'];
 		$dados['frete']['peso'] = $dados['frete']['peso'] + ($item['peso'] * $item['quantidade']);
-		$itens[$id]['total'] = $item['valor'] * $item['quantidade'];
+		$itens[$id]['total'] = $item['valorOriginal'] * $item['quantidade'];
 		$dados['subtotal'] = $dados['subtotal'] + $itens[$id]['total'];
 	}
+
+
+	// total se desconto
+	$dados['subtotalSemDesconto'] = $dados['subtotal'];
+
+	
+	if(count($itens))
+	{
+			
+		// descontos do tipo %
+		if($dados['cupom']['tipo'] == '%')
+		{
+			$dados['cupom']['porcentagem'] = ($dados['cupom']['valor'] / 100);
+			$dados['cupom']['html'] = '- '.$dados['cupom']['valor'] .'%';
+		}
+
+
+
+		// descontos do tipo $
+		if($dados['cupom']['tipo'] == '$')
+		{
+			$dados['cupom']['porcentagem'] = ($dados['cupom']['valor'] / $dados['subtotalSemDesconto']);
+			$dados['cupom']['html'] = '- R$ '. $dados['cupom']['valor'];
+		}
+
+
+		if($dados['cupom']['valor'])
+		{
+			$dados['subtotal'] = 0;
+			
+			// Recalcula o valores dos itens
+			foreach($itens as $id => $item)
+			{
+				$itens[$id]['valor'] = round($item['valorOriginal'] - ($item['valorOriginal'] * $dados['cupom']['porcentagem']), 2);
+				$itens[$id]['total'] = $itens[$id]['valor'] * $item['quantidade'];
+				$dados['subtotal'] = $dados['subtotal'] + $itens[$id]['total'];
+			}
+		}
+	}
+
+
+
+
 
 
 
@@ -298,33 +365,11 @@
 		
 		$dados['freteValor'] = $dados['fretes'][$freteModo];
 	}
+		
+
 	
-
-
 	// soma o valor
 	$dados['total'] = ($dados['subtotal'] + $dados['frete']['valor']);
-	
-
-	
-	// descontos do tipo $
-	if($dados['cupom']['tipo'] == '$')
-		$dados['total'] = $dados['total'] - $dados['cupom']['valor'];
-
-
-
-	// descontos do tipo %
-	if($dados['cupom']['tipo'] == '%')
-	{
-		$cupomPorce = $dados['cupom']['valor'];
-		$cupomValor = $dados['total'] * ($dados['cupom']['valor'] / 100);
-		
-		$dados['cupom']['html'] = "(-{$cupomPorce}%) R$ " .number_format($cupomValor, 2, ',', '');
-		$dados['total'] = $dados['total'] - $cupomValor;
-	}
-
-
-	if($dados['cupom']['html'] == '')
-		$dados['cupom']['html'] = '- R$ 0,00';
 
 
 
@@ -337,7 +382,6 @@
 	// envia para o layout
 	$this->assignRef('itens', $itens);
 	$this->assignRef('dados', $dados);
-
 
 
 	//print_r($dados);

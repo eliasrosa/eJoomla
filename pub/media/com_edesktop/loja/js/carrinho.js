@@ -49,12 +49,44 @@ $(function(){
 		
 	});	
 
+	// frete
+	$('input.cep2', $shop).keyup(function(){
+		var t = $(this)[0].textLength;
+		
+		if(t == 3)
+			$('a.cep', $shop).click();
+			
+	});	
+
 	
 	// tipo frete
 	$('.frete .tipos input', $shop).change(function(){
 		$('.funcao', $shop).val('update');	
 		$shop.submit();
 	});	
+	
+	
+	// finalizar compra
+	$('a.finalizarCompra', $shop).click(function(){
+	
+		$('.funcao', $shop).val('cadastro');	
+		$shop.submit();
+	
+		/*	
+		var token = $(':hidden[value="1"]', $shop).attr('name');
+
+		$.ajax({
+			type: "POST",
+			url: $shop.attr('action'),
+			cache: false,
+			data: token+ "=1&funcao=cadastro" ,
+			success: function(msg){
+				alert();
+			}
+		});
+		*/
+	});	
+	
 	
 
 });
