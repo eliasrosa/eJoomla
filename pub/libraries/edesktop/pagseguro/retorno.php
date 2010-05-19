@@ -1,6 +1,6 @@
 <?php
 
-if (!defined('TOKEN')) define ('TOKEN', '');
+if (!defined('PAGSEGURO_TOKEN')) define ('PAGSEGURO_TOKEN', '');
 
 /**
  * RetornoPagSeguro
@@ -29,7 +29,7 @@ class RetornoPagSeguro {
     if ('array' !== gettype($post)) $post=array();
     if ($confirmacao) {
       $post['Comando'] = 'validar';
-      $post['Token'] = TOKEN;
+      $post['Token'] = PAGSEGURO_TOKEN;
     }
     $retorno=array();
     foreach ($post as $key=>$value){
