@@ -42,7 +42,7 @@ $(function(){
 	
 	// frete
 	$('input.cep1', $shop).keyup(function(){
-		var t = $(this)[0].textLength;
+		var t = $(this).val().length;
 		
 		if(t == 5)
 			$('input.cep2', $shop).select();
@@ -51,7 +51,7 @@ $(function(){
 
 	// frete
 	$('input.cep2', $shop).keyup(function(){
-		var t = $(this)[0].textLength;
+		var t = $(this).val().length;
 		
 		if(t == 3)
 			$('a.cep', $shop).click();
