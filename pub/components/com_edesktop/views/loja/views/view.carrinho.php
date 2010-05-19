@@ -389,6 +389,6 @@
 	$this->assignRef('dados', $dados);
 
 
-	print_r($dados);
+	//print_r($dados);
 
 ?>
