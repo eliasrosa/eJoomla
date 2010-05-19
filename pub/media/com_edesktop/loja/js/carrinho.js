@@ -71,20 +71,7 @@ $(function(){
 	
 		$('.funcao', $shop).val('cadastro');	
 		$shop.submit();
-	
-		/*	
-		var token = $(':hidden[value="1"]', $shop).attr('name');
-
-		$.ajax({
-			type: "POST",
-			url: $shop.attr('action'),
-			cache: false,
-			data: token+ "=1&funcao=cadastro" ,
-			success: function(msg){
-				alert();
-			}
-		});
-		*/
+		
 	});	
 	
 	
