@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Confirmação de compra">
+		<message>Exibe a tela de confirmação da compra.</message>
+	</layout>
+	<state>
+		<name>Confirmação de compra</name>
+		<description>Exibe a tela de confirmação da compra.</description>
+	
+		<params>
+
+		</params>	
+			
+	</state>
+</metadata>

@@ -41,7 +41,8 @@
 	{
 		$itens = array();
 		$dados = array(
-			'msg' => ''
+			'msg' => '',
+			'descontoValor' => 0
 		);
 	}
 	
@@ -50,6 +51,7 @@
 	if(!isset($dados['cupom']))
 	{
 		$dados['cupom'] = array(
+			'id' => 0,
 			'valor' => 0,
 			'code' => '',
 			'html' => '',
@@ -318,6 +320,9 @@
 				$itens[$id]['total'] = $itens[$id]['valor'] * $item['quantidade'];
 				$dados['subtotal'] = $dados['subtotal'] + $itens[$id]['total'];
 			}
+			
+			// calcula o desconto
+			$dados['descontoValor'] = $dados['subtotalSemDesconto'] - $dados['subtotal'];
 		}
 	}
 
@@ -384,6 +389,6 @@
 	$this->assignRef('dados', $dados);
 
 
-	//print_r($dados);
+	print_r($dados);
 
 ?>
