@@ -26,7 +26,7 @@
 			<label><span>Nome completo:</span><input name="nome" title="Nome completo" type="input" maxlength="100" rel="text_" value="<?= $this->post['nome']; ?>" /></label>
 			<label><span>E-mail:</span><input name="email" title="E-mail" type="input" maxlength="255" rel="email_" value="<?= $this->post['email']; ?>" /></label>
 			<label class="tel"><span>Telefone:</span><input name="telefone" title="Telefone" type="input" rel="phone_" value="<?= $this->post['telefone']; ?>" /></label>
-			<label><span>Observações:</span><textarea name="anotacoes"><?= $this->post['anotacoes']; ?></textarea><span class="opcional">opcional</span></label>
+			<label><span>Observações:</span><textarea name="anotacoes" class="anot"><?= $this->post['anotacoes']; ?></textarea><span class="opcional">opcional</span><span class="limit"></span></label>
 			
 			<br class="clearfix"/>
 			

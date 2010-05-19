@@ -123,7 +123,8 @@
 #loja-cadastro form .mt { margin-top: 40px; } 
 #loja-cadastro form label { margin: 10px 0; font-weight: 700; text-transform: uppercase; display: block; clear: both;  height: 21px; line-height: 21px; }
 #loja-cadastro form label span { width: 100px; display: block; float: left;  height: 21px; line-height: 21px; text-align: right; padding-right: 5px; font-weight: normal; text-transform: none; }
-#loja-cadastro form label span.opcional { width: auto; float: none; display: inline; color: #999; text-transform: none; }
+#loja-cadastro form label span.opcional { width: auto; float: none; display: inline; color: #999; text-transform: none; position: relative; top: -21px; }
+#loja-cadastro form label span.limit { width: auto; float: none; display: inline; color: #999; text-transform: none; text-align: left; position: relative; left: -50px;  }
 #loja-cadastro form label a { text-transform: none; color: #0000FF; font-weight: normal; margin-left: 5px; }
 #loja-cadastro form label a:hover { text-decoration: underline; }
 #loja-cadastro form label input { border: 1px solid #CCC; color: #898989; padding: 3px 2px; width: 230px; margin-right: 5px; }
