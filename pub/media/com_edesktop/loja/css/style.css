@@ -27,6 +27,8 @@
 
 /* MOD - LANÇAMENTOS
  ***************************************/
+.modEdesktopProduto { margin: 20px 0; }
+.modEdesktopProduto h2 { height: 29px; background: url(../imagens/mods/tit_lancamentos.jpg) no-repeat left center; text-indent: -9999px; }
 .modEdesktopProduto p { text-align: center; }
 .modEdesktopProduto p a:hover { text-decoration: underline; }
 .modEdesktopProduto .img { margin-bottom: 5px; }
@@ -34,6 +36,10 @@
 .modEdesktopProduto .nome a { font-weight: 700; color: #666; }
 .modEdesktopProduto .fabricante a { color: #666; }
 .modEdesktopProduto .valor { font-weight: 700; color: #666; }
+.modEdesktopProduto .produtos { border: 1px solid #CCC; padding: 15px; }
+.modEdesktopProduto .produtos .produto .valor { color: #1290C5; }
+.modEdesktopProduto .produtos .produto { margin-bottom: 15px; }
+
 
 
 
