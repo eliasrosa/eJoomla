@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+    <name>eDesktop >> Loja >> Carrinho</name>
+    <author>Elias da Rosa</author>
+    <version>1.0</version>
+    <description>Exibe um carrinho de compras</description>
+    <files>
+        <filename>index.html</filename>
+    </files>
+    <params>
+		<param name="mod_titulo" type="text" default="Meu carrinho" label="Título" description="" />
+		<param name="mod_id" type="text" default="" label="Atributo ID" description="" />
+		<param name="mod_itemid" type="text" default="" label="Itemid" description="" />
+    </params>
+</install>

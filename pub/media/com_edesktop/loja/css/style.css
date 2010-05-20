@@ -37,6 +37,23 @@
 
 
 
+
+/* MOD - CARRINHO
+ ***************************************/
+.modEdesktopLojaCarrinho h2 { height: 29px; background: url(../imagens/bg_tit_mod_carrinho.jpg) no-repeat 0 0; text-indent: -9999px; display: block; }
+.modEdesktopLojaCarrinho .corpo { border: 1px solid #ccc; width: 198px; }
+.modEdesktopLojaCarrinho .corpo .itens { display: block; margin: 8px 10px; color: #666; }
+.modEdesktopLojaCarrinho .corpo .itens .valor { color: #1290C5; display: block; }
+.modEdesktopLojaCarrinho .corpo .subtotal { border-top: 1px solid #bbb; margin: 15px 10px; padding: 7px 0; font-weight: 700; }
+.modEdesktopLojaCarrinho .corpo .subtotal .valor { float: right; color: #1290C5;}
+.modEdesktopLojaCarrinho .corpo .subtotal .txt { color: #666; }
+.modEdesktopLojaCarrinho .corpo .itens:hover { text-decoration: underline; }
+.modEdesktopLojaCarrinho .corpo .visualizar { height: 28px; width: 198px; background: url(../imagens/bg_visu_mod_carrinho.jpg) no-repeat 0 0; text-indent: -9999px; display: block; }
+.modEdesktopLojaCarrinho .corpo .vazio { padding: 20px 10px; color: #666; text-align: center; }
+
+
+
+
 /* MOD - FABRICANTES
  ***************************************/
 .modEdesktopProdutosFabricantes .fabricantes { text-align: center; }
