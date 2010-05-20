@@ -1,0 +1,11 @@
+/* MOD - CATEGORIAS
+ ***************************************/
+.modEdesktopLojaCategorias { width: 198px; }
+.modEdesktopLojaCategorias h2 { height: 29px; background: url(bg_tit.jpg) no-repeat left center; text-indent: -9999px; }
+.modEdesktopLojaCategorias ul.menu { border: 1px solid #ccc; }
+.modEdesktopLojaCategorias ul li { display: block; position: relative; cursor: pointer; }
+.modEdesktopLojaCategorias ul li a { padding: 10px 12px; display: block; background: #fff;  }
+.modEdesktopLojaCategorias ul li a.hover { background: #eee; }
+.modEdesktopLojaCategorias ul li a:hover { color: #006699; text-decoration: underline; }
+.modEdesktopLojaCategorias ul li.pai ul { position: absolute; left: 185px; top: 7px; z-index: 10000; display: none; }	
+.modEdesktopLojaCategorias ul li.pai ul { border: 1px solid #ccc; width: 198px; }	

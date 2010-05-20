@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install type="module" version="1.5.0">
-    <name>eDesktop >> Produtos >> Categorias >> Lista</name>
+    <name>eDesktop >> Loja >> Categorias</name>
     <author>Elias da Rosa</author>
     <version>1.0</version>
-    <description>Cria uma lista html com as categorias de produtos</description>
+    <description>Cria um menu de categorias e subcategorias</description>
     <files>
         <filename>index.html</filename>
     </files>

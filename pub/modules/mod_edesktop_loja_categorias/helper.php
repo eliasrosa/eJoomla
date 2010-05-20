@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die( "Acesso Restrito" );
 
-class modEdesktopProdutosCategoriasListaHelper
+class modEdesktopLojaCategoriasHelper
 {
 	public function montaMenu($idpai = 0, $Itemid = 0)
 	{
@@ -18,7 +18,7 @@ class modEdesktopProdutosCategoriasListaHelper
 			
 			foreach($cats as $cat)
 			{
-				$s = modEdesktopProdutosCategoriasListaHelper::montaMenu($cat->id, $Itemid);
+				$s = modEdesktopLojaCategoriasHelper::montaMenu($cat->id, $Itemid);
 				$class = ($s == '') ? '' : ' class="pai"';
 				$href = JROUTE::_("index.php?option=com_edesktop&view=loja&layout=categoria&Itemid={$Itemid}&id={$cat->id}");
 
