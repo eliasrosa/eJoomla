@@ -8,9 +8,11 @@ $iid = $params->get('mod_itemid');
 $lim = $params->get('mod_limit');
 
 
+$doc  = & JFactory::getDocument();
 
 // adiciona o style css da loja
-JHTML::stylesheet('style.css', 'media/com_edesktop/loja/css/');
+$doc->addStyleSheet('media/com_edesktop/loja/mods/modEdesktopProdutosFabricantes/style.css');
+
 
 // importa a class produtos
 jimport('edesktop.programas.produtos.fabricantes');
