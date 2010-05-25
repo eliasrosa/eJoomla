@@ -144,6 +144,7 @@
 #loja-cadastro form label.tel input { width: 90px; }
 #loja-cadastro form label.num input { width: 50px; }
 #loja-cadastro form label.com input { width: 150px; }
+#loja-cadastro form label.com span.opcional { position: relative; top: 0; }
 #loja-cadastro form .btn { margin-top: 20px; text-align: center; clear: both; }
 
 
