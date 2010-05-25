@@ -111,15 +111,21 @@
 		// se o cep for valido
 		if(preg_match('/(^\d{5}-\d{3}$)/', $cep))
 		{
-			$resultado = @file_get_contents('http://republicavirtual.com.br/web_cep.php?cep='.urlencode($cep1.$cep2).'&formato=query_string');  
-			
+			$resultado = @file_get_contents('http://cep.republicavirtual.com.br/web_cep.php?cep='.urlencode($cep1.$cep2).'&formato=query_string');  
+					
 			if(!$resultado)
 				$resultado = "&resultado=0&resultado_txt=erro+ao+buscar+cep";  
-		
+			
 			parse_str($resultado, $retorno);   
 
 			if($retorno['resultado'])
 			{
+				$retorno['tipo_logradouro'] = iconv('iso-8859-1', 'utf-8', $retorno['tipo_logradouro']);
+				$retorno['logradouro'] = iconv('iso-8859-1', 'utf-8', $retorno['logradouro']);
+				$retorno['bairro'] = iconv('iso-8859-1', 'utf-8', $retorno['bairro']);
+				$retorno['cidade'] = iconv('iso-8859-1', 'utf-8', $retorno['cidade']);
+				$retorno['uf'] = iconv('iso-8859-1', 'utf-8', $retorno['uf']);
+				
 				$dados['frete']['cep'] = $cep;
 				$dados['frete']['cep1'] = $cep1;
 				$dados['frete']['cep2'] = $cep2;
@@ -161,8 +167,6 @@
 			'quantidade' => 1
 		);					
 	}
-
-
 
 
 	/* ***************************************
@@ -258,6 +262,7 @@
 		// atualiza as sessions
 		$_SESSION[$sessao_itens] = $itens;
 		$_SESSION[$sessao_dados] = $dados;		
+
 				
 		// redireciona para o carrinho
 		$mainframe->redirect($link);			
