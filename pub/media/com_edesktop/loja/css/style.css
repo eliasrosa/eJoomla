@@ -157,7 +157,6 @@
 #loja-pedidos form label span { width: 130px; display: inline; line-height: 19px; height: 19px; float: left; text-align: right; }
 #loja-pedidos form label input.txt { width: 270px; border: 1px solid #ccc; color: #666; padding: 2px 3px; margin-left: 10px; text-align: center; }
 #loja-pedidos form input.submit { margin: 20px auto; width: 155px; height: 25px; background: url(../imagens/btProsseguir.gif) no-repeat 0 0; text-indent: -9999px; border: none; cursor: pointer; }
-
 #loja-pedidos .result label { display: block; clear: both; margin: 10px 0; }
 #loja-pedidos .result label span.col { width: 130px; display: block; float: left; color: #666; line-height: 19px; height: 19px; text-align: right; }
 #loja-pedidos .result label span.txt { width: 270px; display: block; float: left; color: #666; margin: 2px 0 0 10px; text-align: left; text-transform: uppercase; font-weight: 700; }

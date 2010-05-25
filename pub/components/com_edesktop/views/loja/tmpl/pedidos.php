@@ -30,8 +30,8 @@
 
 		<p>Consulte o status do seu pedido, preencha os dados abaixo.</p>
 		<form method="post" action="">
-			<label><span>E-mail do comprador:</span><input class="txt" name="email" type="input" value="atendimento@rosaartes.com.br" /></label>
-			<label><span>Número do pedido:</span><input class="txt" name="pedido" type="input" value="441845C6-95A9-4B2E-973F-8649EFC0EE57" /></label>		
+			<label><span>E-mail do comprador:</span><input class="txt" name="email" type="input" value="<?= $this->email; ?>" /></label>
+			<label><span>Número do pedido:</span><input class="txt" name="pedido" type="input" value="<?= $this->pedido; ?>" /></label>		
 			<input name="Consultar" type="submit" class="submit" />
 		</form>
 	
