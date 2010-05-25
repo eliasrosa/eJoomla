@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Em breve">
+		<message>Exibe uma página padrão de construção.</message>
+	</layout>
+	<state>
+		<name>Em breve</name>
+		<description>Exibe uma página padrão de construção.</description>
+	</state>
+</metadata>
