@@ -22,7 +22,7 @@ $p = $this->dados;
 		
 		<div class="dados">
 			<p class="descricao"><?= nl2br($p->produto->descricao); ?></p>
-			<p class="valor">R$ <?= number_format($p->produto->valor, 2, ',', ''); ?></p>
+			<p class="valor">R$ <?= number_format($p->produto->valor, 2, ',', '.'); ?></p>
 			
 			<form action="<?= JRoute::_("index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$this->itemid}"); ?>" method="post">
 				<div class="comprar">

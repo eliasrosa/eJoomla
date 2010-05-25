@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
 		<p class="img"><a href="<?= $produto; ?>"><img src="<?= $p->imagem->url ?>" alt="<?= $p->produto->nome; ?> - Produto <?= $p->fabricante->nome; ?> " width="130" height="150" /></a></p>
 		<p class="nome"><a href="<?= $produto; ?>"><?= $p->produto->nome; ?></a></p>
 		<p class="fabricante"><a href="<?= $fabricante; ?>"><?= $p->fabricante->nome; ?></a></p>
-		<p class="valor">R$ <?= number_format($p->produto->valor, 2, ',', ''); ?></p>
+		<p class="valor">R$ <?= number_format($p->produto->valor, 2, ',', '.'); ?></p>
 	</div>
 	<? endforeach; ?>
 	<!-- Fim produtos -->

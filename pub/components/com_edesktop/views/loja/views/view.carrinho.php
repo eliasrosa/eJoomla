@@ -197,7 +197,7 @@
 			$dados['cupom']['tipo'] = $cupom->tipo;
 		
 			if($cupom->tipo == '$')
-				$dados['cupom']['html'] = "- R$ " .number_format($cupom->valor, 2, ',', '');
+				$dados['cupom']['html'] = "- R$ " .number_format($cupom->valor, 2, ',', '.');
 
 		}else
 			$dados['msg'] = 'Código do cupom de desconto não encontrado.';

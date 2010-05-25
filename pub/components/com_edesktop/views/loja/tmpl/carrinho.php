@@ -32,13 +32,13 @@
 				<td class="img">
 				<a class="destaque" rel="lightbox-imgs" href="<?= $p['img']; ?>" tabindex="650,450" style="background: #FFF url([eImage src='<?= $p['img'] ?>' width='80' height='100']) no-repeat center center;" ><img src="<?= $p['img'] ?>" width="80" height="100" /></a></td>
 				<td class="descr"><a href="<?= $link; ?>"><?= $p['nome']; ?></a></td>
-				<td class="valor">R$ <?= number_format($p['valor'], 2, ',', ''); ?></td>
+				<td class="valor">R$ <?= number_format($p['valor'], 2, ',', '.'); ?></td>
 				<td class="quant">
 					<input type="input" value="<?= $p['quantidade']; ?>" name="qt[<?= $p['key']; ?>]" rel="int_" class="<?= $p['key']; ?>" />
 					<a href="javascript:void(0);" class="up"><img src="media/com_edesktop/loja/imagens/btRefresh.gif" /></a>
 					<a href="javascript:void(0);" class="rm" rel="<?= $p['key']; ?>"><img src="media/com_edesktop/loja/imagens/btRemove.gif" /></a>
 				</td>
-				<td class="total">R$ <?= number_format($p['total'], 2, ',', ''); ?></td>
+				<td class="total">R$ <?= number_format($p['total'], 2, ',', '.'); ?></td>
 			</tr>
 			<? endforeach; ?>
 		</table>
@@ -54,12 +54,12 @@
 				
 				<div class="tipos">
 					<? if($this->dados['frete']['cep'] && $this->dados['frete']['tipo'] != 'fixo'): ?>			
-					<label><input type="radio" value="PAC" name="frete.modo" <?= $this->dados['frete']['modo'] == 'PAC' ? 'checked="checked"' : '';  ?> /><span>PAC: R$ <?= number_format($this->dados['frete']['PAC'], 2, ',', ''); ?></span></label>				
-					<label><input type="radio" value="Sedex" name="frete.modo" <?= $this->dados['frete']['modo'] == 'Sedex' ? 'checked="checked"' : '';  ?> /><span>Sedex: R$ <?= number_format($this->dados['frete']['Sedex'], 2, ',', ''); ?></span></label>			
+					<label><input type="radio" value="PAC" name="frete.modo" <?= $this->dados['frete']['modo'] == 'PAC' ? 'checked="checked"' : '';  ?> /><span>PAC: R$ <?= number_format($this->dados['frete']['PAC'], 2, ',', '.'); ?></span></label>				
+					<label><input type="radio" value="Sedex" name="frete.modo" <?= $this->dados['frete']['modo'] == 'Sedex' ? 'checked="checked"' : '';  ?> /><span>Sedex: R$ <?= number_format($this->dados['frete']['Sedex'], 2, ',', '.'); ?></span></label>			
 					<? endif; ?>
 					
 					<? if($this->dados['frete']['cep']): ?>			
-					<label><span>R$ <?= number_format($this->dados['frete']['valor'], 2, ',', ''); ?> de frete para todo o Brasil</span></label>				
+					<label><span>R$ <?= number_format($this->dados['frete']['valor'], 2, ',', '.'); ?> de frete para todo o Brasil</span></label>				
 					<? endif; ?>
 				
 				</div>
@@ -79,7 +79,7 @@
 			<table class="totais">
 				<tr>
 					<td class="txt">SUBTOTAL:</td>
-					<td class="vlr">R$ <?= number_format($this->dados['subtotal'], 2, ',', ''); ?></td>
+					<td class="vlr">R$ <?= number_format($this->dados['subtotal'], 2, ',', '.'); ?></td>
 				</tr>
 				<? if($this->dados['cupom']['html']): ?>
 				<tr class="vDesconto bt">
@@ -90,12 +90,12 @@
 				<? if($this->dados['frete']['valor']): ?>
 				<tr class="vfrete bt">
 					<td class="txt">FRETE:</td>
-					<td class="vlr">+ R$ <?= number_format($this->dados['frete']['valor'], 2, ',', ''); ?></td>
+					<td class="vlr">+ R$ <?= number_format($this->dados['frete']['valor'], 2, ',', '.'); ?></td>
 				</tr>
 				<? endif; ?>
 				<tr class="total">
 					<td class="txt">TOTAL:</td>
-					<td class="vlr">R$ <?= number_format($this->dados['total'], 2, ',', ''); ?></td>
+					<td class="vlr">R$ <?= number_format($this->dados['total'], 2, ',', '.'); ?></td>
 				</tr>
 			</table>
 			
@@ -111,8 +111,5 @@
 		<?php echo JHTML::_( 'form.token' ); ?>
 		<input type="hidden" value="update" name="funcao" class="funcao" />
 	</form>	
-	
-	
-
-	
+		
 </div>
