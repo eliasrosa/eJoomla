@@ -101,8 +101,6 @@
 #loja-carrinho form .produtos .item .valor { white-space: nowrap; } 
 #loja-carrinho form .produtos .item .quant input { display: block; margin:0 auto; text-align:center; width:3em; padding: 3px 2px; color: #898989; border: 1px solid #CCC; } 
 #loja-carrinho form .produtos .item .quant a { display: block; margin-top: 7px; } 
-
-
 #loja-carrinho form .colRight { width: 300px; float: right; }
 #loja-carrinho form .colRight .totais { width: 100%; border-spacing: 0; background: #EAEAEA; border: 1px solid #BBB; }
 #loja-carrinho form .colRight .totais tr td { font-size: 14px; padding: 15px 10px; font-family: "Trebuchet MS", Arial, Verdana; }
@@ -111,8 +109,6 @@
 #loja-carrinho form .colRight .totais tr.total td { background: #757575; color: #FFF; }
 #loja-carrinho form .colRight .totais tr.bt td { border-top: 1px solid #CCC; }
 #loja-carrinho form .colRight .finalizarCompra { float: right; margin-top: 15px; }
-
-
 #loja-carrinho form .colLeft { float: left; width: 252px; }
 #loja-carrinho form .colLeft .frete { padding: 10px; border: 1px solid #CCC; margin-bottom: 9px; color: #828282; font-weight: 700;}
 #loja-carrinho form .colLeft .frete h2 { font-size: 16px; font-family: "Trebuchet MS", Arial, Verdana; color: #828282; }
@@ -136,8 +132,6 @@
 /* CADASTRO
  ***************************************/
 #loja-cadastro h1 { margin-bottom: 20px; font-size: 18px; } 
-#loja-cadastro .msg { background: #FFFFCC  url(../imagens/ico_erro.gif) no-repeat 10px center; border: 1px solid #DDD; margin-bottom: 20px; padding: 15px 55px; } 
-#loja-cadastro .msg h1 { font-size: 14px; } 
 #loja-cadastro form .mt { margin-top: 40px; } 
 #loja-cadastro form label { margin: 10px 0; font-weight: 700; text-transform: uppercase; display: block; clear: both;  height: 21px; line-height: 21px; }
 #loja-cadastro form label span { width: 100px; display: block; float: left;  height: 21px; line-height: 21px; text-align: right; padding-right: 5px; font-weight: normal; text-transform: none; }
@@ -151,3 +145,29 @@
 #loja-cadastro form label.num input { width: 50px; }
 #loja-cadastro form label.com input { width: 150px; }
 #loja-cadastro form .btn { margin-top: 20px; text-align: center; clear: both; }
+
+
+
+/* PEDIDOS
+ ***************************************/
+#loja-pedidos h1 { margin-bottom: 20px; font-size: 18px; } 
+#loja-pedidos p { margin-bottom: 20px; } 
+#loja-pedidos form { text-align: center; }
+#loja-pedidos form label { display: block; clear: both; margin: 10px 0; text-align: left; }
+#loja-pedidos form label span { width: 130px; display: inline; line-height: 19px; height: 19px; float: left; text-align: right; }
+#loja-pedidos form label input.txt { width: 270px; border: 1px solid #ccc; color: #666; padding: 2px 3px; margin-left: 10px; text-align: center; }
+#loja-pedidos form input.submit { margin: 20px auto; width: 155px; height: 25px; background: url(../imagens/btProsseguir.gif) no-repeat 0 0; text-indent: -9999px; border: none; cursor: pointer; }
+
+#loja-pedidos .result label { display: block; clear: both; margin: 10px 0; }
+#loja-pedidos .result label span.col { width: 130px; display: block; float: left; color: #666; line-height: 19px; height: 19px; text-align: right; }
+#loja-pedidos .result label span.txt { width: 270px; display: block; float: left; color: #666; margin: 2px 0 0 10px; text-align: left; text-transform: uppercase; font-weight: 700; }
+
+
+
+
+/* MENSAGENS DE ERRO
+ ***************************************/
+#loja-msg-erro { background: #FFFFCC  url(../imagens/ico_erro.gif) no-repeat 10px center; border: 1px solid #DDD; margin-bottom: 20px; padding: 15px 55px; } 
+#loja-msg-erro h1 { font-size: 14px; } 
+
+

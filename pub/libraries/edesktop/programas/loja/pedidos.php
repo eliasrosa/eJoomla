@@ -70,6 +70,15 @@ class edesktop_loja_pedidos
 		return $dados;
 	}
 		
+
+	/* Busca o pedido pelo ID da Trasação do pedido
+	 ***************************************************/
+	function busca_por_transacaoID($pedido, $email)
+	{	
+		$dados = $this->db->busca("WHERE TransacaoID = '{$pedido}' AND CliEmail = '{$email}' LIMIT 0,1");
+		
+		return count($dados) ? $dados[0] : false;
+	}
 	
 	
 		
