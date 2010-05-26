@@ -98,6 +98,19 @@ class edesktop_produtos_produtos
 	
 	
 	
+	
+	/* busca todos os produtos
+	 ***************************************************/
+	function busca_todos($order = "nome ASC")
+	{
+		$dados = $this->db->busca_tudo($order);
+		
+		return $dados;
+	}
+	
+	
+	
+	
 	/* busca todos os produtos pelo texto
 	 ***************************************************/
 	function busca_por_texto($texto)
