@@ -12,6 +12,6 @@
 		<script type="text/javascript" src="<?= EDESKTOP_URL_JS ?>/eDesktop.core.js"></script>
 	</head>
 	<body>
-		<div id="geral" style="background: url(<?= EDESKTOP_URL_IMG ?>/wallpaper.jpg) center center no-repeat;"></div>
+		<div id="geral"></div>
 	</body>
 </html>

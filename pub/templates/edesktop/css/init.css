@@ -5,7 +5,7 @@ a img { border: none; }
 * { font-size: 13px; font-family: Tahoma;  }
 
 
-#geral { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+#geral { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #333; }
 
 
 /* LoadBar
