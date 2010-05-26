@@ -195,7 +195,7 @@ class programa {
 
             // verifica se existe o arquivo js
             $js_file = $this->pasta_paginas .DS. $this->pagina.'.js';
-            if(file_exists($js_file)) {
+            if(file_exists($js_file) && filesize ($js_file)) {
                 $handle = fopen($js_file, "r");
                 $js_file = fread ($handle, filesize ($js_file));
                 fclose ($handle);
