@@ -1,0 +1,26 @@
+<h1>Lista de produtos</h1>
+<p>Edite e remova produtos do sitema.</p>
+
+<form rel="{$processID}" method="post" action="{$formURL}produtos.remover">
+	<table class="ui-corner-top">
+		<tr class="ui-widget-header">
+			<td></td>
+			<td>Nome</td>
+			<td>Status</td>
+		</tr>
+
+	{foreach from=$produtos item="p"}
+		<tr class="ui-widget-content">
+			<td><input type="checkbox" name="ids[]" value="{$p->id}" /></td>
+			<td><strong>{$p->nome}</strong>
+				<div class="actions">
+					<span class="editar"><a class="link" rel="'pagina': 'produtos.form', 'query': 'id={$p->id}'" href="javascript:void(0);">Editar</a></span>
+					<span class="excluir"><a href="javascript:void(0);">Excluír</a></span>
+				</div>
+			</td>
+			<td>{if $p->status == 1}Publicado{else}Despublicado{/if}</td>
+		</tr>
+	{/foreach}		
+	</table>
+	<p class="excluir"><a href="javascript:void(0);">Excluír selecionados</a></p>
+</form>

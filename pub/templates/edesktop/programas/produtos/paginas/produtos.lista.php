@@ -1,8 +1,10 @@
 <?
 $menu_principal->show();
-$id = JRequest::getvar('id', 0);
 
+jimport('edesktop.programas.produtos.produtos');
 
+$p = new edesktop_produtos_produtos();
+$p = $p->busca_todos();
 
-
+$this->smarty->assign('produtos', $p);
 ?>
