@@ -23,10 +23,10 @@ class edesktop_produtos_produtos
 
 	/* Inicia a class
 	 ***************************************************/
-	function __construct()
+	function __construct($dados = array())
 	{
 		// Abre a tabela
-		$this->db = new JCRUD($this->tabela);
+		$this->db = new JCRUD($this->tabela, $dados);
 	}
 	
 	
@@ -44,22 +44,22 @@ class edesktop_produtos_produtos
 			// carrega o fabricante do produto
 			jimport('edesktop.programas.produtos.fabricantes');
 			$d = new edesktop_produtos_fabricantes();
-			$dados->fabricante = $d->busca_por_id($dados->produto->idfabricante);
+			@$dados->fabricante = $d->busca_por_id($dados->produto->idfabricante);
 
 			// carrega o imagem de destaque do produto
 			jimport('edesktop.programas.produtos.imagens');
 			$d = new edesktop_produtos_imagens();
-			$dados->imagem = $d->busca_destaque_por_produto($dados->produto->id);
+			@$dados->imagem = $d->busca_destaque_por_produto($dados->produto->id);
 
 			// carrega todas as imagens do produto
 			jimport('edesktop.programas.produtos.imagens');
 			$d = new edesktop_produtos_imagens();
-			$dados->imagens = $d->busca_por_produto($dados->produto->id);
+			@$dados->imagens = $d->busca_por_produto($dados->produto->id);
 
 			// carrega todos os textos do produto
 			jimport('edesktop.programas.produtos.textos');
 			$d = new edesktop_produtos_textos();
-			$dados->textos = $d->busca_por_produto($dados->produto->id);
+			@$dados->textos = $d->busca_por_produto($dados->produto->id);
 
 			// retorno os dados 
 			return $dados;
