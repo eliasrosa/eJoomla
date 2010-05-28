@@ -41,6 +41,19 @@ class edesktop_produtos_textos
 	
 	
 	
+	/* apaga um texto pelo id
+	 ***************************************************/
+	function delete($id)
+	{
+		// textos
+		$dados = $this->db->delete($id);
+				
+		// retorno os dados 
+		return $dados;
+	}
+		
+	
+	
 	
 	/* busca todos os textos pelo id do produto
 	 ***************************************************/
