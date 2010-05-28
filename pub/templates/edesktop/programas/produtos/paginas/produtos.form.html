@@ -1,0 +1,126 @@
+<h1>Cadastro de produto</h1>
+
+<form rel="{$processID}" method="post" action="{$formURL}produtos.salvar">
+
+		{if $produto->id != 0}
+		<div class="line">
+			<span>Código</span>
+			{$produto->id}
+			<input type="hidden" name="produto[id]" value="{$produto->id}" />
+			<br class="clearfix"/>
+		</div>	
+		{/if}
+		
+		<div class="line">
+			<span>Nome</span>
+			<input type="text" class="w100" name="produto[nome]" value="{$produto->nome}" rel="text_" title="Nome" />
+			<br class="clearfix"/>
+		</div>
+		
+		<div class="line">
+			<span>Referência</span>
+			<input type="text" class="w100" name="produto[referencia]" value="{$produto->referencia}" title="Referência" />
+			<br class="clearfix"/>
+		</div>
+		
+		<div class="line">
+			<span>Descrição</span>
+			<textarea name="produto[descricao]" class="w100" rows="6">{$produto->descricao}</textarea>
+			<br class="clearfix"/>
+		</div>
+
+		<div class="line">
+			<span>Destaque</span>
+			<input type="radio" name="produto[destaque]" value="1" {if $produto->destaque}checked="checked"{/if} />Sim
+			<input type="radio" name="produto[destaque]" value="0" {if !$produto->destaque}checked="checked"{/if} />Não
+			<br class="clearfix"/>
+		</div>
+
+		<div class="line">
+			<span>Status</span>
+			<input type="radio" name="produto[status]" value="1" {if $produto->status}checked="checked"{/if} />Ativado
+			<input type="radio" name="produto[status]" value="0" {if !$produto->status}checked="checked"{/if} />Desativado
+			<br class="clearfix"/>
+		</div>
+
+		<p class="acoes newLine">
+			<input class="submit" type="submit" value="Salvar" />
+		</p>
+		
+		<div class="extras newLine {if !$produto->id}hide{/if}">
+			<ul>
+				<li><a href="#loj">Loja Virtual</a></li>
+				<li><a href="#cat">Categorias</a></li>
+				<li><a href="#img">Imagens</a></li>
+				<li><a href="#txt">Textos</a></li>
+				<li><a href="#seo">SEO</a></li>
+			</ul>
+			
+
+			<!-- loja virtual -->
+			<div id="loj">
+					
+				<div class="line">
+					<span>Fabricante</span>
+					<select class="w100" name="produto[idfabricante]">
+						<option value="0" {if $f->id == 0}selected="selected"{/if}>-- Selecione --</option>
+						{foreach from=$fabricantes item="f"}
+							<option value="{$f->id}" {if $f->id == $produto->idfabricante}selected="selected"{/if}>{$f->nome}</option>
+						{/foreach}
+					</select>
+					<br class="clearfix"/>
+				</div>
+
+				<div class="line">
+					<span>Valor R$</span>
+					<input type="text" class="w30 tar" name="produto[valor]" value="{$produto->valor}" rel="moeda" title="Valor" />
+					<br class="clearfix"/>
+				</div>
+
+				<div class="line">
+					<span>Peso</span>
+					<input type="text" class="w30 tar" name="produto[peso]" value="{$produto->peso}" rel="integer" title="Peso" />
+					<br class="clearfix"/>
+				</div>
+	
+				<div class="line">
+					<span>Quantidade</span>
+					<input type="text" class="w30 tar" name="produto[quantidade]" value="{$produto->quantidade}" rel="integer" title="Quantidade" />
+					<br class="clearfix"/>
+				</div>					
+			</div>
+			<!-- FIM -->
+			
+			<div id="cat"><p>Em construção!</p></div>
+			<div id="img"><p>Em construção!</p></div>
+			<div id="txt"><p>Em construção!</p></div>
+			
+			<!-- SEO -->
+			<div id="seo">
+				<p>O significado de SEO é <a href="http://pt.wikipedia.org/wiki/Search_Engine_Optimization" target="_blank">Search Engine Optimization</a>. Em português ele é conhecido como Otimização de Sites, MOB e Otimização para Buscas. O SEO nada mais é do que a otimização de uma página (ou até do site inteiro) para ser melhor compreendido pelas ferramentas de busca.</p>
+
+				<div class="line">
+					<span>Alias</span>
+					<input type="text" class="w100 alias" name="produto[alias]" value="{$produto->alias}" />
+					<br class="clearfix"/>
+				</div>		
+
+				<div class="line">
+					<span>Palavras chaves</span>
+					<input type="text" class="w100" name="produto[metatagkey]" value="{$produto->metatagkey}" />
+					<p class="lembrete">Separar as palavras usando ","</p>
+					<br class="clearfix"/>
+				</div>		
+
+				<div class="line">
+					<span>Descrição</span>
+					<textarea name="produto[metatagdescription]" class="w100" rows="6">{$produto->metatagdescription}</textarea>
+					<p class="lembrete">Limite máximo de 160 caracteres</p>
+					<br class="clearfix"/>
+				</div>			
+			</div>
+			<!-- FIM -->
+					
+		</div>
+
+</form>
