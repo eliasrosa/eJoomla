@@ -4,6 +4,8 @@
 
 	// busca dados
 	$dados = $produtos->busca_por_id($id, true);
+	$dados->imagem->nome = isset($p->imagem->nome) ? $p->imagem->nome : '';
+
 
 	// envia para o layout
 	$this->assignRef('dados', $dados);
