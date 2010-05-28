@@ -19,10 +19,10 @@ class edesktop_produtos_textos
 
 	/* Inicia a class
 	 ***************************************************/
-	function __construct()
+	function __construct($dados = array())
 	{
 		// Abre a tabela
-		$this->db = new JCRUD($this->tabela);
+		$this->db = new JCRUD($this->tabela, $dados);
 	}
 	
 	
