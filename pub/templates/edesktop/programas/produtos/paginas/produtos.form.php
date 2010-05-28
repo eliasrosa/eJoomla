@@ -33,4 +33,6 @@ $fabricantes = $f->busca_todos();
 $this->smarty->assign('fabricantes', $fabricantes);
 
 
+//print_r($p);
+
 ?>

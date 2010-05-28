@@ -26,3 +26,5 @@ $form.validaForm({
 	
 });
 
+$('#txt p a.list').button();
+$('#txt p a.add').button();
