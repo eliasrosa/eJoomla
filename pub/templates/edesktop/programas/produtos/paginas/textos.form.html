@@ -1,0 +1,47 @@
+<h1>{$produto->nome}</h1>
+<h2>Texto</h2>
+
+<form rel="{$processID}" method="post" action="{$formURL}textos.salvar">
+
+		{if $texto->id != 0}
+			<input type="hidden" name="texto[id]" value="{$texto->id}" />
+		{/if}
+		
+		<div class="line">
+			<span>Título</span>
+			<input type="text" class="wp100 mt5" name="texto[titulo]" value="{$texto->titulo}" rel="text_" title="Título" />
+			<br class="clearfix"/>
+		</div>
+		
+
+		<div class="line">
+			<span>Texto</span>
+			<textarea name="texto[html]" class="wp100 mt5" rows="15" rel="text_" title="Texto">{$texto->html}</textarea>
+			<br class="clearfix"/>
+		</div>
+
+
+		<div class="line">
+			<span>Ordem</span>
+			<input type="text" class="w20" name="texto[ordem]" value="{$texto->ordem}" rel="int_" title="Ordem" />
+			<br class="clearfix"/>
+		</div>
+		
+		<div class="line">
+			<span>Status</span>
+			<input type="radio" name="texto[status]" value="1" {if $texto->status}checked="checked"{/if} />Ativado
+			<input type="radio" name="texto[status]" value="0" {if !$texto->status}checked="checked"{/if} />Desativado
+			<br class="clearfix"/>
+		</div>
+
+		<input type="hidden" name="texto[idproduto]" value="{$texto->idproduto}" />
+
+		<p class="acoes newLine">
+			<input class="submit button" type="submit" value="Salvar" />
+		</p>
+	
+</form>
+
+
+
+
