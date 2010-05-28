@@ -1,12 +1,15 @@
 <?
-
 jimport('edesktop.programas.produtos.textos');
+jimport('edesktop.programas.produtos.produtos');
+$t = new edesktop_produtos_textos();
+$p = new edesktop_produtos_produtos();
 
-$id = JRequest::getvar('idproduto', 0);
+$idproduto = JRequest::getvar('idproduto', 0);
 
-$p = new edesktop_produtos_textos();
-$p = $p->busca_por_produto($id);
+$t = $t->busca_por_produto($idproduto);
+$p = $p->busca_por_id($idproduto);
 
-$this->smarty->assign('textos', $p);
+$this->smarty->assign('textos', $t);
+$this->smarty->assign('produto', $p);
 
 ?>

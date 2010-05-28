@@ -1,12 +1,13 @@
-<h1>Lista de textos</h1>
+<h1>{$produto->nome} - Lista de textos</h1>
 <p>Edite e remova textos de produtos.</p>
 
 <form rel="{$processID}" method="post" action="{$formURL}textos.remover">
 	<table class="ui-corner-top">
 		<tr class="ui-widget-header">
 			<td></td>
-			<td>Título</td>
-			<td>Status</td>
+			<td class="wp80">Título</td>
+			<td class="tac wp10">Ordem</td>
+			<td class="tac wp10">Status</td>
 		</tr>
 
 	{foreach from=$textos item="t"}
@@ -18,7 +19,8 @@
 					<span class="excluir"><a href="javascript:void(0);">Excluír</a></span>
 				</div>
 			</td>
-			<td>{if $t->status == 1}Publicado{else}Despublicado{/if}</td>
+			<td class="tac">{$t->ordem}</td>
+			<td class="tac">{if $t->status == 1}Publicado{else}Despublicado{/if}</td>
 		</tr>
 	{/foreach}		
 	</table>
