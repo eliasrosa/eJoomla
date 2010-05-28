@@ -24,6 +24,16 @@ legend { color: #0B55C4; font-size: 12px; font-family: Arial, Tahoma; font-weigh
 .left { float: left; }
 .ui-tabs-hide { display: block !important; position: absolute; top: 999999px; }
 .line { display: block; margin: 7px 0; }
+.line .wp100 { width: 100%; }
+.line .wp90 { width: 90%; }
+.line .wp80 { width: 80%; }
+.line .wp70 { width: 70%; }
+.line .wp60 { width: 60%; }
+.line .wp50 { width: 50%; }
+.line .wp40 { width: 40%; }
+.line .wp30 { width: 30%; }
+.line .wp20 { width: 20%; }
+.line .wp10 { width: 10%; }
 .line .w100 { width: 250px; }
 .line .w90  { width: 225px; }
 .line .w80  { width: 200px; }
@@ -41,8 +51,10 @@ legend { color: #0B55C4; font-size: 12px; font-family: Arial, Tahoma; font-weigh
 .newLine { margin-top: 30px; }
 .tar { text-align: right; }
 .tal { text-align: left; }
+.tac { text-align: center; }
 .hide { display: none; }
 .block { display: block; }
+.mt5 { margin-top: 5px; }
 
 
 
@@ -95,8 +107,6 @@ legend { color: #0B55C4; font-size: 12px; font-family: Arial, Tahoma; font-weigh
 .ui-dialog .dialog .main .conteudo .corpo table tr.ui-widget-content td div.actions { margin-top: 10px; visibility: hidden; }
 .ui-dialog .dialog .main .conteudo .corpo table tr.ui-widget-content td div.actions span { padding-right: 7px; margin-right: 5px; border-right: 1px solid #CCC;  }
 .ui-dialog .dialog .main .conteudo .corpo table tr.ui-widget-content td div.actions span:last-child { padding-right: 0px; margin-right: 0px; border: none;  }
-
-
 
 .ui-dialog .dialog .main .finder-result { padding: 15px; overflow: auto; display: none; width: 100%; }
 .ui-dialog .dialog .main .finder-result h1 { font-size: 16px; }
