@@ -3,7 +3,8 @@
 html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
 a img { border: none; }
 * { font-size: 13px; font-family: Tahoma;  }
-
+fieldset { margin-top: 20px; border: 1px solid #BBB;  }
+legend { color: #0B55C4; font-size: 12px; font-family: Arial, Tahoma; font-weight: 700; }
 
 #geral { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #333; }
 
@@ -21,6 +22,27 @@ a img { border: none; }
  *******************************/
 .clearfix { clear: both; height: 1%; overflow: hidden; }
 .left { float: left; }
+.ui-tabs-hide { display: block !important; position: absolute; top: 999999px; }
+.line { display: block; margin: 7px 0; }
+.line .w100 { width: 250px; }
+.line .w90  { width: 225px; }
+.line .w80  { width: 200px; }
+.line .w70  { width: 175px; }
+.line .w60  { width: 150px; }
+.line .w50  { width: 125px; }
+.line .w40  { width: 100px; }
+.line .w30  { width: 75px; }
+.line .w20  { width: 50px; }
+.line .w10  { width: 25px; }
+.line span { display: block; width: 130px; padding: 3px; margin-right: 15px; float: left; clear: both; background: #DDD; }
+.line .lembrete { display: block; width: auto; margin: 5px 10px; float: right; background: none; color: #BBB; }
+.line input { border: 1px solid #BBB; }
+.line textarea { border: 1px solid #BBB; }
+.newLine { margin-top: 30px; }
+.tar { text-align: right; }
+.tal { text-align: left; }
+.hide { display: none; }
+.block { display: block; }
 
 
 
@@ -74,12 +96,7 @@ a img { border: none; }
 .ui-dialog .dialog .main .conteudo .corpo table tr.ui-widget-content td div.actions span { padding-right: 7px; margin-right: 5px; border-right: 1px solid #CCC;  }
 .ui-dialog .dialog .main .conteudo .corpo table tr.ui-widget-content td div.actions span:last-child { padding-right: 0px; margin-right: 0px; border: none;  }
 
-.ui-dialog .dialog .main .conteudo .corpo form fieldset { margin-top: 20px; border: 1px solid #DDD;  }
-.ui-dialog .dialog .main .conteudo .corpo form fieldset legend { color: #0B55C4; font-size: 12px; font-family: Arial, Tahoma; font-weight: 700; }
-.ui-dialog .dialog .main .conteudo .corpo form fieldset div.line { display: block; margin: 7px 0; }
-.ui-dialog .dialog .main .conteudo .corpo form fieldset div.line .w100 { width: 250px; }
-.ui-dialog .dialog .main .conteudo .corpo form fieldset div.line span { display: block; width: 130px; padding: 3px; margin-right: 15px; float: left; clear: both; background: #DEDEDE; }
-.ui-dialog .dialog .main .conteudo .corpo form fieldset div.newLine { margin-top: 30px; }
+
 
 .ui-dialog .dialog .main .finder-result { padding: 15px; overflow: auto; display: none; width: 100%; }
 .ui-dialog .dialog .main .finder-result h1 { font-size: 16px; }
