@@ -69,6 +69,20 @@ class edesktop_produtos_produtos
 		return $dados->produto;
 	}
 	
+
+	/* apaga um produto pelo id
+	 ***************************************************/
+	function delete($id)
+	{
+		// textos
+		$dados = $this->db->busca_por_id($id);
+		$dados->status = '-1';
+		
+		$dados->update();
+				
+		// retorno os dados 
+		return $dados;
+	}
 	
 	
 	
