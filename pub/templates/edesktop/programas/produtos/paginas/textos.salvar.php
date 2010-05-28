@@ -34,6 +34,9 @@ $texto = new edesktop_produtos_textos($dados);
 // verifica se o registro já existe
 if($id)
 {
+	// verifica se o usuario logado tem permissão
+    jAccess('textos.editar');	
+	
     // atualiza os dados do registro
     $texto->db->update();
 
@@ -43,6 +46,9 @@ if($id)
 }
 else
 {
+	// verifica se o usuario logado tem permissão
+    jAccess('textos.adicionar');	
+	
     // cadastra o novo registro
     $texto->db->insert();
 

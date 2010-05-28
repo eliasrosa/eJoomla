@@ -37,6 +37,9 @@ $produto = new edesktop_produtos_produtos($produto);
 // verifica se o registro já existe
 if($id)
 {
+	// verifica se o usuario logado tem permissão
+    jAccess('produtos.editar');
+	
     // atualiza os dados do registro
     $produto->db->update();
 
@@ -46,6 +49,9 @@ if($id)
 }
 else
 {
+	// verifica se o usuario logado tem permissão
+    jAccess('produtos.adicionar');
+		
     // cadastra o novo registro
     $produto->db->insert();
 
