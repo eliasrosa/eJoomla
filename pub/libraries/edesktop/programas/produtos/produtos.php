@@ -115,9 +115,9 @@ class edesktop_produtos_produtos
 	
 	/* busca todos os produtos
 	 ***************************************************/
-	function busca_todos($order = "nome ASC")
+	function busca_todos($order = "ORDER BY nome ASC")
 	{
-		$dados = $this->db->busca_tudo($order);
+		$dados = $this->db->busca("WHERE status != '-1' " . $order);
 		
 		return $dados;
 	}
