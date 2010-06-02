@@ -134,7 +134,7 @@ class edesktop_produtos_categorias
 	
 	public function cria_select_simples($idpai = 0, $attrs = '', $raiz = false, $checked = '', $nivel = 0)
 	{
-		$cats = $this->busca_por_idpai($idpai);		
+		$cats = $this->db->busca("WHERE idpai = '{$idpai}' ORDER BY ordem ASC, nome ASC");		
 		$m = '';
 
 		if($nivel == 0)
