@@ -10,12 +10,16 @@ foreach($ids as $id)
 	jimport('edesktop.programas.produtos.categorias');
 
 	$p = new edesktop_produtos_categorias();
+	$c = $p->busca_por_id($id);
+	
 	
 	$filhos = $p->busca_por_idpai($id);
 	
 	foreach($filhos as $f)
 	{
-		$f->status = 0;		
+		$f->status = 0;
+		$f->idpai = $c->idpai;
+			
 		$f->update();
 	}
 	
