@@ -12,7 +12,6 @@
 			<br class="clearfix"/>
 		</div>
 		
-
 		<div class="line">
 			<span>Nome da categoria</span>
 			<input type="input" name="categoria[nome]" class="w100 mt5" rel="text_" title="Nome" value="{$categoria->nome}" />
@@ -40,9 +39,10 @@
 
 		<p class="acoes newLine tac">
 			<input class="submit button" type="submit" value="Salvar" />
-			<input class="excluir button" type="submit" value="Excluír" />
+			{if $categoria->id != 0}
+			<input type="hidden" name="categoria[id]" value="{$categoria->id}" />
+			{/if}
 		</p>
-	
 </form>
 
 
