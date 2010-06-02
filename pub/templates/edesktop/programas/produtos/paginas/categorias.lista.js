@@ -1,5 +1,7 @@
+/*
 $('li a', $dialog).each(function(){
 	var $a = $(this);
+	var $li = $a.parent();
 	var i = $a.attr('rel');
 	var r = "'pagina': 'categorias.form', 'programa': 'produtos', 'query': 'id=" +i+ "'";
 	
@@ -8,5 +10,78 @@ $('li a', $dialog).each(function(){
 	
 	// altera o atributo rel
 	$a.attr('rel', r);
+	
+	// add checkbox
+	$li.prepend('<input type="checkbox" value="' +i+ '" name="ids[]" />');
 });
+*/
 
+	$('table tr.ui-widget-content:odd', $dialog).addClass('bg2n');
+	
+	var $form = $('form', $dialog);
+	
+	$form.validaForm({
+		success: function(params, $main){
+
+			// desliga o loading
+			eDesktop.dialog.loading.stop($main);
+			
+			if(params.retorno){
+				// seleciona as linhas
+				var $tr = $(':checked', $main).parents('tr');	
+
+				// executa form
+				$tr.css('background', '#FF7145').fadeOut(1000, function(){
+					// remove a linha
+					$tr.remove();
+					
+					$('table tr.ui-widget-content', $main).removeClass('bg2n');
+					$('table tr.ui-widget-content:odd', $main).addClass('bg2n');		
+				});
+								
+			}
+			
+		}
+	
+	});
+	
+	$('table tr.ui-widget-content', $dialog).mouseenter(function(){
+		$('.actions', this).css('visibility', 'visible');
+	}).mouseleave(function(){
+		$('.actions', this).css('visibility', 'hidden');
+	});
+
+
+	$('.actions .excluir a', $dialog).click(function(){
+		if(confirm('Tem certeza que deseja remover esta categoria?')){
+			if(!confirm('Esta operação não poderá ser desfeita, deseja continuar?'))
+				return false;
+			else{
+				// desmarca todos os checkbox
+				$(':checkbox', $form).removeAttr('checked');
+				
+				// seleciona a linha
+				var $tr = $(this).parents('tr');
+				
+				// marca o chekbox selecionado
+				$tr.find(':checkbox').attr('checked', 'checked');
+				
+				// envia o form
+				$form.submit();
+			}
+		}else
+			return false;
+	});
+
+
+	$('p.excluir a', $dialog).click(function(){
+		if(confirm('Tem certeza que deseja remover esta(s) categorias(s)?')){
+			if(!confirm('Esta operação não poderá ser desfeita, deseja continuar?'))
+				return false;
+			else{
+				// envia o form								
+				$form.submit();
+			}
+		}else
+			return false;
+	});
