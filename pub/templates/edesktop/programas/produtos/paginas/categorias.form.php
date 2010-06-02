@@ -16,6 +16,7 @@ if(!$id)
 	$t->nome = '';
 	$t->alias = '';
 	$t->status = 1;
+	$t->ordem = 1;
 }
 
 $this->smarty->assign('categoria', $t);
