@@ -1,0 +1,52 @@
+<h1>{$produto->nome}</h1>
+
+<form rel="{$processID}" method="post" action="{$formURL}categoria.salvar">
+
+		{if $categoria->id != 0}
+			<input type="hidden" name="categoria[id]" value="{$categoria->id}" />
+		{/if}
+		
+		<div class="line">
+			<span>Categoria pai</span>
+			{$select}
+			<br class="clearfix"/>
+		</div>
+		
+
+		<div class="line">
+			<span>Nome da categoria</span>
+			<input type="input" name="categoria[nome]" class="w100 mt5" rel="text_" title="Nome" value="{$categoria->nome}" />
+			<br class="clearfix"/>
+		</div>
+
+		<div class="line">
+			<span>Alias</span>
+			<input type="input" name="categoria[alias]" class="w100 mt5" rel="text" title="Alias" value="{$categoria->alias}" />
+			<br class="clearfix"/>
+		</div>
+
+		<!--
+		<div class="line">
+			<span>Ordem</span>
+			<input type="text" class="w20" name="categoria[ordem]" value="{$categoria->ordem}" rel="int_" title="Ordem" />
+			<br class="clearfix"/>
+		</div>
+		-->
+		
+		<div class="line">
+			<span>Status</span>
+			<input type="radio" name="categoria[status]" value="1" {if $categoria->status}checked="checked"{/if} />Ativado
+			<input type="radio" name="categoria[status]" value="0" {if !$categoria->status}checked="checked"{/if} />Desativado
+			<br class="clearfix"/>
+		</div>
+
+		<p class="acoes newLine tac">
+			<input class="submit button" type="submit" value="Salvar" />
+			<input class="excluir button" type="submit" value="Excluír" />
+		</p>
+	
+</form>
+
+
+
+
