@@ -39,6 +39,33 @@ class edesktop_produtos_categorias
 	
 
 
+	/* apaga uma categoria pelo id
+	 ***************************************************/
+	function delete($id)
+	{
+		// textos
+		$dados = $this->db->delete($id);
+				
+		// retorno os dados 
+		return $dados;
+	}
+
+
+	
+	
+	/* busca todas as categorias
+	 ***************************************************/
+	function busca_todas()
+	{
+		// textos
+		$dados = $this->db->busca("ORDER BY nome ASC");
+						
+		// retorno dos dados 
+		return $dados;
+	}
+
+
+
 	
 	/* busca todas as categorias pelo id do pai
 	 ***************************************************/
