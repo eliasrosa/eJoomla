@@ -136,20 +136,20 @@ class edesktop_produtos_categorias
 	{
 		$cats = $this->busca_por_idpai($idpai);		
 		$m = '';
+
+		if($nivel == 0)
+		{
+			$m .= "<select {$attrs}>";
+			
+			// is checked
+			$check = $checked == 0 ? ' selected="selected"' : '';
+		
+			if($raiz)
+				$m .= "<option value=\"0\"{$check}>{$raiz}</option>";
+		}
 		
 		if(count($cats))
-		{
-			if($nivel == 0)
-			{
-				$m .= "<select {$attrs}>";
-				
-				// is checked
-				$check = $checked == 0 ? ' selected="selected"' : '';
-			
-				if($raiz)
-					$m .= "<option value=\"0\"{$check}>{$raiz}</option>";
-			}
-			
+		{			
 			foreach($cats as $cat)
 			{	
 				$space = $nivel ? str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $nivel) .'-&nbsp;&nbsp;' : '';
@@ -163,15 +163,12 @@ class edesktop_produtos_categorias
 				// adiciona subcategorias caso exista
 				$m .= $this->cria_select_simples($cat->id, $attrs, $raiz, $checked, $nivel + 1);
 			}
-						
-			if($nivel == 0)
-				$m .= "</select>";
 		}
+					
+		if($nivel == 0)
+			$m .= "</select>";
 			
 		return $m;
-	}
-	
-	
-		
+	}		
 }
 ?>
