@@ -83,11 +83,11 @@ class edesktop_produtos_imagens
 	 ***************************************************/
 	private function caminho_imagem($id)
 	{
-		$img = "/media/com_edesktop/loja/imagens/produtos/{$id}.jpg";
+		$img = "/media/com_edesktop/produtos/imagens/produtos/{$id}.jpg";
 		$url = JURI::base(1). $img;
 		
 		if(!file_exists(JPATH_BASE. $img))
-			$url = JURI::base(1). "/media/com_edesktop/loja/imagens/404.jpg";
+			$url = JURI::base(1). "/media/com_edesktop/imagens/404.jpg";
 		
 		// retorno os dados 
 		return $url;
