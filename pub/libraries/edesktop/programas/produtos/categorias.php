@@ -44,7 +44,7 @@ class edesktop_produtos_categorias
 	 ***************************************************/
 	function busca_por_idpai($idpai)
 	{
-		return $this->db->busca("WHERE idpai = '{$idpai}' AND status = '1'");
+		return $this->db->busca("WHERE idpai = '{$idpai}' AND status = '1' ORDER BY ordem ASC, nome ASC");
 	}
 
 
