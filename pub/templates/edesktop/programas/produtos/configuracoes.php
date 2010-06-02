@@ -27,6 +27,14 @@ $configuracoes = array (
 			'textos.adicionar' => 'Adicionar novos textos',
 			'textos.remover' => 'Remover textos',
 
+
+			// categorias
+			'categorias.lista' => 'Visualizar lista de categorias',
+			'categorias.form' => 'Visualizar dados dos categorias',
+			'categorias.editar' => 'Editar dados dos categorias',
+			'categorias.adicionar' => 'Adicionar novos categorias',
+			'categorias.remover' => 'Remover categorias',
+
         ),
 
         // Permissões de acesso liberadas
