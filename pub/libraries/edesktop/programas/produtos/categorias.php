@@ -7,7 +7,7 @@ class edesktop_produtos_categorias
 {
 	/* Object JCRUD
 	 ***************************************************/
-	private $db;
+	public $db;
 
 
 
@@ -21,10 +21,10 @@ class edesktop_produtos_categorias
 
 	/* Inicia a class
 	 ***************************************************/
-	function __construct()
+	function __construct($dados = '')
 	{
 		// Abre a tabela
-		$this->db = new JCRUD($this->tabela);
+		$this->db = new JCRUD($this->tabela, $dados);
 	}
 
 
@@ -76,6 +76,75 @@ class edesktop_produtos_categorias
 
 			return join(',', $retorno);		
 		}
-	}	
+	}
+	
+	public function cria_lista_simples($idpai = 0)
+	{
+		$cats = $this->busca_por_idpai($idpai);		
+		$m = '';
+		
+		if(count($cats))
+		{
+			$class = ($idpai != 0) ? '' : ' class="lista"';
+			$m .= "<ul{$class}>";
+			
+			foreach($cats as $cat)
+			{
+				$s = $this->cria_lista_simples($cat->id);
+				$class = ($s == '') ? '' : ' class="pai"';
+				
+				// adiciona o link
+				$m .= "<li{$class}><a href=\"javascript:void(0);\" rel=\"{$cat->id}\" title=\"{$cat->nome}\">{$cat->nome}</a>{$s}</li>";
+			}
+						
+			$m .= "</ul>";
+		}
+			
+		return $m;
+	}
+	
+	
+	
+	public function cria_select_simples($idpai = 0, $attrs = '', $raiz = false, $checked = '', $nivel = 0)
+	{
+		$cats = $this->busca_por_idpai($idpai);		
+		$m = '';
+		
+		if(count($cats))
+		{
+			if($nivel == 0)
+			{
+				$m .= "<select {$attrs}>";
+				
+				// is checked
+				$check = $checked == 0 ? ' selected="selected"' : '';
+			
+				if($raiz)
+					$m .= "<option value=\"0\"{$check}>{$raiz}</option>";
+			}
+			
+			foreach($cats as $cat)
+			{	
+				$space = $nivel ? str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $nivel) .'-&nbsp;&nbsp;' : '';
+			
+				// is checked
+				$check = $checked == $cat->id ? ' selected="selected"' : '';
+								
+				// adiciona o link
+				$m .= "<option value=\"{$cat->id}\" rel=\"{$cat->id}\"{$check}>{$space}{$cat->nome}</option>";
+				
+				// adiciona subcategorias caso exista
+				$m .= $this->cria_select_simples($cat->id, $attrs, $raiz, $checked, $nivel + 1);
+			}
+						
+			if($nivel == 0)
+				$m .= "</select>";
+		}
+			
+		return $m;
+	}
+	
+	
+		
 }
 ?>
