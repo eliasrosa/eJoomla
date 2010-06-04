@@ -86,6 +86,50 @@ class edesktop_produtos_produtos
 	
 	
 	
+
+	/* salva o relacionamento dos produto com as categorias
+	 ***************************************************/
+	function salva_categorias($produto, $categorias)
+	{
+		$c = new JCRUD('jos_edesktop_produtos_categorias_rel');
+		
+		// apaga todos as categorias relacionadas com o produto
+		$d = $c->delete($produto, 'idproduto', '');
+		
+		// 
+		foreach($categorias as $idcategoria)
+		{
+			$r = $c;
+			$r->idproduto = $produto;
+			$r->idcategoria = $idcategoria;
+			
+			$r->insert(false);
+		}
+		
+	}
+	
+	
+	/* busca todas as categorias relacionadas
+	 ***************************************************/
+	function busca_categorias($idproduto)
+	{
+		$c = new JCRUD('jos_edesktop_produtos_categorias_rel');
+		$categorias = $c->busca("WHERE idproduto = '{$idproduto}'");
+		
+		$r = array();
+		
+		foreach($categorias as $c)
+			$r[] = $c->idcategoria;
+		
+		$r = join(',', $r);
+		
+		$r = $r == '' ? '0' : $r;
+		
+		return $r;
+	}
+		
+	
+	
 	/* busca todos os produtos em destaques
 	 ***************************************************/
 	function busca_por_destaque()
