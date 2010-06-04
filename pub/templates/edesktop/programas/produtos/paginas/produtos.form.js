@@ -29,3 +29,22 @@ $form.validaForm({
 	}
 	
 });
+
+
+$('ul.lista li a', $dialog).each(function(){
+	var $a = $(this);
+	var $li = $a.parent();
+	var i = $a.attr('rel');
+		
+	// add checkbox
+	$li.prepend('<input type="checkbox" value="' +i+ '" name="categorias[]" />');
+	
+	// checkbox
+	var $checkbox = $(':checkbox', $li);
+	
+	// event tag a
+	$a.click(function(){ $checkbox.click(); });
+});
+
+// remove o style das listas
+$('ul.lista, ul.lista * ul', $dialog).addClass('lsn');

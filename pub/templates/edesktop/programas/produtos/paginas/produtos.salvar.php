@@ -42,6 +42,12 @@ if($id)
 	
     // atualiza os dados do registro
     $produto->db->update();
+    
+    // pega as categorias do produto
+    $categorias = JRequest::getvar('categorias', array(), 'array');
+    
+    // salva categotorias relacionadas
+    $produto->salva_categorias($id, $categorias);
 
     // carrega as vars de retorno
     $retorno = 'updateOk';
