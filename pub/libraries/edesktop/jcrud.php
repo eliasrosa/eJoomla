@@ -170,8 +170,10 @@ class JCRUD
 		$id = (int) $id;
 
 		$id = !$id ? $this->id : $id;
+		
+		$limit = $limit ? 'LIMIT '.$limit : '';
 
-		$q = "DELETE FROM {$this->__tabela} WHERE {$campo} = '{$id}' LIMIT {$limit}";
+		$q = "DELETE FROM {$this->__tabela} WHERE {$campo} = '{$id}' {$limit}";
 
 		$db =& JFactory::getDBO();
 		$db->setQuery($q);
