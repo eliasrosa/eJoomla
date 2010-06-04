@@ -187,7 +187,7 @@ class JCRUD
 		return $db->getAffectedRows() == 1 ? true : false;
 	}
 
-	public function insert()
+	public function insert($useID = true)
 	{
 		if (!$this->verifica_tabela())
 			return false;
@@ -196,10 +196,15 @@ class JCRUD
 
 		$campos = array_merge($this->__dados);
 		$campos = $this->instanciar($campos, 'stdClass');
-
+		
+		if($useID === false)
+			unset($campos->id);
+			
 		if ($db->insertObject($this->__tabela, $campos))
 		{
-			$this->id = $db->insertid();
+			if($useID === true)
+				$this->id = $db->insertid();
+				
 			return true;
 		}
 
