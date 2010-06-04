@@ -1,6 +1,6 @@
 <h1>{$produto->nome}</h1>
 
-<form rel="{$processID}" method="post" action="{$formURL}categoria.salvar">
+<form rel="{$processID}" method="post" action="{$formURL}categorias.salvar">
 
 		{if $categoria->id != 0}
 			<input type="hidden" name="categoria[id]" value="{$categoria->id}" />

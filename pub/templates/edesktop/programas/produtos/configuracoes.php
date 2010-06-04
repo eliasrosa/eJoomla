@@ -40,7 +40,8 @@ $configuracoes = array (
         // Permissões de acesso liberadas
         'permissoes.liberadas' => array(
             'produtos.salvar',
-            'textos.salvar'
+            'textos.salvar',
+            'categorias.salvar'
         )
 );
 ?>

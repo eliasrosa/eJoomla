@@ -21,7 +21,7 @@ $cat = new edesktop_produtos_categorias($dados);
 if($id)
 {
 	// verifica se o usuario logado tem permissão
-    jAccess('catedoria.editar');
+    jAccess('categorias.editar');
     	
     // atualiza os dados do registro
     $cat->db->update();
@@ -33,7 +33,7 @@ if($id)
 else
 {
 	// verifica se o usuario logado tem permissão
-    jAccess('categoria.adicionar');	
+    jAccess('categorias.adicionar');	
 	
     // cadastra o novo registro
     $cat->db->insert();
