@@ -221,6 +221,7 @@ class edesktop_produtos_produtos
 	function busca_por_categorias($ids, $limit = 0)
 	{
 		$produtos = array();
+		$ids = ($ids == '') ? 0 : $ids;
 		
 		// Abre a tabela
 		$c = new JCRUD('jos_edesktop_produtos_categorias_rel');
