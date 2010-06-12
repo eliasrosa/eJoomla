@@ -19,5 +19,9 @@
 
 
 	// Altera o titulo
-	$_SESSION['eload']['title'] = "{$dados->produto->nome} - {$dados->fabricante->nome} - {sitename}";
+	if($dados->produto->idfabricante)
+		$_SESSION['eload']['title'] = "{$dados->produto->nome} - {$dados->fabricante->nome} - {sitename}";
+	else
+		$_SESSION['eload']['title'] = "{$dados->produto->nome} - {sitename}";
+		
 ?>
