@@ -5,8 +5,6 @@ var $form = $('form', $dialog);
 $form.validaForm({ 
 	success : function(params, $main){
 		
-		console.log(params);		
-		
 		if(params.retorno == 'insertOk'){
 			// adiciona o id no form
 			var html = '<input type="hidden" name="categoria[id]" value="'+ params.id +'" />';
