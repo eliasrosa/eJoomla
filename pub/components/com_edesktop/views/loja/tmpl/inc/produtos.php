@@ -10,12 +10,20 @@ defined('_JEXEC') or die('Restricted access');
 	<? foreach($this->dados as $p):?>
 	<div class="produto">
 		<?
+			$p->produto->nome = mb_convert_case($p->produto->nome, MB_CASE_TITLE, "UTF-8");
 			$produto = JRoute::_("index.php?option=com_edesktop&view=loja&layout=produto&Itemid={$this->itemid}&id={$p->produto->id}");
-			$fabricante = JRoute::_("index.php?option=com_edesktop&view=loja&layout=fabricante&Itemid={$this->itemid}&id={$p->fabricante->id}");
+			
+			if($p->produto->idfabricante)
+				$fabricante = @JRoute::_("index.php?option=com_edesktop&view=loja&layout=fabricante&Itemid={$this->itemid}&id={$p->fabricante->id}");
+
 		?>
 		<p class="img"><a href="<?= $produto; ?>"><img src="<?= $p->imagem->url ?>" alt="<?= $p->produto->nome; ?> - Produto <?= $p->fabricante->nome; ?> " width="130" height="150" /></a></p>
 		<p class="nome"><a href="<?= $produto; ?>"><?= $p->produto->nome; ?></a></p>
+		
+		<? if($p->produto->idfabricante): ?>
 		<p class="fabricante"><a href="<?= $fabricante; ?>"><?= $p->fabricante->nome; ?></a></p>
+		<? endif; ?>
+		
 		<p class="valor">R$ <?= number_format($p->produto->valor, 2, ',', '.'); ?></p>
 	</div>
 	<? endforeach; ?>
