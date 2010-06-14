@@ -52,7 +52,7 @@ class programa {
         jimport('edesktop.jcrud');
 
         // carrega a class smarty
-	jimport('edesktop.smarty.class');
+		jimport('edesktop.smarty.class');
 
         // inicio o smarty
         $this->smarty = new Smarty();
@@ -172,6 +172,13 @@ class programa {
                 require_once($this->pasta .DS. 'menus.php');
 
 
+			// inicia a class
+			$dados = new stdClass();
+			
+			// carrega a messagem de retorno
+			$dados->msg = JRequest::getvar('msg', '');
+			$dados->msgTipo = JRequest::getvar('msg_tipo', 'error');
+
             // inicia as variaveis de sessão do dialog/pagina
             $script = "<script type=\"text/javascript\">
                             $(function(){
@@ -182,6 +189,11 @@ class programa {
                                     var url_js = '{$this->url_programa}/js';
                                     var url_base = '{$this->url_base}';
                                     var url_programa = '{$this->url_programa}';
+                                    
+                                    var msg = '{$dados->msg}';
+                                 
+									if(msg != '')
+										eDesktop.dialog.aviso(msg, '{$dados->msgTipo}', \$('.corpo', \$main));
 
                                     var pagina = '{$this->pagina}';
                                     var programa = '{$this->programa}';
