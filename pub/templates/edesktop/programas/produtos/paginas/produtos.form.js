@@ -15,6 +15,8 @@ $form.validaForm({
 				'pagina': pagina,
 				'query': 'msg=' +params.msg+ '&msg_tipo=' +params.tipo+ '&id=' +params.produto.id
 			});
+			
+			return;
 		}
 		
 		// desliga o loading
