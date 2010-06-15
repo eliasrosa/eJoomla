@@ -58,7 +58,7 @@ legend { color: #0B55C4; font-size: 12px; font-family: Arial, Tahoma; font-weigh
 .fr { float: right; }
 .fl { float: left; }
 .lsn { list-style: none; }
-
+.bdr1 { border: 1px solid #BBB; }
 
 /* finder
  *******************************/
