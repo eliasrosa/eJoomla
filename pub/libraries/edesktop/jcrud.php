@@ -52,6 +52,8 @@ class JCRUD
 	{
 		$db =& JFactory::getDBO();
 
+		$q = str_replace('@tabela@', $this->__tabela, $q);
+
 		$db->setQuery($q);
 
 		if (!$db->query() && $db->getErrorNum())
