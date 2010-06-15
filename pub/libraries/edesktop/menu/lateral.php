@@ -30,7 +30,9 @@ class menu_lateral
 		if(isset($params['query']))
 		{
 			parse_str($params['query'], $query);
-			$alias = $alias .'.'. $query['ativarMenu'];
+			
+			if(isset($query['ativarMenu']))
+				$alias = $alias .'.'. $query['ativarMenu'];
 		}
 
 		$programa = JRequest::getvar('programa');
