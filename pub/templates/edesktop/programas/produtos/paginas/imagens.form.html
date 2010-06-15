@@ -1,0 +1,60 @@
+<h1>Cadastro de imagens</h1>
+
+<form rel="{$processID}" method="post" action="{$formURL}imagens.salvar">
+
+		{if $imagem->id}
+		<div class="line">
+			<span>Código</span>
+			{$imagem->id}
+			<input type="hidden" name="imagem[id]" value="{$imagem->id}" />
+			<br class="clearfix"/>
+		</div>	
+		{/if}
+		
+		<div class="line">
+			<span>Produto</span>
+			{$produto->nome}
+			<br class="clearfix"/>
+		</div>
+		
+		<div class="line">
+			<span>Imagem</span>
+			<input type="file" class="w20" name="file_upload" />
+			<br class="clearfix"/>
+		</div>
+
+		<div class="line">
+			<span>Nome</span>
+			<input type="text" class="w100" name="imagem[nome]" value="{$imagem->nome}" rel="text_" title="Nome" />
+			<br class="clearfix"/>
+		</div>
+		
+		<div class="line">
+			<span>Destaque</span>
+			<input type="radio" name="imagem[destaque]" value="1" {if $imagem->destaque}checked="checked"{/if} />Sim
+			<input type="radio" name="imagem[destaque]" value="0" {if !$imagem->destaque}checked="checked"{/if} />Não
+			<br class="clearfix"/>
+		</div>
+		
+		<div class="line">
+			<span>Status</span>
+			<input type="radio" name="imagem[status]" value="1" {if $imagem->status}checked="checked"{/if} />Publicada
+			<input type="radio" name="imagem[status]" value="0" {if !$imagem->status}checked="checked"{/if} />Despuplicada
+			<br class="clearfix"/>
+		</div>
+
+		<input type="hidden" name="imagem[idproduto]" value="{$imagem->idproduto}" />
+
+		<p class="acoes newLine tac">
+			<input class="submit button" type="submit" value="Salvar" />
+		</p>
+		
+		{if $imagem->id}
+		<p>Imagem atual</p>
+		<img src="{$imagem->url}" width="150" height="150" class="bdr1" />
+		{/if}
+</form>
+
+
+
+

@@ -34,6 +34,16 @@ $configuracoes = array (
 			'categorias.editar' => 'Editar dados dos categorias',
 			'categorias.adicionar' => 'Adicionar novos categorias',
 			'categorias.remover' => 'Remover categorias',
+			
+			
+			// categorias
+			'imagens.lista' => 'Visualizar lista de imagens',
+			'imagens.form' => 'Visualizar dados das imagens',
+			'imagens.editar' => 'Editar dados das imagens',
+			'imagens.adicionar' => 'Adicionar novas imagens',
+			'imagens.remover' => 'Remover imagens',
+			
+			
 
         ),
 
@@ -41,7 +51,8 @@ $configuracoes = array (
         'permissoes.liberadas' => array(
             'produtos.salvar',
             'textos.salvar',
-            'categorias.salvar'
+            'categorias.salvar',
+            'imagens.salvar'
         )
 );
 ?>

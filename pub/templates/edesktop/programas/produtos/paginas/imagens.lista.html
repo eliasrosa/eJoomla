@@ -1,0 +1,30 @@
+<h1>Lista de imagens</h1>
+<p>{$produto->nome}</p>
+
+<form rel="{$processID}" method="post" action="{$formURL}imagens.remover">
+	<table class="ui-corner-top">
+		<tr class="ui-widget-header">
+			<td width="0"></td>
+			<td class="tac">Imagem</td>
+			<td class="tac wp90">Nome</td>
+			<td class="tac w10">Status</td>
+		</tr>
+
+	{foreach from=$imagens item="i"}
+		<tr class="ui-widget-content">
+			<td><input type="checkbox" name="ids[]" value="{$i->id}" /></td>
+			<td class="tac">
+				<img src="{$i->url}" width="65" height="65" />
+			</td>
+			<td><strong>{$i->nome}{if $i->destaque} (Destaque){/if}</strong>
+				<div class="actions">
+					<span class="editar"><a class="link" rel="'pagina': 'imagens.form', 'query': 'id={$i->id}&idproduto={$produto->id}'" href="javascript:void({$i->id});">Editar</a></span>
+					<span class="excluir"><a href="javascript:void({$i->id});">Excluír</a></span>
+				</div>
+			</td>
+			<td class="tac">{if $i->status == 1}Publicado{else}Despublicado{/if}</td>
+		</tr>
+	{/foreach}		
+	</table>
+	<p class="excluir"><a href="javascript:void(0);">Excluír selecionados</a></p>
+</form>
