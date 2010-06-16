@@ -95,12 +95,12 @@ class edesktop_produtos_imagens
 	function busca_destaque_por_produto($id)
 	{
 		// imagem
-		$dados = $this->db->busca("WHERE idproduto = '{$id}' AND destaque = '1' AND status = '1' LIMIT 0,1");
+		$dados = $this->db->busca("WHERE idproduto = '{$id}' AND status = '1' ORDER BY destaque DESC LIMIT 0,1");
 		
 		if(count($dados))
 			$dados[0]->url = $this->caminho_imagem($dados[0]->id);
 		else
-			$dados[0]->url = $this->caminho_imagem(0);
+			$dados[0]->url = $this->caminho_imagem('');
 		
 		// retorno os dados 
 		return $dados[0];
