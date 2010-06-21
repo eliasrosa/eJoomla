@@ -283,7 +283,8 @@ class edesktop_produtos_produtos
 		
 		foreach($pp as $p)
 		{
-			$produtos[] = $this->busca_por_id($p->idproduto, true);
+			if(!isset($produtos[$p->idproduto]))
+				$produtos[$p->idproduto] = $this->busca_por_id($p->idproduto, true);
 		}
 		
 		return $produtos;
