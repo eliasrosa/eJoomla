@@ -16,7 +16,7 @@ class edesktop_produtos_imagens
 	private $tabela = 'jos_edesktop_produtos_imagens';
 	
 	
-	/* nome da tabela de imagems
+	/* caminho da pasta de imagens de produtos
 	 ***************************************************/
 	public $pasta = "/media/com_edesktop/produtos/imagens/produtos";
 
