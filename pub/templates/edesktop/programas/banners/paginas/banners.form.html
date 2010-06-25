@@ -1,0 +1,62 @@
+<h1>Cadastro de banner</h1>
+
+<form rel="{$processID}" method="post" action="{$formURL}banners.salvar">
+
+	{if $banner->id != 0}
+	<div class="line">
+		<span>Código</span>
+		{$banner->id}
+		<input type="hidden" name="d1[id]" value="{$banner->id}" />
+		<br class="clearfix"/>
+	</div>	
+	{/if}
+	
+	<div class="line">
+		<span>Nome</span>
+		<input type="text" class="w100" name="d1[nome]" value="{$banner->nome}" rel="text_" title="Nome" />
+		<br class="clearfix"/>
+	</div>
+	
+	<div class="line">
+		<span>Largura</span>
+		<input type="text" class="w100" name="d1[largura]" value="{$banner->largura}" rel="integerp_" title="Largura" />
+		<br class="clearfix"/>
+	</div>
+	
+	<div class="line">
+		<span>Altura</span>
+		<input type="text" class="w100" name="d1[altura]" value="{$banner->altura}" rel="integerp_" title="Altura" />
+		<br class="clearfix"/>
+	</div>
+	
+	<div class="line">
+		<span>Arquivos permitidos</span>
+		<input type="text" class="w100" name="d1[allow]" value="{$banner->allow}" rel="text_" title="Arquivo permitidos" />
+		<br class="clearfix"/>
+	</div>
+	
+	<div class="line">
+		<span>Modelo</span>
+		<select name="d1[modelo]">
+			{foreach from=$modelos item="m"}
+			<option value="{$m->value}" {if $banner->modelo == $m->value}selected="selected"{/if}>{$m->text}</option>
+			{/foreach}
+		</select>
+		<br class="clearfix"/>
+	</div>
+	
+	<div class="line">
+		<span>Params</span>
+		<textarea name="d1[params]" class="w100" rows="6">{$banner->params}</textarea>
+		<br class="clearfix"/>
+	</div>
+
+	<p class="acoes newLine tac">
+		<input class="submit" type="submit" value="Salvar" />
+	</p>
+					
+</form>
+
+
+
+

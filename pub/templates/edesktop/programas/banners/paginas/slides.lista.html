@@ -1,0 +1,29 @@
+<h1>Lista de slides</h1>
+<p>Edite e remova slides do sistema.</p>
+
+<p class="excluir"><a href="javascript:void(0);">Excluír selecionados</a></p>
+<form rel="{$processID}" method="post" action="{$formURL}slides.remover">
+	<table class="ui-corner-top">
+		<tr class="ui-widget-header">
+			<td class="w10"></td>
+			<td>Nome</td>
+			<td class="w10 tac">Ordem</td>
+			<td class="w10 tac">Status</td>
+		</tr>
+
+	{foreach from=$dados item="i"}
+		<tr class="ui-widget-content">
+			<td><input type="checkbox" name="ids[]" value="{$i->id}" /></td>
+			<td><strong>{$i->nome}</strong>
+				<div class="actions">
+					<span class="editar"><a href="javascript:void({$i->id});" rel="'pagina': 'slides.form', 'query': 'id={$i->id}&idbanner={$i->idbanner}'" class="link">Editar</a></span>
+					<span class="excluir"><a href="javascript:void({$i->id});">Excluír</a></span>
+				</div>
+			</td>
+			<td class="tac">{$i->ordem}</td>
+			<td class="tac">{if $i->status}Publicado{else}Despublicado{/if}</td>
+		</tr>
+	{/foreach}		
+	</table>
+	<p class="excluir"><a href="javascript:void(0);">Excluír selecionados</a></p>
+</form>

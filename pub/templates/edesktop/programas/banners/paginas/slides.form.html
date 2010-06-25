@@ -1,0 +1,76 @@
+<h1>Cadastro de slide</h1>
+
+<form rel="{$processID}" method="post" action="{$formURL}slides.salvar">
+
+	{if $dados->id != 0}
+	<div class="line">
+		<span>Código</span>
+		{$dados->id}
+		<input type="hidden" name="d1[id]" value="{$dados->id}" />
+		<br class="clearfix"/>
+	</div>	
+	{/if}
+	
+	<div class="line">
+		<span>Nome</span>
+		<input type="text" class="w100" name="d1[nome]" value="{$dados->nome}" rel="text_" title="Nome" />
+		<br class="clearfix"/>
+	</div>
+		
+	<div class="line">
+		<span>URL</span>
+		<input type="text" class="w100" name="d1[url]" value="{$dados->url}" rel="text" title="URL" />
+		<br class="clearfix"/>
+	</div>
+
+	<div class="line">
+		<span>Arquivo</span>
+		<input type="file" class="w20" name="file_upload" />
+		<br class="clearfix"/>
+	</div>
+
+	{if $dados->id}
+	<div class="line">
+		<span>Arquivo atual</span>
+		<a class="link" href="javascript:void({$dados->id});" rel="'programa': 'banners', 'pagina': 'slides.preview', 'processID': 'new', 'query': 'id={$dados->id}'" >Visualizar arquivo</a>
+		<br class="clearfix"/>
+	</div>
+	{/if}
+
+	<div class="line">
+		<span>Ordem</span>
+		<input type="text" class="w40" name="d1[ordem]" value="{$dados->ordem}" rel="integer_" title="Ordem" />
+		<br class="clearfix"/>
+	</div>
+	
+	<div class="line">
+		<span>Status</span>
+		<input type="radio" name="d1[status]" value="1" {if $dados->status}checked="checked"{/if} />Ativado
+		<input type="radio" name="d1[status]" value="0" {if !$dados->status}checked="checked"{/if} />Desativado
+		<br class="clearfix"/>
+	</div>
+	
+	<div class="line">
+		<span>Arquivos permitidos</span>
+		{$banner->allow}
+		<br class="clearfix"/>
+	</div>
+	
+	<div class="line">
+		<span>Tamanho</span>
+		{$banner->largura}x{$banner->altura}
+		<br class="clearfix"/>
+	</div>
+
+	<input type="hidden" name="d1[idbanner]" value="{$banner->id}" />
+		
+
+	<p class="acoes newLine tac">
+		<input class="submit" type="submit" value="Salvar" />
+	</p>
+					
+</form>
+
+
+
+

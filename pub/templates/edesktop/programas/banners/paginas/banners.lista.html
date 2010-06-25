@@ -1,0 +1,28 @@
+<h1>Lista de banners</h1>
+<p>Edite e remova banners do sistema.</p>
+
+<p class="excluir"><a href="javascript:void(0);">Excluír selecionados</a></p>
+<form rel="{$processID}" method="post" action="{$formURL}banners.remover">
+	<table class="ui-corner-top">
+		<tr class="ui-widget-header">
+			<td></td>
+			<td>Nome</td>
+			<td>Tamanho</td>
+		</tr>
+
+	{foreach from=$banners item="i"}
+		<tr class="ui-widget-content">
+			<td><input type="checkbox" name="ids[]" value="{$i->id}" /></td>
+			<td><strong>{$i->nome}</strong>
+				<div class="actions">
+					{if $editar}<span class="editar"><a href="javascript:void({$i->id});" rel="'pagina': 'banners.form', 'query': 'id={$i->id}'" class="link">Editar</a></span>{/if}
+					{if $remover}<span class="excluir"><a href="javascript:void({$i->id});">Excluír</a></span>{/if}
+					{if $admin}<span class="admin"><a href="javascript:void({$i->id});" rel="'pagina': 'slides.lista', 'query': 'idbanner={$i->id}'" class="link">Administrar slides</a></span>{/if}
+				</div>
+			</td>
+			<td>{$i->largura}x{$i->altura}</td>
+		</tr>
+	{/foreach}		
+	</table>
+	<p class="excluir"><a href="javascript:void(0);">Excluír selecionados</a></p>
+</form>
