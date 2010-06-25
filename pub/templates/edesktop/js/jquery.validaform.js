@@ -242,10 +242,26 @@ jQuery.fn.extend({
 								if (op.type == 'script')
 									$.globalEval(resposta);
 
-								//alert(resposta);
-	
-								// captura os retorno
-								var params = $.extend({ tipo: 'highlight'}, eval('(' +resposta+ ')'));
+								try{		
+									// captura os retorno
+									resposta = eval('(' +resposta+ ')');
+								}
+								catch(erro){
+								
+									var erro = "Erro eDesktop:\n" +resposta;
+									alert(erro);
+									
+									try {
+										console.log(erro);
+									}catch(e){};
+								
+									resposta = {
+										tipo: 'error',
+										msg: 'Opss!<br><br>Houve um erro inesperado, tente novamente mais tarde.'
+									};	
+								};
+
+								var params = $.extend({tipo: 'highlight'}, resposta);
 
 								// executa o aviso
 								eDesktop.dialog.aviso(params.msg, params.tipo, $('.corpo', $main));
@@ -261,7 +277,7 @@ jQuery.fn.extend({
 						return true;
 
 					}else{
-
+						
 						// captura os retorno
 						var params = $.extend({ tipo: 'highlight'}, eval('(' +resposta+ ')'));
 
