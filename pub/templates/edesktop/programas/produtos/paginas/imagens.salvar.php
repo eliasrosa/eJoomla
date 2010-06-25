@@ -61,7 +61,7 @@ else
 
 
 // upload
-$dest = JPATH_BASE . "{$img->pasta}/{$id}.{$file_ext}";
+$dest = JPATH_BASE . "{$img->pasta}/{$img->db->id}.{$file_ext}";
 
 if($src)
 	if(!JFile::upload($src, $dest))
