@@ -14,9 +14,6 @@ if(!(int) $d1['largura'])
 if(!(int) $d1['altura'])
     $msg .= '- O campo \'Altura\' é obrigatório!<br>';
 
-if(empty($d1['allow']))
-    $msg .= '- O campo \'Arquivos permitidos\' é obrigatório!<br>';
-
 if(empty($d1['modelo']))
     $msg .= '- O campo \'Modelo\' é obrigatório!<br>';
 

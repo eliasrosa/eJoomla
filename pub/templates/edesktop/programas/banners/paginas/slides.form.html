@@ -18,8 +18,14 @@
 	</div>
 		
 	<div class="line">
-		<span>URL</span>
+		<span>URL (Link)</span>
 		<input type="text" class="w100" name="d1[url]" value="{$dados->url}" rel="text" title="URL" />
+		<br class="clearfix"/>
+	</div>
+
+	<div class="line">
+		<span>Target (Destino)</span>
+		<input type="text" class="w100" name="d1[target]" value="{$dados->target}" rel="text" title="Target" />
 		<br class="clearfix"/>
 	</div>
 
@@ -52,7 +58,7 @@
 	
 	<div class="line">
 		<span>Arquivos permitidos</span>
-		{$banner->allow}
+		{$arquivosPermitidos}
 		<br class="clearfix"/>
 	</div>
 	

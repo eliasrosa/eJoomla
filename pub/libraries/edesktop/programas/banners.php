@@ -25,7 +25,6 @@ class edBanners
 			'largura' => '',
 			'altura' => '',
 			'modelo' => 'js.cycle.mod01',
-			'allow' => 'jpg, gif, swf',
 			'params' => ''
 		),
 		
@@ -36,21 +35,35 @@ class edBanners
 			'nome' => '',
 			'arquivo' => '',
 			'url' => '',
+			'target' => '',
 			'order' => '1',
 			'status' => 1,
 		)
 	);
 	
 
-	/* caminho da pasta de uploads
+	/* caminhos das pastas
 	 ***************************************************/
-	public $pasta = "/media/com_edesktop/banners/uploads";
-
+	public $url = array();
+	public $path = array();
 
 
 	/* inicia a class
 	 ***************************************************/
-	function __construct(){}
+	function __construct()
+	{
+		$this->url['media'] = JURI::base()."media/com_edesktop/banners/";
+		$this->path['media'] = JPATH_BASE .DS. 'media' .DS. 'com_edesktop' .DS. 'banners';
+		
+		$this->url['uploads'] = $this->url['media'] .'uploads/';
+		$this->path['uploads'] = $this->path['media'] .DS. 'uploads';
+
+		$this->url['js'] = $this->url['media'] .'js/';
+		$this->path['js'] = $this->path['media'] .DS. 'js';
+
+		$this->url['modelos'] = $this->url['media'] .'modelos/';
+		$this->path['modelos'] = $this->path['media'] .DS. 'modelos';				
+	}
 	
 	
 	/* carrega o DB da tabela selecionada
@@ -72,6 +85,13 @@ class edBanners
 		// busca o banner
 		$dados = $db->busca_por_id($id);
 		
+		//path e url da var modelo
+		if($dados)
+		{
+			$this->url['modelo'] = $this->url['modelos'] . $dados->modelo .'/';
+			$this->path['modelo'] = $this->path['modelos'] .DS. $dados->modelo;				
+		}
+		
 		// retorno os dados 
 		return $dados;
 	}
@@ -90,8 +110,8 @@ class edBanners
 		if($dados)
 		{
 			$dados->ext = $dados->arquivo;
-			$dados->arquivo = JURI::base(1)."{$this->pasta}/{$id}.{$dados->ext}";
-			$dados->arquivo_base = JPATH_BASE."{$this->pasta}/{$id}.{$dados->ext}";
+			$dados->arquivo = $this->url['uploads'] . "{$id}.{$dados->ext}";
+			$dados->arquivo_base = $this->path['uploads'] .DS. "{$id}.{$dados->ext}";
 		}
 		
 		// retorno os dados 
@@ -127,7 +147,11 @@ class edBanners
 		$sql = "WHERE idbanner = '$idbanner' $status $order";
 		
 		// busca o banner
-		$dados = $db->busca($sql);
+		$slides = $db->busca($sql);
+		
+		$dados = array();
+		foreach($slides as $slide)
+			$dados[] = $this->busca_slide_por_id($slide->id);
 		
 		// retorno os dados 
 		return $dados;
@@ -143,13 +167,21 @@ class edBanners
 		$modelos[1] = new stdClass();
 		$modelos[1]->value = 'js.cycle.mod01';
 		$modelos[1]->text = 'jQuery Cycle - Mod 01';
-		
-		$modelos[2] = new stdClass();
-		$modelos[2]->value = 'js.cycle.mod02';
-		$modelos[2]->text = 'jQuery Cycle - Mod 02';		
-		
+				
 		// retorno os dados 
 		return $modelos;
+	}
+
+
+	/* busca uma array de configuraçao do modelo
+	 ***************************************************/
+	function busca_config_modelo()
+	{
+		// abre o arquivo de configuração
+		require($this->path['modelo'] .DS. 'config.php');
+				
+		// retorno os dados 
+		return $config;
 	}
 	
 	
@@ -239,14 +271,12 @@ class edBanners
 				$banner = $this->db('banners');
 				$banner = $this->busca_banner_por_id($dados['idbanner']);
 				
-				// separa as extenssões e limpa usando trim
-				$allow = explode(',', $banner->allow);
-				foreach($allow as $k=>$v)
-					$allow[trim($v)] = trim($v);
-			
+				// busca config
+				$config = $this->busca_config_modelo();
+											
 				// verifica ext permitidas
-				if(!isset($allow[$file_ext]))
-					$msg .= '- Tipo de arquivo não permitido, somente arquivos ('.$banner->allow.')!<br>';
+				if(!isset($config['arquivos.permitidos'][$file_ext]))
+					$msg .= '- Tipo de arquivo não permitido, somente arquivos '. join(', ', $config['arquivos.permitidos']).'!<br>';
 				
 				// se for update
 				if($id)
@@ -309,7 +339,7 @@ class edBanners
 		// upload
 		if($file_src)
 		{											
-			$file_dest = JPATH_BASE . "{$this->pasta}/{$db->id}.{$file_ext}";
+			$file_dest = $this->path['uploads'] .DS. "{$db->id}.{$file_ext}";
 			if(JFile::upload($file_src, $file_dest))
 			{
 				// remove o arquivo antigo

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+    <name>eDesktop >> Banners</name>
+    <author>Elias da Rosa</author>
+    <version>1.0</version>
+    <description>Cria uma banner cadastrado no sistma</description>
+    <files>
+        <filename>index.html</filename>
+    </files>
+    <params>
+		<param name="bannerID" type="sql" label="Banner" key_field="id" value_field="nome" query="SELECT id, nome FROM #__edesktop_banners ORDER BY nome ASC" />
+		<param name="titulo" type="text" default="" label="Título" description="" />
+		<param name="tagID" type="text" default="" label="Atributo ID" description="" />
+    </params>
+</install>

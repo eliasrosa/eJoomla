@@ -18,7 +18,10 @@ $ban = $banner->busca_banner_por_id($idbanner);
 // envia os dados
 $this->smarty->assign('banner', $ban);
 
+$config = $banner->busca_config_modelo();
+$arquivosPermitidos = join(', ', $config['arquivos.permitidos']);
 
+$this->smarty->assign('arquivosPermitidos', $arquivosPermitidos);
 
 // busca banner por id
 $dados = $banner->busca_slide_por_id($id);
