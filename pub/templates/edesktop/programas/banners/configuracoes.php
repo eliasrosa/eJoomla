@@ -18,14 +18,18 @@ $configuracoes = array (
 			'banners.editar' => 'Editar dados dos banners',
 			'banners.adicionar' => 'Adicionar novos banners',
 			'banners.remover' => 'Remover banners',
-			'banners.admin' => 'Adiministrar uploads'
-
-        
+			
+			// slides
+			'slides.lista' => 'Visualizar lista de slides',
+			'slides.form' => 'Visualizar dados dos slides',
+			'slides.editar' => 'Editar dados dos slides',
+			'slides.adicionar' => 'Adicionar novos slides',
+			'slides.remover' => 'Remover slides'        
         ),
 
         // Permissões de acesso liberadas
         'permissoes.liberadas' => array(
-			'banners.salvar'
+			'banners.salvar', 'slides.salvar'
         )
 );
 ?>

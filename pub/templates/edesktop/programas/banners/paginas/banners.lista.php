@@ -17,6 +17,6 @@ $this->smarty->assign('banners', $banners);
 // permições
 $this->smarty->assign('editar', jAccess('banners.editar', array('retorno' => 'bool')));
 $this->smarty->assign('remover', jAccess('banners.remover', array('retorno' => 'bool')));
-$this->smarty->assign('admin', jAccess('banners.admin', array('retorno' => 'bool')));
+$this->smarty->assign('admin', jAccess('slides.lista', array('retorno' => 'bool')));
 
 ?>
