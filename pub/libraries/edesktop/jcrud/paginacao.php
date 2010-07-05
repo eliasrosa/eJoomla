@@ -1,0 +1,133 @@
+<?php
+class paginacao
+{
+	var $por_pagina = 20;
+	var $url_base = null;
+	var $get_var = '';
+	var $pagina_atual = 0;
+	var $row_fim = 0;
+	var $row_inicio = 0;
+	var $total_registros = 0;
+	var $total_paginas = 0;
+	var $orders = array();
+	var $order_atual = '';
+	var $html = array();
+	
+	// 
+	function __construct()
+	{
+		$this->get_var_pagina = $this->get_var.'pag';
+		$this->get_var_order = $this->get_var.'order';
+	}
+	
+	// inicia o cálculo de paginação 
+	function init($total_registros)
+	{
+		$this->__construct();
+		
+		// pega a pagina atual
+		$this->pagina_atual = JRequest::getInt($this->get_var_pagina, 1);
+
+		// total de regitros
+		$this->total_registros = (int) $total_registros;
+		
+		if(!$this->total_registros && $this->pagina_atual > 0)
+			return array();
+		
+		// calcula a linha do registro de inicio
+		$this->row_fim = ($this->por_pagina * $this->pagina_atual) - 1;
+		$this->row_inicio = $this->por_pagina * ($this->pagina_atual - 1);
+
+		// calcula o total de páginas
+		$this->total_paginas = ceil($this->total_registros / $this->por_pagina);
+
+		// cria os html das paginas
+		$this->cria_html();
+				
+		return;
+	}
+
+
+	//
+	function cria_html()
+	{
+		// adiciona a biblioteca juri
+		jimport('joomla.environment.uri');
+
+		// verifica se a urlbase foi adicionada
+		if(!is_null($this->url_base))
+			$u =& JURI::getInstance($this->url_base);
+		
+		// caso contrário usa a urel atual
+		else
+			$u =& JURI::getInstance();
+		
+		$links = '';
+		$select = '';
+			
+		// loop nas páginas
+		for ($i = 1; $i <= $this->total_paginas; $i++)
+		{
+			// adiciona a var na url
+			$u->setVar($this->get_var_pagina, $i);
+					
+			// retorna o html tag a
+			$class = $i == $this->pagina_atual ? ' class="atual"' : '';
+			$links .= sprintf('<a href="%s"%s>%d</a> ', JRoute::_($u->toString()), $class, $i);
+			
+			// retorna o html select
+			$selected = $i == $this->pagina_atual ? ' selected="selected"' : '';
+			$select .= sprintf('<option value="%s" %s>Página %d</option> ', JRoute::_($u->toString()), $selected, $i);
+		}		
+		
+		$js = sprintf('<script type="text/javascript">$(function(){ $(\'select#%s\').change(function(){window.location = $(this).val();});});</script>', $this->get_var_pagina);
+		$select = sprintf('<select name="%s" id="%s">%s</select>%s', $this->get_var_pagina, $this->get_var_pagina, $select, $js);		
+		
+		//
+		$this->html['paginas.links'] = $links;
+		$this->html['paginas.select'] = $select;
+
+		$order = '';
+		$this->order_atual = JRequest::getVar($this->get_var_order);
+		
+		if(count($this->orders))
+		{
+
+			foreach($this->orders as $k=>$v)
+			{
+				$u->setVar($this->get_var_pagina, 1);
+				$u->setVar($this->get_var_order, $k);
+				$selected = $k == $this->order_atual ? ' selected="selected"' : '';
+				$order .= sprintf('<option value="%s" %s>%s</option> ', JRoute::_($u->toString()), $selected, $v['label']);
+			}
+
+			$js = sprintf('<script type="text/javascript">$(function(){ $(\'select#%s\').change(function(){window.location = $(this).val();});});</script>', $this->get_var_order);
+			$order = sprintf('<select name="%s" id="%s">%s</select>%s', $this->get_var_order, $this->get_var_order, $order, $js);		
+			
+			//
+			$this->html['order.select'] = $order;
+			
+		}
+		
+		
+	}
+
+
+	function get_order()
+	{
+		// busca o get order
+		$order = JRequest::getInt($this->get_var_order, 0);
+		
+		$sql = 'ORDER BY ';
+		
+		if(isset($this->orders[$order]['sql']))
+			return $sql.$this->orders[$order]['sql'];
+		
+		else
+			return $sql.$this->orders[0]['sql'];
+		
+	}
+
+}
+
+?>
