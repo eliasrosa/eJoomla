@@ -1,32 +1,38 @@
 <?php
-	// importa a class fabricantes
-	jimport('edesktop.programas.produtos.fabricantes');
 
-	// inicia no obj
-	$produtos = new edesktop_produtos_produtos();
+	// importa a class produtos
+	jimport('edesktop.programas.produtos');
 
-	// paginação
-	$produtos->paginacao = $this->config->get('produtosPorPagina');
+	$p = new edProdutos();
 	
-	// carrega o id
+	// paginação
+	$p->paginacao->por_pagina = $this->config->get('produtosPorPagina');
+	
+	// carrega o id ca categoria
 	$id = JRequest::getvar('id', 0);
+
+	// tipos de orders
+	$p->paginacao->orders = array(
+		array('label' => 'Preço', 'sql' => 'valor ASC'),
+		array('label' => 'Nome', 'sql' => 'nome ASC')
+	);
+	
+	// pega o sql order
+	$order = $p->paginacao->get_order();
 	
 	// busca dados
-	$dados = $produtos->busca_por_fabricante($id);
-
+	$dados = $p->busca_produtos_por_fabricante($id, "AND status = '1' AND valor > 0 {$order}", array('fabricante', 'imagem'));
+	
 	// envia para o layout
 	$this->assignRef('dados', $dados);
 	
 	// envia para o layout a paginação
-	$this->assignRef('paginacao', $produtos->paginacao);
-
-	// inicia no obj
-	$f = new edesktop_produtos_fabricantes();
+	$this->assignRef('paginacao', $p->paginacao);
 
 	// abre o fabricante
-	$f = $f->busca_por_id($id);
+	$fabricante= $p->busca_fabricante_por_id($id);
 	
 	// Altera o titulo
-	$_SESSION['eload']['title'] = "{$f->nome} - {sitename}";
+	$_SESSION['eload']['title'] = "{$fabricante->nome} - {sitename}";
 
 ?>

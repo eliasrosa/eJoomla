@@ -8,6 +8,8 @@ $p = $this->dados;
 <div id="loja-produto">
 	<div class="produto">
 	
+		<? if($p): ?>
+	
 		<h1><?= $p->produto->referencia == '' ? $p->produto->nome : "{$p->produto->nome} <span class=\"ref\">(ref. " .strtoupper($p->produto->referencia). ")</span>"; ?></h1>
 		
 		<div class="imagens">
@@ -46,7 +48,11 @@ $p = $this->dados;
 			<div class="texto"><?= $t->html; ?></div>
 			<? endforeach; ?>
 		</div>
-		
+		<? else: ?>
+		<div class="aviso">
+			<p>Produto não encontrado!</p>
+		</div>
+		<? endif; ?>
 	</div>
 	
 </div>

@@ -1,16 +1,30 @@
 <?php
+	// importa a class produtos
+	jimport('edesktop.programas.produtos');
+
+	// carrega
+	$p = new edProdutos();
 	
 	// paginação
-	$produtos->paginacao = $this->config->get('produtosPorPagina');
+	$p->paginacao->por_pagina = $this->config->get('produtosPorPagina');
+	
+	// tipos de orders
+	$p->paginacao->orders = array(
+		array('label' => 'Preço', 'sql' => 'valor ASC'),
+		array('label' => 'Nome', 'sql' => 'nome ASC')
+	);
+	
+	// pega o sql order
+	$order = $p->paginacao->get_order();
 	
 	// busca dados
-	$dados = $produtos->busca_por_destaque();
-
-	// envia para o layout os dados
+	$dados = $p->busca_produtos_em_destaque("AND status = '1' AND valor > 0 {$order}", array('fabricante', 'imagem'));
+	
+	// envia para o layout
 	$this->assignRef('dados', $dados);
 	
 	// envia para o layout a paginação
-	$this->assignRef('paginacao', $produtos->paginacao);
+	$this->assignRef('paginacao', $p->paginacao);
 	
 	// Altera o titulo
 	$_SESSION['eload']['title'] = "Produtos em destaque - {sitename}";

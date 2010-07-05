@@ -11,9 +11,6 @@ class edesktopVIEWloja extends JView
     { 
 		// carreca a class de configurações
 		jimport('edesktop.programas.loja.config');
-				
-		// importa a class produtos
-		jimport('edesktop.programas.produtos.produtos');
 		
 		// carrega a class de configurações
 		$this->config = new edesktop_loja_config();
@@ -49,10 +46,7 @@ class edesktopVIEWloja extends JView
 		
 		// verifica se o aquivo de layout existe
 		if(file_exists($file_layout))
-		{
-			// inicia no obj produtos
-			$produtos = new edesktop_produtos_produtos();
-			
+		{			
 			// abre o view do layout
 			require_once($file_view);
 		}
