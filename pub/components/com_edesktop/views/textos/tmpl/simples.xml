@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Página simples (PHP)">
+		<message>Abre um arquivo .php na pasta $template/edesktop</message>
+	</layout>
+	<state>
+		<name>Página simples (PHP)</name>
+		<description>Abre um arquivo .php na pasta $template/edesktop</description>
+
+		<params>
+			<param name="arquivo" type="text" label="Nome do arquivo" default="" size="30" />
+		</params>		
+		
+	</state>
+</metadata>
