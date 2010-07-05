@@ -2,6 +2,10 @@ pub/administrator/cache/*
 pub/cache/*
 pub/logs/*
 pub/tmp/*
+pub/media/com_edesktop/banners/uploads/*
+pub/media/com_edesktop/produtos/imagens/produtos/*
+pub/media/com_edesktop/produtos/imagens/fabricantes/*
+pub/templates/testes/*
 !pub/administrator/cache/index.html
 !pub/cache/index.html
 !pub/logs/index.html
