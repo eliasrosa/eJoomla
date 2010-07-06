@@ -32,7 +32,5 @@
 
 	// abre a categoria
 	$cat = $p->busca_categoria_por_id($id);
-
-	// Altera o titulo
-	$_SESSION['eload']['title'] = "{$cat->nome} - {sitename}";
+	if($cat) $_SESSION['eload']['title'] = "{$cat->nome} - {sitename}";
 ?>

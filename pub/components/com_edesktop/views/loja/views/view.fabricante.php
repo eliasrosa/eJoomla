@@ -30,9 +30,7 @@
 	$this->assignRef('paginacao', $p->paginacao);
 
 	// abre o fabricante
-	$fabricante= $p->busca_fabricante_por_id($id);
-	
-	// Altera o titulo
-	$_SESSION['eload']['title'] = "{$fabricante->nome} - {sitename}";
+	$fabricante = $p->busca_fabricante_por_id($id);
+	if($fabricante) $_SESSION['eload']['title'] = "{$fabricante->nome} - {sitename}";
 
 ?>
