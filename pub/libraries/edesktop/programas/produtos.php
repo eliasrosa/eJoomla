@@ -2,14 +2,16 @@
 // carrega o jcrud
 jimport('edesktop.jcrud');
 
-// carrega o jcrud
+// carrega a paginacao
 jimport('edesktop.jcrud.paginacao');
+
+// carrega a paginacao
+jimport('edesktop.util');
 
 // inicia a class
 class edProdutos
 {
 	var $paginacao = null;
-
 
 
 	/* tabelas
@@ -71,10 +73,10 @@ class edProdutos
 	 ***************************************************/
 	function busca_ids_categorias_filhas($id = 0, $array = false)
 	{
+		$id = util::int($id, -1);
+	
 		$db = $this->db('categorias');
-		
 		$dados = $db->busca("WHERE id = '{$id}'");
-
 		$filhas = $db->busca("WHERE idpai = '{$id}'");
 		foreach($filhas as $filha)
 		{
@@ -102,10 +104,11 @@ class edProdutos
 	 ***************************************************/
 	function busca_ids_produtos_por_ids_categorias($ids, $retorno = 'join')
 	{
-		$db = $this->db('categorias_rel');
+		$ids = $ids == '' ? -1 : $ids;
 		
+		$db = $this->db('categorias_rel');
 		$dados = $db->busca("WHERE idcategoria IN ({$ids}) GROUP BY idproduto");
-
+			
 		$r = array();
 		
 		foreach ($dados as $item)
@@ -123,14 +126,19 @@ class edProdutos
 	/* Busca todos os produtos pelo id de uma categoria,
 	 * e de categrias filhas
 	 ***************************************************/ 
-	function busca_produtos_por_categoria($id = 0, $sql = "", $tabelas_relacionadas = array())
+	function busca_produtos_por_categoria($id = -1, $sql = "", $tabelas_relacionadas = array())
 	{
+		$id = util::int($id, -1);
+		
 		// carrega ids das categorias filhas
 		$categoriasIDS = $this->busca_ids_categorias_filhas($id);
 		
 		// carrega ids dos produtos
 		$produtosIDS = $this->busca_ids_produtos_por_ids_categorias($categoriasIDS);
-		$produtosIDS = $produtosIDS == '' ? 0 : $produtosIDS;
+		
+		// 
+		if(empty($produtosIDS))
+			return array();
 		
 		// abre a tabela
 		$db = $this->db('produtos');
@@ -155,10 +163,7 @@ class edProdutos
 	 ***************************************************/ 
 	function busca_produtos_em_destaque($sql = "", $tabelas_relacionadas = array())
 	{		
-		// abre a tabela
 		$db = $this->db('produtos');
-		
-		// busca os registros
 		$dados = $db->busca("WHERE destaque = '1' {$sql}");
 				
 		// inicia a paginação
@@ -178,12 +183,11 @@ class edProdutos
 	 ***************************************************/	
 	function busca_produto_por_id($id = 0, $sql = "", $tabelas = array())
 	{
+		$id = util::int($id, -1);
+
 		$dados = new stdClass();
 		
-		// tabela produtos
 		$db = $this->db('produtos');
-		
-		// produto
 		$dados->produto = $db->busca("WHERE id = '{$id}' {$sql}");
 		$dados->produto = count($dados->produto) ? $dados->produto[0] : false;
 		
@@ -225,8 +229,9 @@ class edProdutos
 
 	function busca_fabricante_por_id($id, $sql = "")
 	{
+		$id = util::int($id, -1);
+		
 		$db = $this->db('fabricantes');
-
 		$dados = $db->busca("WHERE id = '{$id}' {$sql}");
 		$dados = count($dados) ? $dados[0] : false;
 
@@ -237,8 +242,9 @@ class edProdutos
 
 	function busca_imagem_por_id($id, $sql = "")
 	{
-		$db = $this->db('imagens');
+		$id = util::int($id, -1);
 
+		$db = $this->db('imagens');
 		$dados = $db->busca("WHERE id = '{$id}' {$sql}");
 		$dados = count($dados) ? $dados[0] : false;
 
@@ -254,8 +260,9 @@ class edProdutos
 
 	function busca_texto_por_id($id, $sql = "")
 	{
+		$id = util::int($id, -1);		
+		
 		$db = $this->db('textos');
-
 		$dados = $db->busca("WHERE id = '{$id}' {$sql}");
 		$dados = count($dados) ? $dados[0] : false;
 			
@@ -266,8 +273,9 @@ class edProdutos
 	
 	function busca_categoria_por_id($id, $sql = "")
 	{
-		$db = $this->db('categorias');
+		$id = util::int($id, -1);
 
+		$db = $this->db('categorias');
 		$dados = $db->busca("WHERE id = '{$id}' {$sql}");
 		$dados = count($dados) ? $dados[0] : false;
 		
@@ -280,9 +288,9 @@ class edProdutos
 	 ***************************************************/
 	function busca_imagem_destaque_por_produto($id)
 	{
+		$id = util::int($id, -1);
+
 		$db = $this->db('imagens');
-		
-		// imagem
 		$dados = $db->busca("WHERE idproduto = '{$id}' AND status = '1' ORDER BY destaque DESC LIMIT 0,1");
 		
 		if(count($dados))
@@ -297,13 +305,10 @@ class edProdutos
 	
 	function busca_produtos_por_fabricante($id = 0, $sql = "", $tabelas_relacionadas = array())
 	{
-		$fabricanteID = (int) $id;
-
-		// abre tabela
-		$db = $this->db('produtos');
+		$id = util::int($id, -1);
 		
-		// dados
-		$dados = $db->busca("WHERE idfabricante = '{$fabricanteID}' {$sql}");
+		$db = $this->db('produtos');
+		$dados = $db->busca("WHERE idfabricante = '{$id}' {$sql}");
 
 		// inicia a paginação
 		$this->paginacao->init(count($dados));
@@ -319,12 +324,9 @@ class edProdutos
 
 	function busca_imagens_por_produto($id = 0, $sql = "")
 	{
-		$id = (int) $id;
+		$id = util::int($id, -1);
 		
-		// abre tabela
 		$db = $this->db('imagens');
-		
-		// dados
 		$dados = $db->busca("WHERE idproduto = '$id' {$sql}");
 
 		// inicia a paginação
@@ -341,13 +343,10 @@ class edProdutos
 
 	function busca_textos_por_produto($id = 0, $sql = "")
 	{
-		$id = (int) $id;
+		$id = util::int($id, -1);
 		
-		// abre tabela
 		$db = $this->db('textos');
-		
-		// dados
-		$dados = $db->busca("WHERE idproduto = '$id' {$sql}");
+		$dados = $db->busca("WHERE idproduto = '{$id}' {$sql}");
 
 		// inicia a paginação
 		$this->paginacao->init(count($dados));
@@ -363,10 +362,10 @@ class edProdutos
 	
 	function busca_produtos_por_texto($texto = '', $sql = "", $tabelas_relacionadas = array())
 	{
-		$texto = trim($texto);
+		$texto = util::quote($texto);
 		
-		//if($texto == '')
-		//	return array();
+		if($texto == '')
+			return array();
 		
 		$where = "WHERE
 			(nome LIKE '%$texto%' OR 
@@ -378,8 +377,6 @@ class edProdutos
 			metatagkey LIKE '%$texto%')";
 
 		$db = $this->db('produtos');
-		
-		// dados
 		$dados = $db->busca("{$where} {$sql}");
 
 		// inicia a paginação
@@ -398,6 +395,8 @@ class edProdutos
 	 ***************************************************/
 	private function busca_imagem_path($id, $img404 = true)
 	{
+		$id = util::int($id, -1);
+		
 		$img = $this->path['produtos'] .DS. "{$id}.jpg";
 		$url = $this->url['produtos'] . "{$id}.jpg";
 		
