@@ -31,6 +31,10 @@
 
 	// abre o fabricante
 	$fabricante = $p->busca_fabricante_por_id($id);
-	if($fabricante) $_SESSION['eload']['title'] = "{$fabricante->nome} - {sitename}";
-
+	if($fabricante)
+	{
+		$nome = $fabricante->nome;
+		$_SESSION['eload']['title'] = "{$nome} - {sitename}";
+		$this->assignRef('titulo', $nome);
+	}
 ?>

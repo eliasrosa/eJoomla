@@ -28,7 +28,7 @@
 	
 	// envia para o layout a paginação
 	$this->assignRef('paginacao', $p->paginacao);
-	
+
 	// Altera o titulo
 	$_SESSION['eload']['title'] = "{$busca} - Pesquisa {sitename}";
 

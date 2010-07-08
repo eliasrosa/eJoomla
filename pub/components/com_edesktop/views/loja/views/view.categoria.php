@@ -32,5 +32,11 @@
 
 	// abre a categoria
 	$cat = $p->busca_categoria_por_id($id);
-	if($cat) $_SESSION['eload']['title'] = "{$cat->nome} - {sitename}";
+	if($cat)
+	{ 
+		$nome = $cat->nome;
+		$_SESSION['eload']['title'] = "{$nome} - {sitename}";
+		$this->assignRef('titulo', $nome);
+	}
+
 ?>

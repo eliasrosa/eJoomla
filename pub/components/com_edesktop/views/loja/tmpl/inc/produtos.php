@@ -1,10 +1,14 @@
 <? defined('_JEXEC') or die('Restricted access'); ?>
 <div id="loja-listadepodutos">
-	<? if($this->params->get('show_page_title')){ echo '<h2>' .$this->params->get('page_title'). '</h2>'; } ?>
+	
+	<? if(isset($this->titulo) && !empty($this->titulo))
+		echo "<h1>{$this->titulo}</h1>"; ?>
 	
 	<? if($this->paginacao->total_registros >= 1): ?>
 	<div class="order">Ordernar por: <?= $this->paginacao->html['order.select']; ?></div>
 	<? endif; ?>
+	
+	<br class="clearfix" />
 		
 	<!-- Inicio produtos -->
 	<? foreach($this->dados as $p):?>

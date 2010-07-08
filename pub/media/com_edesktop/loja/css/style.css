@@ -1,12 +1,13 @@
 
 /* LISTA DE PRODUTO
  ***************************************/
-#loja-listadepodutos h1 { display: none; }
+#loja-listadepodutos h1 { float: left; }
+#loja-listadepodutos .order { float: right; margin: 20px 0; }
 #loja-listadepodutos .produto { width: 170px; height: 260px; display: block; margin-bottom: 15px; padding: 0 9px; float: left; }
 #loja-listadepodutos p { text-align: center; }
 #loja-listadepodutos p a:hover { text-decoration: underline; }
-#loja-listadepodutos .img { margin-bottom: 5px; }
-#loja-listadepodutos .img a { text-decoration: none; }
+#loja-listadepodutos .img { width: 130px; height: 150px; margin: 0 auto 5px auto; text-align: center; }
+#loja-listadepodutos .img a { text-decoration: none;  }
 #loja-listadepodutos .nome a { font-weight: 700; color: #666; }
 #loja-listadepodutos .fabricante a { color: #666; }
 #loja-listadepodutos .valor { font-weight: 700; color: #666; }
