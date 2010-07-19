@@ -63,6 +63,7 @@ class paginacao
 			$u =& JURI::getInstance();
 		
 		$links = '';
+		$paginas_adm_select = '';
 		$select = '';
 			
 		// loop nas páginas
@@ -77,16 +78,28 @@ class paginacao
 			
 			// retorna o html select
 			$selected = $i == $this->pagina_atual ? ' selected="selected"' : '';
+			
+			// cria o select para o site
 			$select .= sprintf('<option value="%s" %s>Página %d</option> ', JRoute::_($u->toString()), $selected, $i);
+			
+			// cria o select para o adm
+			$paginas_adm_select .= sprintf('<option value="%s" %s>Página %d</option> ', $i, $selected, $i);
 		}		
 		
+		// paginas para o adm
+		$js = sprintf('<script type="text/javascript">$(function(){ $(\'select#%s\').change(function(){ eDesktop.dialog.load({programa: "%s", processID: "%s", pagina: "%s", query: "%s="+ $(this).val() }); });});</script>', $this->get_var_pagina, JRequest::getvar('programa'), JRequest::getvar('processID'), JRequest::getvar('pagina'), $this->get_var_pagina);
+		$paginas_adm_select = sprintf('<select name="%s" id="%s">%s</select>%s ', $this->get_var_pagina, $this->get_var_pagina, $paginas_adm_select, $js);		
+		$this->html['paginas.adm.select'] = $paginas_adm_select;
+		
+		
+		// páginas para o site
 		$js = sprintf('<script type="text/javascript">$(function(){ $(\'select#%s\').change(function(){window.location = $(this).val();});});</script>', $this->get_var_pagina);
 		$select = sprintf('<select name="%s" id="%s">%s</select>%s', $this->get_var_pagina, $this->get_var_pagina, $select, $js);		
-		
-		//
 		$this->html['paginas.links'] = $links;
 		$this->html['paginas.select'] = $select;
 
+
+		// ordem para site
 		$order = '';
 		$this->order_atual = JRequest::getVar($this->get_var_order);
 		
@@ -109,7 +122,11 @@ class paginacao
 			
 		}
 		
-		
+		foreach($this->html as $k=>$v)
+		{
+			$key = str_replace('.', '_', $k);
+			$this->html[$key] = $v;
+		}		
 	}
 
 
