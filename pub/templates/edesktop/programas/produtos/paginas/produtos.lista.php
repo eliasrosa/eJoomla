@@ -1,10 +1,13 @@
 <?
 $menu_principal->show();
 
-jimport('edesktop.programas.produtos.produtos');
+jimport('edesktop.programas.produtos');
+$edProdutos = new edProdutos();
 
-$p = new edesktop_produtos_produtos();
-$p = $p->busca_todos();
 
-$this->smarty->assign('produtos', $p);
+
+$produtos = $edProdutos->busca_todos_produtos("WHERE status >= 0 ORDER BY nome ASC");
+
+$this->smarty->assign('produtos', $produtos);
+$this->smarty->assign('paginacao', $edProdutos->paginacao);
 ?>
