@@ -50,7 +50,7 @@
 				<h2>Informe o seu CEP</h2>
 				<input type="input" value="<?= @$this->dados['frete']['cep1']; ?>" name="cep1" class="cep1" maxlength="5" size="5" /> - 
 				<input type="input" value="<?= @$this->dados['frete']['cep2']; ?>" name="cep2" class="cep2" maxlength="3" size="2" />
-				<a href="javascript:void(0);" title="Consultar" class="cep"><img src="media/com_edesktop/loja/imagens/icoOK.gif" alt="Consultar" /></a>
+				<a href="javascript:void(0);" title="Consultar" class="cep"><img src="media/com_edesktop/loja/imagens/icoOk.gif" alt="Consultar" /></a>
 				
 				<div class="tipos">
 					<? if($this->dados['frete']['cep'] && $this->dados['frete']['tipo'] != 'fixo'): ?>			
@@ -68,7 +68,7 @@
 			<div class="cupomDesconto">
 				<h2>Cupom de desconto</h2>
 				<input type="input" value="" name="cupom" class="cupom" /> 
-				<a href="javascript:void(0);" title="Consultar" class="cupom"><img src="media/com_edesktop/loja/imagens/icoOK.gif" alt="Adicionar" /></a>
+				<a href="javascript:void(0);" title="Consultar" class="cupom"><img src="media/com_edesktop/loja/imagens/icoOk.gif" alt="Adicionar" /></a>
 			</div>
 			
 			<a href="<?= JRoute::_("index.php?option=com_edesktop&view=loja&layout=destaques&Itemid={$this->itemid}"); ?>" class="continuarComprando">Continuar Comprando</a>
