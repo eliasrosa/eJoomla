@@ -179,6 +179,26 @@ class edProdutos
 
 
 
+	/* 
+	 ***************************************************/ 
+	function busca_todos_produtos($sql = "", $tabelas_relacionadas = array())
+	{		
+		$db = $this->db('produtos');
+		$dados = $db->busca("{$sql}");
+				
+		// inicia a paginação
+		$this->paginacao->init(count($dados));
+		
+		$retorno = array();
+		for($i = $this->paginacao->row_inicio; $i <= $this->paginacao->row_fim; $i++)
+			if(isset($dados[$i]))
+				$retorno[] = $this->busca_produto_por_id($dados[$i]->id, "", $tabelas_relacionadas);
+		
+		return $retorno;
+	}
+
+
+
 	/* Busca os dados do produto pelo id
 	 ***************************************************/	
 	function busca_produto_por_id($id = 0, $sql = "", $tabelas = array())
