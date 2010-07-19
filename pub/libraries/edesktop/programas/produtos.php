@@ -367,17 +367,22 @@ class edProdutos
 		if($texto == '')
 			return array();
 		
-		$where = "WHERE
-			(nome LIKE '%$texto%' OR 
-			alias LIKE '%$texto%' OR 
-			descricao LIKE '%$texto%' OR 
-			referencia LIKE '%$texto%' OR 
-			id LIKE '%$texto%' OR 
-			metatagdescription LIKE '%$texto%' OR 
-			metatagkey LIKE '%$texto%')";
+		$where = "WHERE (nome LIKE '%$texto%' OR alias LIKE '%$texto%' OR descricao LIKE '%$texto%' OR referencia LIKE '%$texto%' OR id LIKE '%$texto%' OR metatagdescription LIKE '%$texto%' OR metatagkey LIKE '%$texto%')";
 
 		$db = $this->db('produtos');
 		$dados = $db->busca("{$where} {$sql}");
+
+		// separa o texto por palavra e faz uma busca
+		$palavras = explode(' ', $texto);
+		if(count($palavras) > 1)
+		{
+			foreach($palavras as $texto)
+			{
+				$where = "WHERE (nome LIKE '%$texto%' OR alias LIKE '%$texto%' OR descricao LIKE '%$texto%' OR referencia LIKE '%$texto%' OR id LIKE '%$texto%' OR metatagdescription LIKE '%$texto%' OR metatagkey LIKE '%$texto%')";
+				$novo = $db->busca("{$where} {$sql}");
+				$dados = array_merge($dados, $novo);
+			}
+		}
 
 		// inicia a paginação
 		$this->paginacao->init(count($dados));
