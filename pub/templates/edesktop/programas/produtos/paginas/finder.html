@@ -1,0 +1,28 @@
+<h1>Resultado da busca '{$finder}'</h1>
+
+<form rel="{$processID}" method="post" action="{$formURL}produtos.remover">
+	<table class="ui-corner-top">
+		<tr class="ui-widget-header">
+			<td></td>
+			<td>Nome</td>
+			<td>Status</td>
+		</tr>
+
+	{foreach from=$produtos item="p"}
+		<tr class="ui-widget-content">
+			<td><input type="checkbox" name="ids[]" value="{$p->id}" /></td>
+			<td><strong>{$p->nome}</strong>
+				<div class="actions">
+					<span class="editar"><a class="link" rel="'pagina': 'produtos.form', 'query': 'id={$p->id}'" href="javascript:void(0);">Editar</a></span>
+					<span class="excluir"><a href="javascript:void(0);">Excluír</a></span>
+					<span class="imagens"><a class="link" rel="'pagina': 'imagens.lista', 'query': 'idproduto={$p->id}'" href="javascript:void(0);">Imagens</a></span>
+				</div>
+			</td>
+			<td>{if $p->status == 1}Publicado{else}Despublicado{/if}</td>
+		</tr>
+	{/foreach}		
+	</table>
+	<p class="fr">{$paginacao->html.paginas_adm_select}</p>
+	<p class="fr mr10">{$paginacao->total_registros} produtos encontrados.</p>
+	<p class="excluir fl"><a href="javascript:void(0);">Excluír selecionados</a></p>
+</form>
