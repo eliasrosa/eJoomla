@@ -87,7 +87,11 @@ class paginacao
 		}		
 		
 		// paginas para o adm
-		$js = sprintf('<script type="text/javascript">$(function(){ $(\'select#%s\').change(function(){ eDesktop.dialog.load({programa: "%s", processID: "%s", pagina: "%s", query: "%s="+ $(this).val() }); });});</script>', $this->get_var_pagina, JRequest::getvar('programa'), JRequest::getvar('processID'), JRequest::getvar('pagina'), $this->get_var_pagina);
+		$query = JRequest::get('post');
+		unset($query[JUtility::getToken()], $query['funcao'], $query['method'], $query['class'], $query['pagina'], $query['programa'], $query['template'], $query['processID']);
+		$u->setQuery($query);
+		$u->setVar($this->get_var_pagina, '');
+		$js = sprintf('<script type="text/javascript">$(function(){ $(\'select#%s\').change(function(){ eDesktop.dialog.load({programa: "%s", processID: "%s", pagina: "%s", query: "%s"+ $(this).val() }); });});</script>', $this->get_var_pagina, JRequest::getvar('programa'), JRequest::getvar('processID'), JRequest::getvar('pagina'), $u->getQuery());
 		$paginas_adm_select = sprintf('<select name="%s" id="%s">%s</select>%s ', $this->get_var_pagina, $this->get_var_pagina, $paginas_adm_select, $js);		
 		$this->html['paginas.adm.select'] = $paginas_adm_select;
 		
