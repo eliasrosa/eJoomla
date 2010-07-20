@@ -58,18 +58,13 @@ $(function(){
 					var val  = $(this).val();
 					
 					if (code == 13 & val != ''){
-						var query = 'finder=' +val ;
 						
-
-						eDesktop.dialog.conteudo(process.id, 'finder', query, { callback: function(html){
-													
-							$('#' +process.programa+ '.conteudo', $dialog).hide();
-							$('.finder-result', $dialog).show();
-							
-							// zera o conteudo e adiciona o novo
-							$('.finder-result .result', $dialog).html('').append(html);		
-							
-						}});	
+						eDesktop.dialog.load({
+							processID: process.id,
+							programa: process.programa,
+							pagina: 'finder',
+							query: 'finder=' +val
+						});
 					}
 				});
 				
