@@ -51,11 +51,9 @@
 			<ul>
 				<li><a href="#loj">Loja Virtual</a></li>
 				<li><a href="#cat">Categorias</a></li>
-				<li><a href="#txt">Textos</a></li>
 				<li><a href="#seo">SEO</a></li>
 			</ul>
 			
-
 			<!-- LOJA VIRTUAL -->
 			<div id="loj">
 					
@@ -95,22 +93,7 @@
 				<p>Selecione uma ou mais categorias que este produto pertence</p>
 				{$categorias}
 			</div>
-			<!-- FIM -->
-						
-			
-			<!-- TEXTOS -->
-			<div id="txt">
-			
-				<p class="tac">
-					{if $textos}
-					<a href="javascript:void(0);" class="list link button" rel="'pagina':'textos.lista', 'programa': 'produtos', 'processID': 'new', 'query': 'idproduto={$produto->id}'">Listar todos</a>
-					{/if}
-					<a href="javascript:void(0);" class="add link button" rel="'pagina':'textos.form', 'programa': 'produtos', 'processID': 'new', 'query': 'idproduto={$produto->id}'">Adicionar novo</a>
-				</p>
-			
-			</div>
-			<!-- FIM -->
-			
+			<!-- FIM -->			
 			
 			<!-- SEO -->
 			<div id="seo">
