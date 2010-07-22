@@ -1,4 +1,6 @@
 <?
+$menu_textos->show();
+
 jimport('edesktop.programas.produtos.textos');
 jimport('edesktop.programas.produtos.produtos');
 $t = new edesktop_produtos_textos();
