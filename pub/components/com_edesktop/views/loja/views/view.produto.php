@@ -12,6 +12,12 @@
 		'fabricante', 'imagem', 'imagens', 'textos'
 	));
 
+	// remove imagem duplicada caso esteja em  destaque
+	if($dados)
+		foreach($dados->imagens as $k=>$i)
+			if($dados->imagem->id == $i->id)
+				unset($dados->imagens[$k]);
+
 	// envia para o layout
 	$this->assignRef('dados', $dados);
 
