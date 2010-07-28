@@ -5,7 +5,7 @@
 		echo "<h1>{$this->titulo}</h1>"; ?>
 	
 	<? if($this->paginacao->total_registros >= 1): ?>
-	<div class="order">Ordernar por: <?= $this->paginacao->html['order.select']; ?></div>
+	<div class="order">Ordenar por: <?= $this->paginacao->html['order.select']; ?></div>
 	<? endif; ?>
 	
 	<br class="clearfix" />
