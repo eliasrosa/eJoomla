@@ -12,5 +12,14 @@
  */
 class Remetente extends BaseJosEdesktopMailingRemetentes
 {
+	public function setUp()
+	{
+		parent::setUp();
+
+		$this->hasMany('Envio as Envios', array(
+			'local' => 'id',
+			'foreign' => 'idremetente'
+		));
+	}
 
 }

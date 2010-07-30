@@ -12,5 +12,14 @@
  */
 class User extends BaseJosUsers
 {
+	public function setUp()
+	{
+		parent::setUp();
+
+		$this->hasMany('Envio as Envios', array(
+			'local' => 'id',
+			'foreign' => 'idusuario'
+		));
+	}
 
 }

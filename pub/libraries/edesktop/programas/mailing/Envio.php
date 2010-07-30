@@ -12,5 +12,25 @@
  */
 class Envio extends BaseJosEdesktopMailingEnvios
 {
+	public function setUp()
+	{
+		parent::setUp();
+
+		$this->hasOne('Email', array(
+			'local' => 'idemail',
+			'foreign' => 'id'
+		));
+
+		$this->hasOne('Contato', array(
+			'local' => 'idcontato',
+			'foreign' => 'id'
+		));
+
+		$this->hasOne('User', array(
+			'local' => 'idusuario',
+			'foreign' => 'id'
+		));
+
+	}
 
 }

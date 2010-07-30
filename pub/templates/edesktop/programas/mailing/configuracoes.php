@@ -7,7 +7,7 @@ $configuracoes = array (
         'finder' => false,
 
         // Página padrão
-        'default' => 'enviar.email',
+        'default' => 'enviar_email.form',
 
         // Permissões de acesso
         'permissoes' => array(

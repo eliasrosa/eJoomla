@@ -12,5 +12,18 @@
  */
 class Email extends BaseJosEdesktopMailingEmails
 {
+	public function setUp()
+	{
+		parent::setUp();
 
+		$this->hasMany('Envio as Envios', array(
+			'local' => 'id',
+			'foreign' => 'idemail'
+		));
+
+		$this->hasOne('Remetente', array(
+			'local' => 'idremetente',
+			'foreign' => 'id'
+		));
+	}
 }
