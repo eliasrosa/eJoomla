@@ -221,6 +221,9 @@ $(function(){
 			// icone do aviso
 			var icon = (tipo == 'error') ? 'alert' : 'info';
 
+			//
+			msg = msg.replace('\n', '<br>');
+
 			// html dos avisos
 			var aviso = $('<div class="alertas ui-state-' +tipo+ ' ui-corner-all">'+
 							'<p><span class="ui-icon ui-icon-' +icon+ '"></span>' +msg+ '</p>'+
