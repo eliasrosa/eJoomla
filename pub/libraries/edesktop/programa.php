@@ -232,26 +232,27 @@ class programa {
 
         // abre a página
         $pagina = $this->pasta_paginas .DS. $this->pagina;
-        if(file_exists($pagina. '.html')) {
-            if(file_exists($pagina .'.php'))
-                require_once($pagina .'.php');
+        
+		// carrega o php
+        if(file_exists($pagina. '.php'))
+        {
+            require_once($pagina .'.php');
 
-            echo $script;
+            if(!$this->funcao)
+            {
+				echo $script;
 
-            echo $this->smarty->fetch($pagina. '.html');
+				if(file_exists($pagina .'.html'))
+					echo $this->smarty->fetch($pagina. '.html');
+			}
         }
-
-        else {
-            if($this->funcao) {
-                if(file_exists($pagina .'.php'))
-                    require_once($pagina .'.php');
-                else
-                    echo "{ 'msg' : 'Arquivo não encontrado! \"{$this->pagina}.html\"', 'tipo' : 'error' }";
-            }
-            else
-                echo "Arquivo não encontrado!<br><br>$pagina.html<br><br><br><br><a href=\"javascript:void(0);\" class=\"link\" rel=\"{}\">Voltar</a>";
+        else
+        {
+            if($this->funcao)
+                echo "{ 'msg' : 'Arquivo não encontrado! \"{$this->pagina}.html\"', 'retorno' : false, 'tipo' : 'error' }";
+			else
+				echo "Arquivo não encontrado!<br><br>$pagina.html<br><br><br><br><a href=\"javascript:void(0);\" class=\"link\" rel=\"{}\">Voltar</a>";        
         }
-
     }
 
     public function formURL($pagina, $programa = '') {
