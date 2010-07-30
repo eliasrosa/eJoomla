@@ -1,0 +1,43 @@
+Produtos
+	buscar todos
+	buscar por id
+	buscar por search
+	buscar por destaque
+	buscar por categorias (IN)
+	buscar por fabricante
+	salvar
+	excluir
+
+Fabricantes
+	_addPath
+	buscar todos
+	buscar por id
+	buscar por search
+	salvar
+	excluir
+
+Imagens
+	_addPath
+	buscar todas
+	buscar por id
+	buscar em destaque
+	buscar por produto
+	salvar
+	excluir
+	
+Categorias
+	buscar todas
+	buscar por id
+	buscar por search
+	buscar por produto
+	buscar filhas
+	salvar
+	excluir
+	
+Textos
+	busca todos
+	buscar por id
+	buscar por search
+	buscar por produto
+	salvar
+	excluir
