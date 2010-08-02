@@ -24,6 +24,7 @@ $configuracoes = array (
 			'slides.form' => 'Visualizar dados dos slides',
 			'slides.editar' => 'Editar dados dos slides',
 			'slides.adicionar' => 'Adicionar novos slides',
+			'slides.preview' => 'Visualizar arquivos de slides',
 			'slides.remover' => 'Remover slides'        
         ),
 
