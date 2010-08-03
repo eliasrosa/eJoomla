@@ -16,14 +16,15 @@ class edMailing extends eDesktoBase
 			);
 
 		$subject = $email->assunto;
-		$message = $email->html;
+		$message = $this->createHtml($email, $contato);
 		$from    = "{$email->Remetente->nome} <{$email->Remetente->email}>";
 
 		$headers = 'MIME-Version: 1.0' . "\r\n" .
 				   'Content-type: text/html; charset=uft-8' . "\r\n" .
 				   'From: ' . $from . "\r\n" .
 				   'Reply-To: ' . $from . "\r\n" .
-				   'X-Mailer: PHP/' . phpversion() . ' - eDesktop Mailing/1.0';
+				   'X-Mailer: PHP/' . phpversion() . "\r\n" .
+				   'eDesktop: Mailing/1.0' . "\r\n";
 
 
 		if(@mail($contato, $subject, $message, $headers))
@@ -55,7 +56,40 @@ class edMailing extends eDesktoBase
 	}
 
 
+	public function createHtml(Email $email, $contato)
+	{
+		$html = file_get_contents($email->file_url);
 
+		preg_match_all('#<img.*?src="(.+?)".*?/>#', $html, $result);
+		
+		for($i=0; $i < count($result[0]); $i++)
+		{
+			$img = $result[0][$i];
+			$file = $result[1][$i];
+			
+			$fileNew = $email->base_url .'/'. $file;
+
+			$imgNew = str_replace($file, $fileNew, $img);
+			$html = str_replace($img, $imgNew, $html);
+		}
+		
+		$u =& JURI::getInstance();
+		$host = $u->getScheme() .'://'. $u->getHost();
+		
+		$sid = $this->getSID($email->id, $contato);
+		
+		preg_match('#<body.*?>#', $html, $result);
+		$link = $host . JROUTE::_('index.php?option=com_edesktop&view=mailing&layout=exibir&id=' .$email->id. '&e=' .$contato. '&sid=' .$sid. '&Itemid=200');
+		$linkTopo = $result[0]. '<center><font size="1" color="#000000" face="Arial">Caso não consiga visualizar este e-mail corretamente, <a href="' .$link. '" style="color:#0000ff;">clique aqui!</a></font></center><br />'."\n";
+		$html = str_replace($result[0], $linkTopo, $html);
+			
+		return $html;	
+	}
+
+	public function getSID($id, $contato)
+	{
+		return sha1(md5("{$id}::{$id}::{$contato}"));
+	}
 
 	public function salva_contato($dados)
 	{

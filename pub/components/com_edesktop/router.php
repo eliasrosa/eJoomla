@@ -1,4 +1,6 @@
 <?php
+jimport('edesktop.util');
+
 function edesktopBuildRoute( &$query )
 {
 	jimport( 'joomla.filter.output' );
@@ -29,6 +31,34 @@ function edesktopBuildRoute( &$query )
 		$layout = $segments[] = $query['layout'];
 		unset($query['layout']);
 	}
+
+	// se o view da mailing
+	if($view == 'mailing')
+	{		
+		if($layout == 'exibir')
+		{
+			// importa a class categorias
+			jimport('edesktop.programas.mailing');
+			
+			$id = util::int($query['id'], 0);
+			
+			$m = new edMailing();
+			$email = $m->busca_email_ativo_id($id);
+			
+			if($email)
+			{
+				$assunto = JFilterOutput::stringURLSafe($email->assunto);
+				
+				$segments[] = $id;
+				$segments[] = $assunto;
+	
+				// remove o id
+				unset($query['id']);
+			}
+
+		}	
+	}
+
 	
 	// se o view da loja
 	if($view == 'loja')
@@ -146,7 +176,16 @@ function edesktopParseRoute( $segments )
 			$vars['id'] = $id;
 		}		
 	}
-	
+
+	// se o view da mailing
+	if($vars['view'] == 'mailing')
+	{		
+		if($vars['layout'] == 'exibir')
+		{			
+			$vars['layout'] = $segments[0];
+			$vars['id'] = $segments[1];
+		}	
+	}
 
 	return $vars;
 }

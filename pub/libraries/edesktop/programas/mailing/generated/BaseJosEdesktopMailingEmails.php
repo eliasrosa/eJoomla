@@ -39,26 +39,9 @@ abstract class BaseJosEdesktopMailingEmails extends Doctrine_Record
              'notnull' => true,
              'autoincrement' => false,
              ));
-        $this->hasColumn('nome', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             'fixed' => false,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
-             ));
         $this->hasColumn('assunto', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
-             'fixed' => false,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
-             ));
-        $this->hasColumn('html', 'string', null, array(
-             'type' => 'string',
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Exibir e-mail">
+		<message>Abre um email cadastrado.</message>
+	</layout>
+	<state>
+		<name>Exibir e-mail</name>
+		<description>Abre um email cadastrado.</description>
+	</state>
+</metadata>

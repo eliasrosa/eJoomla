@@ -15,6 +15,7 @@ $configuracoes = array (
 
         // Permissões de acesso liberadas
         'permissoes.liberadas' => array(
+			'enviar_email.form', 'enviar_email.salvar'
         )
 );
 ?>

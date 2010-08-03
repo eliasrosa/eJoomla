@@ -3,6 +3,7 @@ pub/cache/*
 pub/logs/*
 pub/tmp/*
 pub/media/com_edesktop/banners/uploads/*
+pub/media/mailing/*
 pub/media/com_edesktop/produtos/imagens/produtos/*
 pub/media/com_edesktop/produtos/imagens/fabricantes/*
 pub/templates/testes/*

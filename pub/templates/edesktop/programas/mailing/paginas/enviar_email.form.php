@@ -14,7 +14,7 @@ $emails = $m->busca_todos_emails_ativos();
 		<span>E-mail</span>
 		<select name="email" class="w100">
 			<? foreach ($emails as $e): ?>
-				<option value="<?= $e->id ?>"><?= $e->nome ?> (<?= $e->Remetente->nome ?>)</option>
+				<option value="<?= $e->id ?>"><?= $e->assunto ?> (<?= $e->Remetente->nome ?>)</option>
 			<? endforeach; ?>
 		</select>
 		<br class="clearfix"/>

@@ -25,5 +25,24 @@ class Email extends BaseJosEdesktopMailingEmails
 			'local' => 'idremetente',
 			'foreign' => 'id'
 		));
+		
+		// adiciona o evento
+		Doctrine::getTable('Email')->addRecordListener(new EmailHydrationListener());
 	}
+}
+
+class EmailHydrationListener extends Doctrine_Record_Listener
+{
+    public function preHydrate(Doctrine_Event $event)
+    {
+        $data = $event->data;
+		
+		$data['base_url'] = JURI::base() . 'media/mailing/'.$data['id'];
+		$data['file_url'] = $data['base_url']. '/index.html';
+		
+		$data['base_path'] = JPATH_BASE .DS. 'media' .DS. 'mailing' .DS. $data['id'];
+		$data['file_path'] = $data['base_path'] .DS. 'index.html';
+		
+        $event->data = $data;
+    }
 }
