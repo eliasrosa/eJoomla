@@ -2,7 +2,7 @@
 var $form = $('form', $dialog);
 
 // add action
-$form.attr('action', formURL('enviar_email.salvar'));
+$form.attr('action', formURL('enviarUm.send'));
 
 // inicia a validação
 $form.validaForm({ 

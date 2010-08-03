@@ -7,6 +7,8 @@ class edMailing extends eDesktoBase
 
 	public function enviar_email($contato, $idemail)
 	{
+		jAccess('enviarUm.form');
+		
 		$email = $this->busca_email_ativo_id($idemail);		
 		if(!$email)
 			return $retorno = array(
