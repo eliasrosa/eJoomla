@@ -1,6 +1,7 @@
 <?
-$b = get_browser(null, true);
-if($b['browser'] != 'Firefox')
+jimport( 'joomla.environment.browser' );
+$b =& JBrowser::getInstance();
+if($b->getBrowser() != 'mozilla')
 {
 	header ('Content-type: text/html; charset=utf-8');
 
