@@ -4,8 +4,26 @@ jimport('edesktop.programas.mailing');
 
 $m = new edMailing();
 $emails = $m->busca_todos_emails_ativos();
+$contatos = $m->busca_todos_contatos_ativos();
 
+$c = array();
+foreach($contatos as $contato)
+	$c[] = $contato->email;
+	
+$contatos = json_encode($c);
 ?>
+<script>
+$(function(){
+	var $form = $('form', $('#d<?= $this->processID; ?>'));
+
+	$("input[name='contato']", $form).autocomplete({
+		source: <?= $contatos; ?>,
+		minLength: 2
+	});
+	$('ul.ui-autocomplete').css({left: 364, top: ''});
+});
+</script>
+
 <h1>Enviar e-mail</h1>
 <p>Envie e-mails para um contato</p>
 
