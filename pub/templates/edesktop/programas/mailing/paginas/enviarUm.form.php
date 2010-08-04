@@ -24,8 +24,8 @@ $(function(){
 });
 </script>
 
-<h1>Enviar e-mail</h1>
-<p>Envie e-mails para um contato</p>
+<h1>Enviar e-mail para um contato</h1>
+<p>Envie um e-mail para um único contato de suas listas</p>
 
 <form rel="<?= $this->processID ?>" method="post" action="">
 	<div class="line">
