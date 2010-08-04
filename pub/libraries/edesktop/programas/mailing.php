@@ -140,6 +140,17 @@ class edMailing extends eDesktoBase
 	}
 
 
+
+	public function busca_todos_contatos_ativos()
+	{
+		$dql = Doctrine_Query::create()
+			->from('Contato c')
+			->where('c.status = 1');
+			
+		return $dql->execute();
+	}
+
+
 	public function busca_email_ativo_id($id)
 	{
 		$id = util::int($id, 0);
