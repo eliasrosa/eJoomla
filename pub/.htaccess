@@ -1,3 +1,6 @@
+# desliga o magic_quotes_gpc
+php_flag magic_quotes_gpc Off
+
 ##
 # @version $Id: htaccess.txt 13415 2009-11-03 15:53:25Z ian $
 # @package Joomla
