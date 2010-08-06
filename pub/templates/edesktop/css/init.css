@@ -60,6 +60,7 @@ legend { color: #0B55C4; font-size: 12px; font-family: Arial, Tahoma; font-weigh
 .fl { float: left; }
 .lsn { list-style: none; }
 .bdr1 { border: 1px solid #BBB; }
+.button { margin: 10px 0; }
 
 /* finder
  *******************************/
@@ -102,7 +103,7 @@ legend { color: #0B55C4; font-size: 12px; font-family: Arial, Tahoma; font-weigh
 .ui-dialog .dialog .main .conteudo .corpo h1 { font-size: 16px; margin-top: 0px; color: #4092CF; }
 .ui-dialog .dialog .main .conteudo .corpo a:hover { text-decoration: underline; color: #0000FF; }
 .ui-dialog .dialog .main .conteudo .corpo a.voltar { position: absolute; bottom: 40px; left: 30px; }
-.ui-dialog .dialog .main .conteudo .corpo table { border-spacing: 0px; width: 100%;  border: 1px solid #DDD; }
+.ui-dialog .dialog .main .conteudo .corpo table { border-spacing: 0px; width: 100%;  border: 1px solid #DDD; clear: both; }
 .ui-dialog .dialog .main .conteudo .corpo table tr.bg2n td { background: #EEE; }
 .ui-dialog .dialog .main .conteudo .corpo table tr.ui-widget-header td { padding: 3px 7px; height: 25px; }
 .ui-dialog .dialog .main .conteudo .corpo table tr.ui-widget-content td { padding: 7px; vertical-align: top; border-bottom: 1px solid #CCC; }
