@@ -27,13 +27,33 @@ $p = $this->dados;
 			<p class="valor">R$ <?= number_format($p->produto->valor, 2, ',', '.'); ?></p>
 			
 			<form action="<?= JRoute::_("index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$this->itemid}"); ?>" method="post">
+
+				<?
+					$opcoes = json_decode($p->produto->opcoes); 
+					if(count($opcoes) && is_array($opcoes))
+					{
+						foreach($opcoes as $opcao)
+						{
+							echo '<label class="opcoes">' .$opcao->nome. '<select name="op[]" title="' .$opcao->nome. '" rel="text_">';
+							echo '<option value="">-- Selecione --</option>';
+
+							foreach($opcao->itens as $item)
+							{
+								echo '<option value="' .$item. '">' .$item. '</option>';
+							}
+							
+							echo '</select></label>';
+						}
+					}	
+				?>
+
 				<div class="comprar">
 					<input type="submit" value="Comprar" />
 				</div>
 				<? if($p->produto->referencia): ?>
 				<input type="hidden" name="op[Ref]" value="<?= strtoupper($p->produto->referencia) ?>" />
 				<? endif; ?>
-				
+								
 				<input type="hidden" name="id" value="<?= $p->produto->id; ?>" />
 				<input type="hidden" name="funcao" value="add" />
 				<?= JHTML::_( 'form.token' ); ?>

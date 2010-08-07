@@ -20,6 +20,34 @@ if(!empty($msg))
 // valor
 $produto['valor'] = str_replace(',','.', $produto['valor']);
 
+// opções
+$opcoes = JRequest::getVar('opcoes', array());
+$opcoes_itens = JRequest::getVar('opcoes_itens', array());
+$produto['opcoes'] = array();
+$i = 0;
+foreach($opcoes as $k=>$v)
+{
+	$idk = key($v);
+		
+	$produto['opcoes'][$i]['nome'] = trim($v[$idk]);
+	$produto['opcoes'][$i]['itens'] = array();
+				
+	foreach($opcoes_itens[$idk] as $item)
+	{
+		if(trim($item) != '')
+			$produto['opcoes'][$i]['itens'][] = trim($item);
+	}
+
+	if(!count($produto['opcoes'][$i]['itens']))
+		unset($produto['opcoes'][$i]);
+	else	
+		$i++;
+}
+
+//print_r($produto['opcoes']);
+
+$produto['opcoes'] = json_encode($produto['opcoes']);
+
 
 jimport( 'joomla.filter.output' );
 if(JFilterOutput::stringURLSafe($produto['alias']) != '')

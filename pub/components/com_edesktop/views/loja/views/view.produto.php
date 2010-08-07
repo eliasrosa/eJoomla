@@ -1,4 +1,13 @@
 <?php
+	// adiciona o plugin de mascaras
+	JHTML::script('jquery.meio.mask.min.js', 'media/com_edesktop/loja/js/');
+
+	// adiciona o plugin de validaForm
+	JHTML::script('jquery.validaform-1.0.13.js', 'media/com_edesktop/loja/js/');
+
+	// adiciona o javascript do produto
+	JHTML::script('produto.js', 'media/com_edesktop/loja/js/');
+
 	// carrega o id do produto
 	$id = JRequest::getvar('id', 0);
 

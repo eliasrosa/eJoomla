@@ -67,6 +67,8 @@
 #loja-produto .produto h1 { font-size: 18px; margin-bottom: 20px; } 
 #loja-produto .produto h1 span { font-size: 14px; color: #8E8E8E; font-weight: normal; } 
 #loja-produto .produto .dados { float: left; width: 370px; } 
+#loja-produto .produto .dados form label.opcoes { font-weight: 700; } 
+#loja-produto .produto .dados form label.opcoes select { display: block; margin-bottom: 15px; } 
 #loja-produto .produto .imagens { width: 171px; float: left; margin-right: 20px; }
 #loja-produto .produto .imagens a { width: 50px; height: 50px; border: 1px solid #DDD; display: block; float: left; margin: 0 5px 5px 0; }
 #loja-produto .produto .imagens a img { display: none; }
