@@ -43,6 +43,9 @@ try
 
 	$profiler = new Doctrine_Connection_Profiler();
 	$manager->setListener($profiler);
+	
+	Doctrine_Core::loadModels(dirname(__FILE__) .DS. 'models' .DS);
+
 }
 catch (Doctrine_Manager_Exception $e)
 {
