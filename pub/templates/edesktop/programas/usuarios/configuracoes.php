@@ -4,7 +4,7 @@ $configuracoes = array (
         'titulo' => 'Usuários',
 
         // Liberar buscas rápidas
-        'finder' => true,
+        'finder' => false,
 
         // Página padrão
         'default' => 'usuarios.lista',
