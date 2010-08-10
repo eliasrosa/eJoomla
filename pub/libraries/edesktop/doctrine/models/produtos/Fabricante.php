@@ -18,7 +18,7 @@ class Fabricante extends BaseJosEdesktopProdutosFabricantes
 		
 		$this->hasMany('Produto as Produtos', array(
 			'local' => 'idproduto',
-			'foreign' => 'idproduto'
+			'foreign' => 'id'
 		));
    }	
 

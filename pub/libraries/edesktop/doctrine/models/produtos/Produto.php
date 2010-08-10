@@ -10,7 +10,7 @@
  * @author     ##NAME## <##EMAIL##>
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Produto extends BaseJosEdesktopProdutos
+class Produto extends BaseJosEdesktopProdutosProdutos
 {
    public function setUp()
     {
@@ -18,16 +18,16 @@ class Produto extends BaseJosEdesktopProdutos
 			
 		$this->hasOne('Fabricante', array(
 			'local' => 'idfabricante',
-			'foreign' => 'idfabricante'
+			'foreign' => 'id'
 		));
 
 		$this->hasMany('Imagem as Imagens', array(
-			'local' => 'idproduto',
+			'local' => 'id',
 			'foreign' => 'idproduto'
 		));
 
 		$this->hasMany('Texto as Textos', array(
-			'local' => 'idproduto',
+			'local' => 'id',
 			'foreign' => 'idproduto'
 		));
 
@@ -48,10 +48,10 @@ class ProdutoHydrationListener extends Doctrine_Record_Listener
     public function preHydrate(Doctrine_Event $event)
     {
 		$data = $event->data;
-
+		
 		$img = Doctrine_Query::create()
 					->from('Imagem')
-					->where('idproduto = ?', $data['idproduto'])
+					->where('idproduto = ?', $data['id'])
 					->andWhere('status = ?', 1)
 					->orderBy('destaque DESC')
 					->limit(1);
@@ -62,13 +62,12 @@ class ProdutoHydrationListener extends Doctrine_Record_Listener
 		{
 			$img = new stdClass();
 			
-			jimport('edesktop.programas.produtos');
-			$img->idimagem = '';
-			$img->idproduto = '';
+			$img->id = 0;
+			$img->idproduto = $data['id'];
 			$img->nome = '';
 			$img->destaque = '';
-			$img->status = '';
-			$img->url = edProdutos::getUrl('404');
+			$img->status = 1;
+			$img->url = edProdutos2::getUrl('404');
 		}
        
 		$data['imagem'] = $img;

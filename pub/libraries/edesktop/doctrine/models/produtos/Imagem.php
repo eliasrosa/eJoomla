@@ -18,7 +18,7 @@ class Imagem extends BaseJosEdesktopProdutosImagens
 		
 		$this->hasMany('Produto as Produtos', array(
 			'local' => 'idproduto',
-			'foreign' => 'idproduto'
+			'foreign' => 'id'
 		));
 		
 		Doctrine::getTable('Imagem')->addRecordListener(new ImagemHydrationListener());
@@ -34,16 +34,16 @@ class ImagemHydrationListener extends Doctrine_Record_Listener
     {
 		$data = $event->data;
 		
-		jimport('edesktop.programas.produtos');
+		jimport('edesktop.programas.produtos2');
 		
-		$path = edProdutos::getUrl('path.produtos', $data['idimagem']);
+		$path = edProdutos2::getUrl('path.produtos', $data['id']);
 		if(file_exists($path))
 		{	    
 			$data['path'] = $path;
-			$data['url'] = edProdutos::getUrl('url.produtos', $data['idimagem']);
+			$data['url'] = edProdutos2::getUrl('url.produtos', $data['id']);
 		}
 		else
-			$data['url'] = edProdutos::getUrl('404');
+			$data['url'] = edProdutos2::getUrl('404');
        
         $event->data = $data;
     }

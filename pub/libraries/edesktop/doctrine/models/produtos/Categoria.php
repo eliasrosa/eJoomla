@@ -24,11 +24,11 @@ class Categoria extends BaseJosEdesktopProdutosCategorias
 		
 		$this->hasMany('Categoria as Subcategorias', array(
 			'local' => 'idpai',
-			'foreign' => 'idcategoria'
+			'foreign' => 'id'
 		));
 
 		$this->hasOne('Categoria as CategoriaPai', array(
-			'local' => 'idcategoria',
+			'local' => 'id',
 			'foreign' => 'idpai'
 		));
    }	
