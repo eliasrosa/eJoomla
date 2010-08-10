@@ -44,7 +44,9 @@ try
 	$profiler = new Doctrine_Connection_Profiler();
 	$manager->setListener($profiler);
 	
-	Doctrine_Core::loadModels(dirname(__FILE__) .DS. 'models' .DS);
+	Doctrine_Core::loadModels(dirname(__FILE__) .DS. 'models');
+	Doctrine_Core::loadModels(dirname(__FILE__) .DS. 'models' .DS .'produtos');
+	Doctrine_Core::loadModels(dirname(__FILE__) .DS. 'models' .DS .'mailing');
 
 }
 catch (Doctrine_Manager_Exception $e)
