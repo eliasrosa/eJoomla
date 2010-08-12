@@ -60,26 +60,16 @@ class edesktopVIEWloja extends JView
 	private function carrinho_busca_produto()
 	{
 		// importa a class produtos
-		jimport('edesktop.programas.produtos.produtos');	
-
-		// inicia no obj
-		$db = new edesktop_produtos_produtos();
+		jimport('edesktop.programas.loja');	
 		
-		// importa a class imagens
-		jimport('edesktop.programas.produtos.imagens');	
-
-		// inicia no obj
-		$img = new edesktop_produtos_imagens();
-		
-
 		// ID do produtos
-		$id = JRequest::getvar('id', 0);		
-
+		$id = JRequest::getInt('id', 0);		
 		
-		// busca os dados do produto
-		$produto = $db->busca_por_id($id);
-		
-		
+		// inicia no obj
+		$produto = edProdutos::getInstance()
+						->busca_produto_ativo_por_id($id)
+						-fetchOne();
+			
 		// verifica o produto
 		if(!$produto)
 			die( 'Produto inválido' );
@@ -87,22 +77,23 @@ class edesktopVIEWloja extends JView
 			
 		// cria uma class de retorno
 		$r = new stdClass();
-		
-		
+				
 		// adiciona o produto
-		$r->db = $produto;
+		$r->db = new stdClass();
+		
+		$r->db->id = $produto->id;
+		$r->db->nome = $produto->nome;
+		$r->db->valor = $produto->valor;
+		$r->db->frete = $produto->frete;
+		$r->db->peso = $produto->peso;
+		$r->db->imagem = $produto->imagem->url;
 		
 		
-		// adiciona a imagem destaque
-		$imagem = $img->busca_destaque_por_produto($produto->id);
-		$r->db->imagem = $imagem->url;
-
 		// cria uma class do carrinho
 		$r->carrinho = new stdClass();
 
-
 		// carrega as opções
-		$r->carrinho->op = JRequest::getvar('op', array());	
+		$r->carrinho->op = JRequest::getVar('op', array());	
 		
 		// carrega a ref caso exista
 		if(isset($r->carrinho->op['Ref']))

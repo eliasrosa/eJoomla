@@ -67,14 +67,13 @@ function edesktopBuildRoute( &$query )
 		if($layout == 'produto')
 		{
 			// importa a class categorias
-			jimport('edesktop.programas.produtos.produtos');
-			
-			// inicia no obj
-			$o = new edesktop_produtos_produtos();
+			jimport('edesktop.programas.produtos');
 			
 			// busca dados
-			$o = $o->busca_por_id($query['id']);
-			
+			$o = edProdutos::getInstance()
+					->busca_produto_ativo_por_id($query['id'])
+					->fetchOne();			
+
 			// nome da alias
 			$nome = ($o->alias == '') ? $o->nome : $o->alias;
 			
@@ -94,13 +93,12 @@ function edesktopBuildRoute( &$query )
 		if($layout == 'categoria')
 		{
 			// importa a class categorias
-			jimport('edesktop.programas.produtos.categorias');
-			
-			// inicia no obj
-			$o = new edesktop_produtos_categorias();
+			jimport('edesktop.programas.produtos');
 			
 			// busca dados
-			$o = $o->busca_por_id($query['id']);
+			$o = edProdutos::getInstance()
+					->busca_categoria_ativa_por_id($query['id'])
+					->fetchOne();			
 			
 			// nome da alias
 			$nome = ($o->alias == '') ? $o->nome : $o->alias;
@@ -121,13 +119,12 @@ function edesktopBuildRoute( &$query )
 		if($layout == 'fabricante')
 		{
 			// importa a class categorias
-			jimport('edesktop.programas.produtos.fabricantes');
-			
-			// inicia no obj
-			$o = new edesktop_produtos_fabricantes();
+			jimport('edesktop.programas.produtos');
 			
 			// busca dados
-			$o = $o->busca_por_id($query['id']);
+			$o = edProdutos::getInstance()
+					->busca_fabricante_ativo_por_id($query['id'])
+					->fetchOne();			
 			
 			// nome da alias
 			$nome = ($o->alias == '') ? $o->nome : $o->alias;

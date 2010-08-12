@@ -1,40 +1,33 @@
 <?php
-	// importa a class produtos
-	jimport('edesktop.programas.produtos');
-
-	$p = new edProdutos();
-	
-	// paginação
-	$p->paginacao->por_pagina = $this->config->get('produtosPorPagina');
-	
 	// carrega o id ca categoria
-	$id = JRequest::getvar('id', 0);
+	$id = JRequest::getInt('id', 0);
 
-	// tipos de orders
-	$p->paginacao->orders = array(
-		array('label' => 'Preço', 'sql' => 'valor ASC'),
-		array('label' => 'Nome', 'sql' => 'nome ASC')
-	);
+	// importa a class loja
+	jimport('edesktop.programas.loja');
+
+	// pega a config
+	$config = edLoja::getInstance()->getConfig();
+
+	// pega a config
+	$config = edLoja::getInstance()->getConfig();
+
+	// carrega os dados
+	$dados = edProdutos::getInstance()
+				->setConfig($config)
+				->busca_produtos_ativos_por_categoria($id)
+				->createPager();
 	
-	// pega o sql order
-	$order = $p->paginacao->get_order();
-	
-	// busca dados
-	$dados = $p->busca_produtos_por_categoria($id, "AND status = '1' AND valor > 0 {$order}", array(
-		'fabricante', 'imagem'
-	));
-	
+		
 	// envia para o layout
 	$this->assignRef('dados', $dados);
-	
-	// envia para o layout a paginação
-	$this->assignRef('paginacao', $p->paginacao);
 
-	// abre a categoria
-	$cat = $p->busca_categoria_por_id($id);
-	if($cat)
+	// abre o fabricante
+	$categoria = edProdutos::getInstance()
+					->busca_categoria_ativa_por_id($id)
+					->fetchOne(array(), Doctrine_core::HYDRATE_ARRAY);	
+	if($categoria)
 	{ 
-		$nome = $cat->nome;
+		$nome = $categoria['nome'];
 		$_SESSION['eload']['title'] = "{$nome} - {sitename}";
 		$this->assignRef('titulo', $nome);
 	}

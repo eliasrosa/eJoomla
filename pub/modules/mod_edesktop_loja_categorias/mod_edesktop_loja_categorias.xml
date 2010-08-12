@@ -10,6 +10,5 @@
     <params>
 		<param name="mod_titulo" type="text" default="Categorias" label="Título" description="" />
 		<param name="mod_id" type="text" default="" label="Atributo ID" description="" />
-		<param name="mod_itemid" type="text" default="" label="Itemid" description="" />
     </params>
 </install>

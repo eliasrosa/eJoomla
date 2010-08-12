@@ -9,28 +9,26 @@
 	JHTML::script('produto.js', 'media/com_edesktop/loja/js/');
 
 	// carrega o id do produto
-	$id = JRequest::getvar('id', 0);
+	$id = JRequest::getInt('id', 0);
 
 	// importa a class produtos
-	jimport('edesktop.programas.produtos');
-
-	$p = new edProdutos();
+	jimport('edesktop.programas.loja');
 
 	// busca dados
-	$dados = $p->busca_produto_por_id($id, "AND status = '1'", array(
-		'fabricante', 'imagem', 'imagens', 'textos'
-	));
+	$dados = edProdutos::getInstance()
+				->busca_produto_ativo_por_id($id)
+				->fetchOne();
 
 	// remove imagem duplicada caso esteja em  destaque
 	if($dados)
-		foreach($dados->imagens as $k=>$i)
+		foreach($dados->Imagens as $k=>$i)
 			if($dados->imagem->id == $i->id)
-				unset($dados->imagens[$k]);
+				unset($dados->Imagens[$k]);
 
 	// envia para o layout
 	$this->assignRef('dados', $dados);
 
-	if($dados)
+	if(0)
 	{
 		// Description e keywords
 		$doc =& JFactory::getDocument();

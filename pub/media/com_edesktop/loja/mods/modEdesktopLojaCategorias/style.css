@@ -1,7 +1,5 @@
 /* MOD - CATEGORIAS
  ***************************************/
-.modEdesktopLojaCategorias { width: 198px; }
-.modEdesktopLojaCategorias h2 { height: 29px; background: url(bg_tit.jpg) no-repeat left center; text-indent: -9999px; }
 .modEdesktopLojaCategorias ul.menu { border: 1px solid #ccc; }
 .modEdesktopLojaCategorias ul li { display: block; position: relative; cursor: pointer; }
 .modEdesktopLojaCategorias ul li a { padding: 7px 12px; display: block; background: #FFF;  }

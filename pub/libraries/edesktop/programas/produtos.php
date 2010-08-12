@@ -1,440 +1,267 @@
 <?
-// carrega o jcrud
-jimport('edesktop.jcrud');
+jimport('edesktop.programas.base');
 
-// carrega a paginacao
-jimport('edesktop.jcrud.paginacao');
-
-// carrega a paginacao
-jimport('edesktop.util');
-
-// inicia a class
-class edProdutos
-{
-	var $paginacao = null;
-
-
-	/* tabelas
-	 ***************************************************/
-	private $tabelas = array(
-		'produtos' => 'jos_edesktop_produtos_produtos',
-		'fabricantes' => 'jos_edesktop_produtos_fabricantes',
-		'imagens' => 'jos_edesktop_produtos_imagens',
-		'textos' => 'jos_edesktop_produtos_textos',
-		'categorias' => 'jos_edesktop_produtos_categorias',
-		'categorias_rel' => 'jos_edesktop_produtos_categorias_rel'
-	);
-
-	
-
-	/* caminhos das pastas
-	 ***************************************************/
-	public $url = array();
-	public $path = array();
-
-
-
-	/* inicia a class
-	 ***************************************************/
-	function __construct()
+class edProdutos extends eDesktopBasePrograma
+{	
+	public function __construct()
 	{
-		$this->url['img404'] = JURI::base()."media/com_edesktop/imagens/404.jpg";
-		
-		$this->url['media'] = JURI::base()."media/com_edesktop/produtos/";
-		$this->path['media'] = JPATH_BASE .DS. 'media' .DS. 'com_edesktop' .DS. 'produtos';
-		
-		$this->url['imagens'] = $this->url['media'] .'imagens/';
-		$this->path['imagens'] = $this->path['media'] .DS. 'imagens';
+		parent::__construct();
 
-		$this->url['fabricantes'] = $this->url['imagens'] .'fabricantes/';
-		$this->path['fabricantes'] = $this->path['imagens'] .DS. 'fabricantes';
+		$this->dqls->produtos = Doctrine_Query::create()
+			->from('Produto p');
+			
+		$this->dqls->fabricantes = Doctrine_Query::create()
+			->from('Fabricante f');
+			
+		$this->dqls->categorias = Doctrine_Query::create()
+			->from('Categoria c');
+			
+		$this->dqls->imagens = Doctrine_Query::create()
+			->from('Imagem i');
+						
+		$this->dqls->textos = Doctrine_Query::create()
+			->from('Texto t');
 
-		$this->url['produtos'] = $this->url['imagens'] .'produtos/';
-		$this->path['produtos'] = $this->path['imagens'] .DS. 'produtos';
+		$this->dqls->produtos_ativos = Doctrine_Query::create()
+			->from('Produto p')
+			->innerJoin('p.Fabricante f WITH f.status = 1')
+			->leftJoin('p.Imagens i WITH i.status = 1')
+			->leftJoin('p.Textos t WITH t.status = 1')
+			->where('p.status = 1 AND p.valor > 0')
+			->orderBy('i.destaque DESC, t.ordem ASC');
+			
+		$this->dqls->fabricantes_ativos = Doctrine_Query::create()
+			->from('Fabricante f')
+			->where('f.status = 1');
+			
+		$this->dqls->categorias_ativas = Doctrine_Query::create()
+			->from('Categoria c')
+			->where('c.status = 1')
+			->orderBy('c.ordem, c.idpai, c.nome');
+			
+		$this->dqls->imagens_ativas = Doctrine_Query::create()
+			->from('Imagem i')
+			->where('i.status = 1');
+						
+		$this->dqls->textos_ativos = Doctrine_Query::create()
+			->from('Texto t')
+			->where('t.status = 1');
+			
+		return $this;
+	}
+	
+	
+	
+	public function getInstance()
+	{
+		$class = __CLASS__;		
+		return new $class;
+	}
 		
-		// carrega a paginacao
-		$this->paginacao = new paginacao();
+
+	public function getUrl($tipo, $name = '')
+	{
+		$u['url.media'] = JURI::base().'media/com_edesktop/produtos/';
+		$u['path.media'] = JPATH_BASE .DS. 'media' .DS. 'com_edesktop' .DS. 'produtos';
+		
+		$u['url.imagens'] = $u['url.media'] .'imagens/';
+		$u['path.imagens'] = $u['path.media'] .DS. 'imagens';
+		
+		$u['url.fabricantes'] = $u['url.imagens'] .'fabricantes/' .$name. '.jpg';
+		$u['path.fabricantes'] = $u['path.imagens'] .DS. 'fabricantes' .DS. $name .'.jpg';
+		
+		$u['url.produtos'] = $u['url.imagens'] .'produtos/' .$name. '.jpg';
+		$u['path.produtos'] = $u['path.imagens'] .DS. 'produtos' .DS. $name .'.jpg';
+		
+		return $u[$tipo];		
+	}	
+
+
+	public function busca_produto_ativo_por_id($id)
+	{
+		$id = util::int($id);
+		
+		$this->query = $this->dqls->produtos_ativos
+			->andWhere('p.id = ?', $id);
+								
+		return $this;
 	}
 
-	
-	
-	/* carrega o DB da tabela selecionada
-	 ***************************************************/
-	function db($tabela, $dados = array())
+
+
+	public function busca_produto_por_id($id)
 	{
-		// Abre a tabela
-		return new JCRUD($this->tabelas[$tabela], $dados);
+		$id = util::int($id);
+		
+		$this->query = $this->dqls->produtos
+			->where('p.id = ?', $id);
+
+		return $this;
 	}
 
-	
 
-	/* busca todas as categorias filhas pelo id do pai,
-	 * retornando uma string com os ids. ex: '14,74,57'
-	 ***************************************************/
-	function busca_ids_categorias_filhas($id = 0, $array = false)
+	
+	public function busca_todos_produtos()
+	{
+		$this->query = $this->dqls->produtos;
+		
+		return $this;
+	}
+
+
+
+	public function busca_produtos_ativos_por_destaque($destaque = 1)
+	{
+		$destaque = util::int($destaque, -1);
+		
+		$this->query = $this->dqls->produtos_ativos
+			->andWhere('p.destaque = ?', $destaque);
+		
+		return $this;
+	}
+
+
+
+	public function busca_produtos_ativos_por_search($busca)
+	{
+		$this->query = $this->dqls->produtos_ativos
+			->andWhere('(p.nome LIKE ? OR p.alias LIKE ? OR p.descricao LIKE ? OR p.referencia LIKE ? OR p.metatagdescription LIKE ? OR p.metatagkey LIKE ?) OR (p.id = ?)', array("%$busca%", "%$busca%", "%$busca%", "%$busca%", "%$busca%", "%$busca%", $busca));
+		
+		return $this;		
+	}
+
+
+	public function busca_ids_categorias_filhas_ativas($id)
 	{
 		$id = util::int($id, -1);
-	
-		$db = $this->db('categorias');
-		$dados = $db->busca("WHERE id = '{$id}'");
-		$filhas = $db->busca("WHERE idpai = '{$id}'");
+		
+		$dados = array();
+		
+		$filhas = edProdutos::getInstance()
+					->busca_todas_categorias_ativas()
+					->query
+					->andWhere('idpai = ?', $id)
+					->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
+		
 		foreach($filhas as $filha)
 		{
-			$f = $this->busca_ids_categorias_filhas($filha->id, true);
-			$dados  = array_merge($dados, $f);
-		}
-	
-		if($array)
-			return $dados;
-		else
-		{
-			$retorno = array();
+			$ids = $this->busca_ids_categorias_filhas_ativas($filha['id']);
 
-			foreach ($dados as $item)
-				$retorno[] = $item->id;
-
-			return join(',', $retorno);		
+			$dados = array_merge($dados, array($filha['id']));
 		}
+
+		$dados = array_merge(array($id), $dados);
+		
+		return $dados;
+		
 	}
 	
 
-
-	/* busca todos os produtos pelo ids da categorias,
-	 * retornando uma string com os ids. ex: '14,74,57'
-	 ***************************************************/
-	function busca_ids_produtos_por_ids_categorias($ids, $retorno = 'join')
+	public function busca_produtos_ativos_por_categoria($id)
 	{
-		$ids = $ids == '' ? -1 : $ids;
-		
-		$db = $this->db('categorias_rel');
-		$dados = $db->busca("WHERE idcategoria IN ({$ids}) GROUP BY idproduto");
-			
-		$r = array();
-		
-		foreach ($dados as $item)
-			$r[] = $item->idproduto;
-
-		if($retorno == 'join')
-			return join(',', $r);	
-
-		elseif($retorno == 'array')
-			return $r;	
-	}
-	
-
-
-	/* Busca todos os produtos pelo id de uma categoria,
-	 * e de categrias filhas
-	 ***************************************************/ 
-	function busca_produtos_por_categoria($id = -1, $sql = "", $tabelas_relacionadas = array())
-	{
-		$id = util::int($id, -1);
-		
-		// carrega ids das categorias filhas
-		$categoriasIDS = $this->busca_ids_categorias_filhas($id);
-		
-		// carrega ids dos produtos
-		$produtosIDS = $this->busca_ids_produtos_por_ids_categorias($categoriasIDS);
+		if(!is_array($id))
+			$id = util::int($id, -1);
 		
 		// 
-		if(empty($produtosIDS))
-			return array();
-		
-		// abre a tabela
-		$db = $this->db('produtos');
-		
-		// busca os registros
-		$dados = $db->busca("WHERE id IN({$produtosIDS}) {$sql}");
-		
-		// inicia a paginação
-		$this->paginacao->init(count($dados));
-		
-		$retorno = array();
-		for($i = $this->paginacao->row_inicio; $i <= $this->paginacao->row_fim; $i++)
-			if(isset($dados[$i]))
-				$retorno[] = $this->busca_produto_por_id($dados[$i]->id, "", $tabelas_relacionadas);
-	
-		return $retorno;
+		$categoriasIDS = edProdutos::getInstance()
+							->busca_ids_categorias_filhas_ativas($id);
+							
+		$this->query = Doctrine_Query::create()
+						->from('Produto p')
+						->innerJoin('p.Fabricante f WITH f.status = 1')
+						->leftJoin('p.Categorias c')
+						->whereIn('c.id', $id)
+						->andWhere('p.status = 1 AND p.valor > 0')
+						->groupBy('p.id');
+							
+		return $this;		
 	}
 
 
-
-	/* 
-	 ***************************************************/ 
-	function busca_produtos_em_destaque($sql = "", $tabelas_relacionadas = array())
-	{		
-		$db = $this->db('produtos');
-		$dados = $db->busca("WHERE destaque = '1' {$sql}");
-				
-		// inicia a paginação
-		$this->paginacao->init(count($dados));
-		
-		$retorno = array();
-		for($i = $this->paginacao->row_inicio; $i <= $this->paginacao->row_fim; $i++)
-			if(isset($dados[$i]))
-				$retorno[] = $this->busca_produto_por_id($dados[$i]->id, "", $tabelas_relacionadas);
-		
-		return $retorno;
-	}
-
-
-
-	/* 
-	 ***************************************************/ 
-	function busca_todos_produtos($sql = "", $tabelas_relacionadas = array())
-	{		
-		$db = $this->db('produtos');
-		$dados = $db->busca("{$sql}");
-				
-		// inicia a paginação
-		$this->paginacao->init(count($dados));
-		
-		$retorno = array();
-		for($i = $this->paginacao->row_inicio; $i <= $this->paginacao->row_fim; $i++)
-			if(isset($dados[$i]))
-				$retorno[] = $this->busca_produto_por_id($dados[$i]->id, "", $tabelas_relacionadas);
-		
-		return $retorno;
-	}
-
-
-
-	/* Busca os dados do produto pelo id
-	 ***************************************************/	
-	function busca_produto_por_id($id = 0, $sql = "", $tabelas = array())
+	public function busca_produtos_ativos_por_fabricante($id)
 	{
-		$id = util::int($id, -1);
-
-		$dados = new stdClass();
+		$id = util::int($id);
 		
-		$db = $this->db('produtos');
-		$dados->produto = $db->busca("WHERE id = '{$id}' {$sql}");
-		$dados->produto = count($dados->produto) ? $dados->produto[0] : false;
+		$this->query = $this->dqls->produtos_ativos
+			->andWhere('p.idfabricante = ?', $id);
 		
-		if($dados->produto && count($tabelas))
-		{	
-			// produtos
-			$produto = $dados->produto;
-			
-			if(isset($tabelas['fabricante']))
-				$dados->fabricante = $this->busca_fabricante_por_id($produto->idfabricante, $tabelas['fabricante']);
-			elseif(in_array('fabricante', $tabelas))
-				$dados->fabricante = $this->busca_fabricante_por_id($produto->idfabricante, '');
-
-
-			if(isset($tabelas['imagem']) || in_array('imagem', $tabelas))
-				$dados->imagem = $this->busca_imagem_destaque_por_produto($produto->id);
-
-
-			if(isset($tabelas['imagens']))
-				$dados->imagens = $this->busca_imagens_por_produto($produto->id, $tabelas['imagens']);
-			elseif(in_array('imagens', $tabelas))
-				$dados->imagens = $this->busca_imagens_por_produto($produto->id, "AND status = '1'");
-
-
-			if(isset($tabelas['textos']))
-				$dados->textos = $this->busca_textos_por_produto($produto->id, $tabelas['textos']);
-			elseif(in_array('textos', $tabelas))
-				$dados->textos = $this->busca_textos_por_produto($produto->id, "AND status = '1' ORDER BY ordem ASC");
-			
-			// retorno os dados 
-			return $dados;
-		}
-		
-		// retorno os dados 
-		return $dados->produto;
+		return $this;		
 	}
 
 
 
-	function busca_fabricante_por_id($id, $sql = "")
+	public function busca_todas_categorias_ativas()
 	{
-		$id = util::int($id, -1);
+		$this->query = $this->dqls->categorias_ativas;
 		
-		$db = $this->db('fabricantes');
-		$dados = $db->busca("WHERE id = '{$id}' {$sql}");
-		$dados = count($dados) ? $dados[0] : false;
-
-		return $dados;
+		return $this;		
 	}
 
 
 
-	function busca_imagem_por_id($id, $sql = "")
+	public function busca_todas_categorias()
 	{
-		$id = util::int($id, -1);
-
-		$db = $this->db('imagens');
-		$dados = $db->busca("WHERE id = '{$id}' {$sql}");
-		$dados = count($dados) ? $dados[0] : false;
-
-		if($dados)
-			$dados->url = $this->busca_imagem_path($id);
-		else
-			$dados->url = $this->busca_imagem_path('');
-			
-		return $dados;
+		$this->query = $this->dqls->categorias;
+		
+		return $this;		
 	}
 
 
 
-	function busca_texto_por_id($id, $sql = "")
+	public function busca_todos_fabricantes_ativos()
 	{
-		$id = util::int($id, -1);		
+		$this->query = $this->dqls->fabricantes_ativos;
 		
-		$db = $this->db('textos');
-		$dados = $db->busca("WHERE id = '{$id}' {$sql}");
-		$dados = count($dados) ? $dados[0] : false;
-			
-		return $dados;
-	}
-
-	
-	
-	function busca_categoria_por_id($id, $sql = "")
-	{
-		$id = util::int($id, -1);
-
-		$db = $this->db('categorias');
-		$dados = $db->busca("WHERE id = '{$id}' {$sql}");
-		$dados = count($dados) ? $dados[0] : false;
-		
-		return $dados;
+		return $this;		
 	}
 
 
 
-	/* busca a imagem em destaque pelo id do produto
-	 ***************************************************/
-	function busca_imagem_destaque_por_produto($id)
+	public function busca_categoria_por_id($id)
 	{
-		$id = util::int($id, -1);
-
-		$db = $this->db('imagens');
-		$dados = $db->busca("WHERE idproduto = '{$id}' AND status = '1' ORDER BY destaque DESC LIMIT 0,1");
+		$id = util::int($id);
 		
-		if(count($dados))
-			$dados[0]->url = $this->busca_imagem_path($dados[0]->id);
-		else
-			$dados[0]->url = $this->busca_imagem_path('');
-		
-		// retorno os dados 
-		return $dados[0];
-	}
-	
-	
-	function busca_produtos_por_fabricante($id = 0, $sql = "", $tabelas_relacionadas = array())
-	{
-		$id = util::int($id, -1);
-		
-		$db = $this->db('produtos');
-		$dados = $db->busca("WHERE idfabricante = '{$id}' {$sql}");
-
-		// inicia a paginação
-		$this->paginacao->init(count($dados));
-		
-		$retorno = array();
-		for($i = $this->paginacao->row_inicio; $i <= $this->paginacao->row_fim; $i++)
-			if(isset($dados[$i]))
-				$retorno[] = $this->busca_produto_por_id($dados[$i]->id, "", $tabelas_relacionadas);
-		
-		return $retorno;
+		$this->query = $this->dqls->categorias
+			->where('c.id = ?', $id);
+					
+		return $this;
 	}
 
 
-	function busca_imagens_por_produto($id = 0, $sql = "")
-	{
-		$id = util::int($id, -1);
-		
-		$db = $this->db('imagens');
-		$dados = $db->busca("WHERE idproduto = '$id' {$sql}");
 
-		// inicia a paginação
-		$this->paginacao->init(count($dados));
+	public function busca_categoria_ativa_por_id($id)
+	{
+		$id = util::int($id);
 		
-		$retorno = array();
-		for($i = $this->paginacao->row_inicio; $i <= $this->paginacao->row_fim; $i++)
-			if(isset($dados[$i]))
-				$retorno[] = $this->busca_imagem_por_id($dados[$i]->id);
-		
-		return $retorno;
+		$this->query = $this->dqls->categorias_ativas
+			->andWhere('c.id = ?', $id);
+						
+		return $this;
 	}
-	
 
-	function busca_textos_por_produto($id = 0, $sql = "")
+
+
+	public function busca_fabricante_ativo_por_id($id)
 	{
-		$id = util::int($id, -1);
+		$id = util::int($id);
 		
-		$db = $this->db('textos');
-		$dados = $db->busca("WHERE idproduto = '{$id}' {$sql}");
-
-		// inicia a paginação
-		$this->paginacao->init(count($dados));
-		
-		$retorno = array();
-		for($i = $this->paginacao->row_inicio; $i <= $this->paginacao->row_fim; $i++)
-			if(isset($dados[$i]))
-				$retorno[] = $this->busca_texto_por_id($dados[$i]->id);
-		
-		return $retorno;
+		$this->query = $this->dqls->fabricantes_ativos
+			->andWhere('f.id = ?', $id);
+						
+		return $this;
 	}
-	
-	
-	function busca_produtos_por_texto($texto = '', $sql = "", $tabelas_relacionadas = array())
+
+
+
+	public function busca_fabricante_por_id($id)
 	{
-		$texto = util::quote($texto);
+		$id = util::int($id);
 		
-		if($texto == '')
-			return array();
-		
-		$where = "WHERE (nome LIKE '%$texto%' OR alias LIKE '%$texto%' OR descricao LIKE '%$texto%' OR referencia LIKE '%$texto%' OR id LIKE '%$texto%' OR metatagdescription LIKE '%$texto%' OR metatagkey LIKE '%$texto%')";
-
-		$db = $this->db('produtos');
-		$dados = $db->busca("{$where} {$sql}");
-
-		// separa o texto por palavra e faz uma busca
-		$palavras = explode(' ', $texto);
-		if(count($palavras) > 1)
-		{
-			foreach($palavras as $texto)
-			{
-				$where = "WHERE (nome LIKE '%$texto%' OR alias LIKE '%$texto%' OR descricao LIKE '%$texto%' OR referencia LIKE '%$texto%' OR id LIKE '%$texto%' OR metatagdescription LIKE '%$texto%' OR metatagkey LIKE '%$texto%')";
-				$novo = $db->busca("{$where} {$sql}");
-				$dados = array_merge($dados, $novo);
-			}
-		}
-
-		// inicia a paginação
-		$this->paginacao->init(count($dados));
-		
-		$retorno = array();
-		for($i = $this->paginacao->row_inicio; $i <= $this->paginacao->row_fim; $i++)
-			if(isset($dados[$i]))
-				$retorno[] = $this->busca_produto_por_id($dados[$i]->id, "", $tabelas_relacionadas);
-		
-		return $retorno;
+		$this->query = $this->dqls->fabricantes
+			->where('f.id = ?', $id);
+						
+		return $this();
 	}
-	
-	
-	/* retorna com o caminho da imagem
-	 ***************************************************/
-	private function busca_imagem_path($id, $img404 = true)
-	{
-		$id = util::int($id, -1);
-		
-		$img = $this->path['produtos'] .DS. "{$id}.jpg";
-		$url = $this->url['produtos'] . "{$id}.jpg";
-		
-		if(!file_exists($img))
-		{
-			if($img404)
-				$url = $this->url['img404'];
-			else
-				$url = false;
-		}
-			
-		// retorno os dados 
-		return $url;
-	}	
+
 }
 ?>

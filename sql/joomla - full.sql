@@ -2088,3 +2088,20 @@ ALTER TABLE `jos_ejoomla_v0020` CHANGE `requerido_0020` `null` BIT( 1 ) NULL DEF
 ALTER TABLE `jos_edesktop_produtos_produtos` ADD `valorde` DECIMAL( 10, 2 ) NOT NULL AFTER `valor`;
 
 -- 
+
+
+-- ----------------------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------------------------
+-- REQUERIDO 0020
+
+RENAME TABLE `jos_ejoomla_v0020`  TO `jos_ejoomla_v0021` ;
+
+ALTER TABLE `jos_edesktop_produtos_categorias`  
+	ADD `lft` INT NOT NULL,  
+	ADD `rgt` INT NOT NULL,
+	ADD `level` SMALLINT NOT NULL;
+
+
+

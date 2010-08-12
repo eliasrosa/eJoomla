@@ -1,7 +1,7 @@
 <?
 jimport('edesktop.programas.base');
 
-class edMailing extends eDesktoBase
+class edMailing extends eDesktopBasePrograma
 {
 
 	public function enviar_email($contato, $idemail)

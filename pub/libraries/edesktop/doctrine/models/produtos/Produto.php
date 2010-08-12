@@ -67,7 +67,7 @@ class ProdutoHydrationListener extends Doctrine_Record_Listener
 			$img->nome = '';
 			$img->destaque = '';
 			$img->status = 1;
-			$img->url = edProdutos2::getUrl('404');
+			$img->url = edProdutos::getInstance()->getUrl404();
 		}
        
 		$data['imagem'] = $img;

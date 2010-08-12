@@ -17,9 +17,32 @@ class Fabricante extends BaseJosEdesktopProdutosFabricantes
         parent::setUp();
 		
 		$this->hasMany('Produto as Produtos', array(
-			'local' => 'idproduto',
-			'foreign' => 'id'
+			'local' => 'id',
+			'foreign' => 'idfabricante'
 		));
-   }	
+		
+		Doctrine::getTable('Fabricante')->addRecordListener(new FabricanteHydrationListener());
+		
+   }
 
+}
+
+class FabricanteHydrationListener extends Doctrine_Record_Listener
+{
+    public function preHydrate(Doctrine_Event $event)
+    {
+		$data = $event->data;
+		
+		$path = edProdutos::getInstance()->getUrl('path.fabricantes', $data['id']);
+					
+		if(file_exists($path))
+		{	    
+			$data['path'] = $path;
+			$data['url'] = edProdutos::getInstance()->getUrl('url.fabricantes', $data['id']);
+		}
+		else
+			$data['url'] = edProdutos::getInstance()->getUrl404();
+       
+        $event->data = $data;
+    }
 }

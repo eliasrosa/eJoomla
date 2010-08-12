@@ -11,6 +11,9 @@
  * @property string $alias
  * @property integer $status
  * @property integer $ordem
+ * @property integer $lft
+ * @property integer $rgt
+ * @property integer $level
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -69,6 +72,33 @@ abstract class BaseJosEdesktopProdutosCategorias extends Doctrine_Record
         $this->hasColumn('ordem', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('lft', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => 4,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('rgt', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => 4,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('level', 'integer', 2, array(
+             'type' => 'integer',
+             'length' => 2,
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,

@@ -16,7 +16,7 @@ class Texto extends BaseJosEdesktopProdutosTextos
     {
         parent::setUp();
 		
-		$this->hasMany('Produto as Produtos', array(
+		$this->hasOne('Produto', array(
 			'local' => 'idproduto',
 			'foreign' => 'id'
 		));
