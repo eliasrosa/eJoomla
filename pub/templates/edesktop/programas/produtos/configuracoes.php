@@ -4,7 +4,7 @@ $configuracoes = array (
         'titulo' => 'Produtos',
 
         // Liberar buscas rápidas
-        'finder' => true,
+        'finder' => false,
 
         // Página padrão
         'default' => 'produtos.lista',
