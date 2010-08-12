@@ -68,7 +68,7 @@ class edesktopVIEWloja extends JView
 		// inicia no obj
 		$produto = edProdutos::getInstance()
 						->busca_produto_ativo_por_id($id)
-						-fetchOne();
+						->fetchOne();
 			
 		// verifica o produto
 		if(!$produto)
