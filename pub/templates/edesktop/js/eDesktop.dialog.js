@@ -22,7 +22,7 @@ $(function(){
 			this.position.y = this.position.y + this.position.d;
 
 			// cria a caixa de dialog
-			$('<div id="d'+process.id+'" class="dialog" title="'+process.titulo+'"><div class="main"><div class="finder-result"><h1>Resultado da pesquisa em ' +process.titulo+ '</h1><div class="result"></div><a href="javascript:void(0);" class="fechar">Fechar pesquisa</a></div><div id="' +process.programa+ '" class="conteudo"></div></div></div>').dialog({
+			$('<div id="d'+process.id+'" class="dialog" title="'+process.titulo+'"><div class="main"><div id="' +process.programa+ '" class="conteudo"></div></div></div>').dialog({
 				
 				close: function(event, ui){
 					$('#toolbar label[for="t'+process.id+'"]').remove();
@@ -49,7 +49,7 @@ $(function(){
 			$('span.ui-dialog-title', $dialog).prepend('<img src="' +eDesktop.url+ '/programas/' +process.programa+ '/_img/icone.png" width="16" />');
 			
 			// adiciona finder
-			if(process.finder){
+			if(process.finder !== false){
 				$($dialog).append('<div class="finder ui-widget-content ui-corner-all"><span class="icone ui-icon ui-icon-search"></span><input type="text" class="" value="Pesquisar em ' +process.titulo+ '" /></div>');
 				
 				// event press enter
@@ -62,7 +62,7 @@ $(function(){
 						eDesktop.dialog.load({
 							processID: process.id,
 							programa: process.programa,
-							pagina: 'finder',
+							pagina: process.finder,
 							query: 'finder=' +val
 						});
 					}

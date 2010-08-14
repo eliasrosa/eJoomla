@@ -90,7 +90,7 @@ class programa {
 
 	    // verifica se o usuário tem permissão no finder
 	    if($configuracoes['finder'] && $veriFinder)
-		$configuracoes['finder'] = jAccess("finder", array('retorno' => 'bool', 'programa' => $programa));
+		$configuracoes['finder'] = jAccess("finder", array('retorno' => 'bool', 'programa' => $programa)) ? $configuracoes['finder'] : false;
 
             if($json)
                 echo json_encode($configuracoes);
