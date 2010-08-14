@@ -62,6 +62,8 @@ legend { color: #0B55C4; font-size: 12px; font-family: Arial, Tahoma; font-weigh
 .bdr1 { border: 1px solid #BBB; }
 .button { margin: 10px 0; }
 .cmove { cursor: move; }
+.img1 { width: 65px; height: 65px; background: #FFF; display: block; text-align: center; border: 1px solid #BBB; }
+
 
 /* finder
  *******************************/

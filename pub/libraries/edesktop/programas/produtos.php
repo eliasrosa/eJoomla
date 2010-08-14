@@ -122,6 +122,15 @@ class edProdutos extends eDesktopBasePrograma
 
 
 
+	public function busca_produtos_por_search($busca)
+	{
+		$this->query = $this->dqls->produtos_ativos
+			->andWhere('p.status >= 0 AND ((p.nome LIKE ? OR p.alias LIKE ? OR p.descricao LIKE ? OR p.referencia LIKE ? OR p.metatagdescription LIKE ? OR p.metatagkey LIKE ?) OR (p.id = ?))', array("%$busca%", "%$busca%", "%$busca%", "%$busca%", "%$busca%", "%$busca%", $busca));
+		
+		return $this;		
+	}
+
+
 	public function busca_produtos_ativos_por_search($busca)
 	{
 		$this->query = $this->dqls->produtos_ativos
