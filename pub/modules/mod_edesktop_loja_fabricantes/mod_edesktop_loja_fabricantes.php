@@ -27,7 +27,7 @@ $dados = $dados->query
 	<?= $module->showtitle ? "<h2>$tit</h2>" : ""; ?>
 	<div class="fabricantes">
 		<? foreach($dados as $f): ?>
-		<a href="<?= JRoute::_("index.php?option=com_edesktop&view=loja&layout=fabricante&Itemid={$iid}&id={$f->id}")?>">
+		<a href="<?= "index.php?option=com_edesktop&view=loja&layout=fabricante&Itemid={$iid}&id={$f->id}" ?>">
 			<img src="<?= $f->url; ?>" alt="<?= $f->nome; ?>" width="<?= $imgw; ?>" height="<?= $imgh; ?>" />
 		</a>
 		<? endforeach; ?>

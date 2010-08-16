@@ -9,7 +9,7 @@
 	</div>
 	<? endif; ?>
 	
-	<form id="carrinho" action="<?= JRoute::_("index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$this->itemid}");?>" method="post">
+	<form id="carrinho" action="<?= JURI::base() . "index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$this->itemid}" ?>" method="post">
 
 		<table class="produtos">
 			<tr class="head">
@@ -26,7 +26,7 @@
 			
 			<?
 			foreach($this->itens as $p): 
-				$link = JRoute::_("index.php?option=com_edesktop&view=loja&layout=produto&Itemid={$this->itemid}&id={$p['id']}");
+				$link = "index.php?option=com_edesktop&view=loja&layout=produto&Itemid={$this->itemid}&id={$p['id']}";
 			?>
 			<tr class="item">
 				<td class="img">
@@ -71,7 +71,7 @@
 				<a href="javascript:void(0);" title="Consultar" class="cupom"><img src="media/com_edesktop/loja/imagens/icoOk.gif" alt="Adicionar" /></a>
 			</div>
 			
-			<a href="<?= JRoute::_("index.php?option=com_edesktop&view=loja&layout=destaques&Itemid={$this->itemid}"); ?>" class="continuarComprando">Continuar Comprando</a>
+			<a href="<?= "index.php?option=com_edesktop&view=loja&layout=destaques&Itemid={$this->itemid}" ?>" class="continuarComprando">Continuar Comprando</a>
 			
 		</div>
 

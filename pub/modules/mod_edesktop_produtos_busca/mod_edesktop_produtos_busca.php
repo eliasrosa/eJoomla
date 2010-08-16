@@ -11,7 +11,7 @@ $busca = JRequest::getvar('q', '');
 ?>
 
 <div id="<?= $mid ?>" class="modEdesktopProdutosBusca">
-	<form method="get" action="<?= JRoute::_("index.php?option=com_edesktop&view=loja&layout=busca&Itemid={$iid}"); ?>">
+	<form method="get" action="<?= JURI::base() . "index.php?option=com_edesktop&view=loja&layout=busca&Itemid={$iid}" ?>">
 		<?= $module->showtitle ? "<h2>$tit</h2>" : ""; ?>
 		<input name="q" value="<?= $busca; ?>" type="input" class="text" />
 		<input value="Buscar" type="submit" class="submit" />

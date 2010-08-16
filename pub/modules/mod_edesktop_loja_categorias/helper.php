@@ -57,7 +57,7 @@ class modEdesktopLojaCategoriasHelper
 			{
 				$s = $this->montaMenu($c['id']);
 				$class = ($s == '') ? '' : ' class="pai"';
-				$href = JROUTE::_("index.php?option=com_edesktop&view=loja&layout=categoria&Itemid={$this->itemid}&id={$c['id']}");
+				$href = "index.php?option=com_edesktop&view=loja&layout=categoria&Itemid={$this->itemid}&id={$c['id']}";
 
 				$m .= "<li{$class}><a href=\"{$href}\">{$c['nome']}</a>{$s}</li>";
 			}

@@ -15,7 +15,7 @@ $itens = @$_SESSION['loja.carrinho.itens'];
 $dados = @$_SESSION['loja.carrinho.dados'];
 
 // link do carrinho
-$linkCarrinho = JRoute::_("index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$iid}")
+$linkCarrinho = "index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$iid}";
 ?>
 
 <div id="<?= $mid ?>" class="modEdesktopLojaCarrinho">

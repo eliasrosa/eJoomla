@@ -26,7 +26,7 @@ $p = $this->dados;
 			<p class="descricao"><?= nl2br($p->descricao); ?></p>
 			<p class="valor">R$ <?= number_format($p->valor, 2, ',', '.'); ?></p>
 			
-			<form action="<?= JRoute::_("index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$this->itemid}"); ?>" method="post">
+			<form action="<?= JURI::base(). "index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$this->itemid}"; ?>" method="post">
 
 				<?
 					$opcoes = json_decode($p->opcoes); 

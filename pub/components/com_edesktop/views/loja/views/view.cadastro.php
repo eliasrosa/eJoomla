@@ -219,7 +219,7 @@
 	else
 	{
 		// cria o link do carrinho com route
-		$link = JRoute::_("index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$this->itemid}");		
+		$link = "index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$this->itemid}";
 		
 		// redireciona para o carrinho
 		$mainframe->redirect($link);

@@ -37,12 +37,12 @@ class edLoja
 		$html  = '';
 		$html .= '<div class="produto">';
 
-		$produto = JRoute::_("index.php?option=com_edesktop&view=loja&layout=produto&Itemid={$this->itemid}&id={$p->id}");
+		$produto = "index.php?option=com_edesktop&view=loja&layout=produto&Itemid={$this->itemid}&id={$p->id}";
 		$fabricanteALT = "";
 				
 		if($p->idfabricante)
 		{
-			$fabricante = JRoute::_("index.php?option=com_edesktop&view=loja&layout=fabricante&Itemid={$this->itemid}&id={$p->idfabricante}");
+			$fabricante = "index.php?option=com_edesktop&view=loja&layout=fabricante&Itemid={$this->itemid}&id={$p->idfabricante}";
 			$fabricanteALT = "- Produto {$p->Fabricante->nome}";
 		}
 		

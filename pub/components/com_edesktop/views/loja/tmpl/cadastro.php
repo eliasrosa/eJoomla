@@ -19,7 +19,7 @@
 	</div>
 	<? endif; ?>
 	
-	<form class="cadastro" action="<?= JRoute::_("index.php?option=com_edesktop&view=loja&layout=cadastro&Itemid={$this->itemid}");?>" method="post">
+	<form class="cadastro" action="<?= JURI::base() . "index.php?option=com_edesktop&view=loja&layout=cadastro&Itemid={$this->itemid}" ?>" method="post">
 
 		<div class="cadastro">
 			<h2>Seus dados</h2>
@@ -31,7 +31,7 @@
 			<br class="clearfix"/>
 			
 			<h2 class="mt">Endereço de entrega</h1>
-			<label><span>CEP:</span><?= @$this->dados['frete']['cep'] ?><a href="<?= JRoute::_("index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$this->itemid}")?>">alterar</a></label>
+			<label><span>CEP:</span><?= @$this->dados['frete']['cep'] ?><a href="<?= "index.php?option=com_edesktop&view=loja&layout=carrinho&Itemid={$this->itemid}" ?>">alterar</a></label>
 			<label><span>Endereço:</span><?= $this->dados['cadastro']['tipo_logradouro'] .' '. @$this->dados['cadastro']['logradouro'] ?></label>
 			<label><span>Bairro:</span><?= @$this->dados['cadastro']['bairro'] ?></label>
 			<label class="num"><span>Número:</span><input name="numero" title="Número" rel="text_" type="input" maxlength="10" value="<?= $this->post['numero']; ?>" /></label>
