@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: ilink.php 12694 2009-09-11 21:03:02Z ian $
+ * @version		$Id: ilink.php 18162 2010-07-16 07:00:47Z ian $
  * @package		Joomla
  * @subpackage	Menus
- * @copyright	Copyright (C) 2005 - 2008 Open Source Matters. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
  * @license		GNU/GPL, see LICENSE.php
  * Joomla! is free software. This version may have been modified pursuant to the
  * GNU General Public License, and as distributed it includes or is derivative
@@ -44,7 +44,7 @@ class iLink extends JTree
 		}
 
 		if ($menutype) {
-			$this->_menutype = "&amp;menutype=".$menutype;
+			$this->_menutype = "&amp;menutype=" . JFilterInput::clean($menutype, 'menutype');
 		} else {
 			$this->_menutype = null;
 		}
@@ -115,12 +115,20 @@ class iLink extends JTree
 		$this->_output .= "<li".$last.">\n";
 
 		// Print the url
-		if ($this->_current->hasChildren()) {
-			$this->_output .= "<div class=\"".$classes."\"><span></span><a class=\"hasTip\" title=\"". JText::_( $this->_current->title ) ."::". JText::_( $this->_current->msg ) ."\">". JText::_( $this->_current->title ) ."</a></div>";
-		} else {
-			$this->_output .= "<div class=\"".$classes."\"><span></span><a class=\"hasTip\" href=\"index.php?option=com_menus&amp;task=edit&amp;type=component&amp;".$this->_current->url.$this->_cid.$this->_menutype."\" title=\"". JText::_( $this->_current->title ) ."::". JText::_( $this->_current->msg ) ."\">". JText::_( $this->_current->title ) ."</a></div>";
+		$this->_output .= '<div class="' . $classes . '"><span></span>'
+			. '<a class="hasTip" ';
+		if (! $this->_current->hasChildren()) {
+			$this->_output .= 'href="index.php?option=com_menus'
+				. '&amp;task=edit&amp;type=component&amp;'
+				. $this->_current->url . $this->_cid
+				. $this->_menutype . '" '
+			;
 		}
-
+		$this->_output .= 'title="' . JText::_($this->_current->title)
+			. '::' . JText::_($this->_current->msg) . '">'
+			. JText::_($this->_current->title) . '</a></div>'
+		;
+		
 		// Recurse through children if they exist
 		while ($this->_current->hasChildren())
 		{

@@ -1,6 +1,6 @@
 /**
-* @version $Id: general.css 10387 2008-06-03 10:59:16Z pasamio $
-* @copyright Copyright (C) 2005 - 2006 Open Source Matters. All rights reserved.
+* @version $Id: general.css 14401 2010-01-26 14:10:00Z louis $
+* @copyright Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
 * @license GNU/GPL, see LICENSE.php
 * Joomla! is free software. This version may have been modified pursuant
 * to the GNU General Public License, and as distributed it includes or
@@ -98,7 +98,7 @@ textarea:focus { background-color: #ffd }
 
 #border-top .title {
 	font-size: 22px; font-weight: bold; color: #fff; line-height: 44px;
-	padding-left: 230px;
+	padding-left: 180px;
 }
 
 #border-top .version {
@@ -594,4 +594,3 @@ a img.calendar {
 
 /* System Notice Messages */
 #system-message dd.notice ul { color: #c00; background: #EFE7B8 url(../images/notice-note.png) 4px top no-repeat; border-top: 3px solid #F0DC7E; border-bottom: 3px solid #F0DC7E;}
-

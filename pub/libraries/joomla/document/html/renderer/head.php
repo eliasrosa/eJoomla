@@ -1,9 +1,9 @@
 <?php
 /**
-* @version		$Id: head.php 11917 2009-05-29 19:37:05Z ian $
+* @version		$Id: head.php 14401 2010-01-26 14:10:00Z louis $
 * @package		Joomla.Framework
 * @subpackage	Document
-* @copyright	Copyright (C) 2005 - 2008 Open Source Matters. All rights reserved.
+* @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
 * @license		GNU/GPL, see LICENSE.php
 * Joomla! is free software. This version may have been modified pursuant
 * to the GNU General Public License, and as distributed it includes or
@@ -81,7 +81,6 @@ class JDocumentRendererHead extends JDocumentRenderer
 
 		$strHtml .= $tab.'<meta name="description" content="'.$document->getDescription().'" />'.$lnEnd;
 		$strHtml .= $tab.'<meta name="generator" content="'.$document->getGenerator().'" />'.$lnEnd;
-		$strHtml .= $tab.'<meta name="generator" content="JoomlaClube - http://www.joomlaclube.com.br seu portal do Joomla!" />'.$lnEnd;
 
 		$strHtml .= $tab.'<title>'.htmlspecialchars($document->getTitle()).'</title>'.$lnEnd;
 

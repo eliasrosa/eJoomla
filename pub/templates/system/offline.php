@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright	Copyright (C) 2005 - 2008 Open Source Matters. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
  * @license		GNU/GPL, see LICENSE.php
  * Joomla! is free software. This version may have been modified pursuant
  * to the GNU General Public License, and as distributed it includes or
@@ -8,19 +8,6 @@
  * other free or open source software licenses.
  * See COPYRIGHT.php for copyright notices and details.
  */
-//print_r($this);
-
-$logo_base = JPATH_BASE .DS. 'templates/'. $this->params['template'] .'/logo.jpg';
-$logo_url = $this->baseurl .'/templates/'. $this->params['template'] .'/logo.jpg';
-$nome = $mainframe->getCfg('sitename');
-
-
-
-if(file_exists($logo_base))
-	$logo = '<img src="' .$logo_url. '" width="350" height="150" align="middle" alt="' .$nome. '" />';
-else	
-	$logo = '<img src="images/joomla_logo_black.jpg" align="middle" alt="' .$nome. '" />';
-
 
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
@@ -38,8 +25,10 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 <body>
 <jdoc:include type="message" />
 	<div id="frame" class="outline">
-		<?php echo $logo; ?>
-		<h1><?php echo $nome; ?></h1>
+		<img src="images/joomla_logo_black.jpg" alt="Joomla! Logo" align="middle" />
+		<h1>
+			<?php echo $mainframe->getCfg('sitename'); ?>
+		</h1>
 	<p>
 		<?php echo $mainframe->getCfg('offline_message'); ?>
 	</p>
